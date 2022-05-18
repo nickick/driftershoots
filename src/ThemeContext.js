@@ -1,19 +1,29 @@
-import { useEffect, useState } from 'react';
-import { createContext } from "react";
 import { createTheme, ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
+import { createContext, useEffect, useState } from 'react';
 
 export const ThemeContext = createContext();
 
+const themeShared = {
+  typography: {
+    fontFamily: ['Karla', 'sans-serif'].join(','),
+    h1: {
+      fontFamily: ['Rawgly', 'serif'].join(',')
+    },
+  },
+}
+
 const lightTheme = createTheme({
   palette: {
-    mode: 'light'
-  }
+    mode: 'light',
+  },
+  ...themeShared
 });
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark'
+    mode: 'dark',
   },
+  ...themeShared
 });
 
 function getActiveTheme(themeMode) {

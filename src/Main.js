@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
 export default function Main () {
   return (
@@ -11,6 +11,9 @@ export default function Main () {
       }}
     >
       Main
+      <Typography variant="h1">
+        Title test
+      </Typography>
     </Container>
   )
 }
