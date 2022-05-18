@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import ThemeToggle from './ThemeToggle';
 
 export default function Footer () {
   return (
@@ -8,6 +7,7 @@ export default function Footer () {
       <Box>
         Footer
       </Box>
+      <ThemeToggle />
     </footer>
   )
 }

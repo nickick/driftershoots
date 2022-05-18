@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import { Footer, Main, Navbar } from '../src';
 
-function App({toggleTheme, selectedTheme}) {
+function App() {
   return (
     <main>
       <Box
@@ -10,12 +10,6 @@ function App({toggleTheme, selectedTheme}) {
           color: 'text.primary'
         }}
       >
-        This app is using the {selectedTheme} mode
-        <Button 
-          onClick={toggleTheme}
-        >
-          Toggle Theme
-        </Button>
         <Navbar />
         <Main />
         <Footer />
