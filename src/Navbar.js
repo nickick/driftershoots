@@ -25,6 +25,7 @@ export default function Navbar () {
       sx={{
         display: 'flex',
         flexDirection: 'row',
+        mt: '4rem',
       }}
     >
       <Box 
@@ -39,12 +40,15 @@ export default function Navbar () {
       <Box 
         sx={{
           display: 'flex',
-          flex: 1,
-          justifyContent: 'center'
-
+          flex: '1',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        <img src="/icons/Drift-Logo-w.png" />
+        <img src="/icons/Drift-Logo-w.png" style={{
+          height: '38px',
+          aspectRatio: '116 / 38'
+        }} />
       </Box>
       <Box
         sx={{
