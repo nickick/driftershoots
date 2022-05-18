@@ -14,11 +14,33 @@
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
     "next": "12.1.6",
+    "prop-types": "^15.8.1",
     "react": "18.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {
-    "eslint": "8.15.0",
-    "eslint-config-next": "12.1.6"
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "12.1.6",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js.jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,css}": [
+      "git add"
+    ]
   }
 }
