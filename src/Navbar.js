@@ -1,11 +1,23 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Button, Container } from "@mui/material";
+
+function NavButton ({text, href}) {
+  return (
+    <Button
+      variant='text'
+      sx={{
+        color: 'text.primary'
+      }}
+      href={href}
+    >
+      {text}
+    </Button>
+  )
+}
 
 export default function Navbar () {
   return (
     <Container>
-      <Typography variant="body2" color="primary">
-        Hello
-      </Typography>
+      <NavButton text='Prints' />
     </Container>
   )
 }
