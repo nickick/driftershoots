@@ -3,18 +3,19 @@ import { Footer, Main, Navbar } from '../src';
 
 function App() {
   return (
-    <main>
-      <Box
-        sx={{
-          bgcolor: 'background.default',
-          color: 'text.primary'
-        }}
-      >
-        <Navbar />
-        <Main />
-        <Footer />
-      </Box>
-    </main> 
+    <Box
+      sx={{
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+      }}
+    >
+      <Navbar />
+      <Main />
+      <Footer />
+    </Box>
   );
 }
 

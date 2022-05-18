@@ -1,13 +1,13 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import ThemeToggle from './ThemeToggle';
 
 export default function Footer () {
   return (
-    <footer>
+    <Container>
       <Box>
         Footer
       </Box>
       <ThemeToggle />
-    </footer>
+    </Container>
   )
 }

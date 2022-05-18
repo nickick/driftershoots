@@ -2,15 +2,15 @@ import { Container } from '@mui/material';
 
 export default function Main () {
   return (
-    <main>
-      <Container
-        sx={{
-          bgcolor: 'background.default',
-          color: 'text.primary'
-        }}
-      >
-        Main
-      </Container>
-    </main>
+    <Container
+      sx={{
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        flex: 1,
+        overflow: 'auto',
+      }}
+    >
+      Main
+    </Container>
   )
 }
