@@ -2,16 +2,19 @@ import { Box, Button, Container } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './DiscordIcon';
 
-function NavButton ({text, href}) {
+function NavButton ({text, href, icon}) {
   return (
     <Button
       variant='text'
       sx={{
-        color: 'text.primary'
+        color: 'text.primary',
+        minWidth: icon ? '1rem' : 'inherit',
+        mx: '0.5rem',
       }}
       href={href}
     >
       {text}
+      {icon ? icon: ''}
     </Button>
   )
 }
@@ -53,8 +56,8 @@ export default function Navbar () {
       >
         <NavButton text='About' />
         <NavButton text='Contact' />
-        <DiscordIcon />
-        <TwitterIcon />
+        <NavButton icon={<DiscordIcon />}/>
+        <NavButton icon={<TwitterIcon />}/>
       </Box>
     </Container>
   )
