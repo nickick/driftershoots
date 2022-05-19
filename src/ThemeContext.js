@@ -10,6 +10,14 @@ const themeShared = {
       fontFamily: ['Rawgly', 'serif'].join(',')
     },
   },
+  components: {
+    MuiContainer: {
+      defaultProps: {
+        maxWidth: 'xl',
+        disableGutters: true,
+      }
+    }
+  },
 }
 
 const lightTheme = createTheme({

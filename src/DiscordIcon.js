@@ -1,6 +1,10 @@
 import { Box } from '@mui/material';
+import { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
 
 export default function DiscordIcon({color}) {
+  const { selectedTheme } = useContext(ThemeContext);
+
   return (
     <Box
       sx={{
@@ -10,7 +14,7 @@ export default function DiscordIcon({color}) {
         alignItems: 'center',
       }}>
       <img 
-        src={color == 'black' ? '/icons/discord.svg' : '/icons/discord-white.svg'}
+        src={selectedTheme == 'light' ? '/icons/discord.svg' : '/icons/discord-white.svg'}
         style={{
           width: '20px',
           marginLeft: '0'

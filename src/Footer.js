@@ -3,7 +3,12 @@ import ThemeToggle from './ThemeToggle';
 
 export default function Footer () {
   return (
-    <Container>
+    <Container
+      sx={{
+        maxWidth: '1440px',
+        px: 4,
+      }}
+    >
       <Box>
         Footer
       </Box>

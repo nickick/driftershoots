@@ -12,6 +12,7 @@ function NavButton ({text, href, icon}) {
         mx: '0.5rem',
         fontSize: '1.5rem',
         lineHeight: '2rem',
+        letterSpacing: '0.1rem',
       }}
       href={href}
     >
@@ -27,7 +28,9 @@ export default function Navbar () {
       sx={{
         display: 'flex',
         flexDirection: 'row',
-        mt: '4rem',
+        mt: '6.5rem',
+        px: '4rem',
+        maxWidth: '1440px'
       }}
     >
       <Box 
@@ -48,7 +51,7 @@ export default function Navbar () {
         }}
       >
         <img src="/icons/Drift-Logo-w.png" style={{
-          height: '38px',
+          height: '24px',
           aspectRatio: '116 / 38'
         }} />
       </Box>

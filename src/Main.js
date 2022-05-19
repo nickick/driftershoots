@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useState } from 'react';
 
 export default function Main () {
@@ -10,14 +10,16 @@ export default function Main () {
         bgcolor: 'background.default',
         color: 'text.primary',
         flex: 1,
-        overflow: 'auto'
+        overflow: 'auto',
+        px: 4,
+        maxWidth: '1440px'
       }}
     >
       <Box
         sx={{
           display: 'flex',
           height: '100%',
-          mx: 8,
+          px: 10,
         }}
       >
         <Box
@@ -45,7 +47,7 @@ export default function Main () {
                 zIndex: 12,
               }}
             >
-              Title test 123
+              Recent News
             </Typography>
           </Box>
         </Box>
@@ -95,9 +97,72 @@ export default function Main () {
           display: 'flex',
           flex: '1',
           alignItems: 'center',
+          justifyContent: 'flex-end'
         }}
         >
-          Right side
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '280px',
+            }}
+          >
+            <img 
+              src='/news-images/thenewyorktimes.svg'
+              style={{
+                width: '176px',
+                marginBottom: '3rem',
+              }}
+            />
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 700,
+                fontSize: '3rem',
+                lineHeight: '4rem',
+                mb: 1,
+              }}
+            >
+              A Rogue Climber <br/> Running From the Law Was Fleeing His Own Trauma
+            </Typography>
+            <Typography
+              variant="body"
+              sx={{
+                fontSize: '1.75rem',
+                lineHeight: '3rem',
+                mb: 3,
+              }}
+            >
+              A former paratrooper became an “urban explorer,” scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.
+            </Typography>
+            <Box sx={{
+              border: 0,
+              height: 0,
+              borderTop: '1px solid #36364B',
+              mb: 3,
+            }} />
+            <Button 
+              variant="outlined"
+              sx={{
+                borderRadius: 0,
+                borderColor: 'text.primary',
+                height: '60px',
+                width: 'initial'
+              }}
+            >
+              <Typography
+                variant="body"
+                sx={{
+                  color: 'text.primary',
+                  textTransform: 'capitalize',
+                  fontSize: '1.75rem',
+                  lineHeight: '3rem'
+                }}
+              >
+                Read Article
+              </Typography>
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Container>
