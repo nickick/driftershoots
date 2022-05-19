@@ -3,15 +3,15 @@ import { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
 
 export default function ThemeToggle () {
-  const { selectedTheme, toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <Box>
-      This app is using the {selectedTheme} mode
+      CLICK IT. DO IT.
       <Button 
         onClick={toggleTheme}
       >
-        Toggle Theme
+        BUTTON
       </Button>
     </Box>
   )

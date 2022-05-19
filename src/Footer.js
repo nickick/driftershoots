@@ -9,9 +9,6 @@ export default function Footer () {
         px: 4,
       }}
     >
-      <Box>
-        Footer
-      </Box>
       <ThemeToggle />
     </Container>
   )

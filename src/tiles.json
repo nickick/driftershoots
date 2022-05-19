@@ -1,0 +1,40 @@
+[
+    {
+      "title": "The New York Times",
+      "category": "News",
+      "h1": "Recent News",
+      "logo": "/news-images/thenewyorktimes.svg",
+      "logo-alt": "The New York Times logo",
+      "main-image": "/news-images/Drifter1.jpeg",
+      "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
+      "right-description": "A former paratrooper became an &ldquo;urban explorer,\\” scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
+      "right-button-text": "Read Article"
+    },
+    {
+      "title": "First Day Out",
+      "category": "NFT Project",
+      "h1": "First Day Out",
+      "main-image": "/news-images/fdo.png",
+      "right-title": "Open Edition by DrifterShoots",
+      "right-description": "“April 9th, 2021 was my first day out. I had $9,000 left in my savings and five lawyers I had no idea how I would pay.”",
+      "right-button-text": "View NFT"
+    },
+    {
+      "title": "NFT.NYC 2022",
+      "category": "Event",
+      "h1": "NFT.\nNYC\n2022",
+      "main-image": "/news-images/nft-nyc.png",
+      "right-title": "Driftershoots Meet & Greet with NFT Holders",
+      "right-description": "<b>Date</b> Tue, Jun 21 - Thu, Jun 23\n<b>Location</b>: Times Square",
+      "right-button-text": "RSVP"
+    },
+    {
+      "title": "Where My Vans Go",
+      "category": "NFT Project",
+      "h1": "Where\nMy Vans\nGo",
+      "main-image": "/news-images/wmvg-main.png",
+      "right-title": "NFT Collection",
+      "right-description": "Where My Vans Go is a collection comprised of 123 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
+      "right-button-text": "View Collection"
+    }
+]

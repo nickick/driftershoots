@@ -1,19 +1,32 @@
 import { Box } from '@mui/material';
-import { Footer, Main, Navbar } from '../src';
+import { useState } from 'react';
+import { Footer, Main, Navbar, Selector } from '../src';
 
 function App() {
+  const [selectedTileIndex, setSelectedTileIndex] = useState(0);
+
   return (
     <Box
       sx={{
         bgcolor: 'background.default',
         color: 'text.primary',
-        display: 'flex',
-        flexDirection: 'column',
         height: '100vh',
       }}
     >
-      <Navbar />
-      <Main />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+        }}
+      >
+        <Navbar />
+        <Main selectedTileIndex={selectedTileIndex} />
+        <Selector 
+          selectedTileIndex={selectedTileIndex} 
+          setSelectedTileIndex={setSelectedTileIndex}
+        />
+      </Box>
       <Footer />
     </Box>
   );
