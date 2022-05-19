@@ -21,6 +21,9 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
   palette: {
+    background: {
+      default: '#080809'
+    },
     mode: 'dark',
   },
   ...themeShared

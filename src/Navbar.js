@@ -10,6 +10,8 @@ function NavButton ({text, href, icon}) {
         color: 'text.primary',
         minWidth: icon ? '1rem' : 'inherit',
         mx: '0.5rem',
+        fontSize: '1.5rem',
+        lineHeight: '2rem',
       }}
       href={href}
     >
@@ -60,8 +62,8 @@ export default function Navbar () {
       >
         <NavButton text='About' />
         <NavButton text='Contact' />
+        <NavButton icon={<TwitterIcon sx={{fontSize: 20}} />}/>
         <NavButton icon={<DiscordIcon />}/>
-        <NavButton icon={<TwitterIcon />}/>
       </Box>
     </Container>
   )
