@@ -1,6 +1,8 @@
 import { Box } from '@mui/material';
 import { useState } from 'react';
-import { Footer, Main, Navbar, Selector } from '../src';
+import {
+  Footer, Main, Navbar, Selector,
+} from '../src';
 
 function App() {
   const [selectedTileIndex, setSelectedTileIndex] = useState(0);
@@ -22,8 +24,8 @@ function App() {
       >
         <Navbar />
         <Main selectedTileIndex={selectedTileIndex} />
-        <Selector 
-          selectedTileIndex={selectedTileIndex} 
+        <Selector
+          selectedTileIndex={selectedTileIndex}
           setSelectedTileIndex={setSelectedTileIndex}
         />
       </Box>
