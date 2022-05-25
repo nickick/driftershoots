@@ -1,8 +1,7 @@
-import { Box, Typography } from '@mui/material';
-import { Transition } from 'react-transition-group';
+import { Box } from '@mui/material';
 import tiles from '../tiles.json';
-import usePrevious from '../usePrevious';
 import CTAButton from './CTAButton';
+import Title from './Title';
 import TransitionText from './TransitionText';
 
 const transitionStyles = {
@@ -11,46 +10,6 @@ const transitionStyles = {
   exiting:  { opacity: 1 , visibility: 'visible' },
   exited:  { opacity: 0 , visibility: 'hidden'},
 };
-
-function Title ({text, state}) {
-  return (
-    <Typography 
-      variant="h1" 
-      sx={{
-        fontSize: '16rem',
-        position: 'absolute',
-        top: '50%',
-        left: '0',
-        transform: 'translate(0%, -50%)',
-        width: '488px',
-        zIndex: 12,
-        ...transitionStyles[state]
-      }}
-      aria-hidden={state == 'exiting' || state == 'exited'}
-    >
-      {text}
-    </Typography>
-  )
-}
-
-function CTAButtonText ({text, link, state}) {
-  return (
-    <Typography
-      variant="body"
-      sx={{
-        position: 'absolute',
-        color: 'text.primary',
-        textTransform: 'capitalize',
-        fontSize: '1.75rem',
-        lineHeight: '3rem',
-        ...transitionStyles[state]
-      }}
-      aria-hidden={state == 'exiting' || state == 'exited'}
-    >
-      {text}
-    </Typography>
-  )
-}
 
 export default function CarouselTile ({selectedTileIndex}) {
   const selected = true;
@@ -76,25 +35,7 @@ export default function CarouselTile ({selectedTileIndex}) {
           justifyContent: 'flex-start',
         }}
       >
-        <Box
-          sx={{
-            position: 'relative'
-          }}
-        >
-          {tiles.map((tile, index) => {
-            return (
-              <Transition
-                in={index == selectedTileIndex}
-                timeout={0}
-                key={index}
-              >
-                {state => {
-                  return <Title key={index} text={tiles[index].h1} state={state} />
-                }}
-              </Transition>
-            )
-          })}
-        </Box>
+        <Title tiles={tiles} selectedTileIndex={selectedTileIndex} />
       </Box>
       <Box
       sx={{
