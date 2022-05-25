@@ -24,11 +24,11 @@ function App() {
         }}
       >
         <Navbar />
-        <Main 
-          selectedTileIndex={selectedTileIndex} 
+        <Main
+          selectedTileIndex={selectedTileIndex}
           transitioning={transitioning}
           setTransitioning={setTransitioning}
-         />
+        />
         <Selector
           setTransitioning={setTransitioning}
           selectedTileIndex={selectedTileIndex}

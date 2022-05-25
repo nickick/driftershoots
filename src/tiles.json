@@ -29,6 +29,7 @@
       "h1": "NFT.\nNYC\n2022",
       "main-image": "/news-images/nft-nyc.png",
       "main-image-zoom": "scale(1.0) translate(0, 0)",
+      "main-image-overlay": "/news-images/nftnyc-logo.png",
       "main-image-zoom-start": "scale(2) translate(200px, 0)",
       "right-title": "Driftershoots Meet & Greet with NFT Holders",
       "right-description": "<b>Date</b> Tue, Jun 21 - Thu, Jun 23\n<br/><b>Location</b>: Times Square",

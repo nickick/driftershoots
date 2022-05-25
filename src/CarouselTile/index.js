@@ -1,10 +1,8 @@
-import { Box, Button, Container, Typography } from '@mui/material';
-import tiles from '../tiles.json';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import usePrevious from '../usePrevious';
+import { Box, Typography } from '@mui/material';
 import { Transition } from 'react-transition-group';
+import tiles from '../tiles.json';
+import usePrevious from '../usePrevious';
 import CTAButton from './CTAButton';
-import RightDescription from './RightDescription';
 import TransitionText from './TransitionText';
 
 const transitionStyles = {
@@ -54,9 +52,8 @@ function CTAButtonText ({text, link, state}) {
   )
 }
 
-export default function CarouselTile ({selectedTileIndex, transitioning, setTransitioning}) {
+export default function CarouselTile ({selectedTileIndex}) {
   const selected = true;
-  const previousIndex = usePrevious(selectedTileIndex);
   const tile = tiles[selectedTileIndex];
 
   return (
@@ -133,6 +130,17 @@ export default function CarouselTile ({selectedTileIndex, transitioning, setTran
             style={{
               transition: 'transform 1s ease',
               transform: selected ? tile["main-image-zoom"] : tile["main-image-zoom-start"],
+            }}
+          />
+          {tile["main-image-overlay"]} && }
+          <img
+            src={tile["main-image-overlay"]}
+            style={{
+              position: 'absolute',
+              zIndex: 12,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
             }}
           />
         </Box>
