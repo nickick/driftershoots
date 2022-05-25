@@ -52,13 +52,6 @@ export default function TransitionText ({tiles, selectedTileIndex, tileKey, text
             onEntering={() => {
               newRef.current.style.height = refs.current[selectedTileIndex].current.offsetHeight + 'px'
             }}
-            onEntered={() => {
-              console.log(refs.current)
-              console.log(newRef)
-            }}
-            onExited={() => {
-
-            }}
           >
             {state => {
               return <Text key={index} text={tile[tileKey]} type={textType} styles={textStyles} state={state} ref={refs.current[index]} />
