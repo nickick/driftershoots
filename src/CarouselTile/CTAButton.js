@@ -13,14 +13,18 @@ function CTAButtonText ({text, link, state, childkey}) {
     <Typography
       key={childkey}
       variant="body"
-      sx={{
-        position: 'absolute',
-        color: 'text.primary',
-        textTransform: 'capitalize',
-        fontSize: '1.75rem',
-        lineHeight: '3rem',
-        ...transitionStyles[state]
-      }}
+      sx={[
+        {
+          position: 'absolute',
+          color: 'text.primary',
+          textTransform: 'capitalize',
+          fontSize: '1.75rem',
+          lineHeight: '3rem',
+          ...transitionStyles[state]
+        },
+      ]
+        
+        }
       aria-hidden={state == 'exiting' || state == 'exited'}
     >
       {text}
@@ -32,14 +36,50 @@ export default function CTAButton ({tiles, selectedTileIndex}) {
   return (
     <Button 
       variant="outlined"
-      sx={{
-        position: 'relative',
-        borderRadius: 0,
-        borderColor: 'text.primary',
-        height: '60px',
-        maxWidth: tiles[selectedTileIndex]["right-button-text"].length * 8 + 60,
-        transition: 'max-width 0.2s ease-out'
-      }}
+      sx={[
+        {
+          position: 'relative',
+          borderRadius: 0,
+          borderColor: 'text.primary',
+          height: '60px',
+          maxWidth: tiles[selectedTileIndex]["right-button-text"].length * 8 + 100,
+          transition: 'max-width 0.2s ease-out',
+          overflow: 'hidden',
+        },
+        {
+          '&:hover': {
+            border: '1px solid white'
+          }
+        },
+        {
+          '&:hover > span': {
+            color: 'black',
+          }
+        },
+        {
+          '&::before': {
+            content: '""',
+            display: 'block',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            left: '0',
+            top: '0',
+            backgroundColor: 'white',
+            transform: 'translate(-100%, 0)',
+            transformOrigin: 'left',
+            transition: '0.2s transform ease-out',
+            willChange: 'transform',
+          }
+        },
+        {
+          '&:hover::before': {
+            transform: 'translate(0, 0)'
+          }
+        }
+      ]
+        
+        }
     >
       {tiles.map((tile, index) => {
         return (
