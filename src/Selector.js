@@ -4,10 +4,23 @@ import tiles from './tiles.json';
 function SelectorTile ({category, title, isSelected, index, setSelected, setTransitioning}) {
   return (
     <Box
-      sx={{
-        flex: 1,
-        cursor: 'pointer',
-      }}
+      sx={[
+        {
+          flex: 1,
+          cursor: 'pointer',
+          color: isSelected ? 'text.primary' : 'text.secondary',
+        },
+        {
+          '&:hover': {
+            color: 'text.primary',
+          }
+        },
+        {
+          '&:hover > div': {
+            borderTopColor: 'text.primary'
+          }
+        }
+      ]}
       onClick={() => {
         setSelected(index);
         setTransitioning(true);
@@ -20,7 +33,6 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
           lineHeight: '2rem',
           letterSpacing: '0.1rem',
           mb: 1,
-          color: isSelected ? 'text.primary' : 'text.secondary',
           transition: 'color 0.2s ease',
         }}
       >
@@ -32,7 +44,6 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
           fontSize: '2rem',
           lineHeight: '3rem',
           mb: 2,
-          color: isSelected ? 'text.primary' : 'text.secondary',
           transition: 'color 0.2s ease',
         }}
       >
