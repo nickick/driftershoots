@@ -9,19 +9,21 @@ export default function CenterImage ({tiles, selectedTileIndex}) {
     <Box
     sx={{
       display: 'flex',
-      flex: '1',
+      flex: '4',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      m: '6rem',
+      zIndex: '1',
     }}
     >
       <Box
         sx={{
           display: 'flex',
           position: 'absolute',
-          width: '352px',
-          height: '576px',
+          height: '100%',
           overflow: 'hidden',
+          maxHeight: '800px',
         }}
       >
         <img 
@@ -32,7 +34,7 @@ export default function CenterImage ({tiles, selectedTileIndex}) {
             left: 0,
             zIndex: 11,
             width: '100%',
-            height: '100%'
+            height: '100%',
           }}
         />
         <img

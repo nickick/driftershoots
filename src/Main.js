@@ -10,7 +10,7 @@ export default function Main ({selectedTileIndex, transitioning, setTransitionin
         flex: 1,
         overflow: 'auto',
         px: 4,
-        maxWidth: '1440px',
+        maxWidth: '1400px',
         position: 'relative',
       }}
     >
