@@ -6,6 +6,7 @@ import {
 
 function App() {
   const [selectedTileIndex, setSelectedTileIndex] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
 
   return (
     <Box
@@ -23,8 +24,13 @@ function App() {
         }}
       >
         <Navbar />
-        <Main selectedTileIndex={selectedTileIndex} />
+        <Main 
+          selectedTileIndex={selectedTileIndex} 
+          transitioning={transitioning}
+          setTransitioning={setTransitioning}
+         />
         <Selector
+          setTransitioning={setTransitioning}
           selectedTileIndex={selectedTileIndex}
           setSelectedTileIndex={setSelectedTileIndex}
         />

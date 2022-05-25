@@ -1,10 +1,7 @@
 import { Container } from '@mui/material';
-import { useState } from 'react';
-
 import CarouselTile from './CarouselTile';
-import tiles from './tiles.json';
 
-export default function Main ({selectedTileIndex}) {
+export default function Main ({selectedTileIndex, transitioning, setTransitioning}) {
   return (
     <Container
       sx={{
@@ -13,10 +10,15 @@ export default function Main ({selectedTileIndex}) {
         flex: 1,
         overflow: 'auto',
         px: 4,
-        maxWidth: '1440px'
+        maxWidth: '1440px',
+        position: 'relative',
       }}
     >
-      <CarouselTile tile={tiles[selectedTileIndex]} />
+      <CarouselTile 
+        selectedTileIndex={selectedTileIndex} 
+        transitioning={transitioning}
+        setTransitioning={setTransitioning}
+      />
     </Container>
   )
 }

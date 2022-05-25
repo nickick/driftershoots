@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import tiles from './tiles.json';
 
-function SelectorTile ({category, title, isSelected, index, setSelected}) {
+function SelectorTile ({category, title, isSelected, index, setSelected, setTransitioning}) {
   return (
     <Box
       sx={{
@@ -10,6 +10,7 @@ function SelectorTile ({category, title, isSelected, index, setSelected}) {
       }}
       onClick={() => {
         setSelected(index);
+        setTransitioning(true);
       }}
     >
       <Typography
@@ -50,7 +51,7 @@ function SelectorTile ({category, title, isSelected, index, setSelected}) {
   )
 }
 
-export default function Selector ({selectedTileIndex, setSelectedTileIndex}) {
+export default function Selector ({selectedTileIndex, setSelectedTileIndex, setTransitioning}) {
   return (
     <Container
       sx={{
@@ -71,6 +72,7 @@ export default function Selector ({selectedTileIndex, setSelectedTileIndex}) {
               key={index} 
               setSelected={setSelectedTileIndex}
               title={tile.title} 
+              setTransitioning={setTransitioning}
             />
           )
         })

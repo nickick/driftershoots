@@ -6,8 +6,10 @@
       "logo": "/news-images/thenewyorktimes.svg",
       "logo-alt": "The New York Times logo",
       "main-image": "/news-images/Drifter1.jpeg",
+      "main-image-zoom": "scale(1.6) translate(52px, -90px)",
+      "main-image-zoom-start": "scale(1.0) translate(0, 0)",
       "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
-      "right-description": "A former paratrooper became an &ldquo;urban explorer,\\” scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
+      "right-description": "A former paratrooper became an &ldquo;urban explorer&ldquo;, scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
       "right-button-text": "Read Article"
     },
     {
@@ -15,6 +17,8 @@
       "category": "NFT Project",
       "h1": "First Day Out",
       "main-image": "/news-images/fdo.png",
+      "main-image-zoom": "scale(1.1) translate(0, 0)",
+      "main-image-zoom-start": "scale(1.0) translate(-20px, 0)",
       "right-title": "Open Edition by DrifterShoots",
       "right-description": "“April 9th, 2021 was my first day out. I had $9,000 left in my savings and five lawyers I had no idea how I would pay.”",
       "right-button-text": "View NFT"
@@ -24,8 +28,10 @@
       "category": "Event",
       "h1": "NFT.\nNYC\n2022",
       "main-image": "/news-images/nft-nyc.png",
+      "main-image-zoom": "scale(1.0) translate(0, 0)",
+      "main-image-zoom-start": "scale(2) translate(200px, 0)",
       "right-title": "Driftershoots Meet & Greet with NFT Holders",
-      "right-description": "<b>Date</b> Tue, Jun 21 - Thu, Jun 23\n<b>Location</b>: Times Square",
+      "right-description": "<b>Date</b> Tue, Jun 21 - Thu, Jun 23\n<br/><b>Location</b>: Times Square",
       "right-button-text": "RSVP"
     },
     {
@@ -33,6 +39,8 @@
       "category": "NFT Project",
       "h1": "Where\nMy Vans\nGo",
       "main-image": "/news-images/wmvg-main.png",
+      "main-image-zoom": "scale(1.2) translate(0, 0)",
+      "main-image-zoom-start": "scale(1.0) translate(0, 0)",
       "right-title": "NFT Collection",
       "right-description": "Where My Vans Go is a collection comprised of 123 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
       "right-button-text": "View Collection"
