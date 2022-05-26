@@ -1,10 +1,11 @@
 import { Box, keyframes } from '@mui/material';
+import PropTypes from 'prop-types';
+import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
 import tiles from '../tiles.json';
+import CenterImage from './CenterImage';
 import CTAButton from './CTAButton';
 import Title from './Title';
 import TransitionText from './TransitionText';
-import CenterImage from './CenterImage';
-import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
 
 const fadeFromRight = keyframes`
   0% {
@@ -164,3 +165,7 @@ export default function CarouselTile({ selectedTileIndex }) {
     </Box>
   );
 }
+
+CarouselTile.propTypes = {
+  selectedTileIndex: PropTypes.number.isRequired,
+};

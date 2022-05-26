@@ -1,5 +1,8 @@
 import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
-import { createContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import {
+  createContext, useCallback, useEffect, useMemo, useState,
+} from 'react';
 
 export const ThemeContext = createContext();
 
@@ -45,25 +48,33 @@ export default function ThemeProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState(darkTheme);
   const [selectedTheme, setSelectedTheme] = useState('dark');
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     const desiredTheme = selectedTheme === 'light' ? 'dark' : 'light';
 
     setSelectedTheme(desiredTheme);
-  };
+  }, [selectedTheme]);
+
+  const providerValue = useMemo(() => ({
+    toggleTheme,
+    selectedTheme,
+  }), [toggleTheme, selectedTheme]);
 
   useEffect(() => {
     setActiveTheme(getActiveTheme(selectedTheme));
   }, [selectedTheme]);
 
   return (
-    <ThemeContext.Provider value={{
-      toggleTheme,
-      selectedTheme,
-    }}
-    >
+    <ThemeContext.Provider value={providerValue}>
       <MUIThemeProvider theme={activeTheme}>
         {children}
       </MUIThemeProvider>
     </ThemeContext.Provider>
   );
 }
+
+ThemeProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};

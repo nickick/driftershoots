@@ -1,6 +1,7 @@
 import {
-  Box, Container, Typography, keyframes,
+  Box, Container, keyframes, Typography,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 import tiles from './tiles.json';
 
@@ -106,6 +107,15 @@ function SelectorTile({
   );
 }
 
+SelectorTile.propTypes = {
+  category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  setSelected: PropTypes.func.isRequired,
+  setTransitioning: PropTypes.func.isRequired,
+};
+
 export default function Selector({ selectedTileIndex, setSelectedTileIndex, setTransitioning }) {
   return (
     <Container
@@ -122,8 +132,8 @@ export default function Selector({ selectedTileIndex, setSelectedTileIndex, setT
           <SelectorTile
             category={tile.category}
             index={index}
-            isSelected={index == selectedTileIndex}
-            key={index}
+            isSelected={index === selectedTileIndex}
+            key={tile.h1}
             setSelected={setSelectedTileIndex}
             title={tile.title}
             setTransitioning={setTransitioning}
@@ -133,3 +143,9 @@ export default function Selector({ selectedTileIndex, setSelectedTileIndex, setT
     </Container>
   );
 }
+
+Selector.propTypes = {
+  selectedTileIndex: PropTypes.number.isRequired,
+  setSelectedTileIndex: PropTypes.func.isRequired,
+  setTransitioning: PropTypes.func.isRequired,
+};

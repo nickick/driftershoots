@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
-import { Transition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import { Transition } from 'react-transition-group';
 import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {

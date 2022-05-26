@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
 import React, { createRef, useEffect, useRef } from 'react';
 import { Transition } from 'react-transition-group';
+import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
   entering: { opacity: 0, visibility: 'visible' },
@@ -19,11 +21,18 @@ const Text = React.forwardRef(({
       ...styles,
       ...transitionStyles[state],
     }}
-    aria-hidden={state == 'exiting' || state == 'exited'}
+    aria-hidden={state === 'exiting' || state === 'exited'}
     ref={ref}
     dangerouslySetInnerHTML={{ __html: text }}
   />
 ));
+
+Text.propTypes = {
+  text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  styles: PropTypes.object.isRequired,
+  state: PropTypes.string.isRequired,
+};
 
 export default function TransitionText({
   tiles, selectedTileIndex, tileKey, textType, textStyles, boxStyles,
@@ -33,7 +42,7 @@ export default function TransitionText({
 
   useEffect(() => {
     newRef.current.style.height = `${refs.current[selectedTileIndex].current.offsetHeight}px`;
-  }, []);
+  }, [newRef, selectedTileIndex]);
 
   return (
     <Box
@@ -45,16 +54,34 @@ export default function TransitionText({
     >
       {tiles.map((tile, index) => (
         <Transition
-          in={index == selectedTileIndex}
+          in={index === selectedTileIndex}
           timeout={0}
-          key={index}
+          key={tile.h1}
           onEntering={() => {
             newRef.current.style.height = `${refs.current[selectedTileIndex].current.offsetHeight}px`;
           }}
         >
-          {(state) => <Text key={index} text={tile[tileKey]} type={textType} styles={textStyles} state={state} ref={refs.current[index]} />}
+          {(state) => (
+            <Text
+              key={tile.h1}
+              text={tile[tileKey]}
+              type={textType}
+              styles={textStyles}
+              state={state}
+              ref={refs.current[index]}
+            />
+          )}
         </Transition>
       ))}
     </Box>
   );
 }
+
+TransitionText.propTypes = {
+  tiles: tilesProps.isRequired,
+  selectedTileIndex: PropTypes.number.isRequired,
+  tileKey: PropTypes.string.isRequired,
+  textType: PropTypes.string.isRequired,
+  textStyles: PropTypes.object.isRequired,
+  boxStyles: PropTypes.object.isRequired,
+};

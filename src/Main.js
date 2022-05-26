@@ -1,4 +1,5 @@
 import { Container } from '@mui/material';
+import PropTypes from 'prop-types';
 import CarouselTile from './CarouselTile';
 
 export default function Main({ selectedTileIndex, transitioning, setTransitioning }) {
@@ -22,3 +23,9 @@ export default function Main({ selectedTileIndex, transitioning, setTransitionin
     </Container>
   );
 }
+
+Main.propTypes = {
+  selectedTileIndex: PropTypes.number.isRequired,
+  transitioning: PropTypes.bool.isRequired,
+  setTransitioning: PropTypes.func.isRequired,
+};

@@ -1,6 +1,7 @@
 import {
   Box, Button, Container, keyframes,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './DiscordIcon';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
@@ -43,6 +44,7 @@ function NavButton({
         animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s`,
       }}
       href={href}
+      target={icon ? '_blank' : ''}
     >
       {text}
       {icon || ''}
@@ -50,20 +52,33 @@ function NavButton({
   );
 }
 
+NavButton.propTypes = {
+  text: PropTypes.string,
+  href: PropTypes.string,
+  icon: PropTypes.node,
+  index: PropTypes.number.isRequired,
+};
+
+NavButton.defaultProps = {
+  text: '',
+  href: '',
+  icon: '',
+};
+
 const leftNav = [
   {
     text: 'Prints',
-    href: '',
+    href: '/prints',
     icon: '',
   },
   {
     text: 'Gallery',
-    href: '',
+    href: '/gallery',
     icon: '',
   },
   {
     text: 'Publications',
-    href: '',
+    href: '/publications',
     icon: '',
   },
 ];
@@ -71,22 +86,22 @@ const leftNav = [
 const rightNav = [
   {
     text: '',
-    href: '',
+    href: 'https://discord.com/invite/kr65XUgPYw',
     icon: <DiscordIcon />,
   },
   {
     text: '',
-    href: '',
+    href: 'https://twitter.com/driftershoots',
     icon: <TwitterIcon sx={{ fontSize: 20 }} />,
   },
   {
     text: 'Contact',
-    href: '',
+    href: '/contact',
     icon: '',
   },
   {
     text: 'About',
-    href: '',
+    href: '/about',
     icon: '',
   },
 ];
@@ -108,7 +123,15 @@ export default function Navbar() {
         }}
       >
         {
-          leftNav.map(({ text, href, icon }, index) => <NavButton key={index} text={text} href={href} icon={icon} index={index} />)
+          leftNav.map(({ text, href, icon }, index) => (
+            <NavButton
+              key={text + href}
+              text={text}
+              href={href}
+              icon={icon}
+              index={index}
+            />
+          ))
         }
       </Box>
       <Box
@@ -126,6 +149,7 @@ export default function Navbar() {
             height: '24px',
             aspectRatio: '116 / 38',
           }}
+          alt="Drifter Shoots logo"
         />
       </Box>
       <Box
@@ -138,7 +162,15 @@ export default function Navbar() {
         }}
       >
         {
-          rightNav.map(({ text, href, icon }, index) => <NavButton key={index} text={text} href={href} icon={icon} index={index} />)
+          rightNav.map(({ text, href, icon }, index) => (
+            <NavButton
+              key={text + href}
+              text={text}
+              href={href}
+              icon={icon}
+              index={index}
+            />
+          ))
         }
       </Box>
     </Container>
