@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src/ pages/"
   },
   "dependencies": {
     "@mui/icons-material": "^5.8.0",
@@ -36,7 +36,7 @@
   },
   "lint-staged": {
     "*.{js.jsx}": [
-      "eslint --fix",
+      "eslint src/ pages/ --fix",
       "git add"
     ],
     "*.{html,css}": [
