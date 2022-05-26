@@ -1,5 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { Transition } from 'react-transition-group';
+import PropTypes from 'prop-types';
+import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
   entering: { opacity: 0, visibility: 'visible' },
@@ -29,6 +31,11 @@ function Title({ text, state }) {
   );
 }
 
+Title.propTypes = {
+  text: PropTypes.string.isRequired,
+  state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited']).isRequired,
+};
+
 export default function TileTitle({ tiles, selectedTileIndex }) {
   return (
     <Box
@@ -40,11 +47,16 @@ export default function TileTitle({ tiles, selectedTileIndex }) {
         <Transition
           in={index === selectedTileIndex}
           timeout={0}
-          key={index}
+          key={tile.h1}
         >
-          {(state) => <Title key={index} text={tile.h1} state={state} />}
+          {(state) => <Title key={tile.h1} text={tile.h1} state={state} />}
         </Transition>
       ))}
     </Box>
   );
 }
+
+TileTitle.propTypes = {
+  tiles: tilesProps.isRequired,
+  selectedTileIndex: PropTypes.number.isRequired,
+};
