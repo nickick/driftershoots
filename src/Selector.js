@@ -31,12 +31,12 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
           flex: 1,
           cursor: 'pointer',
           color: isSelected ? 'text.primary' : 'text.secondary',
-          animation: `${popDown} 0.6s both`,
+          animation: `${popDown} 0.3s both`,
         },
         {
           '&:hover': {
             color: 'text.primary',
-            animation: `${popUp} 0.6s both`,
+            animation: `${popUp} 0.3s both`,
           }
         },
         {
