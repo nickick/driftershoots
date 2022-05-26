@@ -151,14 +151,14 @@ export default function CarouselTile({ selectedTileIndex }) {
         <Box
           sx={{
             display: 'flex',
-            flex: '4',
+            flex: '4 4',
           }}
         />
         <CenterImage tiles={tiles} selectedTileIndex={selectedTileIndex} />
         <Box
           sx={{
             display: 'flex',
-            flex: '4',
+            flex: '4 4',
           }}
         />
       </Box>

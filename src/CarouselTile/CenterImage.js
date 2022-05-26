@@ -1,7 +1,16 @@
 import { Box, keyframes } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { Transition } from 'react-transition-group';
 import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
 import { tilesProps } from '../utils/prop-types';
+
+const transitionStyles = {
+  entering: { opacity: 0, visibility: 'visible' },
+  entered: { opacity: 1, visibility: 'visible' },
+  exiting: { opacity: 1, visibility: 'visible' },
+  exited: { opacity: 0, visibility: 'hidden' },
+};
 
 const fadeIn = keyframes`
   0% {
@@ -16,20 +25,97 @@ const fadeIn = keyframes`
   }
 `;
 
-export default function CenterImage({ tiles, selectedTileIndex }) {
-  const selected = true;
+function FadeableImage({
+  src, alt, overlay, overlayAlt, state, selected, zoom, startingZoom, offset,
+}) {
+  return (
+    <Box
+      sx={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        transform: `translate(${offset[0]}px, ${offset[1]}px)`,
+        transition: 'transform 0.5s ease-out',
+        ...transitionStyles[state],
+      }}
+      key={src}
+    >
+      <img
+        src={src}
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transition: 'transform 1s ease',
+          transform: selected ? zoom : startingZoom,
+        }}
+        alt={alt}
+      />
+      {overlay && (
+        <img
+          src={overlay}
+          style={{
+            position: 'absolute',
+            zIndex: 12,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+          alt={overlayAlt}
+        />
+      )}
+    </Box>
+  );
+}
 
-  const tile = tiles[selectedTileIndex];
+FadeableImage.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  overlay: PropTypes.string.isRequired,
+  overlayAlt: PropTypes.string.isRequired,
+  state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited']).isRequired,
+  selected: PropTypes.bool.isRequired,
+  zoom: PropTypes.string.isRequired,
+  startingZoom: PropTypes.string.isRequired,
+  offset: PropTypes.array.isRequired,
+};
+
+export default function CenterImage({ tiles, selectedTileIndex }) {
+  const [imageOffset, setImageOffset] = useState([0, 0]);
+
+  useEffect(() => {
+    let enableCall = true;
+
+    document.body.addEventListener('mousemove', (e) => {
+      if (!enableCall) return;
+
+      enableCall = false;
+      const documentMidpointY = document.body.offsetHeight / 2;
+      const documentMidpointX = document.body.offsetWidth / 2;
+
+      const percentX = (e.pageX - documentMidpointX) / documentMidpointX;
+      const percentY = (e.pageY - documentMidpointY) / documentMidpointY;
+
+      const offsetConstant = 10;
+
+      setImageOffset([percentX * offsetConstant, percentY * offsetConstant]);
+
+      setTimeout(() => { enableCall = true; }, 100);
+    });
+  }, []);
 
   return (
     <Box
       sx={{
         display: 'flex',
-        flex: '4',
+        flex: '4 4',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        m: '6rem',
+        m: '3rem',
         zIndex: '1',
         animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.2}s`,
       }}
@@ -41,6 +127,7 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
           height: '100%',
           overflow: 'hidden',
           maxHeight: '800px',
+          width: '100%',
         }}
       >
         <img
@@ -52,30 +139,41 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
             zIndex: 11,
             width: '100%',
             height: '100%',
+            display: 'flex',
           }}
           alt="Overlay used over other images to provide rounded edges"
         />
-        <img
-          src={tile['main-image']}
-          style={{
-            transition: 'transform 1s ease',
-            transform: selected ? tile['main-image-zoom'] : tile['main-image-zoom-start'],
+        <Box
+          sx={{
+            height: '100%',
+            width: '100%',
+            display: 'flex',
+            position: 'relative',
           }}
-          alt={tile['main-image-alt']}
-        />
-        {tile['main-image-overlay'] && (
-          <img
-            src={tile['main-image-overlay']}
-            style={{
-              position: 'absolute',
-              zIndex: 12,
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-            alt={tile['main-image-overlay-alt']}
-          />
-        )}
+        >
+          {tiles.map((tile, index) => (
+            <Transition
+              in={index === selectedTileIndex}
+              timeout={0}
+              key={tile.title}
+            >
+              {(state) => (
+                <FadeableImage
+                  src={tile['main-image']}
+                  alt={tile['main-image-alt']}
+                  overlay={tile['main-image-overlay']}
+                  overlayAlt={tile['main-image-overlay-alt']}
+                  zoom={tile['main-image-zoom']}
+                  startingZoom={tile['main-image-zoom-start']}
+                  state={state}
+                  index={index}
+                  selected={selectedTileIndex === index}
+                  offset={imageOffset}
+                />
+              )}
+            </Transition>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
