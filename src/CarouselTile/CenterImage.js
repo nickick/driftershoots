@@ -1,5 +1,7 @@
 import { Box, keyframes } from '@mui/material';
+import PropTypes from 'prop-types';
 import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
+import { tilesProps } from '../utils/prop-types';
 
 const fadeIn = keyframes`
   0% {
@@ -51,6 +53,7 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
             width: '100%',
             height: '100%',
           }}
+          alt="Overlay used over other images to provide rounded edges"
         />
         <img
           src={tile['main-image']}
@@ -58,18 +61,27 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
             transition: 'transform 1s ease',
             transform: selected ? tile['main-image-zoom'] : tile['main-image-zoom-start'],
           }}
+          alt={tile['main-image-alt']}
         />
-        <img
-          src={tile['main-image-overlay']}
-          style={{
-            position: 'absolute',
-            zIndex: 12,
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
+        {tile['main-image-overlay'] && (
+          <img
+            src={tile['main-image-overlay']}
+            style={{
+              position: 'absolute',
+              zIndex: 12,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+            alt={tile['main-image-overlay-alt']}
+          />
+        )}
       </Box>
     </Box>
   );
 }
+
+CenterImage.propTypes = {
+  tiles: tilesProps.isRequired,
+  selectedTileIndex: PropTypes.number.isRequired,
+};

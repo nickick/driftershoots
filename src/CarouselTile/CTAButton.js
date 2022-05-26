@@ -1,6 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import { Transition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
   entering: { opacity: 0, visibility: 'visible' },
@@ -100,18 +101,6 @@ export default function CTAButton({ tiles, selectedTileIndex }) {
 }
 
 CTAButton.propTypes = {
-  tiles: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    h1: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired,
-    'logo-alt': PropTypes.string.isRequired,
-    'main-image': PropTypes.string.isRequired,
-    'main-image-zoom': PropTypes.string.isRequired,
-    'main-image-zoom-start': PropTypes.string.isRequired,
-    'right-title': PropTypes.string.isRequired,
-    'right-description': PropTypes.string.isRequired,
-    'right-button-text': PropTypes.string.isRequired,
-  })).isRequired,
+  tiles: tilesProps.isRequired,
   selectedTileIndex: PropTypes.number.isRequired,
 };

@@ -2,6 +2,7 @@
   "extends": ["next/core-web-vitals", "airbnb", "airbnb/hooks"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "@next/next/no-img-element": "off" 
   }
 }
