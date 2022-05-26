@@ -1,5 +1,27 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, keyframes } from "@mui/material";
 import tiles from './tiles.json';
+
+const popDown = keyframes`
+  0% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+`
+
+const popUp = keyframes`
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+`
 
 function SelectorTile ({category, title, isSelected, index, setSelected, setTransitioning}) {
   return (
@@ -9,15 +31,17 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
           flex: 1,
           cursor: 'pointer',
           color: isSelected ? 'text.primary' : 'text.secondary',
+          animation: `${popDown} 0.6s both`,
         },
         {
           '&:hover': {
             color: 'text.primary',
+            animation: `${popUp} 0.6s both`,
           }
         },
         {
           '&:hover > div': {
-            borderTopColor: 'text.primary'
+            borderTopColor: 'text.primary',
           }
         }
       ]}

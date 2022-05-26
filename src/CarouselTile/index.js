@@ -130,7 +130,6 @@ export default function CarouselTile ({selectedTileIndex}) {
             flex: '4',
           }}
         />
-        />
       </Box>
     </Box>
   )
