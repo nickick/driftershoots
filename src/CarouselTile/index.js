@@ -1,9 +1,36 @@
-import { Box } from '@mui/material';
+import { Box, keyframes, } from '@mui/material';
 import tiles from '../tiles.json';
 import CTAButton from './CTAButton';
 import Title from './Title';
 import TransitionText from './TransitionText';
 import CenterImage from './CenterImage';
+import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
+
+const fadeFromRight = keyframes`
+  0% {
+    -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+            opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+            opacity: 1;
+  }
+`
+
+const fadeFromLeft = keyframes`
+  0% {
+    -webkit-transform: translateX(-20px);
+            transform: translateX(-20px);
+            opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+            opacity: 1;
+  }
+`
 
 export default function CarouselTile ({selectedTileIndex}) {
   return (
@@ -27,6 +54,7 @@ export default function CarouselTile ({selectedTileIndex}) {
             flex: '5',
             alignItems: 'center',
             justifyContent: 'flex-start',
+            animation: `${fadeFromLeft} ${entranceAnimationDuration}s both ${entranceAnimationDelay}s`,
           }}
         >
           <Title tiles={tiles} selectedTileIndex={selectedTileIndex} />
@@ -54,6 +82,7 @@ export default function CarouselTile ({selectedTileIndex}) {
               display: 'flex',
               flexDirection: 'column',
               width: '100%',
+              animation: `${fadeFromRight} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.4}s`,
             }}
           >
             { tiles[selectedTileIndex].logo && (
@@ -115,6 +144,7 @@ export default function CarouselTile ({selectedTileIndex}) {
           left: 0,
           width: '100%',
           px: 10,
+          overflow: 'hidden',
         }}
       >
         <Box

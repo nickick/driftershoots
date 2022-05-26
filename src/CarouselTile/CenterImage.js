@@ -1,4 +1,18 @@
-import { Box } from '@mui/material';
+import { Box, keyframes } from '@mui/material';
+import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
+
+const fadeIn = keyframes`
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: translateX(1.1);
+            opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 1;
+  }
+`
 
 export default function CenterImage ({tiles, selectedTileIndex}) {
   const selected = true;
@@ -15,6 +29,7 @@ export default function CenterImage ({tiles, selectedTileIndex}) {
       position: 'relative',
       m: '6rem',
       zIndex: '1',
+      animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.2}s`,
     }}
     >
       <Box

@@ -1,8 +1,31 @@
-import { Box, Button, Container } from '@mui/material';
+import { Box, Button, Container, keyframes } from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './DiscordIcon';
+import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 
-function NavButton ({text, href, icon}) {
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+
+const fadeInLogo = keyframes`
+  0% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+`
+
+function NavButton ({text, href, icon, index}) {
   return (
     <Button
       variant='text'
@@ -13,6 +36,7 @@ function NavButton ({text, href, icon}) {
         fontSize: '1.5rem',
         lineHeight: '2rem',
         letterSpacing: '0.1rem',
+        animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s`,
       }}
       href={href}
     >
@@ -21,6 +45,47 @@ function NavButton ({text, href, icon}) {
     </Button>
   )
 }
+
+const leftNav = [
+  {
+    text: 'Prints',
+    href: '',
+    icon: '',
+  },
+  {
+    text: 'Gallery',
+    href: '',
+    icon: '',
+  },
+  {
+    text: 'Publications',
+    href: '',
+    icon: '',
+  },
+]
+
+const rightNav = [
+  {
+    text: '',
+    href: '',
+    icon: <DiscordIcon />,
+  },
+  {
+    text: '',
+    href: '',
+    icon: <TwitterIcon sx={{fontSize: 20}} />,
+  },
+  {
+    text: 'Contact',
+    href: '',
+    icon: '',
+  },
+  {
+    text: 'About',
+    href: '',
+    icon: '',
+  },
+]
 
 export default function Navbar () {
   return (
@@ -38,9 +103,11 @@ export default function Navbar () {
           flex: 1
         }}
       >
-        <NavButton text='Prints' />
-        <NavButton text='Gallery' />
-        <NavButton text='Publications' />
+        {
+          leftNav.map(({text, href, icon}, index) => {
+            return <NavButton key={index} text={text} href={href} icon={icon} index={index} />
+          })
+        }
       </Box>
       <Box 
         sx={{
@@ -48,25 +115,28 @@ export default function Navbar () {
           flex: '1',
           justifyContent: 'center',
           alignItems: 'center',
+          animation: `${fadeInLogo} ${entranceAnimationDuration}s both`
         }}
       >
         <img src="/icons/Drift-Logo-w.png" style={{
           height: '24px',
-          aspectRatio: '116 / 38'
+          aspectRatio: '116 / 38',
         }} />
       </Box>
       <Box
         sx={{
           display: 'flex',
+          flexDirection: 'row-reverse',
           flex: 1,
           flexWrap: 'nowrap',
-          justifyContent: 'flex-end',
+          justifyContent: 'flex-start',
         }}
       >
-        <NavButton text='About' />
-        <NavButton text='Contact' />
-        <NavButton icon={<TwitterIcon sx={{fontSize: 20}} />}/>
-        <NavButton icon={<DiscordIcon />}/>
+        {
+          rightNav.map(({text, href, icon}, index) => {
+            return <NavButton key={index} text={text} href={href} icon={icon} index={index} />
+          })
+        }
       </Box>
     </Container>
   )
