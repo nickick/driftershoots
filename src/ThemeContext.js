@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
 import { createContext, useEffect, useState } from 'react';
 
 export const ThemeContext = createContext();
@@ -7,7 +7,7 @@ const themeShared = {
   typography: {
     fontFamily: ['Karla', 'sans-serif'].join(','),
     h1: {
-      fontFamily: ['Rawgly', 'serif'].join(',')
+      fontFamily: ['Rawgly', 'serif'].join(','),
     },
   },
   components: {
@@ -15,33 +15,33 @@ const themeShared = {
       defaultProps: {
         maxWidth: 'xl',
         disableGutters: true,
-      }
-    }
+      },
+    },
   },
-}
+};
 
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
   },
-  ...themeShared
+  ...themeShared,
 });
 
 const darkTheme = createTheme({
   palette: {
     background: {
-      default: '#080809'
+      default: '#080809',
     },
     mode: 'dark',
   },
-  ...themeShared
+  ...themeShared,
 });
 
 function getActiveTheme(themeMode) {
-  return themeMode == 'light' ? lightTheme : darkTheme;
+  return themeMode === 'light' ? lightTheme : darkTheme;
 }
 
-export default function ThemeProvider ({children}) {
+export default function ThemeProvider({ children }) {
   const [activeTheme, setActiveTheme] = useState(darkTheme);
   const [selectedTheme, setSelectedTheme] = useState('dark');
 
@@ -52,17 +52,18 @@ export default function ThemeProvider ({children}) {
   };
 
   useEffect(() => {
-    setActiveTheme(getActiveTheme(selectedTheme))
+    setActiveTheme(getActiveTheme(selectedTheme));
   }, [selectedTheme]);
 
   return (
     <ThemeContext.Provider value={{
       toggleTheme,
-      selectedTheme
-    }}>
+      selectedTheme,
+    }}
+    >
       <MUIThemeProvider theme={activeTheme}>
         {children}
       </MUIThemeProvider>
     </ThemeContext.Provider>
-  )
+  );
 }

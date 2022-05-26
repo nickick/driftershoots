@@ -1,5 +1,7 @@
-import { Box, Container, Typography, keyframes } from "@mui/material";
-import { entranceAnimationDelay, entranceAnimationDuration } from "./constants";
+import {
+  Box, Container, Typography, keyframes,
+} from '@mui/material';
+import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 import tiles from './tiles.json';
 
 const popDown = keyframes`
@@ -11,7 +13,7 @@ const popDown = keyframes`
     -webkit-transform: translateY(0);
             transform: translateY(0);
   }
-`
+`;
 
 const popUp = keyframes`
   0% {
@@ -22,7 +24,7 @@ const popUp = keyframes`
     -webkit-transform: translateY(-5px);
             transform: translateY(-5px);
   }
-`
+`;
 
 const fadeIn = keyframes`
   0% {
@@ -31,9 +33,11 @@ const fadeIn = keyframes`
   100% {
     opacity: 1;
   }
-`
+`;
 
-function SelectorTile ({category, title, isSelected, index, setSelected, setTransitioning}) {
+function SelectorTile({
+  category, title, isSelected, index, setSelected, setTransitioning,
+}) {
   return (
     <Box
       sx={[
@@ -47,13 +51,13 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
           '&:hover': {
             color: 'text.primary',
             animation: `${popUp} 0.3s both 0.2s`,
-          }
+          },
         },
         {
           '&:hover > div': {
             borderTopColor: 'text.primary',
-          }
-        }
+          },
+        },
       ]}
       onClick={() => {
         setSelected(index);
@@ -62,7 +66,7 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
     >
       <Box
         sx={{
-          animation: `${fadeIn} ${entranceAnimationDuration}s both ${0.2 + entranceAnimationDelay + index * 0.15}s`
+          animation: `${fadeIn} ${entranceAnimationDuration}s both ${0.2 + entranceAnimationDelay + index * 0.15}s`,
         }}
       >
         <Typography
@@ -88,7 +92,7 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
         >
           {title}
         </Typography>
-        <Box 
+        <Box
           sx={{
             height: 0,
             borderTopColor: isSelected ? 'text.primary' : 'text.secondary',
@@ -99,10 +103,10 @@ function SelectorTile ({category, title, isSelected, index, setSelected, setTran
         />
       </Box>
     </Box>
-  )
+  );
 }
 
-export default function Selector ({selectedTileIndex, setSelectedTileIndex, setTransitioning}) {
+export default function Selector({ selectedTileIndex, setSelectedTileIndex, setTransitioning }) {
   return (
     <Container
       sx={{
@@ -114,20 +118,18 @@ export default function Selector ({selectedTileIndex, setSelectedTileIndex, setT
       }}
     >
       {
-        tiles.map((tile, index) => {
-          return (
-            <SelectorTile 
-              category={tile.category} 
-              index={index}
-              isSelected={index == selectedTileIndex}
-              key={index} 
-              setSelected={setSelectedTileIndex}
-              title={tile.title} 
-              setTransitioning={setTransitioning}
-            />
-          )
-        })
+        tiles.map((tile, index) => (
+          <SelectorTile
+            category={tile.category}
+            index={index}
+            isSelected={index == selectedTileIndex}
+            key={index}
+            setSelected={setSelectedTileIndex}
+            title={tile.title}
+            setTransitioning={setTransitioning}
+          />
+        ))
       }
     </Container>
-  )
-} 
+  );
+}

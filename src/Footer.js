@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material';
 import ThemeToggle from './ThemeToggle';
 
-export default function Footer () {
+export default function Footer() {
   return (
     <Container
       sx={{
@@ -11,5 +11,5 @@ export default function Footer () {
     >
       <ThemeToggle />
     </Container>
-  )
+  );
 }

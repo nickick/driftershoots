@@ -1,4 +1,4 @@
-import { Box, keyframes, } from '@mui/material';
+import { Box, keyframes } from '@mui/material';
 import tiles from '../tiles.json';
 import CTAButton from './CTAButton';
 import Title from './Title';
@@ -17,7 +17,7 @@ const fadeFromRight = keyframes`
             transform: translateY(0);
             opacity: 1;
   }
-`
+`;
 
 const fadeFromLeft = keyframes`
   0% {
@@ -30,9 +30,9 @@ const fadeFromLeft = keyframes`
             transform: translateY(0);
             opacity: 1;
   }
-`
+`;
 
-export default function CarouselTile ({selectedTileIndex}) {
+export default function CarouselTile({ selectedTileIndex }) {
   return (
     <Box>
       {/* Text container */}
@@ -41,7 +41,7 @@ export default function CarouselTile ({selectedTileIndex}) {
           display: 'flex',
           height: '100%',
           position: 'absolute',
-          top: 0, 
+          top: 0,
           left: 0,
           width: '100%',
           px: 10,
@@ -66,16 +66,15 @@ export default function CarouselTile ({selectedTileIndex}) {
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}
-        > 
-        </Box>
+        />
         <Box
-        sx={{
-          display: 'flex',
-          flex: '3',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          transition: '* 1s ease',
-        }}
+          sx={{
+            display: 'flex',
+            flex: '3',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            transition: '* 1s ease',
+          }}
         >
           <Box
             sx={{
@@ -86,13 +85,13 @@ export default function CarouselTile ({selectedTileIndex}) {
             }}
           >
             { tiles[selectedTileIndex].logo && (
-              <img 
+              <img
                 src={tiles[selectedTileIndex].logo}
                 style={{
                   width: '176px',
                   marginBottom: '3rem',
                 }}
-                alt={tiles[selectedTileIndex]["logo-alt"]}
+                alt={tiles[selectedTileIndex]['logo-alt']}
               />
             )}
             <TransitionText
@@ -106,7 +105,7 @@ export default function CarouselTile ({selectedTileIndex}) {
                 lineHeight: '4rem',
               }}
               boxStyles={{
-                mb: 1
+                mb: 1,
               }}
             />
             <TransitionText
@@ -120,16 +119,17 @@ export default function CarouselTile ({selectedTileIndex}) {
                 lineHeight: '3rem',
               }}
               boxStyles={{
-                mb: 3
+                mb: 3,
               }}
             />
-            
+
             <Box sx={{
               border: 0,
               height: 0,
               borderTop: '1px solid #36364B',
               mb: 3,
-            }} />
+            }}
+            />
             <CTAButton tiles={tiles} selectedTileIndex={selectedTileIndex} />
           </Box>
         </Box>
@@ -140,7 +140,7 @@ export default function CarouselTile ({selectedTileIndex}) {
           display: 'flex',
           height: '100%',
           position: 'absolute',
-          top: 0, 
+          top: 0,
           left: 0,
           width: '100%',
           px: 10,
@@ -154,7 +154,7 @@ export default function CarouselTile ({selectedTileIndex}) {
           }}
         />
         <CenterImage tiles={tiles} selectedTileIndex={selectedTileIndex} />
-        <Box 
+        <Box
           sx={{
             display: 'flex',
             flex: '4',
@@ -162,5 +162,5 @@ export default function CarouselTile ({selectedTileIndex}) {
         />
       </Box>
     </Box>
-  )
+  );
 }

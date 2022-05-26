@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import CarouselTile from './CarouselTile';
 
-export default function Main ({selectedTileIndex, transitioning, setTransitioning}) {
+export default function Main({ selectedTileIndex, transitioning, setTransitioning }) {
   return (
     <Container
       sx={{
@@ -14,11 +14,11 @@ export default function Main ({selectedTileIndex, transitioning, setTransitionin
         position: 'relative',
       }}
     >
-      <CarouselTile 
-        selectedTileIndex={selectedTileIndex} 
+      <CarouselTile
+        selectedTileIndex={selectedTileIndex}
         transitioning={transitioning}
         setTransitioning={setTransitioning}
       />
     </Container>
-  )
+  );
 }

@@ -12,25 +12,25 @@ const fadeIn = keyframes`
             transform: scale(1);
             opacity: 1;
   }
-`
+`;
 
-export default function CenterImage ({tiles, selectedTileIndex}) {
+export default function CenterImage({ tiles, selectedTileIndex }) {
   const selected = true;
-  
+
   const tile = tiles[selectedTileIndex];
 
-  return(
+  return (
     <Box
-    sx={{
-      display: 'flex',
-      flex: '4',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      m: '6rem',
-      zIndex: '1',
-      animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.2}s`,
-    }}
+      sx={{
+        display: 'flex',
+        flex: '4',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        m: '6rem',
+        zIndex: '1',
+        animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.2}s`,
+      }}
     >
       <Box
         sx={{
@@ -41,8 +41,8 @@ export default function CenterImage ({tiles, selectedTileIndex}) {
           maxHeight: '800px',
         }}
       >
-        <img 
-          src='/cutout.png'
+        <img
+          src="/cutout.png"
           style={{
             position: 'absolute',
             top: 0,
@@ -53,14 +53,14 @@ export default function CenterImage ({tiles, selectedTileIndex}) {
           }}
         />
         <img
-          src={tile["main-image"]}
+          src={tile['main-image']}
           style={{
             transition: 'transform 1s ease',
-            transform: selected ? tile["main-image-zoom"] : tile["main-image-zoom-start"],
+            transform: selected ? tile['main-image-zoom'] : tile['main-image-zoom-start'],
           }}
         />
         <img
-          src={tile["main-image-overlay"]}
+          src={tile['main-image-overlay']}
           style={{
             position: 'absolute',
             zIndex: 12,
@@ -71,5 +71,5 @@ export default function CenterImage ({tiles, selectedTileIndex}) {
         />
       </Box>
     </Box>
-  )
+  );
 }

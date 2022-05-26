@@ -1,4 +1,6 @@
-import { Box, Button, Container, keyframes } from '@mui/material';
+import {
+  Box, Button, Container, keyframes,
+} from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import DiscordIcon from './DiscordIcon';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
@@ -10,7 +12,7 @@ const fadeIn = keyframes`
   100% {
     opacity: 1;
   }
-`
+`;
 
 const fadeInLogo = keyframes`
   0% {
@@ -23,12 +25,14 @@ const fadeInLogo = keyframes`
     transform: scale(1);
     opacity: 1;
   }
-`
+`;
 
-function NavButton ({text, href, icon, index}) {
+function NavButton({
+  text, href, icon, index,
+}) {
   return (
     <Button
-      variant='text'
+      variant="text"
       sx={{
         color: 'text.primary',
         minWidth: icon ? '1rem' : 'inherit',
@@ -41,9 +45,9 @@ function NavButton ({text, href, icon, index}) {
       href={href}
     >
       {text}
-      {icon ? icon: ''}
+      {icon || ''}
     </Button>
-  )
+  );
 }
 
 const leftNav = [
@@ -62,7 +66,7 @@ const leftNav = [
     href: '',
     icon: '',
   },
-]
+];
 
 const rightNav = [
   {
@@ -73,7 +77,7 @@ const rightNav = [
   {
     text: '',
     href: '',
-    icon: <TwitterIcon sx={{fontSize: 20}} />,
+    icon: <TwitterIcon sx={{ fontSize: 20 }} />,
   },
   {
     text: 'Contact',
@@ -85,9 +89,9 @@ const rightNav = [
     href: '',
     icon: '',
   },
-]
+];
 
-export default function Navbar () {
+export default function Navbar() {
   return (
     <Container
       sx={{
@@ -95,33 +99,34 @@ export default function Navbar () {
         flexDirection: 'row',
         mt: '6.5rem',
         px: '4rem',
-        maxWidth: '1440px'
+        maxWidth: '1440px',
       }}
     >
-      <Box 
+      <Box
         sx={{
-          flex: 1
+          flex: 1,
         }}
       >
         {
-          leftNav.map(({text, href, icon}, index) => {
-            return <NavButton key={index} text={text} href={href} icon={icon} index={index} />
-          })
+          leftNav.map(({ text, href, icon }, index) => <NavButton key={index} text={text} href={href} icon={icon} index={index} />)
         }
       </Box>
-      <Box 
+      <Box
         sx={{
           display: 'flex',
           flex: '1',
           justifyContent: 'center',
           alignItems: 'center',
-          animation: `${fadeInLogo} ${entranceAnimationDuration}s both`
+          animation: `${fadeInLogo} ${entranceAnimationDuration}s both`,
         }}
       >
-        <img src="/icons/Drift-Logo-w.png" style={{
-          height: '24px',
-          aspectRatio: '116 / 38',
-        }} />
+        <img
+          src="/icons/Drift-Logo-w.png"
+          style={{
+            height: '24px',
+            aspectRatio: '116 / 38',
+          }}
+        />
       </Box>
       <Box
         sx={{
@@ -133,11 +138,9 @@ export default function Navbar () {
         }}
       >
         {
-          rightNav.map(({text, href, icon}, index) => {
-            return <NavButton key={index} text={text} href={href} icon={icon} index={index} />
-          })
+          rightNav.map(({ text, href, icon }, index) => <NavButton key={index} text={text} href={href} icon={icon} index={index} />)
         }
       </Box>
     </Container>
-  )
+  );
 }
