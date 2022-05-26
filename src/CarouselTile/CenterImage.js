@@ -99,7 +99,7 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
       const percentX = (e.pageX - documentMidpointX) / documentMidpointX;
       const percentY = (e.pageY - documentMidpointY) / documentMidpointY;
 
-      const offsetConstant = 10;
+      const offsetConstant = -10;
 
       setImageOffset([percentX * offsetConstant, percentY * offsetConstant]);
 
