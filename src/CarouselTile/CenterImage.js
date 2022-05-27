@@ -130,25 +130,19 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
           width: '100%',
         }}
       >
-        <img
-          src="/cutout.png"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 11,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-          }}
-          alt="Overlay used over other images to provide rounded edges"
-        />
         <Box
           sx={{
             height: '100%',
             width: '100%',
+
             display: 'flex',
             position: 'relative',
+            mask: 'url(/cutout.svg)',
+            WebkitMask: 'url(/cutout.svg)',
+            maskSize: 'cover',
+            WebkitMaskSize: 'contain',
+            WebkitMaskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
           }}
         >
           {tiles.map((tile, index) => (
