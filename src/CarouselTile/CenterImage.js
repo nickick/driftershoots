@@ -6,10 +6,10 @@ import { entranceAnimationDelay, entranceAnimationDuration } from '../constants'
 import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
-  entering: { opacity: 0, visibility: 'visible' },
+  entering: { opacity: 1, visibility: 'visible' },
   entered: { opacity: 1, visibility: 'visible' },
-  exiting: { opacity: 1, visibility: 'visible' },
-  exited: { opacity: 0, visibility: 'hidden' },
+  exiting: { opacity: 0.5, visibility: 'visible' },
+  exited: { opacity: 0.5, visibility: 'hidden' },
 };
 
 const fadeIn = keyframes`
