@@ -15,12 +15,21 @@ const fadeIn = keyframes`
   }
 `;
 
+const initialHeight = 35;
+
 const fadeInLogo = keyframes`
   0% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.2) translateY(${initialHeight}vh);;
+    transform: scale(1.2) translateY(${initialHeight}vh);
     opacity: 0;
   }
+
+  70% {
+    -webkit-transform: scale(1.2) translateY(${initialHeight}vh);
+    transform: scale(1.2) translateY(${initialHeight}vh);
+    opacity: 1;
+  }
+
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -141,6 +150,7 @@ export default function Navbar() {
           justifyContent: 'center',
           alignItems: 'center',
           animation: `${fadeInLogo} ${entranceAnimationDuration}s both`,
+          zIndex: 15,
         }}
       >
         <img
