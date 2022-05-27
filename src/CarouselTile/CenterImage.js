@@ -38,7 +38,7 @@ function FadeableImage({
         left: 0,
         top: 0,
         transform: `translate(${offset[0]}px, ${offset[1]}px)`,
-        transition: 'transform 0.5s ease-out',
+        transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
         ...transitionStyles[state],
       }}
       key={src}
@@ -50,6 +50,7 @@ function FadeableImage({
           left: '50%',
           top: '50%',
           transition: 'transform 1s ease',
+          transformOrigin: 'center',
           transform: selected ? zoom : startingZoom,
         }}
         alt={alt}
@@ -87,7 +88,9 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
   const [imageOffset, setImageOffset] = useState([0, 0]);
 
   useEffect(() => {
-    let enableCall = true;
+    // disable mouse movement for 4 seconds to prevent weird svg clipping issues on load
+    let enableCall = false;
+    setTimeout(() => { enableCall = true; }, 4000);
 
     document.body.addEventListener('mousemove', (e) => {
       if (!enableCall) return;
