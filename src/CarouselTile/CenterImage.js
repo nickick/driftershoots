@@ -37,7 +37,7 @@ function FadeableImage({
         position: 'absolute',
         left: 0,
         top: 0,
-        transform: `translate(${offset[0]}px, ${offset[1]}px), translateZ(0)`,
+        transform: `translate(${offset[0]}px, ${offset[1]}px) translateZ(0)`,
         transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
         ...transitionStyles[state],
       }}
