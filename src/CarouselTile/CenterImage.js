@@ -7,7 +7,7 @@ import isSafari from '../utils/isSafari';
 import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
-  entering: { opacity: 1, visibility: 'visible' },
+  entering: { opacity: 0.5, visibility: 'visible' },
   entered: { opacity: 1, visibility: 'visible' },
   exiting: { opacity: 0.5, visibility: 'visible' },
   exited: { opacity: 0.5, visibility: 'hidden' },
@@ -27,12 +27,11 @@ const fadeIn = keyframes`
 `;
 
 function FadeableImage({
-  src, alt, overlay, overlayAlt, state, selected, zoom, startingZoom, offset, transitioning
+  src, alt, overlay, overlayAlt, state, selected, zoom, startingZoom, offset, transitioning,
 }) {
-
   let transformStyle = `translate(${offset[0]}px, ${offset[1]}px) translateZ(0)`;
   if (isSafari() || transitioning) {
-    transformStyle =  'translateZ(0)';
+    transformStyle = 'translateZ(0)';
   }
 
   return (
@@ -71,6 +70,7 @@ function FadeableImage({
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
+            ...transformStyle[state],
           }}
           alt={overlayAlt}
         />
@@ -89,7 +89,12 @@ FadeableImage.propTypes = {
   zoom: PropTypes.string.isRequired,
   startingZoom: PropTypes.string.isRequired,
   offset: PropTypes.array.isRequired,
+  transitioning: PropTypes.bool.isRequired,
 };
+
+function calculateOffset(parameter, offsetConstant) {
+  return parameter * offsetConstant;
+}
 
 export default function CenterImage({ tiles, selectedTileIndex, transitioning }) {
   const [imageOffset, setImageOffset] = useState([0, 0]);
@@ -101,17 +106,19 @@ export default function CenterImage({ tiles, selectedTileIndex, transitioning })
 
     document.body.addEventListener('mousemove', (e) => {
       if (!enableCall) return;
-
       enableCall = false;
+      const offsetConstant = -10;
+
       const documentMidpointY = document.body.offsetHeight / 2;
       const documentMidpointX = document.body.offsetWidth / 2;
 
-      const percentX = (e.pageX - documentMidpointX) / documentMidpointX;
-      const percentY = (e.pageY - documentMidpointY) / documentMidpointY;
+      const percentX = ((e.pageX - documentMidpointX) / documentMidpointX);
+      const percentY = ((e.pageY - documentMidpointY) / documentMidpointY);
 
-      const offsetConstant = -10;
-
-      setImageOffset([percentX * offsetConstant, percentY * offsetConstant]);
+      setImageOffset(
+        [calculateOffset(percentX, offsetConstant),
+          calculateOffset(percentY, offsetConstant)],
+      );
 
       setTimeout(() => { enableCall = true; }, 100);
     });
@@ -187,4 +194,5 @@ export default function CenterImage({ tiles, selectedTileIndex, transitioning })
 CenterImage.propTypes = {
   tiles: tilesProps.isRequired,
   selectedTileIndex: PropTypes.number.isRequired,
+  transitioning: PropTypes.bool.isRequired,
 };

@@ -42,7 +42,7 @@ export default function CarouselTile({ selectedTileIndex }) {
 
     setTimeout(() => {
       setTransitioning(false);
-    }, 1000)
+    }, 1000);
   }, [selectedTileIndex]);
 
   return (
@@ -165,7 +165,11 @@ export default function CarouselTile({ selectedTileIndex }) {
             flex: '4 4',
           }}
         />
-        <CenterImage tiles={tiles} selectedTileIndex={selectedTileIndex} transitioning={transitioning} />
+        <CenterImage
+          tiles={tiles}
+          selectedTileIndex={selectedTileIndex}
+          transitioning={transitioning}
+        />
         <Box
           sx={{
             display: 'flex',
