@@ -1,5 +1,6 @@
 import { Box, keyframes } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
 import tiles from '../tiles.json';
 import CenterImage from './CenterImage';
@@ -34,6 +35,16 @@ const fadeFromLeft = keyframes`
 `;
 
 export default function CarouselTile({ selectedTileIndex }) {
+  const [transitioning, setTransitioning] = useState(false);
+
+  useEffect(() => {
+    setTransitioning(true);
+
+    setTimeout(() => {
+      setTransitioning(false);
+    }, 1000)
+  }, [selectedTileIndex]);
+
   return (
     <Box>
       {/* Text container */}
@@ -154,7 +165,7 @@ export default function CarouselTile({ selectedTileIndex }) {
             flex: '4 4',
           }}
         />
-        <CenterImage tiles={tiles} selectedTileIndex={selectedTileIndex} />
+        <CenterImage tiles={tiles} selectedTileIndex={selectedTileIndex} transitioning={transitioning} />
         <Box
           sx={{
             display: 'flex',

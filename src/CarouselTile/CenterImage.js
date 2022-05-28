@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
+import isSafari from '../utils/isSafari';
 import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
@@ -14,8 +15,8 @@ const transitionStyles = {
 
 const fadeIn = keyframes`
   0% {
-    -webkit-transform: scale(1.1);
-            transform: translateX(1.1);
+    -webkit-transform: scale(1.0);
+            transform: translateX(1.0);
             opacity: 0;
   }
   100% {
@@ -26,8 +27,14 @@ const fadeIn = keyframes`
 `;
 
 function FadeableImage({
-  src, alt, overlay, overlayAlt, state, selected, zoom, startingZoom, offset,
+  src, alt, overlay, overlayAlt, state, selected, zoom, startingZoom, offset, transitioning
 }) {
+
+  let transformStyle = `translate(${offset[0]}px, ${offset[1]}px) translateZ(0)`;
+  if (isSafari() || transitioning) {
+    transformStyle =  'translateZ(0)';
+  }
+
   return (
     <Box
       sx={{
@@ -37,7 +44,7 @@ function FadeableImage({
         position: 'absolute',
         left: 0,
         top: 0,
-        transform: `translate(${offset[0]}px, ${offset[1]}px) translateZ(0)`,
+        transform: transformStyle,
         transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
         ...transitionStyles[state],
       }}
@@ -84,7 +91,7 @@ FadeableImage.propTypes = {
   offset: PropTypes.array.isRequired,
 };
 
-export default function CenterImage({ tiles, selectedTileIndex }) {
+export default function CenterImage({ tiles, selectedTileIndex, transitioning }) {
   const [imageOffset, setImageOffset] = useState([0, 0]);
 
   useEffect(() => {
@@ -166,6 +173,7 @@ export default function CenterImage({ tiles, selectedTileIndex }) {
                   index={index}
                   selected={selectedTileIndex === index}
                   offset={imageOffset}
+                  transitioning={transitioning}
                 />
               )}
             </Transition>
