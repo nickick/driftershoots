@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material';
 import { useContext } from 'react';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from './ThemeContextProvider';
 
 export default function ThemeToggle() {
   const { toggleTheme } = useContext(ThemeContext);

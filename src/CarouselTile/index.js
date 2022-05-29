@@ -1,7 +1,8 @@
 import { Box, keyframes } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
+import { useContext, useEffect, useState } from 'react';
+import { entranceAnimationDuration } from '../constants';
+import { LoadedContext } from '../LoadedContextProvider';
 import tiles from '../tiles.json';
 import CenterImage from './CenterImage';
 import CTAButton from './CTAButton';
@@ -36,6 +37,7 @@ const fadeFromLeft = keyframes`
 
 export default function CarouselTile({ selectedTileIndex }) {
   const [transitioning, setTransitioning] = useState(false);
+  const { animationDelay } = useContext(LoadedContext);
 
   useEffect(() => {
     setTransitioning(true);
@@ -66,7 +68,7 @@ export default function CarouselTile({ selectedTileIndex }) {
             flex: '5',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            animation: `${fadeFromLeft} ${entranceAnimationDuration}s both ${entranceAnimationDelay}s`,
+            animation: `${fadeFromLeft} ${entranceAnimationDuration}s both ${animationDelay}s`,
           }}
         >
           <Title tiles={tiles} selectedTileIndex={selectedTileIndex} />
@@ -93,7 +95,7 @@ export default function CarouselTile({ selectedTileIndex }) {
               display: 'flex',
               flexDirection: 'column',
               width: '100%',
-              animation: `${fadeFromRight} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.4}s`,
+              animation: `${fadeFromRight} ${entranceAnimationDuration}s both ${animationDelay + 0.4}s`,
             }}
           >
             { tiles[selectedTileIndex].logo && (
@@ -119,6 +121,7 @@ export default function CarouselTile({ selectedTileIndex }) {
               boxStyles={{
                 mb: 1,
               }}
+              animationDelay={animationDelay}
             />
             <TransitionText
               tiles={tiles}
@@ -133,6 +136,7 @@ export default function CarouselTile({ selectedTileIndex }) {
               boxStyles={{
                 mb: 3,
               }}
+              animationDelay={animationDelay}
             />
 
             <Box sx={{
@@ -169,6 +173,7 @@ export default function CarouselTile({ selectedTileIndex }) {
           tiles={tiles}
           selectedTileIndex={selectedTileIndex}
           transitioning={transitioning}
+          animationDelay={animationDelay}
         />
         <Box
           sx={{

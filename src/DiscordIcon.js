@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { useContext } from 'react';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from './ThemeContextProvider';
 
 export default function DiscordIcon() {
   const { selectedTheme } = useContext(ThemeContext);

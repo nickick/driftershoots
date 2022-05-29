@@ -4,15 +4,19 @@
 import { CssBaseline } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ThemeContext } from '../src';
+import { LoadedContextProvider, Layout, ThemeContextProvider } from '../src';
 import '../styles/globals.css';
 
 function App({ Component, pageProps }) {
   return (
-    <ThemeContext>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeContext>
+    <ThemeContextProvider>
+      <LoadedContextProvider>
+        <CssBaseline />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </LoadedContextProvider>
+    </ThemeContextProvider>
   );
 }
 

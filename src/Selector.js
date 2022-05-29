@@ -2,7 +2,9 @@ import {
   Box, Container, keyframes, Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
+import { useContext } from 'react';
+import { entranceAnimationDuration } from './constants';
+import { LoadedContext } from './LoadedContextProvider';
 import tiles from './tiles.json';
 
 const popDown = keyframes`
@@ -39,6 +41,8 @@ const fadeIn = keyframes`
 function SelectorTile({
   category, title, isSelected, index, setSelected, setTransitioning,
 }) {
+  const { animationDelay } = useContext(LoadedContext);
+
   return (
     <Box
       sx={[
@@ -67,7 +71,7 @@ function SelectorTile({
     >
       <Box
         sx={{
-          animation: `${fadeIn} ${entranceAnimationDuration}s both ${0.2 + entranceAnimationDelay + index * 0.15}s`,
+          animation: `${fadeIn} ${entranceAnimationDuration}s both ${0.2 + animationDelay + index * 0.15}s`,
         }}
       >
         <Typography

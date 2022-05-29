@@ -2,7 +2,7 @@ import { Box, keyframes } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
-import { entranceAnimationDelay, entranceAnimationDuration } from '../constants';
+import { entranceAnimationDuration } from '../constants';
 import isSafari from '../utils/isSafari';
 import { tilesProps } from '../utils/prop-types';
 
@@ -96,7 +96,9 @@ function calculateOffset(parameter, offsetConstant) {
   return parameter * offsetConstant;
 }
 
-export default function CenterImage({ tiles, selectedTileIndex, transitioning }) {
+export default function CenterImage({
+  tiles, selectedTileIndex, transitioning, animationDelay,
+}) {
   const [imageOffset, setImageOffset] = useState([0, 0]);
 
   useEffect(() => {
@@ -134,7 +136,7 @@ export default function CenterImage({ tiles, selectedTileIndex, transitioning })
         position: 'relative',
         m: '3rem',
         zIndex: '1',
-        animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + 0.2}s`,
+        animation: `${fadeIn} ${entranceAnimationDuration}s both ${animationDelay + 0.2}s`,
       }}
     >
       <Box
@@ -192,7 +194,8 @@ export default function CenterImage({ tiles, selectedTileIndex, transitioning })
 }
 
 CenterImage.propTypes = {
+  animationDelay: PropTypes.number.isRequired,
   tiles: tilesProps.isRequired,
-  selectedTileIndex: PropTypes.number.isRequired,
   transitioning: PropTypes.bool.isRequired,
+  selectedTileIndex: PropTypes.number.isRequired,
 };

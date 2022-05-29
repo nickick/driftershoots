@@ -3,6 +3,7 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import Link from 'next/link';
 import DiscordIcon from './DiscordIcon';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 
@@ -41,23 +42,24 @@ function NavButton({
   text, href, icon, index,
 }) {
   return (
-    <Button
-      variant="text"
-      sx={{
-        color: 'text.primary',
-        minWidth: icon ? '1rem' : 'inherit',
-        mx: '0.5rem',
-        fontSize: '1.5rem',
-        lineHeight: '2rem',
-        letterSpacing: '0.1rem',
-        animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s`,
-      }}
-      href={href}
-      target={icon ? '_blank' : ''}
-    >
-      {text}
-      {icon || ''}
-    </Button>
+    <Link href={href} passHref>
+      <Button
+        variant="text"
+        sx={{
+          color: 'text.primary',
+          minWidth: icon ? '1rem' : 'inherit',
+          mx: '0.5rem',
+          fontSize: '1.5rem',
+          lineHeight: '2rem',
+          letterSpacing: '0.1rem',
+          animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s`,
+        }}
+        target={(icon || href[0] !== '/') ? '_blank' : ''}
+      >
+        {text}
+        {icon || ''}
+      </Button>
+    </Link>
   );
 }
 
@@ -77,7 +79,7 @@ NavButton.defaultProps = {
 const leftNav = [
   {
     text: 'Prints',
-    href: '/prints',
+    href: 'https://www.millergallery.com/featured-artists#/isaac-wright',
     icon: '',
   },
   {
@@ -153,14 +155,17 @@ export default function Navbar() {
           zIndex: 15,
         }}
       >
-        <img
-          src="/icons/Drift-Logo-w.png"
-          style={{
-            height: '24px',
-            aspectRatio: '116 / 38',
-          }}
-          alt="Drifter Shoots logo"
-        />
+        <Link href="/">
+          <img
+            src="/icons/Drift-Logo-w.png"
+            style={{
+              height: '24px',
+              aspectRatio: '116 / 38',
+              cursor: 'pointer',
+            }}
+            alt="Drifter Shoots logo"
+          />
+        </Link>
       </Box>
       <Box
         sx={{
