@@ -7,4 +7,17 @@ module.exports = withFonts({
   webpack(config) {
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'max-age=0, s-maxage=86400'
+          }
+        ]
+      }
+    ]
+  }
 });

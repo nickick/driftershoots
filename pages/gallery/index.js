@@ -1,9 +1,9 @@
-import { Box } from '@mui/material';
+import { Gallery, GalleryContextProvider } from '../../src';
 
-export default function Gallery() {
+export default function GalleryPage() {
   return (
-    <Box>
-      Gallery
-    </Box>
+    <GalleryContextProvider>
+      <Gallery />
+    </GalleryContextProvider>
   );
 }

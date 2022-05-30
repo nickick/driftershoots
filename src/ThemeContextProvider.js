@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
-import PropTypes from 'prop-types';
 import {
   createContext, useCallback, useEffect, useMemo, useState,
 } from 'react';
+import { childrenProps } from './utils/prop-types';
 
 export const ThemeContext = createContext();
 
@@ -73,8 +73,5 @@ export default function ThemeProvider({ children }) {
 }
 
 ThemeProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  children: childrenProps.isRequired,
 };
