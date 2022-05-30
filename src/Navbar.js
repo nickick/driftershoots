@@ -126,6 +126,7 @@ export default function Navbar() {
         mt: '6.5rem',
         px: '4rem',
         maxWidth: '1440px',
+        zIndex: 2,
       }}
     >
       <Box

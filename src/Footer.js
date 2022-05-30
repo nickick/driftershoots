@@ -26,6 +26,7 @@ export default function Footer() {
         maxWidth: '1440px',
         px: 4,
         animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
+        zIndex: 3,
       }}
     >
       <ThemeToggle />

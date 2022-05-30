@@ -8,6 +8,8 @@ export const LoadedContext = createContext();
 
 export default function LoadedProvider({ children }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState('');
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +22,11 @@ export default function LoadedProvider({ children }) {
   const providerValue = useMemo(() => ({
     isLoaded,
     animationDelay,
-  }), [isLoaded, animationDelay]);
+    backgroundImage,
+    setBackgroundImage,
+    backgroundOpacity,
+    setBackgroundOpacity,
+  }), [isLoaded, animationDelay, backgroundImage, setBackgroundImage, backgroundOpacity, setBackgroundOpacity]);
 
   return (
     <LoadedContext.Provider value={providerValue}>

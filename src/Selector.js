@@ -51,6 +51,7 @@ function SelectorTile({
           cursor: 'pointer',
           color: isSelected ? 'text.primary' : 'text.secondary',
           animation: `${popDown} 0.3s both 0.3s`,
+          zIndex: 3,
         },
         {
           '&:hover': {

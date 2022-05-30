@@ -1,7 +1,7 @@
 import {
   Box, Container, keyframes, Typography,
 } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { entranceAnimationDuration } from '../constants';
 import { GalleryContext } from '../GalleryContextProvider';
 import { LoadedContext } from '../LoadedContextProvider';
@@ -22,17 +22,23 @@ const fadeFromBelow = keyframes`
 
 export default function Gallery() {
   const { wmvgPieces } = useContext(GalleryContext);
-  const { animationDelay } = useContext(LoadedContext);
+  const { animationDelay, setBackgroundImage, setBackgroundOpacity } = useContext(LoadedContext);
 
   const wmvgSorted = wmvgPieces.sort(
     (a, b) => (parseInt(a.name.slice(18), 10) > parseInt(b.name.slice(18), 10) ? 1 : -1),
   );
+
+  useEffect(() => {
+    setBackgroundImage('/gallery-background.jpeg');
+    setBackgroundOpacity(1);
+  }, []);
 
   return (
     <Container
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        zIndex: 3,
       }}
     >
       <Box
