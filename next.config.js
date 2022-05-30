@@ -7,6 +7,11 @@ module.exports = withFonts({
   webpack(config) {
     return config;
   },
+  images: {
+    domains: [
+      'lh3.googleusercontent.com'
+    ]
+  },
   async headers() {
     return [
       {
