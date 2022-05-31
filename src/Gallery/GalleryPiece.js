@@ -53,7 +53,7 @@ export default function GalleryPiece({ piece, index }) {
 
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: '-300px 0px',
+    rootMargin: '-200px 0px',
   });
 
   const onImageLoaded = useCallback(({ naturalWidth, naturalHeight }) => {
