@@ -2,8 +2,9 @@ import { Box, Link, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 import { useCallback, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import LazyImage from './LazyImage';
-import { childrenProps } from '../utils/prop-types';
+import { childrenProps, openseaPieceProps } from '../utils/prop-types';
 
 function contractName(address) {
   return address === '0x495f947276749ce646f68ac8c248420045cb7b5e' ? 'Opensea Storefront Contract' : 'Where My Vans Go Contract';
@@ -46,14 +47,15 @@ TextSection.propTypes = {
   children: childrenProps.isRequired,
 };
 
-export default function GalleryPiece({ piece, index }) {
+export default function GalleryPiece({ piece, index, setModalOpen }) {
   const [imageDimensions, setImageDimensions] = useState([0, 0]);
   const [mouseOver, setMouseOver] = useState(false);
   const boxRef = useRef();
+  const router = useRouter();
 
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: '-300px 0px',
+    rootMargin: '-200px 0px',
   });
 
   const onImageLoaded = useCallback(({ naturalWidth, naturalHeight }) => {
@@ -71,6 +73,19 @@ export default function GalleryPiece({ piece, index }) {
     setMouseOver(false);
   }, []);
 
+  const selectPiece = useCallback((e) => {
+    e.preventDefault();
+    const { pathname } = router;
+    setModalOpen(true);
+
+    router.push({
+      pathname,
+      query: {
+        gallery: piece.id,
+      },
+    }, undefined, { scroll: false });
+  }, [piece.id, router, setModalOpen]);
+
   return (
     <Box
       sx={[
@@ -84,6 +99,8 @@ export default function GalleryPiece({ piece, index }) {
       ref={boxRef}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
+      onClick={selectPiece}
+      id={`wmvg-${index}`}
     >
       <Box
         sx={[
@@ -166,16 +183,9 @@ export default function GalleryPiece({ piece, index }) {
 }
 
 GalleryPiece.propTypes = {
-  piece: PropTypes.shape({
-    asset_contract: PropTypes.shape({
-      address: PropTypes.string.isRequired,
-    }).isRequired,
-    description: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    image_preview_url: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
-  }).isRequired,
+  piece: openseaPieceProps.isRequired,
   index: PropTypes.number.isRequired,
+  setModalOpen: PropTypes.func.isRequired,
 };
 
 /*

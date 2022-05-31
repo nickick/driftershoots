@@ -13,7 +13,6 @@ export default function Layout({ children }) {
       sx={{
         bgcolor: 'background.default',
         color: 'text.primary',
-        height: '100vh',
         position: 'relative',
       }}
     >

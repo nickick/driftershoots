@@ -1,14 +1,18 @@
 import {
-  Box, Container, keyframes, Typography,
-} from '@mui/material';
-import {
   Masonry,
 } from '@mui/lab';
-import { useContext, useEffect } from 'react';
+import {
+  Box, Container, keyframes, Typography,
+} from '@mui/material';
+import { useRouter } from 'next/router';
+import {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
 import { entranceAnimationDuration } from '../constants';
 import { GalleryContext } from '../GalleryContextProvider';
 import { LoadedContext } from '../LoadedContextProvider';
 import GalleryPiece from './GalleryPiece';
+import GalleryModal from './Modal';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -26,6 +30,9 @@ const fadeFromBelow = keyframes`
 export default function Gallery() {
   const { wmvgPieces } = useContext(GalleryContext);
   const { animationDelay, setBackgroundImage, setBackgroundOpacity } = useContext(LoadedContext);
+  const router = useRouter();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const wmvgSorted = wmvgPieces.sort(
     (a, b) => (parseInt(a.name.slice(18), 10) > parseInt(b.name.slice(18), 10) ? 1 : -1),
@@ -36,6 +43,31 @@ export default function Gallery() {
     setBackgroundOpacity(1);
   }, [setBackgroundImage, setBackgroundOpacity]);
 
+  const handleClose = useCallback(() => {
+    setModalOpen(false);
+
+    setTimeout(() => {
+      router.push({
+        pathname: router.pathname,
+        query: {},
+      }, undefined, { scroll: false });
+    }, 200);
+  }, [router]);
+
+  const piece = wmvgPieces.find((p) => p.id === parseInt(router.query.gallery, 10));
+
+  useEffect(() => {
+    setModalOpen(!!router.query.gallery);
+    if (piece) {
+      const index = wmvgSorted.indexOf(piece);
+      const pieceElement = document.getElementById(`wmvg-${index}`);
+      window.scrollTo({
+        top: pieceElement.pageYOffset,
+        behavior: 'smooth',
+      });
+    }
+  }, [router.query.gallery, wmvgSorted, piece]);
+
   return (
     <Container
       sx={{
@@ -44,6 +76,14 @@ export default function Gallery() {
         zIndex: 3,
       }}
     >
+      {piece && (
+        <GalleryModal
+          open={modalOpen}
+          handleClose={handleClose}
+          piece={piece}
+        />
+      )}
+
       <Box
         sx={{
           display: 'flex',
@@ -55,7 +95,7 @@ export default function Gallery() {
       >
         <Box
           sx={{
-            flex: 1,
+            flex: 0,
           }}
         />
         <Box
@@ -67,10 +107,10 @@ export default function Gallery() {
         >
           <Box
             sx={{
-              height: '70vh',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
+              height: '70vh',
             }}
           >
             <Typography
@@ -95,14 +135,19 @@ export default function Gallery() {
           <Masonry
             columns={2}
           >
-            {wmvgSorted.map((piece, index) => (
-              <GalleryPiece piece={piece} key={piece.name} index={index} />
+            {wmvgSorted.map((wmvgPiece, index) => (
+              <GalleryPiece
+                key={wmvgPiece.name}
+                piece={wmvgPiece}
+                index={index}
+                setModalOpen={setModalOpen}
+              />
             ))}
           </Masonry>
         </Box>
         <Box
           sx={{
-            flex: 1,
+            flex: 0,
           }}
         />
       </Box>

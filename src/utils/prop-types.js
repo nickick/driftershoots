@@ -18,3 +18,14 @@ export const childrenProps = PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.node),
   PropTypes.node,
 ]);
+
+export const openseaPieceProps = PropTypes.shape({
+  asset_contract: PropTypes.shape({
+    address: PropTypes.string.isRequired,
+  }).isRequired,
+  description: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  image_preview_url: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+});

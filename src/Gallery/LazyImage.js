@@ -23,9 +23,10 @@ LazyImage.propTypes = {
   src: PropTypes.string.isRequired,
   priority: PropTypes.bool,
   onLoadingComplete: PropTypes.func.isRequired,
-  mouseOver: PropTypes.bool.isRequired,
+  mouseOver: PropTypes.bool,
 };
 
 LazyImage.defaultProps = {
+  mouseOver: false,
   priority: false,
 };

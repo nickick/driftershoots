@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { useState } from 'react';
 import { Main, Selector } from '../src';
 
@@ -6,7 +7,13 @@ function App() {
   const [transitioning, setTransitioning] = useState(false);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+      }}
+    >
       <Main
         selectedTileIndex={selectedTileIndex}
         transitioning={transitioning}
@@ -17,7 +24,7 @@ function App() {
         selectedTileIndex={selectedTileIndex}
         setSelectedTileIndex={setSelectedTileIndex}
       />
-    </>
+    </Box>
   );
 }
 
