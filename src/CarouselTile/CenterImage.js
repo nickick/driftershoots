@@ -1,22 +1,22 @@
 import { Box, keyframes } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import { entranceAnimationDuration } from '../constants';
 import isSafari from '../utils/isSafari';
 import { tilesProps } from '../utils/prop-types';
 
 const transitionStyles = {
-  entering: { opacity: 0.5, visibility: 'visible' },
+  entering: { opacity: 1, visibility: 'visible' },
   entered: { opacity: 1, visibility: 'visible' },
-  exiting: { opacity: 0.5, visibility: 'visible' },
-  exited: { opacity: 0.5, visibility: 'hidden' },
+  exiting: { opacity: 0, visibility: 'visible' },
+  exited: { opacity: 0, visibility: 'hidden' },
 };
 
 const fadeIn = keyframes`
   0% {
-    -webkit-transform: scale(1.0);
-            transform: translateX(1.0);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
             opacity: 0;
   }
   100% {
@@ -27,7 +27,17 @@ const fadeIn = keyframes`
 `;
 
 function FadeableImage({
-  src, alt, overlay, overlayAlt, state, selected, zoom, startingZoom, offset, transitioning,
+  src,
+  alt,
+  overlay,
+  overlayAlt,
+  state,
+  selected,
+  zoom,
+  startingZoom,
+  offset,
+  transitioning,
+  animationDelay,
 }) {
   let transformStyle = `translate(${offset[0]}px, ${offset[1]}px) translateZ(0)`;
   if (isSafari() || transitioning) {
@@ -45,6 +55,7 @@ function FadeableImage({
         top: 0,
         transform: transformStyle,
         transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
+        animation: `${fadeIn} ${entranceAnimationDuration}s both ${animationDelay + 0.2}s`,
         ...transitionStyles[state],
       }}
       key={src}
@@ -90,6 +101,7 @@ FadeableImage.propTypes = {
   startingZoom: PropTypes.string.isRequired,
   offset: PropTypes.array.isRequired,
   transitioning: PropTypes.bool.isRequired,
+  animationDelay: PropTypes.number.isRequired,
 };
 
 function calculateOffset(parameter, offsetConstant) {
@@ -100,6 +112,7 @@ export default function CenterImage({
   tiles, selectedTileIndex, transitioning, animationDelay,
 }) {
   const [imageOffset, setImageOffset] = useState([0, 0]);
+  const cutoutRef = useRef();
 
   useEffect(() => {
     // disable mouse movement for 4 seconds to prevent weird svg clipping issues on load
@@ -126,6 +139,12 @@ export default function CenterImage({
     });
   }, []);
 
+  useEffect(() => {
+    // add hack to fix random not displaying of cutout images ¯\_(ツ)_/¯
+    cutoutRef.current.style['mask-size'] = 'contain';
+    cutoutRef.current.style['-webkit-mask-size'] = 'contain';
+  });
+
   return (
     <Box
       sx={{
@@ -136,7 +155,6 @@ export default function CenterImage({
         position: 'relative',
         m: '3rem',
         zIndex: '1',
-        animation: `${fadeIn} ${entranceAnimationDuration}s both ${animationDelay + 0.2}s`,
       }}
     >
       <Box
@@ -153,16 +171,14 @@ export default function CenterImage({
           sx={{
             height: '100%',
             width: '100%',
-
             display: 'flex',
             position: 'relative',
             mask: 'url(/cutout.svg)',
-            WebkitMask: 'url(/cutout.svg)',
-            maskSize: 'cover',
-            WebkitMaskSize: 'contain',
-            WebkitMaskRepeat: 'no-repeat',
-            WebkitMaskPosition: 'center',
+            maskSize: 'contain',
+            maskRepeat: 'no-repeat',
+            maskPosition: 'center',
           }}
+          ref={cutoutRef}
         >
           {tiles.map((tile, index) => (
             <Transition
@@ -183,6 +199,7 @@ export default function CenterImage({
                   selected={selectedTileIndex === index}
                   offset={imageOffset}
                   transitioning={transitioning}
+                  animationDelay={animationDelay}
                 />
               )}
             </Transition>

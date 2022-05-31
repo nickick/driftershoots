@@ -1,6 +1,7 @@
 import { Box, Link, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
+import { useCallback, useRef, useState } from 'react';
 import LazyImage from './LazyImage';
 import { childrenProps } from '../utils/prop-types';
 
@@ -46,44 +47,79 @@ TextSection.propTypes = {
 };
 
 export default function GalleryPiece({ piece, index }) {
+  const [imageDimensions, setImageDimensions] = useState([0, 0]);
+  const [mouseOver, setMouseOver] = useState(false);
+  const boxRef = useRef();
+
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: '-200px 0px',
+    rootMargin: '-300px 0px',
   });
+
+  const onImageLoaded = useCallback(({ naturalWidth, naturalHeight }) => {
+    if (!boxRef.current) return;
+    setImageDimensions([naturalWidth, naturalHeight]);
+    const proportionalHeight = (boxRef.current.offsetWidth * naturalHeight) / naturalWidth;
+    boxRef.current.style.height = `${proportionalHeight}px`;
+  }, []);
+
+  const onMouseOver = useCallback(() => {
+    setMouseOver(true);
+  }, []);
+
+  const onMouseLeave = useCallback(() => {
+    setMouseOver(false);
+  }, []);
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-        border: '1px solid white',
-        mb: 3,
-        opacity: inView ? 1 : 0,
-      }}
-      ref={ref}
+      sx={[
+        {
+          display: 'flex',
+          flexDirection: 'row',
+          opacity: inView ? 1 : 0,
+          position: 'relative',
+        },
+      ]}
+      ref={boxRef}
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
     >
       <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1,
-          position: 'relative',
-        }}
+        sx={[
+          {
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'flex-start',
+            position: 'relative',
+            paddingBottom: imageDimensions[0] ? `${(imageDimensions[1] / imageDimensions[0]) * 100}%` : 0,
+            overflow: 'hidden',
+          },
+        ]}
+        ref={ref}
       >
         <LazyImage
-          src={piece.image_preview_url}
+          src={piece.image_url}
           alt={piece.name}
           priority={index === 1}
+          onLoadingComplete={onImageLoaded}
+          mouseOver={mouseOver}
         />
       </Box>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          // justifyContent: 'center',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
           flex: 1,
           p: 3,
+          cursor: 'pointer',
+          opacity: mouseOver ? 1 : 0,
+          background: 'rgba(0,0,0,0.5)',
         }}
       >
         <Typography
@@ -137,6 +173,7 @@ GalleryPiece.propTypes = {
     description: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image_preview_url: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
 };

@@ -1,6 +1,9 @@
 import {
   Box, Container, keyframes, Typography,
 } from '@mui/material';
+import {
+  Masonry,
+} from '@mui/lab';
 import { useContext, useEffect } from 'react';
 import { entranceAnimationDuration } from '../constants';
 import { GalleryContext } from '../GalleryContextProvider';
@@ -31,7 +34,7 @@ export default function Gallery() {
   useEffect(() => {
     setBackgroundImage('/gallery-background.jpeg');
     setBackgroundOpacity(1);
-  }, []);
+  }, [setBackgroundImage, setBackgroundOpacity]);
 
   return (
     <Container
@@ -52,7 +55,7 @@ export default function Gallery() {
       >
         <Box
           sx={{
-            flex: 3,
+            flex: 1,
           }}
         />
         <Box
@@ -62,30 +65,44 @@ export default function Gallery() {
             flex: 6,
           }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              textAlign: 'center',
-              mb: 3,
-            }}
-          >
-            Gallery
-          </Typography>
           <Box
             sx={{
+              height: '70vh',
               display: 'flex',
               flexDirection: 'column',
-              width: '100%',
+              justifyContent: 'center',
             }}
+          >
+            <Typography
+              variant="h2"
+              sx={{
+                textAlign: 'center',
+                mb: 1,
+              }}
+            >
+              Drifter Shoots
+            </Typography>
+            <Typography
+              variant="h1"
+              sx={{
+                textAlign: 'center',
+                mb: 3,
+              }}
+            >
+              Gallery
+            </Typography>
+          </Box>
+          <Masonry
+            columns={2}
           >
             {wmvgSorted.map((piece, index) => (
               <GalleryPiece piece={piece} key={piece.name} index={index} />
             ))}
-          </Box>
+          </Masonry>
         </Box>
         <Box
           sx={{
-            flex: 3,
+            flex: 1,
           }}
         />
       </Box>

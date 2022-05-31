@@ -26,7 +26,14 @@ export default function LoadedProvider({ children }) {
     setBackgroundImage,
     backgroundOpacity,
     setBackgroundOpacity,
-  }), [isLoaded, animationDelay, backgroundImage, setBackgroundImage, backgroundOpacity, setBackgroundOpacity]);
+  }), [
+    isLoaded,
+    animationDelay,
+    backgroundImage,
+    setBackgroundImage,
+    backgroundOpacity,
+    setBackgroundOpacity,
+  ]);
 
   return (
     <LoadedContext.Provider value={providerValue}>

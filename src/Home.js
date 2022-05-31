@@ -12,7 +12,7 @@ export default function Main({ selectedTileIndex, transitioning, setTransitionin
     setTimeout(() => {
       setBackgroundImage('');
     }, 1000);
-  }, []);
+  }, [setBackgroundImage, setBackgroundOpacity]);
 
   return (
     <Container
