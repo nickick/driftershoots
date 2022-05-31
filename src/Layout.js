@@ -24,7 +24,8 @@ export default function Layout({ children }) {
           left: 0,
           width: '100%',
           height: '90vh',
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,1) 100%)',
+          background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 80%, #080808 100%)',
+          backgroundSize: 'cover',
           transition: 'opacity 1s ease-out',
           zIndex: 2,
         }}
@@ -37,6 +38,7 @@ export default function Layout({ children }) {
           width: '100%',
           height: '90vh',
           backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
           opacity: backgroundOpacity,
           transition: 'opacity 1s ease-out',
           zIndex: 1,
