@@ -1,21 +1,41 @@
 import {
-  Box, Dialog, Paper, Typography,
+  Box, Dialog,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import { openseaPieceProps } from '../utils/prop-types';
+import WhereMyVansGoPiece from '../WhereMyVansGoPiece';
 import LazyImage from './LazyImage';
 
 export default function GalleryModal({ piece, open, handleClose }) {
+  const boxRef = useRef();
+  const onImageLoad = useCallback(({ naturalHeight, naturalWidth }) => {
+    if (!boxRef.current) return;
+    const proportionalHeight = (boxRef.current.offsetWidth * naturalHeight) / naturalWidth;
+    boxRef.current.style.height = `${proportionalHeight}px`;
+  }, []);
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
       maxWidth="xl"
+      PaperProps={{
+        sx: {
+          bgcolor: 'transparent',
+          backgroundImage: 'none',
+          boxShadow: 'none',
+          overflowX: 'hidden',
+          p: 0,
+          m: 0,
+        },
+      }}
+      BackdropProps={{
+        bgcolor: 'rgba(0,0,0,0.7)',
+      }}
     >
-      <Paper
+      <Box
         sx={{
-          p: 3,
           position: 'relative',
           minHeight: '80vh',
           minWidth: '80vw',
@@ -29,29 +49,23 @@ export default function GalleryModal({ piece, open, handleClose }) {
           >
             <Box
               sx={{
+                display: 'flex',
                 flex: 1,
+                justifyContent: 'flex-start',
                 position: 'relative',
+                overflow: 'hidden',
               }}
+              ref={boxRef}
             >
               <LazyImage
                 src={piece.image_url}
+                onLoadingComplete={onImageLoad}
               />
             </Box>
-            <Box
-              sx={{
-                flex: 1,
-              }}
-            >
-              <Typography
-                variant="h2"
-              >
-
-                {piece.description}
-              </Typography>
-            </Box>
+            <WhereMyVansGoPiece piece={piece} />
           </Box>
         )}
-      </Paper>
+      </Box>
     </Dialog>
   );
 }

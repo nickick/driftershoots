@@ -9,7 +9,8 @@ module.exports = withFonts({
   },
   images: {
     domains: [
-      'lh3.googleusercontent.com'
+      'lh3.googleusercontent.com',
+      'storage.googleapis.com',
     ]
   },
   async headers() {

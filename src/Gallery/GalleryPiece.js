@@ -1,26 +1,11 @@
-import { Box, Link, Typography } from '@mui/material';
-import PropTypes from 'prop-types';
-import { useInView } from 'react-intersection-observer';
-import { useCallback, useRef, useState } from 'react';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import LazyImage from './LazyImage';
+import PropTypes from 'prop-types';
+import { useCallback, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { getName } from '../utils/parsers';
 import { childrenProps, openseaPieceProps } from '../utils/prop-types';
-
-function contractName(address) {
-  return address === '0x495f947276749ce646f68ac8c248420045cb7b5e' ? 'Opensea Storefront Contract' : 'Where My Vans Go Contract';
-}
-
-function Divider() {
-  return (
-    <Box
-      sx={{
-        height: 0,
-        borderTop: '1px solid #36364B',
-        mb: 3,
-      }}
-    />
-  );
-}
+import LazyImage from './LazyImage';
 
 function TextSection({ title, children }) {
   return (
@@ -127,6 +112,8 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
           position: 'absolute',
           top: 0,
           left: 0,
@@ -145,38 +132,16 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
             mb: 1,
           }}
         >
-          {piece.name}
+          {getName(piece.description)}
         </Typography>
         <Typography
-          variant="body"
+          variant="h4"
           sx={{
             mb: 3,
           }}
         >
-          {piece.description}
+          {piece.name}
         </Typography>
-        <Divider />
-        <TextSection
-          title="Contract"
-        >
-          <Link
-            href={`https://etherscan.io/token/${piece.asset_contract.address}`}
-            target="_blank"
-          >
-            {contractName(piece.asset_contract.address)}
-          </Link>
-        </TextSection>
-        <Divider />
-        <TextSection
-          title="Test"
-        >
-          <Link
-            href={`https://etherscan.io/token/${piece.asset_contract.address}`}
-            target="_blank"
-          >
-            {contractName(piece.asset_contract.address)}
-          </Link>
-        </TextSection>
       </Box>
     </Box>
   );

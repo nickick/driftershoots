@@ -8,3 +8,4 @@ export { default as Main } from './Home';
 export { default as Selector } from './Selector';
 export { default as ThemeContextProvider } from './ThemeContextProvider';
 export { default as ThemeToggle } from './ThemeToggle';
+export { default as WhereMyVansGoPiece } from './WhereMyVansGoPiece';
