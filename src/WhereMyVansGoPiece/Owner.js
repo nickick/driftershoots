@@ -1,4 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import {
+  Box, Link, Typography,
+} from '@mui/material';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { shortenAddress } from '../utils/parsers';
@@ -67,10 +69,36 @@ export default function Owner({ address, profileImageUrl, username }) {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             flex: 1,
           }}
-        />
+        >
+          <Link
+            href={`https://opensea.io/${address}`}
+            target="_blank"
+          >
+            <img
+              src="/icons/opensea-logo.svg"
+              style={{
+                height: '40px',
+                marginRight: '3rem',
+              }}
+              alt="Opensea link to owner address"
+            />
+          </Link>
+          <Link
+            href={`https://etherscan.io/address/${address}`}
+            target="_blank"
+          >
+            <img
+              src="/icons/etherscan-logo.svg"
+              style={{
+                height: '40px',
+              }}
+              alt="Etherscan link to owner address"
+            />
+          </Link>
+        </Box>
       </Box>
     </Box>
   );
