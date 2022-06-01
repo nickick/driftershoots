@@ -158,7 +158,7 @@ export default function Navbar() {
       >
         <Link href="/">
           <img
-            src="/icons/Drift-Logo-w.png"
+            src="/icons/drift-logo.svg"
             style={{
               height: '24px',
               aspectRatio: '116 / 38',
