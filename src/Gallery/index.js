@@ -12,7 +12,7 @@ import { entranceAnimationDuration } from '../constants';
 import { GalleryContext } from '../GalleryContextProvider';
 import { LoadedContext } from '../LoadedContextProvider';
 import GalleryPiece from './GalleryPiece';
-import GalleryModal from './Modal';
+import GalleryModal from './WMVGModal';
 
 const fadeFromBelow = keyframes`
   0% {

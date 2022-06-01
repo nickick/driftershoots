@@ -1,16 +1,56 @@
-import { Link, Paper, Typography } from '@mui/material';
-import React from 'react';
+import {
+  Box, Link, Paper, Typography,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { getName } from '../utils/parsers';
 import { openseaPieceProps } from '../utils/prop-types';
 import { Content } from './Content';
 import Owner from './Owner';
+import { RawJson } from './RawJson';
 
 function contractName(address) {
   return address === '0x495f947276749ce646f68ac8c248420045cb7b5e' ? 'Opensea Storefront Contract' : 'Where My Vans Go Contract';
 }
 
 export default function WhereMyVansGoPiece({ piece }) {
-  const { traits, owner } = piece;
+  const [events, setEvents] = useState([]);
+  const [metadata, setMetadata] = useState({});
+
+  useEffect(() => {
+    fetch(`/api/where-my-vans-go/${piece.asset_contract.address}/${piece.token_id}`)
+      .then((response) => response.json())
+      .then((response) => {
+        setEvents(response);
+      });
+  }, [piece.token_id, piece.asset_contract.address]);
+
+  useEffect(() => {
+    if (piece.token_metadata) {
+      fetch(piece.token_metadata)
+        .then((response) => response.json())
+        .then((response) => {
+          setMetadata(response);
+        });
+    }
+  }, [piece.token_metadata]);
+
+  const { traits } = piece;
+  let { owner } = piece;
+
+  // if the username is NullAddress then for whatever reason Opensea's API is just not returning
+  // the owner, so use the last transfer event to get the current owner
+  if (owner.user.username === 'NullAddress') {
+    if (events.length) {
+      const transferEvents = events.filter((event) => event.event_type === 'transfer');
+      if (transferEvents.length) {
+        const latestTransfer = transferEvents.sort(
+          (a, b) => (a.event_timestamp < b.event_timestamp ? 1 : -1),
+        )[0];
+        owner = latestTransfer.to_account;
+      }
+    }
+  }
+
   return (
     <Paper
       sx={{
@@ -19,12 +59,30 @@ export default function WhereMyVansGoPiece({ piece }) {
         ml: 3,
       }}
     >
-      <Typography
-        variant="h2"
+      <Box
+        display="flex"
+        justifyContent="space-between"
       >
+        <Typography
+          variant="h2"
+        >
 
-        {getName(piece.description)}
-      </Typography>
+          {getName(piece.description)}
+        </Typography>
+        <Link
+          href={piece.permalink}
+          target="_blank"
+        >
+          <img
+            src="/icons/opensea-logo.svg"
+            style={{
+              height: '40px',
+              marginRight: '3rem',
+            }}
+            alt="Opensea link to NFT"
+          />
+        </Link>
+      </Box>
       {traits.map((trait) => (
         <Content
           key={trait.trait_type}
@@ -48,6 +106,8 @@ export default function WhereMyVansGoPiece({ piece }) {
         profileImageUrl={owner.profile_img_url}
         username={owner.user.username}
       />
+      <RawJson title="Metadata" json={metadata} />
+      <RawJson title="Raw events" json={events} />
     </Paper>
   );
 }

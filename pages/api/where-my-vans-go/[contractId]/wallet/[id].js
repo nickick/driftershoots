@@ -1,25 +1,27 @@
-async function getWMVGPieces() {
+async function getWMVGEvents(contractId, wallet) {
   const options = {
     method: 'GET',
     headers: { Accept: 'application/json', 'X-API-KEY': process.env.OPENSEA_API_KEY },
   };
 
   const results = await fetch(
-    'https://api.opensea.io/api/v1/assets?collection_slug=where-my-vans-go&order_direction=desc&limit=200&include_orders=false',
+    `https://api.opensea.io/api/v1/events?asset_contract_address=${contractId}&account_address=${wallet}&limit=200`,
     options,
   );
 
-  const pieces = await results.json();
+  const events = await results.json();
 
-  return pieces.assets;
+  return events;
 }
 
 export default async function handler(req, res) {
   return new Promise((resolve) => {
-    getWMVGPieces()
-      .then((pieces) => {
+    const { contractId, wallet } = req.query;
+
+    getWMVGEvents(contractId, wallet)
+      .then((events) => {
         res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400');
-        res.status(200).send(pieces);
+        res.status(200).send(events);
         resolve();
       })
       .catch((error) => {

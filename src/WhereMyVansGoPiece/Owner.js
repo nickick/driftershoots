@@ -63,7 +63,7 @@ export default function Owner({ address, profileImageUrl, username }) {
           >
             <b>Username</b>
             :
-            {username}
+            {username || 'Unknown'}
           </Typography>
         </Box>
         {username !== 'NullAddress' && (
@@ -109,5 +109,9 @@ export default function Owner({ address, profileImageUrl, username }) {
 Owner.propTypes = {
   address: PropTypes.string.isRequired,
   profileImageUrl: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
+};
+
+Owner.defaultProps = {
+  username: 'Unknown',
 };
