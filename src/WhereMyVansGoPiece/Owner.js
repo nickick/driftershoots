@@ -66,39 +66,41 @@ export default function Owner({ address, profileImageUrl, username }) {
             {username}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            flex: 1,
-          }}
-        >
-          <Link
-            href={`https://opensea.io/${address}`}
-            target="_blank"
+        {username !== 'NullAddress' && (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              flex: 1,
+            }}
           >
-            <img
-              src="/icons/opensea-logo.svg"
-              style={{
-                height: '40px',
-                marginRight: '3rem',
-              }}
-              alt="Opensea link to owner address"
-            />
-          </Link>
-          <Link
-            href={`https://etherscan.io/address/${address}`}
-            target="_blank"
-          >
-            <img
-              src="/icons/etherscan-logo.svg"
-              style={{
-                height: '40px',
-              }}
-              alt="Etherscan link to owner address"
-            />
-          </Link>
-        </Box>
+            <Link
+              href={`https://opensea.io/${address}`}
+              target="_blank"
+            >
+              <img
+                src="/icons/opensea-logo.svg"
+                style={{
+                  height: '40px',
+                  marginRight: '3rem',
+                }}
+                alt="Opensea link to owner address"
+              />
+            </Link>
+            <Link
+              href={`https://etherscan.io/address/${address}`}
+              target="_blank"
+            >
+              <img
+                src="/icons/etherscan-logo.svg"
+                style={{
+                  height: '40px',
+                }}
+                alt="Etherscan link to owner address"
+              />
+            </Link>
+          </Box>
+        )}
       </Box>
     </Box>
   );
