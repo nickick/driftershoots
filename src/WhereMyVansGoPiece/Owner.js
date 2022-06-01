@@ -1,4 +1,6 @@
+import { ExpandMore } from '@mui/icons-material';
 import {
+  AccordionSummary, Accordion, AccordionDetails,
   Box, Link, Typography,
 } from '@mui/material';
 import Image from 'next/image';
@@ -7,102 +9,122 @@ import { shortenAddress } from '../utils/parsers';
 
 export default function Owner({ address, profileImageUrl, username }) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        my: 1,
-      }}
-    >
-      <Typography
-        variant="h4"
-        sx={{
-          my: 1,
-        }}
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
       >
-        Owner
-      </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <Box
+        <Typography
+          variant="body"
           sx={{
-            mr: 2,
+            my: 1,
           }}
         >
-          {profileImageUrl && (
-            <Image
-              src={profileImageUrl}
-              height="50"
-              width="50"
-              style={{
-                borderRadius: '50%',
-              }}
-            />
-          )}
-        </Box>
+          Owner:
+          {' '}
+          {shortenAddress(address)}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails
+        sx={{
+          maxHeight: '300px',
+          maxWidth: '40vw',
+          overflowX: 'hidden',
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            flex: 1,
+            my: 1,
           }}
         >
-          <Typography
-            variant="body"
-          >
-            <b>Address</b>
-            :
-            {shortenAddress(address, 15)}
-          </Typography>
-          <Typography
-            variant="body"
-          >
-            <b>Username</b>
-            :
-            {username || 'Unknown'}
-          </Typography>
-        </Box>
-        {username !== 'NullAddress' && (
           <Box
             sx={{
               display: 'flex',
-              flexDirection: 'row',
-              flex: 1,
+              alignItems: 'center',
             }}
           >
-            <Link
-              href={`https://opensea.io/${address}`}
-              target="_blank"
+            <Box
+              sx={{
+                mr: 2,
+              }}
             >
-              <img
-                src="/icons/opensea-logo.svg"
-                style={{
-                  height: '40px',
-                  marginRight: '3rem',
-                }}
-                alt="Opensea link to owner address"
-              />
-            </Link>
-            <Link
-              href={`https://etherscan.io/address/${address}`}
-              target="_blank"
+              {profileImageUrl && (
+                <Image
+                  src={profileImageUrl}
+                  height="40"
+                  width="40"
+                  style={{
+                    borderRadius: '50%',
+                  }}
+                />
+              )}
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flex: 1,
+              }}
             >
-              <img
-                src="/icons/etherscan-logo.svg"
-                style={{
-                  height: '40px',
+              <Typography
+                variant="body"
+              >
+                <b>Address</b>
+                :
+                {shortenAddress(address, 15)}
+              </Typography>
+              <Typography
+                variant="body"
+              >
+                <b>Username</b>
+                :
+                {username || 'Unknown'}
+              </Typography>
+            </Box>
+            {username !== 'NullAddress' && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-end',
+                  flex: 1,
                 }}
-                alt="Etherscan link to owner address"
-              />
-            </Link>
+              >
+                <Link
+                  href={`https://opensea.io/${address}`}
+                  target="_blank"
+                >
+                  <img
+                    src="/icons/opensea-logo.svg"
+                    style={{
+                      height: '40px',
+                      marginRight: '3rem',
+                    }}
+                    alt="Opensea link to owner address"
+                  />
+                </Link>
+                <Link
+                  href={`https://etherscan.io/address/${address}`}
+                  target="_blank"
+                >
+                  <img
+                    src="/icons/etherscan-logo.svg"
+                    style={{
+                      height: '40px',
+                    }}
+                    alt="Etherscan link to owner address"
+                  />
+                </Link>
+              </Box>
+            )}
           </Box>
-        )}
-      </Box>
-    </Box>
+
+        </Box>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

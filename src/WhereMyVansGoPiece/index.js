@@ -17,7 +17,7 @@ export default function WhereMyVansGoPiece({ piece }) {
   const [metadata, setMetadata] = useState({});
 
   useEffect(() => {
-    fetch(`/api/where-my-vans-go/${piece.asset_contract.address}/${piece.token_id}`)
+    fetch(`/api/where-my-vans-go/${piece.asset_contract.address}/events/${piece.token_id}`)
       .then((response) => response.json())
       .then((response) => {
         setEvents(response);
@@ -25,14 +25,14 @@ export default function WhereMyVansGoPiece({ piece }) {
   }, [piece.token_id, piece.asset_contract.address]);
 
   useEffect(() => {
-    if (piece.token_metadata) {
-      fetch(piece.token_metadata)
-        .then((response) => response.json())
-        .then((response) => {
-          setMetadata(response);
-        });
-    }
-  }, [piece.token_metadata]);
+    // fetch metadata, either listed on token_metadata or fetched through api endpoint
+    const metadataEndpoint = piece.token_metadata || `/api/where-my-vans-go/${piece.asset_contract.address}/metadata/${piece.token_id}`;
+    fetch(metadataEndpoint)
+      .then((response) => response.json())
+      .then((response) => {
+        setMetadata(response);
+      });
+  }, [piece.token_metadata, piece.asset_contract.address, piece.token_id]);
 
   const { traits } = piece;
   let { owner } = piece;
