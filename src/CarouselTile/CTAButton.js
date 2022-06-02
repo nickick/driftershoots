@@ -44,6 +44,8 @@ export default function CTAButton({ tiles, selectedTileIndex }) {
   return (
     <Button
       variant="outlined"
+      href={tiles[selectedTileIndex]['right-button-href']}
+      target="_blank"
       sx={[
         {
           position: 'relative',

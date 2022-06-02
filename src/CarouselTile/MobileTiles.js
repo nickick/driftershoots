@@ -137,6 +137,8 @@ export default function MobileTiles({ tiles }) {
                   overflow: 'hidden',
                 },
               ]}
+              href={tile['right-button-href']}
+              target="_blank"
             >
               <Typography
                 variant="body"

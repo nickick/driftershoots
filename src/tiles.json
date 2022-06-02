@@ -21,7 +21,8 @@
       "main-image-alt": "Drifter Shoots aka Isaac Wright on cover of New York Times",
       "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
       "right-description": "A former paratrooper became an &ldquo;urban explorer&ldquo;, scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
-      "right-button-text": "Read Article"
+      "right-button-text": "Read Article",
+      "right-button-href": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
     },
     {
       "title": "First Day Out",
@@ -45,7 +46,8 @@
       "main-image-alt": "Drifter Shoots aka Isaac Wright sitting on cable of bridge overlooking New York City",
       "right-title": "Open Edition by DrifterShoots",
       "right-description": "“April 9th, 2021 was my first day out. I had $9,000 left in my savings and five lawyers I had no idea how I would pay.”",
-      "right-button-text": "View NFT"
+      "right-button-text": "View NFT",
+      "right-button-href": "https://firstdayout.driftershoots.com"
     },
     {
       "title": "NFT.NYC 2022",
@@ -70,7 +72,8 @@
       "main-image-alt": "New York City skyline",
       "right-title": "Driftershoots Meet & Greet with NFT Holders",
       "right-description": "<b>Date</b> Tue, Jun 21 - Thu, Jun 23\n<br/><b>Location</b>: Times Square",
-      "right-button-text": "RSVP"
+      "right-button-text": "RSVP",
+      "right-button-href": "https://twitter.com/driftershoots"
     },
     {
       "title": "Where My Vans Go",
@@ -94,6 +97,7 @@
       "main-image-alt": "Shoes overlooking bridge from top of bridge arch",
       "right-title": "NFT Collection",
       "right-description": "Where My Vans Go is a collection comprised of 123 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
-      "right-button-text": "View Collection"
+      "right-button-text": "View Collection",
+      "right-button-href": "https://opensea.io/collection/where-my-vans-go"
     }
 ]

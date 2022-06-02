@@ -20,6 +20,7 @@ export const tilesProps = PropTypes.arrayOf(PropTypes.shape({
   'right-title': PropTypes.string.isRequired,
   'right-description': PropTypes.string.isRequired,
   'right-button-text': PropTypes.string.isRequired,
+  'right-button-href': PropTypes.string.isRequired,
 }));
 
 export const childrenProps = PropTypes.oneOfType([
