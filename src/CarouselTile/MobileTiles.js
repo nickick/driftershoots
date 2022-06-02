@@ -62,6 +62,7 @@ export default function MobileTiles({ tiles }) {
             overlayAlt={tile['main-image-overlay-alt']}
             zoom={tile['main-image-zoom']}
             zoomStart={tile['main-image-zoom-start']}
+            index={index}
           />
           {/* Right box */}
           <Box

@@ -1,11 +1,11 @@
 import {
-  Box, Button, Container, keyframes,
+  Box, Button, Container, Drawer, keyframes,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Link from 'next/link';
 import { Spin as Hamburger } from 'hamburger-react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import DiscordIcon from './DiscordIcon';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 
@@ -122,6 +122,10 @@ const rightNav = [
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
 
+  const closeDrawer = useCallback(() => {
+    setOpen(false);
+  }, []);
+
   return (
     <Container
       sx={{
@@ -147,7 +151,18 @@ export default function Navbar() {
           },
         }}
       >
+
         <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
+        <Drawer
+          anchor="left"
+          open={isOpen}
+          onClose={closeDrawer}
+        >
+          <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
+          <Box>
+            Test
+          </Box>
+        </Drawer>
       </Box>
       <Box
         sx={{
