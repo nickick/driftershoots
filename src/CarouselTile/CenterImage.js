@@ -155,57 +155,38 @@ export default function CenterImage({
         m: '3rem',
         zIndex: '1',
         width: '100%',
+        mask: 'url(/cutout.svg)',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        maskPosition: 'center',
+        overflow: 'hidden',
       }}
+      ref={cutoutRef}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          position: 'absolute',
-          height: '100%',
-          overflow: 'hidden',
-          maxHeight: '800px',
-          width: '100%',
-        }}
-      >
-        <Box
-          sx={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            position: 'relative',
-            mask: 'url(/cutout.svg)',
-            maskSize: 'contain',
-            maskRepeat: 'no-repeat',
-            maskPosition: 'center',
-          }}
-          ref={cutoutRef}
+      {tiles.map((tile, index) => (
+        <Transition
+          in={index === selectedTileIndex}
+          timeout={0}
+          key={tile.title}
         >
-          {tiles.map((tile, index) => (
-            <Transition
-              in={index === selectedTileIndex}
-              timeout={0}
-              key={tile.title}
-            >
-              {(state) => (
-                <FadeableImage
-                  src={tile['main-image']}
-                  alt={tile['main-image-alt']}
-                  overlay={tile['main-image-overlay']}
-                  overlayAlt={tile['main-image-overlay-alt']}
-                  zoom={tile['main-image-zoom']}
-                  startingZoom={tile['main-image-zoom-start']}
-                  state={state}
-                  index={index}
-                  selected={selectedTileIndex === index}
-                  offset={imageOffset}
-                  transitioning={transitioning}
-                  animationDelay={animationDelay}
-                />
-              )}
-            </Transition>
-          ))}
-        </Box>
-      </Box>
+          {(state) => (
+            <FadeableImage
+              src={tile['main-image']}
+              alt={tile['main-image-alt']}
+              overlay={tile['main-image-overlay']}
+              overlayAlt={tile['main-image-overlay-alt']}
+              zoom={tile['main-image-zoom']}
+              startingZoom={tile['main-image-zoom-start']}
+              state={state}
+              index={index}
+              selected={selectedTileIndex === index}
+              offset={imageOffset}
+              transitioning={transitioning}
+              animationDelay={animationDelay}
+            />
+          )}
+        </Transition>
+      ))}
     </Box>
   );
 }
