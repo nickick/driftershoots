@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
 import tiles from '../tiles.json';
 import DesktopTiles from './DesktopTiles';
+import MobileTiles from './MobileTiles';
 
 export default function CarouselTile({ selectedTileIndex }) {
   return (
@@ -12,9 +13,11 @@ export default function CarouselTile({ selectedTileIndex }) {
           xs: 'column',
           md: 'row',
         },
+        width: '100%',
       }}
     >
       <DesktopTiles selectedTileIndex={selectedTileIndex} tiles={tiles} />
+      <MobileTiles tiles={tiles} />
     </Box>
   );
 }

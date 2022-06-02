@@ -210,12 +210,19 @@ export default function DesktopTile({ selectedTileIndex, tiles }) {
             flex: '4 4',
           }}
         />
-        <CenterImage
-          tiles={tiles}
-          selectedTileIndex={selectedTileIndex}
-          transitioning={transitioning}
-          animationDelay={animationDelay}
-        />
+        <Box
+          sx={{
+            display: 'flex',
+            flex: '4 4',
+          }}
+        >
+          <CenterImage
+            tiles={tiles}
+            selectedTileIndex={selectedTileIndex}
+            transitioning={transitioning}
+            animationDelay={animationDelay}
+          />
+        </Box>
         <Box
           sx={{
             display: 'flex',

@@ -149,12 +149,12 @@ export default function CenterImage({
     <Box
       sx={{
         display: 'flex',
-        flex: '4 4',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
         m: '3rem',
         zIndex: '1',
+        width: '100%',
       }}
     >
       <Box
