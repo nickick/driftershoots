@@ -1,5 +1,5 @@
 import {
-  Box, Button, Container, Drawer, keyframes,
+  Box, Button, Container, keyframes,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Spin as Hamburger } from 'hamburger-react';
 import { useCallback, useState } from 'react';
 import DiscordIcon from './DiscordIcon';
+import Drawer from './Drawer';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 
 const fadeIn = keyframes`
@@ -75,7 +76,7 @@ NavButton.propTypes = {
 NavButton.defaultProps = {
   text: '',
   href: '',
-  icon: '',
+  icon: null,
 };
 
 const leftNav = [
@@ -153,16 +154,7 @@ export default function Navbar() {
       >
 
         <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
-        <Drawer
-          anchor="left"
-          open={isOpen}
-          onClose={closeDrawer}
-        >
-          <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
-          <Box>
-            Test
-          </Box>
-        </Drawer>
+        <Drawer isOpen={isOpen} setOpen={setOpen} closeDrawer={closeDrawer} />
       </Box>
       <Box
         sx={{
