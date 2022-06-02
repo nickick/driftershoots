@@ -48,15 +48,19 @@ export default function DesktopTile({ selectedTileIndex, tiles }) {
   }, [selectedTileIndex]);
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: {
+          // need to do a separate layout for mobile given animation requirements
+          xs: 'none',
+          md: 'flex',
+        },
+      }}
+    >
       {/* Dekstop text container */}
       <Box
         sx={{
-          display: {
-            // need to do a separate layout for mobile given animation requirements
-            xs: 'none',
-            md: 'flex',
-          },
+          display: 'flex',
           height: '100%',
           position: 'absolute',
           top: 0,
@@ -190,11 +194,7 @@ export default function DesktopTile({ selectedTileIndex, tiles }) {
       {/* Desktop image container */}
       <Box
         sx={{
-          display: {
-            // need to do a separate layout for mobile given animation requirements
-            xs: 'none',
-            md: 'flex',
-          },
+          display: 'flex',
           height: '100%',
           position: 'absolute',
           top: 0,
@@ -223,7 +223,7 @@ export default function DesktopTile({ selectedTileIndex, tiles }) {
           }}
         />
       </Box>
-    </div>
+    </Box>
   );
 }
 
