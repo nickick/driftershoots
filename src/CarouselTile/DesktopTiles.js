@@ -6,6 +6,7 @@ import { LoadedContext } from '../LoadedContextProvider';
 import { tilesProps } from '../utils/prop-types';
 import CenterImage from './CenterImage';
 import CTAButton from './CTAButton';
+import Divider from './Divider';
 import Title from './Title';
 import TransitionText from './TransitionText';
 
@@ -180,13 +181,7 @@ export default function DesktopTile({ selectedTileIndex, tiles }) {
               animationDelay={animationDelay}
             />
 
-            <Box sx={{
-              border: 0,
-              height: 0,
-              borderTop: '1px solid #36364B',
-              mb: 3,
-            }}
-            />
+            <Divider />
             <CTAButton tiles={tiles} selectedTileIndex={selectedTileIndex} />
           </Box>
         </Box>
