@@ -1,9 +1,29 @@
-import { Box, Button, Typography } from '@mui/material';
+import {
+  Box, Button, keyframes, Typography,
+} from '@mui/material';
+import { useContext } from 'react';
+import { entranceAnimationDuration } from '../constants';
+import { LoadedContext } from '../LoadedContextProvider';
 import { tilesProps } from '../utils/prop-types';
 import Divider from './Divider';
 import MobileImage from './MobileImage';
 
+const fadeIn = keyframes`
+  0% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+            opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 1;
+  }
+`;
+
 export default function MobileTiles({ tiles }) {
+  const { animationDelay } = useContext(LoadedContext);
+
   return (
     <Box
       sx={{
@@ -31,6 +51,7 @@ export default function MobileTiles({ tiles }) {
             },
             mb: index === tiles.length - 1 ? 0 : 14,
             alignItems: 'center',
+            animation: `${fadeIn} ${entranceAnimationDuration}s both ${animationDelay + 0.2 * index}s`,
           }}
           key={tile.title}
         >
