@@ -22,7 +22,10 @@ export default function Layout({ children }) {
           top: 0,
           left: 0,
           width: '100%',
-          height: '90vh',
+          height: {
+            xs: 'inherit',
+            md: '90vh',
+          },
           background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 80%, #080808 100%)',
           backgroundSize: 'cover',
           transition: 'opacity 1s ease-out',
@@ -35,7 +38,10 @@ export default function Layout({ children }) {
           top: 0,
           left: 0,
           width: '100%',
-          height: '90vh',
+          height: {
+            xs: 'inherit',
+            md: '90vh',
+          },
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           opacity: backgroundOpacity,
@@ -47,7 +53,10 @@ export default function Layout({ children }) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%',
+          height: {
+            xs: 'inherit',
+            md: '100%',
+          },
         }}
       >
         <Navbar />

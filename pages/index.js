@@ -11,7 +11,10 @@ function App() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        height: '90vh',
+        height: {
+          xs: 'inherit',
+          md: '90vh',
+        },
       }}
     >
       <Main

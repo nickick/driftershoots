@@ -13,7 +13,7 @@ export default function MobileImage({
 }) {
   const imageZoom = useCallback((zoomProp) => `scale(${zoomProp.scale * 0.9}) translate(${zoomProp.translateX + -5}%, ${zoomProp.translateY}%)`, []);
   const { ref, inView } = useInView({
-    threshold: 0,
+    rootMargin: '-400px 0px',
   });
 
   return (
