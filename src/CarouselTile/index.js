@@ -50,17 +50,21 @@ export default function CarouselTile({ selectedTileIndex }) {
   return (
     <Box
       sx={{
-        display: {
-          // need to do a separate layout for mobile given animation requirements
-          xs: 'none',
-          md: 'flex',
+        display: 'flex',
+        flexDirection: {
+          xs: 'column',
+          md: 'row',
         },
       }}
     >
-      {/* Text container */}
+      {/* Dekstop text container */}
       <Box
         sx={{
-          display: 'flex',
+          display: {
+            // need to do a separate layout for mobile given animation requirements
+            xs: 'none',
+            md: 'flex',
+          },
           height: '100%',
           position: 'absolute',
           top: 0,
@@ -191,10 +195,14 @@ export default function CarouselTile({ selectedTileIndex }) {
           </Box>
         </Box>
       </Box>
-      {/* Image container */}
+      {/* Desktop image container */}
       <Box
         sx={{
-          display: 'flex',
+          display: {
+            // need to do a separate layout for mobile given animation requirements
+            xs: 'none',
+            md: 'flex',
+          },
           height: '100%',
           position: 'absolute',
           top: 0,

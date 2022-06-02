@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import React, { createRef, useEffect, useRef } from 'react';
+import React, {
+  createRef, useCallback, useEffect, useRef,
+} from 'react';
 import { Transition } from 'react-transition-group';
 import { tilesProps } from '../utils/prop-types';
 
@@ -40,9 +42,24 @@ export default function TransitionText({
   const refs = useRef(tiles.map(() => React.createRef()));
   const newRef = createRef();
 
+  const windowResizeListener = useCallback(() => {
+    // first unset the height of the current textbox
+    // , then set the height of the parent to the child ref
+    refs.current[selectedTileIndex].current.style.height = '';
+    refs.current[selectedTileIndex].current.parentElement.style.height = `${refs.current[selectedTileIndex].current.offsetHeight}px`;
+  }, [selectedTileIndex]);
+
   useEffect(() => {
     newRef.current.style.height = `${refs.current[selectedTileIndex].current.offsetHeight}px`;
   }, [newRef, selectedTileIndex]);
+
+  useEffect(() => {
+    window.addEventListener('resize', windowResizeListener);
+
+    return () => {
+      window.removeEventListener('resize', windowResizeListener);
+    };
+  }, [selectedTileIndex, windowResizeListener]);
 
   return (
     <Box
