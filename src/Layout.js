@@ -57,6 +57,7 @@ export default function Layout({ children }) {
             xs: 'inherit',
             md: '100%',
           },
+          scroll: 'auto',
         }}
       >
         <Navbar />

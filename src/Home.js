@@ -22,6 +22,9 @@ export default function Main({ selectedTileIndex, transitioning, setTransitionin
         overflow: 'auto',
         position: 'relative',
         width: '100%',
+        mt: {
+          md: -2,
+        },
         zIndex: 3,
       }}
     >

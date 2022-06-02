@@ -128,120 +128,136 @@ export default function Navbar() {
   }, []);
 
   return (
-    <Container
+    <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'row',
         pt: {
           xs: '4rem',
           md: '6.5rem',
         },
+        pb: {
+          xs: 2,
+        },
         px: '4rem',
-        maxWidth: '1440px',
-        zIndex: 2,
-        background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
+        background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+        zIndex: {
+          xs: 100,
+          md: 2,
+        },
+        position: {
+          xs: 'sticky',
+          md: 'relative',
+        },
+        top: '0px',
       }}
     >
-      <Box
-        sx={{
-          flex: 1,
-          display: {
-            xs: 'flex',
-            md: 'none',
-            animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay}s`,
-          },
-        }}
-      >
-
-        <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
-        <Drawer isOpen={isOpen} setOpen={setOpen} closeDrawer={closeDrawer} />
-      </Box>
-      <Box
-        sx={{
-          flex: 1,
-          display: {
-            xs: 'none',
-            md: 'flex',
-          },
-        }}
-      >
-        {
-          leftNav.map(({ text, href, icon }, index) => (
-            <NavButton
-              key={text + href}
-              text={text}
-              href={href}
-              icon={icon}
-              index={index}
-            />
-          ))
-        }
-      </Box>
-      <Box
+      <Container
         sx={{
           display: 'flex',
-          flex: '1',
-          justifyContent: 'center',
-          alignItems: 'center',
-          animation: `${fadeInLogo} ${entranceAnimationDuration}s both`,
-          zIndex: 15,
+          flexDirection: 'row',
+          maxWidth: '1440px',
         }}
       >
-        <Link href="/">
-          <img
-            src="/icons/drift-logo.svg"
-            style={{
-              height: '24px',
-              aspectRatio: '116 / 38',
-              cursor: 'pointer',
-            }}
-            alt="Drifter Shoots logo"
-          />
-        </Link>
-      </Box>
-      <Box
-        sx={{
-          display: {
-            xs: 'flex',
-            md: 'none',
-          },
-          flexDirection: 'row-reverse',
-          flex: 1,
-          flexWrap: 'nowrap',
-          justifyContent: 'flex-start',
-        }}
-      >
-        <NavButton
-          key="twitter-mobile"
-          href={rightNav[1].href}
-          icon={rightNav[1].icon}
-          index={0}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: {
-            xs: 'none',
-            md: 'flex',
-          },
-          flexDirection: 'row-reverse',
-          flex: 1,
-          flexWrap: 'nowrap',
-          justifyContent: 'flex-start',
-        }}
-      >
-        {
-          rightNav.map(({ text, href, icon }, index) => (
-            <NavButton
-              key={text + href}
-              text={text}
-              href={href}
-              icon={icon}
-              index={index}
+        <Box
+          sx={{
+            flex: 1,
+            display: {
+              xs: 'flex',
+              md: 'none',
+              animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay}s`,
+            },
+          }}
+        >
+
+          <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
+          <Drawer isOpen={isOpen} setOpen={setOpen} closeDrawer={closeDrawer} />
+        </Box>
+        <Box
+          sx={{
+            flex: 1,
+            display: {
+              xs: 'none',
+              md: 'flex',
+            },
+          }}
+        >
+          {
+            leftNav.map(({ text, href, icon }, index) => (
+              <NavButton
+                key={text + href}
+                text={text}
+                href={href}
+                icon={icon}
+                index={index}
+              />
+            ))
+          }
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flex: '1',
+            justifyContent: 'center',
+            alignItems: 'center',
+            animation: `${fadeInLogo} ${entranceAnimationDuration}s both`,
+            zIndex: 15,
+          }}
+        >
+          <Link href="/">
+            <img
+              src="/icons/drift-logo.svg"
+              style={{
+                height: '24px',
+                aspectRatio: '116 / 38',
+                cursor: 'pointer',
+              }}
+              alt="Drifter Shoots logo"
             />
-          ))
-        }
-      </Box>
-    </Container>
+          </Link>
+        </Box>
+        <Box
+          sx={{
+            display: {
+              xs: 'flex',
+              md: 'none',
+            },
+            flexDirection: 'row-reverse',
+            flex: 1,
+            flexWrap: 'nowrap',
+            justifyContent: 'flex-start',
+          }}
+        >
+          <NavButton
+            key="twitter-mobile"
+            href={rightNav[1].href}
+            icon={rightNav[1].icon}
+            index={0}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: {
+              xs: 'none',
+              md: 'flex',
+            },
+            flexDirection: 'row-reverse',
+            flex: 1,
+            flexWrap: 'nowrap',
+            justifyContent: 'flex-start',
+          }}
+        >
+          {
+            rightNav.map(({ text, href, icon }, index) => (
+              <NavButton
+                key={text + href}
+                text={text}
+                href={href}
+                icon={icon}
+                index={index}
+              />
+            ))
+          }
+        </Box>
+      </Container>
+    </Box>
   );
 }
