@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { tilesProps } from '../utils/prop-types';
 import Divider from './Divider';
+import MobileImage from './MobileImage';
 
 export default function MobileTiles({ tiles }) {
   return (
@@ -33,66 +34,14 @@ export default function MobileTiles({ tiles }) {
           }}
           key={tile.title}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              flex: {
-                xs: 'unset',
-                sm: 5,
-              },
-              position: 'relative',
-              mask: {
-                xs: 'none',
-                sm: 'url(/cutout.svg)',
-              },
-              maskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              maskPosition: 'center',
-              height: {
-                xs: '100vw',
-                sm: '568px',
-              },
-              width: {
-                xs: '100vw',
-                sm: 'inherit',
-              },
-              borderRadius: {
-                xs: '50%',
-                sm: 'none',
-              },
-              overflow: 'hidden',
-              mb: {
-                xs: 4,
-                sm: 0,
-              },
-            }}
-          >
-            <img
-              src={tile['main-image']}
-              style={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transition: 'transform 1s ease',
-                transformOrigin: 'center',
-                transform: true ? tile['main-image-zoom'] : tile['main-image-zoom-start'],
-              }}
-              alt={tile['main-image-alt']}
-            />
-            {tile['main-image-overlay'] && (
-              <img
-                src={tile['main-image-overlay']}
-                style={{
-                  position: 'absolute',
-                  zIndex: 12,
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                }}
-                alt={tile['main-image-overlay-alt']}
-              />
-            )}
-          </Box>
+          <MobileImage
+            src={tile['main-image']}
+            alt={tile['main-image-alt']}
+            overlay={tile['main-image-overlay']}
+            overlayAlt={tile['main-image-overlay-alt']}
+            zoom={tile['main-image-zoom']}
+            zoomStart={tile['main-image-zoom-start']}
+          />
           {/* Right box */}
           <Box
             sx={{

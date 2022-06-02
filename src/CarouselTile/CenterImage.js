@@ -1,6 +1,8 @@
 import { Box, keyframes } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { Transition } from 'react-transition-group';
 import { entranceAnimationDuration } from '../constants';
 import isSafari from '../utils/isSafari';
@@ -44,6 +46,8 @@ function FadeableImage({
     transformStyle = 'translateZ(0)';
   }
 
+  const imageZoom = useCallback((zoomProp) => `scale(${zoomProp.scale}) translate(${zoomProp.translateX}%, ${zoomProp.translateY}%)`, []);
+
   return (
     <Box
       sx={{
@@ -68,7 +72,7 @@ function FadeableImage({
           top: '50%',
           transition: 'transform 1s ease',
           transformOrigin: 'center',
-          transform: selected ? zoom : startingZoom,
+          transform: selected ? imageZoom(zoom) : imageZoom(startingZoom),
         }}
         alt={alt}
       />
