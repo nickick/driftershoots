@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export default function MobileImage({
   src,
@@ -11,6 +12,9 @@ export default function MobileImage({
   zoomStart,
 }) {
   const imageZoom = useCallback((zoomProp) => `scale(${zoomProp.scale * 0.9}) translate(${zoomProp.translateX + -5}%, ${zoomProp.translateY}%)`, []);
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
 
   return (
     <Box
@@ -56,9 +60,10 @@ export default function MobileImage({
           top: '50%',
           transition: 'transform 1s ease',
           transformOrigin: 'center',
-          transform: true ? imageZoom(zoom) : imageZoom(zoomStart),
+          transform: inView ? imageZoom(zoom) : imageZoom(zoomStart),
         }}
         alt={alt}
+        ref={ref}
       />
       {overlay && (
         <img

@@ -101,8 +101,16 @@ FadeableImage.propTypes = {
   overlayAlt: PropTypes.string.isRequired,
   state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited']).isRequired,
   selected: PropTypes.bool.isRequired,
-  zoom: PropTypes.string.isRequired,
-  startingZoom: PropTypes.string.isRequired,
+  zoom: PropTypes.shape({
+    scale: PropTypes.number.isRequired,
+    translateX: PropTypes.number.isRequired,
+    translateY: PropTypes.number.isRequired,
+  }).isRequired,
+  startingZoom: PropTypes.shape({
+    scale: PropTypes.number.isRequired,
+    translateX: PropTypes.number.isRequired,
+    translateY: PropTypes.number.isRequired,
+  }).isRequired,
   offset: PropTypes.array.isRequired,
   transitioning: PropTypes.bool.isRequired,
   animationDelay: PropTypes.number.isRequired,

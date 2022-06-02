@@ -127,13 +127,14 @@ export default function Navbar() {
       sx={{
         display: 'flex',
         flexDirection: 'row',
-        mt: {
+        pt: {
           xs: '4rem',
           md: '6.5rem',
         },
         px: '4rem',
         maxWidth: '1440px',
         zIndex: 2,
+        background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%)',
       }}
     >
       <Box

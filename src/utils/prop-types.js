@@ -7,8 +7,16 @@ export const tilesProps = PropTypes.arrayOf(PropTypes.shape({
   logo: PropTypes.string.isRequired,
   'logo-alt': PropTypes.string.isRequired,
   'main-image': PropTypes.string.isRequired,
-  'main-image-zoom': PropTypes.string.isRequired,
-  'main-image-zoom-start': PropTypes.string.isRequired,
+  'main-image-zoom': PropTypes.shape({
+    scale: PropTypes.number.isRequired,
+    translateX: PropTypes.number.isRequired,
+    translateY: PropTypes.number.isRequired,
+  }).isRequired,
+  'main-image-zoom-start': PropTypes.shape({
+    scale: PropTypes.number.isRequired,
+    translateX: PropTypes.number.isRequired,
+    translateY: PropTypes.number.isRequired,
+  }).isRequired,
   'right-title': PropTypes.string.isRequired,
   'right-description': PropTypes.string.isRequired,
   'right-button-text': PropTypes.string.isRequired,

@@ -29,7 +29,7 @@ export default function MobileTiles({ tiles }) {
               xs: 'column',
               sm: index % 2 === 0 ? 'row' : 'row-reverse',
             },
-            mb: 14,
+            mb: index === tiles.length - 1 ? 0 : 14,
             alignItems: 'center',
           }}
           key={tile.title}
@@ -111,7 +111,7 @@ export default function MobileTiles({ tiles }) {
                   position: 'relative',
                   borderRadius: 0,
                   borderColor: 'text.primary',
-                  height: '60px',
+                  height: '64px',
                   transition: 'max-width 0.2s ease-out',
                   overflow: 'hidden',
                 },
