@@ -4,6 +4,8 @@ import {
 import PropTypes from 'prop-types';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Link from 'next/link';
+import { Spin as Hamburger } from 'hamburger-react';
+import { useState } from 'react';
 import DiscordIcon from './DiscordIcon';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 
@@ -118,12 +120,17 @@ const rightNav = [
 ];
 
 export default function Navbar() {
+  const [isOpen, setOpen] = useState(false);
+
   return (
     <Container
       sx={{
         display: 'flex',
         flexDirection: 'row',
-        mt: '6.5rem',
+        mt: {
+          xs: '4rem',
+          md: '6.5rem',
+        },
         px: '4rem',
         maxWidth: '1440px',
         zIndex: 2,
@@ -132,6 +139,22 @@ export default function Navbar() {
       <Box
         sx={{
           flex: 1,
+          display: {
+            xs: 'flex',
+            md: 'none',
+            animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay}s`,
+          },
+        }}
+      >
+        <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
+      </Box>
+      <Box
+        sx={{
+          flex: 1,
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
         }}
       >
         {
@@ -170,7 +193,29 @@ export default function Navbar() {
       </Box>
       <Box
         sx={{
-          display: 'flex',
+          display: {
+            xs: 'flex',
+            md: 'none',
+          },
+          flexDirection: 'row-reverse',
+          flex: 1,
+          flexWrap: 'nowrap',
+          justifyContent: 'flex-start',
+        }}
+      >
+        <NavButton
+          key="twitter-mobile"
+          href={rightNav[1].href}
+          icon={rightNav[1].icon}
+          index={0}
+        />
+      </Box>
+      <Box
+        sx={{
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
           flexDirection: 'row-reverse',
           flex: 1,
           flexWrap: 'nowrap',

@@ -52,6 +52,11 @@ function SelectorTile({
           color: isSelected ? 'text.primary' : 'text.secondary',
           animation: `${popDown} 0.3s both 0.3s`,
           zIndex: 3,
+          display: {
+            // need to do a separate layout for mobile given animation requirements
+            xs: 'none',
+            md: 'initial',
+          },
         },
         {
           '&:hover': {

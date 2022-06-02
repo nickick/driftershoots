@@ -48,7 +48,15 @@ export default function CarouselTile({ selectedTileIndex }) {
   }, [selectedTileIndex]);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: {
+          // need to do a separate layout for mobile given animation requirements
+          xs: 'none',
+          md: 'flex',
+        },
+      }}
+    >
       {/* Text container */}
       <Box
         sx={{
@@ -58,14 +66,24 @@ export default function CarouselTile({ selectedTileIndex }) {
           top: 0,
           left: 0,
           width: '100%',
-          px: 10,
+          px: {
+            xs: 4,
+            md: 14,
+          },
           zIndex: 5,
+          flexDirection: {
+            xs: 'column',
+            sm: 'row',
+          },
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            flex: '5',
+            flex: {
+              sm: 3,
+              lg: 5,
+            },
             alignItems: 'center',
             justifyContent: 'flex-start',
             animation: `${fadeFromLeft} ${entranceAnimationDuration}s both ${animationDelay}s`,
@@ -76,7 +94,10 @@ export default function CarouselTile({ selectedTileIndex }) {
         <Box
           sx={{
             display: 'flex',
-            flex: '4',
+            flex: {
+              sm: 3,
+              lg: 4,
+            },
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}
@@ -84,7 +105,10 @@ export default function CarouselTile({ selectedTileIndex }) {
         <Box
           sx={{
             display: 'flex',
-            flex: '3',
+            flex: {
+              sm: 2,
+              lg: 3,
+            },
             alignItems: 'center',
             justifyContent: 'flex-end',
             transition: '* 1s ease',
@@ -99,14 +123,31 @@ export default function CarouselTile({ selectedTileIndex }) {
             }}
           >
             { tiles[selectedTileIndex].logo && (
-              <img
-                src={tiles[selectedTileIndex].logo}
-                style={{
-                  width: '176px',
-                  marginBottom: '3rem',
+              <Box
+                sx={{
+                  display: 'flex',
                 }}
-                alt={tiles[selectedTileIndex]['logo-alt']}
-              />
+              >
+                <img
+                  src={tiles[selectedTileIndex].logo}
+                  style={{
+                    flex: {
+                      md: 1,
+                      lg: 2,
+                    },
+                    marginBottom: '3rem',
+                  }}
+                  alt={tiles[selectedTileIndex]['logo-alt']}
+                />
+                <Box
+                  sx={{
+                    flex: {
+                      md: 0,
+                      lg: 1,
+                    },
+                  }}
+                />
+              </Box>
             )}
             <TransitionText
               tiles={tiles}

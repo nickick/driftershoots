@@ -15,12 +15,16 @@ function Title({ text, state }) {
     <Typography
       variant="h1"
       sx={{
-        fontSize: '16rem',
+        fontSize: {
+          sm: '6rem',
+          md: '12rem',
+          lg: '16rem',
+        },
         position: 'absolute',
         top: '50%',
         left: '0',
         transform: 'translate(0%, -50%)',
-        width: '488px',
+        flex: 1,
         zIndex: 12,
         ...transitionStyles[state],
       }}
@@ -41,6 +45,7 @@ export default function TileTitle({ tiles, selectedTileIndex }) {
     <Box
       sx={{
         position: 'relative',
+        flex: 1,
       }}
     >
       {tiles.map((tile, index) => (

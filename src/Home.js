@@ -20,9 +20,8 @@ export default function Main({ selectedTileIndex, transitioning, setTransitionin
         color: 'text.primary',
         flex: 1,
         overflow: 'auto',
-        px: 4,
-        maxWidth: '1400px',
         position: 'relative',
+        width: '100%',
         zIndex: 3,
       }}
     >
