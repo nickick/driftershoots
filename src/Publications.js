@@ -1,10 +1,12 @@
 import {
-  Box, Button, keyframes, Typography,
+  Box, keyframes, Typography,
 } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useInView } from 'react-intersection-observer';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
+import Button from './Button';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -20,21 +22,33 @@ const fadeFromBelow = keyframes`
 `;
 
 function PubTile({ publication, index }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.8,
+  });
+
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'row',
         border: '1px solid white',
-        m: 3,
-        width: publication.highlight ? '100%' : 'calc(50% - 7rem)',
-        animation: `${fadeFromBelow} 0.3s both ${1 + (0.2 * index)}s`,
-
+        m: 1,
+        width: {
+          xs: '100%',
+          md: publication.highlight ? '100%' : 'calc(50% - 2rem)',
+        },
+        animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
+        opacity: 0,
       }}
+      ref={ref}
     >
       <Box
         sx={{
-          display: 'flex',
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
           flexDirection: 'column',
           flex: 1,
           backgroundImage: `url(${publication.ogImage.url})`,
@@ -47,25 +61,67 @@ function PubTile({ publication, index }) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          flex: 3,
-          p: 3,
+          flex: 2,
+          position: 'relative',
         }}
       >
-        <Typography
-          variant="h3"
+        <Box
+          sx={{
+            bgcolor: 'rgba(0,0,0,0.7)',
+            zIndex: 2,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        />
+        <Box
+          sx={{
+            backgroundImage: `url(${publication.ogImage.url})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            zIndex: 1,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            p: 3,
+            zIndex: 3,
+          }}
         >
-          {publication.source}
-        </Typography>
-        <Typography
-          variant="h2"
-        >
-          {publication.title}
-        </Typography>
-        <Button
-          to={publication.link}
-        >
-          Read More
-        </Button>
+          <Typography
+            variant="h4"
+            mb={2}
+          >
+            {publication.source}
+          </Typography>
+          <Typography
+            variant="h3"
+            mb={2}
+          >
+            {publication.title}
+          </Typography>
+          <Button
+            href={publication.link}
+            target="_blank"
+            sx={{
+              p: 3,
+              m: 3,
+              width: '50%',
+              alignSelf: 'center',
+            }}
+          >
+            Read More
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
@@ -136,7 +192,10 @@ export default function Publications() {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          mx: 14,
+          mx: {
+            xs: 4,
+            md: 14,
+          },
         }}
       >
         {
