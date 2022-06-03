@@ -1,5 +1,8 @@
-import { Box, keyframes, Typography } from '@mui/material';
-import { useContext } from 'react';
+import {
+  Box, Button, keyframes, Typography,
+} from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
 
@@ -16,8 +19,81 @@ const fadeFromBelow = keyframes`
   }
 `;
 
+function PubTile({ publication }) {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        border: '1px solid white',
+
+        m: 3,
+        width: 'calc(50% - 7rem)',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
+          backgroundImage: `url(${publication.ogImage.url})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          height: '100%',
+        }}
+      />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 3,
+          p: 3,
+        }}
+      >
+        <Typography
+          variant="h3"
+        >
+          {publication.source}
+        </Typography>
+        <Typography
+          variant="h2"
+        >
+          {publication.title}
+        </Typography>
+        <Button
+          to={publication.link}
+        >
+          Read More
+        </Button>
+      </Box>
+    </Box>
+  );
+}
+
+PubTile.propTypes = {
+  publication: PropTypes.shape({
+    ogImage: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+    title: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default function Publications() {
   const { animationDelay } = useContext(LoadedContext);
+  const [publications, setPublications] = useState([]);
+
+  useEffect(() => {
+    async function fetchPublications() {
+      const result = await fetch('/api/publications');
+      const resultJson = await result.json();
+      setPublications(resultJson);
+    }
+
+    fetchPublications();
+  }, []);
 
   return (
     <Box
@@ -52,6 +128,22 @@ export default function Publications() {
         >
           Publications
         </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          mx: 14,
+        }}
+      >
+        {
+          publications.map((publication) => (
+            <PubTile
+              key={publication.title}
+              publication={publication}
+            />
+          ))
+        }
       </Box>
     </Box>
   );

@@ -7,7 +7,7 @@ export default function PublicationPage() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        height: {
+        minHeight: {
           xs: 'inherit',
           md: '90vh',
         },
