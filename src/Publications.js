@@ -67,7 +67,10 @@ function PubTile({ publication, index }) {
       >
         <Box
           sx={{
-            bgcolor: 'rgba(0,0,0,0.7)',
+            bgcolor: {
+              xs: 'rgba(0,0,0,0.7)',
+              md: 'rgba(0,0,0,0.9)',
+            },
             zIndex: 2,
             position: 'absolute',
             top: 0,
@@ -145,13 +148,16 @@ export default function Publications() {
   const [publications, setPublications] = useState([]);
 
   useEffect(() => {
-    async function fetchPublications() {
-      const result = await fetch('/api/publications');
+    async function fetchPublications(skipmetadata) {
+      const queryParams = skipmetadata ? 'skipmetadata=true' : '';
+      const result = await fetch(`/api/publications?${queryParams}`);
       const resultJson = await result.json();
       setPublications(resultJson);
     }
 
-    fetchPublications();
+    // fetch without metadata first, then fill it in with metadata with another call
+    fetchPublications(true);
+    fetchPublications(false);
   }, []);
 
   return (
