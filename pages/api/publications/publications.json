@@ -2,16 +2,19 @@
   {
     "source": "The New York Times",
     "title": "A Rogue Climber Running From the Law Was Fleeing His Own Trauma",
-    "link": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
+    "link": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html",
+    "highlight": true
   },
   {
     "source": "Cincinatti Enquirer",
     "title": "Photographer & Veteran Isaac Wright Arrested Again in Kentucky",
-    "link": "https://www.cincinnati.com/story/news/2021/04/19/photographer-and-veteran-isaac-wright-arrested-again-kentucky/7288482002/"
+    "link": "https://www.cincinnati.com/story/news/2021/04/19/photographer-and-veteran-isaac-wright-arrested-again-kentucky/7288482002/",
+    "highlight": false
   },
   {
     "source": "City Beat",
     "title": "Isaac Wright is the Newest Victim in Cincinnati’s Long History of Mistreatment of Photographers and Outsider Artists",
-    "link": "https://www.citybeat.com/news/commentary-isaac-wright-is-the-newest-victim-in-cincinnatis-long-history-of-mistreatment-of-photographers-and-outsider-artists-12265286"
+    "link": "https://www.citybeat.com/news/commentary-isaac-wright-is-the-newest-victim-in-cincinnatis-long-history-of-mistreatment-of-photographers-and-outsider-artists-12265286",
+    "highlight": false
   }
 ]

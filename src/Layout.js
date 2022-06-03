@@ -32,6 +32,8 @@ export default function Layout({ children }) {
   }, []);
 
   useEffect(() => {
+    pageLoadAnimationComplete(router.pathname);
+
     router.events.on('routeChangeStart', pageLoadStartAnimation);
     router.events.on('routeChangeComplete', pageLoadAnimationComplete);
     router.events.on('routeChangeError', pageLoadAnimationComplete);
@@ -41,7 +43,7 @@ export default function Layout({ children }) {
       router.events.off('routeChangeComplete', pageLoadAnimationComplete);
       router.events.off('routeChangeError', pageLoadAnimationComplete);
     };
-  });
+  }, [pageLoadStartAnimation, pageLoadAnimationComplete, router.events, router.pathname]);
 
   return (
     <Box

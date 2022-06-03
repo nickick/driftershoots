@@ -19,16 +19,17 @@ const fadeFromBelow = keyframes`
   }
 `;
 
-function PubTile({ publication }) {
+function PubTile({ publication, index }) {
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'row',
         border: '1px solid white',
-
         m: 3,
-        width: 'calc(50% - 7rem)',
+        width: publication.highlight ? '100%' : 'calc(50% - 7rem)',
+        animation: `${fadeFromBelow} 0.3s both ${1 + (0.2 * index)}s`,
+
       }}
     >
       <Box
@@ -78,7 +79,9 @@ PubTile.propTypes = {
     title: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
+    highlight: PropTypes.bool.isRequired,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default function Publications() {
@@ -137,10 +140,11 @@ export default function Publications() {
         }}
       >
         {
-          publications.map((publication) => (
+          publications.map((publication, index) => (
             <PubTile
               key={publication.title}
               publication={publication}
+              index={index}
             />
           ))
         }
