@@ -29,7 +29,7 @@ const fadeFromBelow = keyframes`
 
 export default function Gallery() {
   const { wmvgPieces } = useContext(GalleryContext);
-  const { animationDelay, setBackgroundImage, setBackgroundOpacity } = useContext(LoadedContext);
+  const { animationDelay } = useContext(LoadedContext);
   const router = useRouter();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,20 +38,13 @@ export default function Gallery() {
     (a, b) => (parseInt(a.name.slice(18), 10) > parseInt(b.name.slice(18), 10) ? 1 : -1),
   );
 
-  useEffect(() => {
-    setBackgroundImage('/gallery-background.jpeg');
-    setBackgroundOpacity(1);
-  }, [setBackgroundImage, setBackgroundOpacity]);
-
   const handleClose = useCallback(() => {
     setModalOpen(false);
 
-    setTimeout(() => {
-      router.push({
-        pathname: router.pathname,
-        query: {},
-      }, undefined, { scroll: false });
-    }, 200);
+    router.push({
+      pathname: router.pathname,
+      query: {},
+    }, undefined, { scroll: false });
   }, [router]);
 
   const piece = wmvgPieces.find((p) => p.id === parseInt(router.query.gallery, 10));

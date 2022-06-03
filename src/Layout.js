@@ -1,12 +1,47 @@
 import { Box } from '@mui/material';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import Navbar from './Navbar';
+import {
+  useCallback, useEffect, useState,
+} from 'react';
 import Footer from './Footer';
-import { LoadedContext } from './LoadedContextProvider';
+import Navbar from './Navbar';
 
 export default function Layout({ children }) {
-  const { backgroundImage, backgroundOpacity } = useContext(LoadedContext);
+  const [backgroundImage, setBackgroundImage] = useState('');
+  const [backgroundOpacity, setBackgroundOpacity] = useState(0);
+  const router = useRouter();
+
+  const pageLoadStartAnimation = useCallback(() => {
+    setBackgroundOpacity(0);
+  }, []);
+
+  const animationLength = 500; // ms
+
+  const pageLoadAnimationComplete = useCallback((url) => {
+    let bgImage = '';
+    if (url === '/gallery') {
+      bgImage = '/gallery-background.jpeg';
+    } else if (url === '/publications') {
+      bgImage = '/publications-background.jpeg';
+    }
+    setTimeout(() => {
+      setBackgroundImage(bgImage);
+      setBackgroundOpacity(1);
+    }, animationLength);
+  }, []);
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', pageLoadStartAnimation);
+    router.events.on('routeChangeComplete', pageLoadAnimationComplete);
+    router.events.on('routeChangeError', pageLoadAnimationComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', pageLoadStartAnimation);
+      router.events.off('routeChangeComplete', pageLoadAnimationComplete);
+      router.events.off('routeChangeError', pageLoadAnimationComplete);
+    };
+  });
 
   return (
     <Box
@@ -28,7 +63,7 @@ export default function Layout({ children }) {
           },
           background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 80%, #080808 100%)',
           backgroundSize: 'cover',
-          transition: 'opacity 1s ease-out',
+          transition: `opacity ${animationLength}ms ease-out`,
           zIndex: 2,
         }}
       />
@@ -45,7 +80,7 @@ export default function Layout({ children }) {
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
           opacity: backgroundOpacity,
-          transition: 'opacity 1s ease-out',
+          transition: `opacity ${animationLength}ms ease-out`,
           zIndex: 1,
         }}
       />
