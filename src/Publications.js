@@ -1,10 +1,10 @@
 import {
   Box, keyframes, Typography,
 } from '@mui/material';
-import pubs from '../pages/api/publications/publications.json'
 import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
+import pubs from '../pages/api/publications/publications.json';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
 import Button from './Button';
@@ -134,8 +134,8 @@ function PubTile({ publication, index }) {
 PubTile.propTypes = {
   publication: PropTypes.shape({
     ogImage: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-    }).isRequired,
+      url: PropTypes.string,
+    }),
     title: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,

@@ -91,7 +91,7 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
         sx={[
           {
             display: 'flex',
-            flex: 1,
+            flex: '1 1',
             justifyContent: 'flex-start',
             position: 'relative',
             paddingBottom: imageDimensions[0] ? `${(imageDimensions[1] / imageDimensions[0]) * 100}%` : 0,
@@ -119,7 +119,7 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
           left: 0,
           width: '100%',
           height: '100%',
-          flex: 1,
+          flex: '1 1',
           p: 3,
           cursor: 'pointer',
           opacity: mouseOver ? 1 : 0,

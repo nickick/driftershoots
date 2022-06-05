@@ -12,17 +12,14 @@ export default function Layout({ children }) {
   const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   const router = useRouter();
 
-  let previousPath = '';
-
-  const pageLoadStartAnimation = useCallback(() => {
+  const pageLoadStartAnimation = useCallback((url) => {
     const { pathname } = router;
-    if (pathname !== previousPath) {
+    if (!url.includes(pathname)) {
       setBackgroundOpacity(0);
     }
-  }, [previousPath]);
+  }, [router]);
 
   const animationLength = 500; // ms
-
 
   const pageLoadAnimationComplete = useCallback((url) => {
     let bgImage = '';
@@ -31,8 +28,6 @@ export default function Layout({ children }) {
     } else if (url.includes('/publications')) {
       bgImage = '/publications-background.jpeg';
     }
-    const { pathname } = router;
-    previousPath = pathname;
 
     setTimeout(() => {
       setBackgroundImage(bgImage);
