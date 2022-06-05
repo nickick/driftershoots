@@ -12,6 +12,9 @@ const themeShared = {
     h1: {
       fontFamily: ['Rawgly', 'serif'].join(','),
     },
+    overline: {
+      fontSize: '2rem',
+    },
   },
   components: {
     MuiContainer: {
