@@ -143,7 +143,7 @@ export default function Footer() {
             variant="body"
           >
             <NextLink
-              href="privacy-policy"
+              href="/privacy-policy"
             >
               Privacy Policy
             </NextLink>
