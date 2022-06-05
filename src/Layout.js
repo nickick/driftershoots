@@ -60,7 +60,7 @@ export default function Layout({ children }) {
           left: 0,
           width: '100%',
           height: {
-            xs: 'inherit',
+            xs: '90vh',
             md: '90vh',
           },
           background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 80%, #080808 100%)',
@@ -76,11 +76,12 @@ export default function Layout({ children }) {
           left: 0,
           width: '100%',
           height: {
-            xs: 'inherit',
+            xs: '90vh',
             md: '90vh',
           },
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
+          backgroundPosition: 'center',
           opacity: backgroundOpacity,
           transition: `opacity ${animationLength}ms ease-out`,
           zIndex: 1,

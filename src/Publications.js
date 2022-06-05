@@ -1,6 +1,7 @@
 import {
   Box, keyframes, Typography,
 } from '@mui/material';
+import pubs from '../pages/api/publications/publications.json'
 import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
@@ -51,7 +52,7 @@ function PubTile({ publication, index }) {
           },
           flexDirection: 'column',
           flex: 1,
-          backgroundImage: `url(${publication.ogImage.url})`,
+          backgroundImage: `url(${(publication.ogImage || {}).url})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           height: '100%',
@@ -81,7 +82,7 @@ function PubTile({ publication, index }) {
         />
         <Box
           sx={{
-            backgroundImage: `url(${publication.ogImage.url})`,
+            backgroundImage: `url(${(publication.ogImage || {}).url})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             zIndex: 1,
@@ -145,7 +146,7 @@ PubTile.propTypes = {
 
 export default function Publications() {
   const { animationDelay } = useContext(LoadedContext);
-  const [publications, setPublications] = useState([]);
+  const [publications, setPublications] = useState(pubs);
 
   useEffect(() => {
     async function fetchPublications(skipmetadata) {
@@ -156,7 +157,6 @@ export default function Publications() {
     }
 
     // fetch without metadata first, then fill it in with metadata with another call
-    fetchPublications(true);
     fetchPublications(false);
   }, []);
 
