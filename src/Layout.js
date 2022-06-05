@@ -12,19 +12,28 @@ export default function Layout({ children }) {
   const [backgroundOpacity, setBackgroundOpacity] = useState(0);
   const router = useRouter();
 
+  let previousPath = '';
+
   const pageLoadStartAnimation = useCallback(() => {
-    setBackgroundOpacity(0);
-  }, []);
+    const { pathname } = router;
+    if (pathname !== previousPath) {
+      setBackgroundOpacity(0);
+    }
+  }, [previousPath]);
 
   const animationLength = 500; // ms
 
+
   const pageLoadAnimationComplete = useCallback((url) => {
     let bgImage = '';
-    if (url === '/gallery') {
+    if (url.includes('/gallery')) {
       bgImage = '/gallery-background.jpeg';
-    } else if (url === '/publications') {
+    } else if (url.includes('/publications')) {
       bgImage = '/publications-background.jpeg';
     }
+    const { pathname } = router;
+    previousPath = pathname;
+
     setTimeout(() => {
       setBackgroundImage(bgImage);
       setBackgroundOpacity(1);
