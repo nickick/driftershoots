@@ -4,6 +4,7 @@ import {
 import ArrestedAtGunpoint from './ArrestedAtGunpoint';
 import InNews from './InNews';
 import Intro from './Intro';
+import Video from './Video';
 
 export default function About() {
   return (
@@ -31,6 +32,7 @@ export default function About() {
         <Intro />
         <ArrestedAtGunpoint />
         <InNews />
+        <Video />
       </Box>
     </Box>
   );
