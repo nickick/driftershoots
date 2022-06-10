@@ -8,13 +8,23 @@ export default function InNews() {
   return (
     <FadeInAboutSection
       sx={{
-        my: 14,
+        my: {
+          xs: 0,
+          md: 14,
+        },
       }}
     >
       <Box
         sx={{
           display: 'flex',
-          pl: 3,
+          flexDirection: {
+            xs: 'column',
+            md: 'row',
+          },
+          pl: {
+            xs: 0,
+            md: 3,
+          },
         }}
       >
         <Typography
@@ -25,6 +35,10 @@ export default function InNews() {
               md: '6rem',
             },
             flex: 7,
+            mb: {
+              xs: 3,
+              md: 0,
+            },
           }}
         >
           To the moon, &amp; never back.
@@ -34,6 +48,10 @@ export default function InNews() {
             display: 'flex',
             flexDirection: 'column',
             flex: 3,
+            mb: {
+              xs: 3,
+              md: 0,
+            },
           }}
         >
           <Box
@@ -44,10 +62,8 @@ export default function InNews() {
             }}
           />
           <Typography
-            variant="h5"
+            variant="overline"
             sx={{
-              fontSize: '2.5rem',
-              textTransform: 'uppercase',
               mb: 2,
             }}
           >

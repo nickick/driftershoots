@@ -1,23 +1,44 @@
 import { Button } from '@mui/material';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 import { childrenProps } from './utils/prop-types';
 
-export default function OutlinedButton({ href, text, children }) {
+export default function OutlinedButton({
+  href, text, children, clientside, fullWidth,
+}) {
+  const router = useRouter();
+
+  const onClick = useCallback((e) => {
+    if (clientside) {
+      e.preventDefault();
+    }
+
+    router.push({
+      pathname: href,
+    }, undefined, { scroll: false });
+  }, [clientside, href, router]);
+
   return (
     <Button
       variant="outlined"
-      href={href}
-      target="_blank"
+      href={clientside ? '' : href}
+      target={clientside ? '' : '_blank'}
       sx={[
         {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           position: 'relative',
           borderRadius: 0,
           borderColor: 'text.primary',
           height: '60px',
-          maxWidth: text.length * 8 + 100,
+          maxWidth: fullWidth ? 'unset' : text.length * 8 + 100,
+          width: fullWidth ? '100%' : 'unset',
           transition: 'max-width 0.2s ease-out',
           overflow: 'hidden',
           color: 'white',
+          px: 5,
         },
         {
           '&:hover': {
@@ -52,6 +73,7 @@ export default function OutlinedButton({ href, text, children }) {
           },
         },
       ]}
+      onClick={onClick}
     >
       { children }
     </Button>
@@ -61,10 +83,14 @@ export default function OutlinedButton({ href, text, children }) {
 OutlinedButton.propTypes = {
   href: PropTypes.string,
   text: PropTypes.string,
+  clientside: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   children: childrenProps.isRequired,
 };
 
 OutlinedButton.defaultProps = {
   href: '',
   text: '',
+  clientside: false,
+  fullWidth: false,
 };

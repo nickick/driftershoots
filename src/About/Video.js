@@ -95,7 +95,10 @@ export default function Video() {
     <FadeInAboutSection
       sx={{
         display: 'flex',
-        my: 14,
+        mb: {
+          xs: 7,
+          md: 14,
+        },
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -106,7 +109,10 @@ export default function Video() {
         sx={[
           {
             flex: 8,
-            height: '75rem',
+            height: {
+              xs: '30rem',
+              md: '75rem',
+            },
             overflow: 'hidden',
           },
         ]}

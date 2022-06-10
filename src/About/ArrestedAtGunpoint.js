@@ -92,7 +92,10 @@ export default function ArrestedAtGunpoint() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          pl: 3,
+          pl: {
+            xs: 0,
+            md: 3,
+          },
         }}
       >
         <Typography
@@ -177,6 +180,7 @@ export default function ArrestedAtGunpoint() {
         <OutlinedButton
           text="Donate to Drifter's Campaign"
           href="https://www.gofundme.com/f/isaac-wrights-incarceration?utm_campaign=p_cf+share-flow-1&utm_medium=copy_link&utm_source=customer"
+          fullWidth
         >
           <Typography
             variant="h4"

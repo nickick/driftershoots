@@ -25,42 +25,50 @@ const fadeFromBelow = keyframes`
 export default function ZoomLazyImage({
   src, alt, style, fadeInOnload,
 }) {
-  const [mouseOver, setMouseOver] = useState(false);
+  const [dimensions, setDimensions] = useState([]);
+
   const boxRef = useRef();
-
-  const onMouseOver = useCallback(() => {
-    setMouseOver(true);
-  }, []);
-
-  const onMouseLeave = useCallback(() => {
-    setMouseOver(false);
-  }, []);
 
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
 
+  const onLoad = useCallback((e) => {
+    setDimensions(e.target.offsetWidth, e.target.offsetHeight);
+  }, []);
+
   return (
     <Box
-      sx={{
-        animation: (fadeInOnload || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
-        opacity: 0,
-        width: '100%',
-        overflow: 'hidden',
-        ...style,
-      }}
+      sx={[
+        {
+          animation: (fadeInOnload || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
+          opacity: 0,
+          width: '100%',
+          overflow: 'hidden',
+          marginBottom: dimensions[0] ? `${(dimensions[1] / dimensions[0]) * 100}%` : 0,
+          ...style,
+        },
+        {
+          '& > img': {
+            transition: 'transform 0.5s ease-out',
+          },
+        },
+        {
+          '&:hover > img': {
+            transform: 'scale(1.2)',
+            transition: 'transform 0.5s ease-out',
+          },
+        },
+      ]}
       ref={boxRef}
-      onMouseOver={onMouseOver}
-      onMouseLeave={onMouseLeave}
     >
       <img
         src={src}
         alt={alt}
         ref={ref}
+        onLoad={onLoad}
         style={{
-          transform: mouseOver ? 'scale(1.2)' : 'scale(1.0)',
-          transition: 'transform 0.5s ease-out',
           width: '100%',
         }}
       />
