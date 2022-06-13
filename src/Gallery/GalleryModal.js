@@ -1,13 +1,13 @@
 import { Close } from '@mui/icons-material';
 import {
-  Box, CircularProgress, Dialog,
+  Box, CircularProgress, Dialog, Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
+import { getName } from '../utils/parsers';
 import { openseaPieceProps } from '../utils/prop-types';
-import WhereMyVansGoPiece from '../WhereMyVansGoPiece';
 
-export default function WMVGModal({ piece, open, handleClose }) {
+export default function GalleryModal({ piece, open, handleClose }) {
   const [loaded, setLoaded] = useState(false);
   const [isLandscape, setIsLandscape] = useState(true);
 
@@ -40,9 +40,6 @@ export default function WMVGModal({ piece, open, handleClose }) {
           overflowX: 'hidden',
           p: 0,
           m: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
         },
       }}
       BackdropProps={{
@@ -62,10 +59,13 @@ export default function WMVGModal({ piece, open, handleClose }) {
         <Close
           sx={{
             position: 'fixed',
-            right: 0,
-            top: 0,
+            right: 10,
+            top: 10,
             zIndex: 1300,
-            fontSize: 60,
+            fontSize: {
+              xs: 30,
+              md: 60,
+            },
             background: 'rgba(0,0,0,0.2)',
             cursor: 'pointer',
           }}
@@ -79,6 +79,7 @@ export default function WMVGModal({ piece, open, handleClose }) {
             position: 'absolute',
             top: '50%',
             left: '50%',
+            transform: 'translate(-50%, -50%)',
           }}
         >
           <CircularProgress
@@ -93,7 +94,8 @@ export default function WMVGModal({ piece, open, handleClose }) {
             sx={{
               display: 'flex',
               opacity: loaded ? 1 : 0,
-              flexDirection: isLandscape ? 'column' : 'row',
+              flexDirection: 'column',
+              position: 'relative',
             }}
           >
             <img
@@ -101,13 +103,33 @@ export default function WMVGModal({ piece, open, handleClose }) {
               alt={piece.name}
               style={{
                 transition: 'transform 0.5s ease-out',
-                height: isLandscape ? 'unset' : '90vh',
+                maxHeight: '100%',
+                maxWidth: '100%',
+                width: {
+                  xs: isLandscape ? '100vw' : 'unset',
+                  md: isLandscape ? '80vw' : 'unset',
+                },
+                height: isLandscape ? 'unset' : '80vh',
               }}
               onLoad={onImageLoad}
             />
-            {loaded && (
-              <WhereMyVansGoPiece piece={piece} isLandscape={isLandscape} />
-            )}
+            <Box
+              sx={{
+                p: 3,
+                bgcolor: '#23222B',
+              }}
+            >
+              <Typography
+                variant="h4"
+              >
+                {piece.name}
+              </Typography>
+              <Typography
+                variant="h3"
+              >
+                {getName(piece.description)}
+              </Typography>
+            </Box>
           </Box>
         )}
       </Box>
@@ -115,12 +137,12 @@ export default function WMVGModal({ piece, open, handleClose }) {
   );
 }
 
-WMVGModal.propTypes = {
+GalleryModal.propTypes = {
   piece: openseaPieceProps,
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
 };
 
-WMVGModal.defaultProps = {
+GalleryModal.defaultProps = {
   piece: {},
 };
