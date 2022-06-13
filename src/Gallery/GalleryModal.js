@@ -50,7 +50,6 @@ export default function GalleryModal({ piece, open, handleClose }) {
         sx={{
           position: 'relative',
           minHeight: '80vh',
-          minWidth: '80vw',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
