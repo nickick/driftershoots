@@ -34,9 +34,16 @@ export default function Gallery() {
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  const wmvgSorted = wmvgPieces.sort(
-    (a, b) => (parseInt(a.name.slice(18), 10) > parseInt(b.name.slice(18), 10) ? 1 : -1),
-  );
+  const wmvgSorted = wmvgPieces.sort((a, b) => {
+    const aAsInt = parseInt(a.name.slice(18), 10);
+    const bAsInt = parseInt(b.name.slice(18), 10);
+
+    if (Number.isNaN(aAsInt) || Number.isNaN(bAsInt)) {
+      return a.name > b.name ? 1 : -1;
+    }
+
+    return parseInt(a.name.slice(18), 10) > parseInt(b.name.slice(18), 10) ? 1 : -1;
+  });
 
   const handleClose = useCallback(() => {
     setModalOpen(false);

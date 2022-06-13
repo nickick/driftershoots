@@ -105,11 +105,8 @@ export default function GalleryModal({ piece, open, handleClose }) {
                 transition: 'transform 0.5s ease-out',
                 maxHeight: '100%',
                 maxWidth: '100%',
-                width: {
-                  xs: isLandscape ? '90vw' : 'unset',
-                  md: isLandscape ? '80vw' : 'unset',
-                },
-                height: isLandscape ? 'unset' : '70vh',
+                width: isLandscape ? '90vw' : 'auto',
+                height: isLandscape ? 'auto' : '70vh',
               }}
               onLoad={onImageLoad}
             />
