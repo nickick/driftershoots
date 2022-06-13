@@ -1,18 +1,14 @@
-import Image from 'next/image';
 import PropTypes from 'prop-types';
 
 export default function LazyImage({
-  src, priority, onLoadingComplete, mouseOver,
+  src, alt, priority,
 }) {
   return (
-    <Image
+    <img
       src={src}
-      layout="fill"
-      objectFit="contain"
+      alt={alt}
       priority={priority}
-      onLoadingComplete={onLoadingComplete}
       style={{
-        transform: mouseOver ? 'scale(1.2)' : 'scale(1.0)',
         transition: 'transform 0.5s ease-out',
       }}
     />
@@ -21,12 +17,10 @@ export default function LazyImage({
 
 LazyImage.propTypes = {
   src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
   priority: PropTypes.bool,
-  onLoadingComplete: PropTypes.func.isRequired,
-  mouseOver: PropTypes.bool,
 };
 
 LazyImage.defaultProps = {
-  mouseOver: false,
   priority: false,
 };

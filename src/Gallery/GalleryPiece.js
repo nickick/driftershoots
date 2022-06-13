@@ -1,11 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { getName } from '../utils/parsers';
 import { childrenProps, openseaPieceProps } from '../utils/prop-types';
-import LazyImage from './LazyImage';
 
 function TextSection({ title, children }) {
   return (
@@ -33,8 +32,6 @@ TextSection.propTypes = {
 };
 
 export default function GalleryPiece({ piece, index, setModalOpen }) {
-  const [imageDimensions, setImageDimensions] = useState([0, 0]);
-  const [mouseOver, setMouseOver] = useState(false);
   const boxRef = useRef();
   const router = useRouter();
 
@@ -42,21 +39,6 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
     triggerOnce: true,
     rootMargin: '-200px 0px',
   });
-
-  const onImageLoaded = useCallback(({ naturalWidth, naturalHeight }) => {
-    if (!boxRef.current) return;
-    setImageDimensions([naturalWidth, naturalHeight]);
-    const proportionalHeight = (boxRef.current.offsetWidth * naturalHeight) / naturalWidth;
-    boxRef.current.style.height = `${proportionalHeight}px`;
-  }, []);
-
-  const onMouseOver = useCallback(() => {
-    setMouseOver(true);
-  }, []);
-
-  const onMouseLeave = useCallback(() => {
-    setMouseOver(false);
-  }, []);
 
   const selectPiece = useCallback((e) => {
     e.preventDefault();
@@ -75,15 +57,16 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
     <Box
       sx={[
         {
-          display: 'flex',
-          flexDirection: 'row',
           opacity: inView ? 1 : 0,
           position: 'relative',
         },
+        {
+          '&:hover > div > img': {
+            transform: 'scale(1.2)',
+          },
+        },
       ]}
       ref={boxRef}
-      onMouseOver={onMouseOver}
-      onMouseLeave={onMouseLeave}
       onClick={selectPiece}
       id={`wmvg-${index}`}
     >
@@ -94,53 +77,49 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
             flex: '1 1',
             justifyContent: 'flex-start',
             position: 'relative',
-            paddingBottom: imageDimensions[0] ? `${(imageDimensions[1] / imageDimensions[0]) * 100}%` : 0,
             overflow: 'hidden',
           },
         ]}
         ref={ref}
       >
-        <LazyImage
+        <img
           src={piece.image_url}
           alt={piece.name}
-          priority={index === 1}
-          onLoadingComplete={onImageLoaded}
-          mouseOver={mouseOver}
+          style={{
+            transition: 'transform 0.5s ease-out',
+            width: '100%',
+            height: 'auto',
+            cursor: 'pointer',
+          }}
         />
       </Box>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          flex: '1 1',
           p: 3,
           cursor: 'pointer',
-          opacity: mouseOver ? 1 : 0,
-          background: 'rgba(0,0,0,0.5)',
+          opacity: 1,
+          background: '#23222B',
         }}
       >
         <Typography
-          variant="h3"
-          sx={{
-            mb: 1,
-          }}
-        >
-          {getName(piece.description)}
-        </Typography>
-        <Typography
           variant="h4"
           sx={{
-            mb: 3,
+            fontSize: '1.25rem',
+            lineHeight: '2rem',
           }}
         >
           {piece.name}
+        </Typography>
+        <Typography
+          variant="h3"
+          sx={{
+            fontSize: '2rem',
+            lineHeight: '3rem',
+          }}
+        >
+          {getName(piece.description)}
         </Typography>
       </Box>
     </Box>

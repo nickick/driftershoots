@@ -2,7 +2,7 @@ import {
   Masonry,
 } from '@mui/lab';
 import {
-  Box, Container, keyframes, Typography,
+  Box, Container, keyframes, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import {
@@ -61,6 +61,24 @@ export default function Gallery() {
     }
   }, [router.query.gallery, wmvgSorted, piece]);
 
+  const theme = useTheme();
+  const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+
+  let masonryColumns;
+  let masonrySpacing;
+
+  if (isDesktop) {
+    masonryColumns = 4;
+    masonrySpacing = 4;
+  } else if (isTablet) {
+    masonryColumns = 3;
+    masonrySpacing = 3;
+  } else {
+    masonryColumns = 2;
+    masonrySpacing = 2;
+  }
+
   return (
     <Container
       sx={{
@@ -82,6 +100,7 @@ export default function Gallery() {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'center',
           mt: 6,
           animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
         }}
@@ -95,6 +114,7 @@ export default function Gallery() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
             flex: 6,
           }}
         >
@@ -102,23 +122,14 @@ export default function Gallery() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
-              height: '70vh',
+              justifyContent: 'flex-start',
+              alignSelf: 'flex-start',
+              ml: 2,
             }}
           >
             <Typography
-              variant="h2"
-              sx={{
-                textAlign: 'center',
-                mb: 1,
-              }}
-            >
-              Drifter Shoots
-            </Typography>
-            <Typography
               variant="h1"
               sx={{
-                textAlign: 'center',
                 mb: 3,
               }}
             >
@@ -126,7 +137,8 @@ export default function Gallery() {
             </Typography>
           </Box>
           <Masonry
-            columns={2}
+            columns={masonryColumns}
+            spacing={masonrySpacing}
           >
             {wmvgSorted.map((wmvgPiece, index) => (
               <GalleryPiece

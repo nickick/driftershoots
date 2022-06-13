@@ -23,9 +23,10 @@ export default function Layout({ children }) {
 
   const pageLoadAnimationComplete = useCallback((url) => {
     let bgImage = '';
-    if (url.includes('/gallery')) {
-      bgImage = '/gallery-background.jpeg';
-    } else if (url.includes('/publications')) {
+    // if (url.includes('/gallery')) {
+    //   bgImage = '/gallery-background.jpeg';
+    // }
+    if (url.includes('/publications')) {
       bgImage = '/publications-background.jpeg';
     }
 
