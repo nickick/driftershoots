@@ -47,7 +47,10 @@ export default function Gallery() {
     }, undefined, { scroll: false });
   }, [router]);
 
-  const piece = wmvgPieces.find((p) => p.id === parseInt(router.query.gallery, 10));
+  const pieceQueryToInt = parseInt(router.query.gallery, 10);
+  const pieceQueryIdentifier = Number.isNaN(pieceQueryToInt)
+    ? router.query.gallery : pieceQueryToInt;
+  const piece = wmvgPieces.find((p) => p.id === pieceQueryIdentifier);
 
   useEffect(() => {
     setModalOpen(!!router.query.gallery);

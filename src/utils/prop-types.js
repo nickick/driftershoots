@@ -1,4 +1,4 @@
-import { PropTypes } from 'prop-types';
+import { number, PropTypes, string } from 'prop-types';
 
 export const tilesProps = PropTypes.arrayOf(PropTypes.shape({
   title: PropTypes.string.isRequired,
@@ -34,7 +34,7 @@ export const openseaPieceProps = PropTypes.shape({
   }).isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([number, string]).isRequired,
   image_preview_url: PropTypes.string.isRequired,
   image_url: PropTypes.string.isRequired,
 });

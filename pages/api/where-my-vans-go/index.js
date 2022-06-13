@@ -11,7 +11,69 @@ async function getWMVGPieces() {
 
   const pieces = await results.json();
 
-  return pieces.assets;
+  const { assets } = pieces;
+
+  assets.forEach((asset) => {
+    asset.traits.push({
+      trait_type: 'Collection',
+      value: 'Where My Vans Go',
+    });
+  });
+
+  const additionalPhotos = [
+    'drift10',
+    'drift21',
+    'drift27',
+    'drift32',
+    'drift38',
+    'drift42',
+    'drift6',
+    'drift11',
+    'drift22',
+    'drift28',
+    'drift33',
+    'drift39',
+    'drift43',
+    'drift7',
+    'drift16',
+    'drift23',
+    'drift29',
+    'drift34',
+    'drift4',
+    'drift47',
+    'drift9',
+    'drift17',
+    'drift25',
+    'drift30',
+    'drift35',
+    'drift40',
+    'drift48',
+    'drift18',
+    'drift26',
+    'drift31',
+    'drift36',
+    'drift41',
+    'drift5',
+  ];
+
+  additionalPhotos.forEach((photoName) => {
+    assets.unshift({
+      name: photoName,
+      description: 'Untitled Collection',
+      traits: [{
+        trait_type: 'Collection',
+        value: 'Untitled Collection',
+      }],
+      image_url: `/gallery/${photoName}.jpeg`,
+      image_preview_url: `/gallery/${photoName}.jpeg`,
+      asset_contract: {
+        address: '',
+      },
+      id: photoName,
+    });
+  });
+
+  return assets;
 }
 
 export default async function handler(req, res) {
