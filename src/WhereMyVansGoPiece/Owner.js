@@ -7,9 +7,11 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { shortenAddress } from '../utils/parsers';
 
-export default function Owner({ address, profileImageUrl, username }) {
+export default function Owner({
+  address, profileImageUrl, username, isLandscape,
+}) {
   return (
-    <Accordion>
+    <Accordion defaultExpanded={isLandscape}>
       <AccordionSummary
         expandIcon={<ExpandMore />}
         aria-controls="panel1a-content"
@@ -131,6 +133,7 @@ export default function Owner({ address, profileImageUrl, username }) {
 Owner.propTypes = {
   address: PropTypes.string.isRequired,
   profileImageUrl: PropTypes.string.isRequired,
+  isLandscape: PropTypes.bool.isRequired,
   username: PropTypes.string,
 };
 

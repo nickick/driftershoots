@@ -108,6 +108,9 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
           sx={{
             fontSize: '1.25rem',
             lineHeight: '2rem',
+            textTransform: 'uppercase',
+            fontWeight: '700',
+            letterSpacing: '0.1em',
           }}
         >
           {piece.name}

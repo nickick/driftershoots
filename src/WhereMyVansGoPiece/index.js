@@ -1,6 +1,7 @@
 import {
   Box, Link, Paper, Typography,
 } from '@mui/material';
+import { bool } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { getName } from '../utils/parsers';
 import { openseaPieceProps } from '../utils/prop-types';
@@ -12,7 +13,7 @@ function contractName(address) {
   return address === '0x495f947276749ce646f68ac8c248420045cb7b5e' ? 'Opensea Storefront Contract' : 'Where My Vans Go Contract';
 }
 
-export default function WhereMyVansGoPiece({ piece }) {
+export default function WhereMyVansGoPiece({ piece, isLandscape }) {
   const [events, setEvents] = useState([]);
   const [metadata, setMetadata] = useState({});
 
@@ -54,9 +55,8 @@ export default function WhereMyVansGoPiece({ piece }) {
   return (
     <Paper
       sx={{
-        flex: 1,
         p: 3,
-        ml: 3,
+        width: isLandscape ? 'unset' : '30vw',
       }}
     >
       <Box
@@ -101,17 +101,32 @@ export default function WhereMyVansGoPiece({ piece }) {
           {contractName(piece.asset_contract.address)}
         </Link>
       </Content>
-      <Owner
-        address={owner.address}
-        profileImageUrl={owner.profile_img_url}
-        username={owner.user.username}
-      />
-      <RawJson title="Metadata" json={metadata} />
-      <RawJson title="Raw events" json={events} />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: {
+            xs: 'column',
+            md: isLandscape ? 'row' : 'column',
+          },
+          justifyContent: {
+            md: 'space-between',
+          },
+        }}
+      >
+        <Owner
+          address={owner.address}
+          profileImageUrl={owner.profile_img_url}
+          username={(owner.user || {}).username}
+          isLandscape={isLandscape}
+        />
+        <RawJson title="Metadata" json={metadata} isLandscape={isLandscape} />
+        <RawJson title="Raw events" json={events} isLandscape={isLandscape} />
+      </Box>
     </Paper>
   );
 }
 
 WhereMyVansGoPiece.propTypes = {
   piece: openseaPieceProps.isRequired,
+  isLandscape: bool.isRequired,
 };

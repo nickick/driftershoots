@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export function RawJson({ title, json }) {
+export function RawJson({ title, json, isLandscape }) {
   // return (
   //   <pre>
   //     {JSON.stringify(metadata, undefined, 2)}
@@ -13,7 +13,7 @@ export function RawJson({ title, json }) {
   // )
 
   return (
-    <Accordion>
+    <Accordion defaultExpanded={isLandscape}>
       <AccordionSummary
         expandIcon={<ExpandMore />}
         aria-controls="panel1a-content"
@@ -47,4 +47,5 @@ export function RawJson({ title, json }) {
 RawJson.propTypes = {
   title: PropTypes.string.isRequired,
   json: PropTypes.any.isRequired,
+  isLandscape: PropTypes.bool.isRequired,
 };
