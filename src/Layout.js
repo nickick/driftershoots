@@ -26,7 +26,7 @@ export default function Layout({ children }) {
     // if (url.includes('/gallery')) {
     //   bgImage = '/gallery-background.jpeg';
     // }
-    if (url.includes('/publications')) {
+    if (url && url.includes('/publications')) {
       bgImage = '/publications-background.jpeg';
     }
 
