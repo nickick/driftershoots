@@ -159,7 +159,7 @@ export default function Gallery() {
               justifyContent: 'space-between',
               alignSelf: 'flex-start',
               width: '100%',
-              ml: 2,
+              px: 4,
             }}
           >
             <Typography
@@ -182,17 +182,24 @@ export default function Gallery() {
               <Traits traits={traits} setGalleryFilters={setGalleryFilters} />
             </Box>
           </Box>
-          <MasonryScroller
-            positioner={positioner}
-            resizeObserver={resizeObserver}
-            containerRef={containerRef}
-            items={pieces}
-            height={windowHeight}
-            offset={offset}
-            overscanBy={6}
-            render={GalleryPiece}
-            key={galleryFilters.concat()}
-          />
+          <Box
+            sx={{
+              width: '100%',
+              px: 4,
+            }}
+          >
+            <MasonryScroller
+              positioner={positioner}
+              resizeObserver={resizeObserver}
+              containerRef={containerRef}
+              items={pieces}
+              height={windowHeight}
+              offset={offset}
+              overscanBy={6}
+              render={GalleryPiece}
+              key={galleryFilters.concat()}
+            />
+          </Box>
         </Box>
         <Box
           sx={{
