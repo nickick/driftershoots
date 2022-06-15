@@ -1,20 +1,25 @@
 /* eslint-disable no-param-reassign */
+/* eslint-disable max-len */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import {
-  Masonry,
-} from 'masonic';
-import {
-  Box, Container, keyframes, Typography, useMediaQuery, useTheme,
+  Box, Container, keyframes, Typography,
 } from '@mui/material';
+import { useWindowSize } from '@react-hook/window-size';
+import {
+  MasonryScroller, useContainerPosition, usePositioner,
+  useResizeObserver,
+} from 'masonic';
 import { useRouter } from 'next/router';
 import {
-  useCallback, useContext, useEffect, useState,
+  useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
 import { entranceAnimationDuration } from '../constants';
 import { GalleryContext } from '../GalleryContextProvider';
 import { LoadedContext } from '../LoadedContextProvider';
-import GalleryPiece from './GalleryPiece';
 import GalleryModal from './GalleryModal';
+import GalleryPiece from './GalleryPiece';
+import Traits from './Traits';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -32,6 +37,8 @@ const fadeFromBelow = keyframes`
 export default function Gallery() {
   const { wmvgPieces } = useContext(GalleryContext);
   const { animationDelay } = useContext(LoadedContext);
+  const [galleryFilters, setGalleryFilters] = useState([]);
+  const [pieces, setPieces] = useState([]);
   const router = useRouter();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -49,6 +56,31 @@ export default function Gallery() {
     piece.setModalOpen = setModalOpen;
     return piece;
   });
+
+  useEffect(() => {
+    const filteredPieces = wmvgSorted.filter((piece) => {
+      if (!galleryFilters.length) {
+        return true;
+      }
+      return galleryFilters.filter((filter) => piece.traits.map((trait) => trait.value).includes(filter)).length;
+    });
+
+    setPieces(filteredPieces);
+  }, [wmvgPieces, galleryFilters]);
+
+  const containerRef = useRef(null);
+  const [windowWidth, windowHeight] = useWindowSize();
+  const { offset, width } = useContainerPosition(containerRef, [
+    windowWidth,
+    windowHeight,
+  ]);
+
+  const positioner = usePositioner(
+    { width, columnWidth: 280, columnGutter: 40 },
+    [pieces],
+  );
+
+  const resizeObserver = useResizeObserver(positioner);
 
   const handleClose = useCallback(() => {
     setModalOpen(false);
@@ -76,19 +108,7 @@ export default function Gallery() {
     }
   }, [router.query.gallery, wmvgSorted, piece]);
 
-  const theme = useTheme();
-  const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-
-  let masonryColumns;
-
-  if (isDesktop) {
-    masonryColumns = 4;
-  } else if (isTablet) {
-    masonryColumns = 3;
-  } else {
-    masonryColumns = 2;
-  }
+  const traits = new Set(wmvgSorted.map((wmvg) => wmvg.traits.map((trait) => trait.value)).flat());
 
   return (
     <Container
@@ -132,9 +152,13 @@ export default function Gallery() {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
+              flexDirection: {
+                xs: 'column',
+                md: 'row',
+              },
+              justifyContent: 'space-between',
               alignSelf: 'flex-start',
+              width: '100%',
               ml: 2,
             }}
           >
@@ -142,16 +166,32 @@ export default function Gallery() {
               variant="h1"
               sx={{
                 mb: 3,
+                flex: '3',
               }}
             >
               Gallery
             </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifySelf: 'flex-end',
+                alignItems: 'center',
+                flex: '9',
+              }}
+            >
+              <Traits traits={traits} setGalleryFilters={setGalleryFilters} />
+            </Box>
           </Box>
-          <Masonry
-            items={wmvgSorted}
+          <MasonryScroller
+            positioner={positioner}
+            resizeObserver={resizeObserver}
+            containerRef={containerRef}
+            items={pieces}
+            height={windowHeight}
+            offset={offset}
+            overscanBy={6}
             render={GalleryPiece}
-            columnGutter={40}
-            columnCount={masonryColumns}
+            key={galleryFilters.concat()}
           />
         </Box>
         <Box

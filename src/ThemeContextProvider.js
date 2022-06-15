@@ -35,6 +35,9 @@ const lightTheme = createTheme({
 
 const darkTheme = createTheme({
   palette: {
+    primary: {
+      main: '#36364B',
+    },
     background: {
       default: '#080808',
     },
