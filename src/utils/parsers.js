@@ -1,4 +1,4 @@
-export const getName = (wmvgDescription) => {
+export const getName = (wmvgDescription = '') => {
   const quoteRegex = /(?:"[^"]*"|^[^"]*$)/;
   return wmvgDescription.match(quoteRegex)[0];
 };

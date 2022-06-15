@@ -31,7 +31,7 @@ TextSection.propTypes = {
   children: childrenProps.isRequired,
 };
 
-export default function GalleryPiece({ piece, index, setModalOpen }) {
+export default function GalleryPiece({ data = {}, index }) {
   const boxRef = useRef();
   const router = useRouter();
 
@@ -43,15 +43,15 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
   const selectPiece = useCallback((e) => {
     e.preventDefault();
     const { pathname } = router;
-    setModalOpen(true);
+    data.setModalOpen(true);
 
     router.push({
       pathname,
       query: {
-        gallery: piece.id,
+        gallery: data.id,
       },
     }, undefined, { scroll: false });
-  }, [piece.id, router, setModalOpen]);
+  }, [data, router]);
 
   return (
     <Box
@@ -83,8 +83,8 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
         ref={ref}
       >
         <img
-          src={piece.image_url}
-          alt={piece.name}
+          src={data.image_url}
+          alt={data.name}
           style={{
             transition: 'transform 0.5s ease-out',
             width: '100%',
@@ -113,7 +113,7 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
             letterSpacing: '0.1em',
           }}
         >
-          {piece.name}
+          {data.name}
         </Typography>
         <Typography
           variant="h3"
@@ -122,7 +122,7 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
             lineHeight: '3rem',
           }}
         >
-          {getName(piece.description)}
+          {getName(data.description)}
         </Typography>
       </Box>
     </Box>
@@ -130,9 +130,8 @@ export default function GalleryPiece({ piece, index, setModalOpen }) {
 }
 
 GalleryPiece.propTypes = {
-  piece: openseaPieceProps.isRequired,
+  data: openseaPieceProps.isRequired,
   index: PropTypes.number.isRequired,
-  setModalOpen: PropTypes.func.isRequired,
 };
 
 /*

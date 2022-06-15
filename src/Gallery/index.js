@@ -1,6 +1,8 @@
+/* eslint-disable no-param-reassign */
+
 import {
   Masonry,
-} from '@mui/lab';
+} from 'masonic';
 import {
   Box, Container, keyframes, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
@@ -43,6 +45,9 @@ export default function Gallery() {
     }
 
     return parseInt(a.name.slice(18), 10) > parseInt(b.name.slice(18), 10) ? 1 : -1;
+  }).map((piece) => {
+    piece.setModalOpen = setModalOpen;
+    return piece;
   });
 
   const handleClose = useCallback(() => {
@@ -76,17 +81,13 @@ export default function Gallery() {
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   let masonryColumns;
-  let masonrySpacing;
 
   if (isDesktop) {
     masonryColumns = 4;
-    masonrySpacing = 4;
   } else if (isTablet) {
     masonryColumns = 3;
-    masonrySpacing = 3;
   } else {
     masonryColumns = 2;
-    masonrySpacing = 2;
   }
 
   return (
@@ -147,18 +148,11 @@ export default function Gallery() {
             </Typography>
           </Box>
           <Masonry
-            columns={masonryColumns}
-            spacing={masonrySpacing}
-          >
-            {wmvgSorted.map((wmvgPiece, index) => (
-              <GalleryPiece
-                key={wmvgPiece.name}
-                piece={wmvgPiece}
-                index={index}
-                setModalOpen={setModalOpen}
-              />
-            ))}
-          </Masonry>
+            items={wmvgSorted}
+            render={GalleryPiece}
+            columnGutter={40}
+            columnCount={masonryColumns}
+          />
         </Box>
         <Box
           sx={{
