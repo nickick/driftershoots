@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import {
-  Box, Container, keyframes, Typography,
+  Box, CircularProgress, Container, keyframes, Typography,
 } from '@mui/material';
 import { useWindowSize } from '@react-hook/window-size';
 import {
@@ -116,6 +116,7 @@ export default function Gallery() {
         display: 'flex',
         flexDirection: 'column',
         zIndex: 3,
+        minHeight: '80vh',
       }}
     >
       {piece && (
@@ -180,8 +181,19 @@ export default function Gallery() {
             sx={{
               width: '100%',
               px: 4,
+              textAlign: 'center',
             }}
           >
+            {!pieces.length && (
+              <CircularProgress
+                size={90}
+                sx={{
+                  color: 'white',
+                  width: '100%',
+                  m: 20,
+                }}
+              />
+            )}
             <MasonryScroller
               positioner={positioner}
               resizeObserver={resizeObserver}

@@ -52,7 +52,7 @@ function PubTile({ data, index }) {
             flexDirection: 'column',
             m: 1,
             width: '100%',
-            animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
+            animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both 0.5s` : 'none',
             opacity: 0,
             overflow: 'hidden',
           },
@@ -212,6 +212,7 @@ export default function Publications() {
         zIndex: 10,
         display: 'flex',
         flexDirection: 'column',
+        mt: 6,
       }}
     >
       <Box
