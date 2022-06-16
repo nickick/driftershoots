@@ -9,12 +9,21 @@ function PillButton({ text, onClick, active = false }) {
     <Button
       variant="outlined"
       onClick={onClick}
-      sx={{
-        bgcolor: active ? '#23222B' : 'black',
-        borderRadius: '20px',
-        mr: 2,
-        mb: 2,
-      }}
+      sx={[
+        {
+          bgcolor: active ? '#23222B' : 'black',
+          borderRadius: '20px',
+          border: active ? '1px solid rgba(108, 108, 150, 1.0)' : '1px solid rgba(54, 54, 75, 0.5)',
+          mr: 2,
+          mb: 2,
+        },
+        {
+          '&:hover': {
+            bgcolor: '#23222B',
+            border: active ? '1px solid rgba(108, 108, 150, 1.0)' : '1px solid rgba(54, 54, 75, 0.5)',
+          },
+        },
+      ]}
     >
       <Typography
         variant="body"
