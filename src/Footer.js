@@ -1,11 +1,10 @@
 import {
   Box, Container, keyframes, Typography,
 } from '@mui/material';
-import { useContext } from 'react';
 import NextLink from 'next/link';
+import { useContext } from 'react';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
-import ThemeToggle from './ThemeToggle';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -46,7 +45,7 @@ export default function Footer() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            flex: 2,
+            flex: 5,
           }}
         >
           <Typography
@@ -55,7 +54,7 @@ export default function Footer() {
             To the moon and never back.
           </Typography>
           <Typography
-            variant="quote"
+            variant="overline"
           >
             Email
           </Typography>
@@ -77,7 +76,7 @@ export default function Footer() {
           }}
         >
           <Typography
-            variant="quote"
+            variant="overline"
           >
             Sitemap
           </Typography>
@@ -135,12 +134,7 @@ export default function Footer() {
           }}
         >
           <Typography
-            variant="h4"
-          >
-            Information
-          </Typography>
-          <Typography
-            variant="body"
+            variant="overline"
           >
             <NextLink
               href="/privacy-policy"
@@ -150,7 +144,6 @@ export default function Footer() {
           </Typography>
         </Box>
       </Box>
-      <ThemeToggle />
     </Container>
   );
 }
