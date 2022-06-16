@@ -28,6 +28,8 @@ function PubTile({ data, index }) {
     threshold: 0.8,
   });
 
+  const imageUrl = data.image || (data.ogImage || {}).url
+
   return (
     <Link
       href={data.link}
@@ -62,13 +64,15 @@ function PubTile({ data, index }) {
         ]}
         ref={ref}
       >
-        <img
-          src={data.image || (data.ogImage || {}).url}
-          style={{
-            transition: 'transform 0.5s ease-out',
-          }}
-          alt={data.title}
-        />
+        {imageUrl && (
+          <img
+            src={data.image || (data.ogImage || {}).url}
+            style={{
+              transition: 'transform 0.5s ease-out',
+            }}
+            alt={data.title}
+          />
+        )}
         <Box
           sx={{
             display: {
