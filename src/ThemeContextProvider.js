@@ -23,6 +23,37 @@ const themeShared = {
         disableGutters: true,
       },
     },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          fontWeight: 'bold',
+          '&.Mui-focused': {
+            color: 'rgba(255, 255, 255, 0.87)',
+          },
+          '&:after': {
+            borderBottom: '1px solid white',
+          },
+          '&:autofill': {
+            background: 'black',
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontWeight: 'bold',
+          '&.Mui-focused': {
+            color: 'rgba(255, 255, 255, 0.87)',
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'standard',
+      },
+    },
   },
 };
 

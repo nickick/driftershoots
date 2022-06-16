@@ -117,6 +117,10 @@ export default function Gallery() {
         flexDirection: 'column',
         zIndex: 3,
         minHeight: '80vh',
+        px: {
+          xs: 0,
+          md: 10,
+        },
       }}
     >
       {piece && (
