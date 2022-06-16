@@ -3,6 +3,7 @@
     "source": "The New York Times",
     "title": "A Rogue Climber Running From the Law Was Fleeing His Own Trauma",
     "link": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html",
+    "image": "/publications/nyt-cover.png",
     "highlight": true
   },
   {
@@ -62,6 +63,7 @@
   {
     "source": "Windsor Star",
     "title": "Photographer who climbed Ambassador Bridge facing charges in Ohio for similar stunts",
+    "image": "/publications/ambassador-bridge.png",
     "link": "https://windsorstar.com/news/local-news/photographer-who-climbed-ambassador-bridge-facing-charges-in-ohio-for-similar-stunts",
     "highlight": false
   },

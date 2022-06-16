@@ -2,7 +2,7 @@ import {
   Box, Container, keyframes, Link, Typography,
 } from '@mui/material';
 import { Masonry } from 'masonic';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import pubs from '../pages/api/publications/publications.json';
@@ -29,63 +29,56 @@ function PubTile({ data, index }) {
   });
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        m: 1,
-        width: '100%',
-        animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
-        opacity: 0,
-      }}
-      ref={ref}
+    <Link
+      href={data.link}
+      target="_blank"
+      sx={[
+        {
+          color: 'white',
+        },
+        {
+          '&:hover': {
+            textDecoration: 'none',
+          },
+        },
+      ]}
     >
       <Box
-        sx={{
-          display: {
-            xs: 'none',
-            md: 'flex',
-          },
-          flexDirection: 'column',
-          flex: 1,
-          backgroundImage: `url(${(data.ogImage || {}).url})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          height: '100%',
-        }}
-      />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 2,
-          position: 'relative',
-        }}
-      >
-        <Box
-          sx={{
-            bgcolor: {
-              xs: 'rgba(0,0,0,0.7)',
-              md: 'rgba(0,0,0,0.9)',
-            },
-            zIndex: 2,
-            position: 'absolute',
-            top: 0,
-            left: 0,
+        sx={[
+          {
+            display: 'flex',
+            flexDirection: 'column',
+            m: 1,
             width: '100%',
-            height: '100%',
+            animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
+            opacity: 0,
+            overflow: 'hidden',
+          },
+          {
+            '&:hover > img': {
+              transform: 'scale(1.1)',
+            },
+          },
+        ]}
+        ref={ref}
+      >
+        <img
+          src={data.image || (data.ogImage || {}).url}
+          style={{
+            transition: 'transform 0.5s ease-out',
           }}
+          alt={data.title}
         />
         <Box
           sx={{
-            backgroundImage: `url(${(data.ogImage || {}).url})`,
+            display: {
+              xs: 'none',
+              md: 'flex',
+            },
+            flexDirection: 'column',
+            flex: 1,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            zIndex: 1,
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
             height: '100%',
           }}
         />
@@ -93,61 +86,95 @@ function PubTile({ data, index }) {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            p: 3,
-            zIndex: 3,
+            flex: 2,
+            position: 'relative',
           }}
         >
-          <Typography
-            variant="h4"
+          <Box
             sx={{
-              fontSize: '1.25rem',
-              lineHeight: '2rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
+              bgcolor: {
+                xs: 'rgba(0,0,0,0.7)',
+                md: 'rgba(0,0,0,0.9)',
+              },
+              zIndex: 2,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
             }}
-          >
-            {data.source}
-          </Typography>
-          <Typography
-            variant="h3"
-            mb={2}
+          />
+          <Box
             sx={{
-              fontSize: '2rem',
-              lineHeight: '3rem',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              zIndex: 1,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
             }}
-          >
-            {data.title}
-          </Typography>
-          <Link
-            href={data.link}
-            target="_blank"
-            variant="text"
+          />
+          <Box
             sx={{
-              p: 0,
               display: 'flex',
-              alignItems: 'center',
-              color: 'white',
-              fontSize: '1.75rem',
-              fontWeight: 'bold',
+              flexDirection: 'column',
+              p: 3,
+              zIndex: 3,
+              bgcolor: '#23222B',
             }}
           >
-            Read More
-            <img
-              src="/right-arrow.svg"
-              alt="right arrow"
-              style={{
-                marginLeft: '1rem',
+            <Typography
+              variant="h4"
+              sx={{
+                fontSize: '1.25rem',
+                lineHeight: '2rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
               }}
-            />
-          </Link>
+            >
+              {data.source}
+            </Typography>
+            <Typography
+              variant="h3"
+              mb={2}
+              sx={{
+                fontSize: '2rem',
+                lineHeight: '3rem',
+              }}
+            >
+              {data.title}
+            </Typography>
+            <Typography
+              sx={{
+                p: 0,
+                display: 'flex',
+                alignItems: 'center',
+                color: 'white',
+                fontSize: '1.75rem',
+                fontWeight: 'bold',
+              }}
+            >
+              Read More
+              <img
+                src="/right-arrow.svg"
+                alt="right arrow"
+                style={{
+                  marginLeft: '1rem',
+                }}
+              />
+            </Typography>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Link>
   );
 }
 
 PubTile.propTypes = {
   data: PropTypes.shape({
+    image: string,
     ogImage: PropTypes.shape({
       url: PropTypes.string,
     }),
@@ -230,6 +257,7 @@ export default function Publications() {
           columnWidth={280}
           items={publications}
           render={PubTile}
+          overscanBy={6}
         />
       </Box>
     </Container>
