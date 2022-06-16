@@ -161,7 +161,7 @@ export default function Gallery() {
               px: {
                 xs: 0,
                 md: 4,
-              }
+              },
             }}
           >
             <Typography
@@ -172,7 +172,7 @@ export default function Gallery() {
                 px: {
                   xs: 4,
                   md: 0,
-                }
+                },
               }}
             >
               Gallery

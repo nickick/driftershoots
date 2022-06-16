@@ -256,7 +256,7 @@ export default function Publications() {
           display: 'flex',
           flexWrap: 'wrap',
           mx: {
-            xs: 4,
+            xs: 0,
             md: 4,
           },
         }}
