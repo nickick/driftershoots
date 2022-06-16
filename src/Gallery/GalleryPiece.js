@@ -111,6 +111,7 @@ export default function GalleryPiece({ data = {}, index }) {
             textTransform: 'uppercase',
             fontWeight: '700',
             letterSpacing: '0.1em',
+            textAlign: 'left',
           }}
         >
           {data.name}
@@ -120,6 +121,7 @@ export default function GalleryPiece({ data = {}, index }) {
           sx={{
             fontSize: '2rem',
             lineHeight: '3rem',
+            textAlign: 'left',
           }}
         >
           {getName(data.description)}
