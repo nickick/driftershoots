@@ -158,7 +158,10 @@ export default function Gallery() {
               justifyContent: 'space-between',
               alignSelf: 'flex-start',
               width: '100%',
-              px: 4,
+              px: {
+                xs: 0,
+                md: 4,
+              }
             }}
           >
             <Typography
@@ -166,6 +169,10 @@ export default function Gallery() {
               sx={{
                 mb: 3,
                 flex: '3',
+                px: {
+                  xs: 4,
+                  md: 0,
+                }
               }}
             >
               Gallery
@@ -184,7 +191,10 @@ export default function Gallery() {
           <Box
             sx={{
               width: '100%',
-              px: 4,
+              px: {
+                xs: 0,
+                md: 4,
+              },
               textAlign: 'center',
             }}
           >

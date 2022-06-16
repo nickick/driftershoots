@@ -213,7 +213,7 @@ export default function Publications() {
         flexDirection: 'column',
         mt: 6,
         px: {
-          xs: 4,
+          xs: 0,
           md: 10,
         },
       }}
