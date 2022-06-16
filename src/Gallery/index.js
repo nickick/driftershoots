@@ -129,18 +129,12 @@ export default function Gallery() {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
           mt: 6,
           animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
         }}
       >
-        <Box
-          sx={{
-            flex: 0,
-          }}
-        />
         <Box
           sx={{
             display: 'flex',
@@ -201,11 +195,6 @@ export default function Gallery() {
             />
           </Box>
         </Box>
-        <Box
-          sx={{
-            flex: 0,
-          }}
-        />
       </Box>
     </Container>
   );
