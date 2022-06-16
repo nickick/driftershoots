@@ -28,8 +28,6 @@ function PubTile({ data, index }) {
     threshold: 0.8,
   });
 
-  const { animationDelay } = useContext(LoadedContext);
-
   const imageUrl = data.image || (data.ogImage || {}).url;
 
   return (
@@ -53,7 +51,7 @@ function PubTile({ data, index }) {
             display: 'flex',
             flexDirection: 'column',
             width: '100%',
-            animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both ${animationDelay}` : 'none',
+            animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both 0.5s` : 'none',
             opacity: 0,
             overflow: 'hidden',
           },
