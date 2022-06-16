@@ -25,7 +25,7 @@ const fadeFromBelow = keyframes`
 function PubTile({ data, index }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.8,
+    threshold: 0.2,
   });
 
   const imageUrl = data.image || (data.ogImage || {}).url;
