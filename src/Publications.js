@@ -64,13 +64,17 @@ function PubTile({ data, index }) {
         ref={ref}
       >
         {imageUrl && (
-          <img
-            src={data.image || (data.ogImage || {}).url}
-            style={{
-              transition: 'transform 0.5s ease-out',
-            }}
-            alt={data.title}
-          />
+          <div>
+            <img
+              src={data.image || (data.ogImage || {}).url}
+              style={{
+                transition: 'transform 0.5s ease-out',
+                width: '100%',
+                transform: 'translateY(1rem)',
+              }}
+              alt={data.title}
+            />
+          </div>
         )}
         <Box
           sx={{
