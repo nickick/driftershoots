@@ -19,6 +19,29 @@ const fadeFromBelow = keyframes`
   }
 `;
 
+const sitemapLinks = [
+  {
+    text: 'Home',
+    link: '/',
+  },
+  {
+    text: 'Publications',
+    link: '/publications',
+  },
+  {
+    text: 'Gallery',
+    link: '/gallery',
+  },
+  {
+    text: 'About',
+    link: '/about',
+  },
+  {
+    text: 'Contact',
+    link: '/contact',
+  },
+];
+
 export default function Footer() {
   const { animationDelay } = useContext(LoadedContext);
 
@@ -45,7 +68,7 @@ export default function Footer() {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            flex: 5,
+            flex: 2,
           }}
         >
           <Typography
@@ -77,54 +100,41 @@ export default function Footer() {
         >
           <Typography
             variant="overline"
+            sx={{
+              mt: {
+                xs: 1,
+                md: 0,
+              },
+            }}
           >
             Sitemap
           </Typography>
-          <Typography
-            variant="body"
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: {
+                xs: 'column',
+                md: 'row',
+              },
+            }}
           >
-            <NextLink
-              href="/"
-            >
-              Home
-            </NextLink>
-          </Typography>
-          <Typography
-            variant="body"
-          >
-            <NextLink
-              href="/publications"
-            >
-              Publications
-            </NextLink>
-          </Typography>
-          <Typography
-            variant="body"
-          >
-            <NextLink
-              href="/gallery"
-            >
-              Gallery
-            </NextLink>
-          </Typography>
-          <Typography
-            variant="body"
-          >
-            <NextLink
-              href="/about"
-            >
-              About
-            </NextLink>
-          </Typography>
-          <Typography
-            variant="body"
-          >
-            <NextLink
-              href="/contact"
-            >
-              Contact
-            </NextLink>
-          </Typography>
+            {
+              sitemapLinks.map(({ text, link }) => (
+                <Typography
+                  variant="body"
+                  sx={{
+                    m: 0.5,
+                  }}
+                >
+                  <NextLink
+                    href={link}
+                  >
+                    {text}
+                  </NextLink>
+                </Typography>
+              ))
+            }
+          </Box>
         </Box>
         <Box
           sx={{
