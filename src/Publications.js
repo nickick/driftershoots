@@ -28,7 +28,7 @@ function PubTile({ data, index }) {
     threshold: 0.8,
   });
 
-  const imageUrl = data.image || (data.ogImage || {}).url
+  const imageUrl = data.image || (data.ogImage || {}).url;
 
   return (
     <Link
@@ -252,7 +252,7 @@ export default function Publications() {
           flexWrap: 'wrap',
           mx: {
             xs: 4,
-            md: 14,
+            md: 4,
           },
         }}
       >
