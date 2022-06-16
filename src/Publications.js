@@ -1,13 +1,13 @@
 import {
-  Box, keyframes, Typography,
+  Box, Container, keyframes, Link, Typography,
 } from '@mui/material';
-import { useContext, useEffect, useState } from 'react';
+import { Masonry } from 'masonic';
 import PropTypes from 'prop-types';
+import { useContext, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import pubs from '../pages/api/publications/publications.json';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
-import Button from './Button';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -22,7 +22,7 @@ const fadeFromBelow = keyframes`
   }
 `;
 
-function PubTile({ publication, index }) {
+function PubTile({ data, index }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.8,
@@ -32,13 +32,9 @@ function PubTile({ publication, index }) {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
-        border: '1px solid white',
+        flexDirection: 'column',
         m: 1,
-        width: {
-          xs: '100%',
-          md: publication.highlight ? '100%' : 'calc(50% - 2rem)',
-        },
+        width: '100%',
         animation: (index === 0 || inView) ? `${fadeFromBelow} 0.3s both` : 'none',
         opacity: 0,
       }}
@@ -52,7 +48,7 @@ function PubTile({ publication, index }) {
           },
           flexDirection: 'column',
           flex: 1,
-          backgroundImage: `url(${(publication.ogImage || {}).url})`,
+          backgroundImage: `url(${(data.ogImage || {}).url})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           height: '100%',
@@ -82,7 +78,7 @@ function PubTile({ publication, index }) {
         />
         <Box
           sx={{
-            backgroundImage: `url(${(publication.ogImage || {}).url})`,
+            backgroundImage: `url(${(data.ogImage || {}).url})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             zIndex: 1,
@@ -103,28 +99,47 @@ function PubTile({ publication, index }) {
         >
           <Typography
             variant="h4"
-            mb={2}
+            sx={{
+              fontSize: '1.25rem',
+              lineHeight: '2rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+            }}
           >
-            {publication.source}
+            {data.source}
           </Typography>
           <Typography
             variant="h3"
             mb={2}
-          >
-            {publication.title}
-          </Typography>
-          <Button
-            href={publication.link}
-            target="_blank"
             sx={{
-              p: 3,
-              m: 3,
-              width: '50%',
-              alignSelf: 'center',
+              fontSize: '2rem',
+              lineHeight: '3rem',
+            }}
+          >
+            {data.title}
+          </Typography>
+          <Link
+            href={data.link}
+            target="_blank"
+            variant="text"
+            sx={{
+              p: 0,
+              display: 'flex',
+              alignItems: 'center',
+              color: 'white',
+              fontSize: '1.75rem',
+              fontWeight: 'bold',
             }}
           >
             Read More
-          </Button>
+            <img
+              src="/right-arrow.svg"
+              alt="right arrow"
+              style={{
+                marginLeft: '1rem',
+              }}
+            />
+          </Link>
         </Box>
       </Box>
     </Box>
@@ -132,7 +147,7 @@ function PubTile({ publication, index }) {
 }
 
 PubTile.propTypes = {
-  publication: PropTypes.shape({
+  data: PropTypes.shape({
     ogImage: PropTypes.shape({
       url: PropTypes.string,
     }),
@@ -161,9 +176,11 @@ export default function Publications() {
   }, []);
 
   return (
-    <Box
+    <Container
       sx={{
         zIndex: 10,
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <Box
@@ -172,27 +189,31 @@ export default function Publications() {
           flexDirection: 'column',
           justifyContent: 'center',
           animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
-          minHeight: '70vh',
         }}
       >
-        <Typography
-          variant="h2"
+        <Box
           sx={{
-            textAlign: 'center',
-            mb: 1,
+            display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              md: 'row',
+            },
+            justifyContent: 'space-between',
+            alignSelf: 'flex-start',
+            width: '100%',
+            px: 4,
           }}
         >
-          Drifter Shoots in the News
-        </Typography>
-        <Typography
-          variant="h1"
-          sx={{
-            textAlign: 'center',
-            mb: 3,
-          }}
-        >
-          Publications
-        </Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              mb: 3,
+              flex: '3',
+            }}
+          >
+            Publications
+          </Typography>
+        </Box>
       </Box>
       <Box
         sx={{
@@ -204,16 +225,13 @@ export default function Publications() {
           },
         }}
       >
-        {
-          publications.map((publication, index) => (
-            <PubTile
-              key={publication.title}
-              publication={publication}
-              index={index}
-            />
-          ))
-        }
+        <Masonry
+          columnGutter={40}
+          columnWidth={280}
+          items={publications}
+          render={PubTile}
+        />
       </Box>
-    </Box>
+    </Container>
   );
 }

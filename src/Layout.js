@@ -21,14 +21,14 @@ export default function Layout({ children }) {
 
   const animationLength = 500; // ms
 
-  const pageLoadAnimationComplete = useCallback((url) => {
-    let bgImage = '';
+  const pageLoadAnimationComplete = useCallback(() => {
+    const bgImage = '';
     // if (url.includes('/gallery')) {
     //   bgImage = '/gallery-background.jpeg';
     // }
-    if (url && url.includes('/publications')) {
-      bgImage = '/publications-background.jpeg';
-    }
+    // if (url && url.includes('/publications')) {
+    //   bgImage = '/publications-background.jpeg';
+    // }
 
     setTimeout(() => {
       setBackgroundImage(bgImage);
