@@ -9,7 +9,7 @@ export default function ContactPage() {
         flexDirection: 'column',
         minHeight: {
           xs: 'inherit',
-          md: '90vh',
+          md: '70vh',
         },
       }}
     >

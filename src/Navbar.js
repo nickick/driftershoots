@@ -8,7 +8,7 @@ import { useCallback, useState } from 'react';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 import DiscordIcon from './DiscordIcon';
 import Drawer from './Drawer';
-import { NavButton } from './NavbarButton';
+import { NavButton } from './NavButton';
 
 const fadeIn = keyframes`
   0% {
