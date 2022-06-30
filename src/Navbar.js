@@ -1,14 +1,14 @@
-import {
-  Box, Button, Container, keyframes,
-} from '@mui/material';
-import PropTypes from 'prop-types';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import Link from 'next/link';
+import {
+  Box, Container, keyframes,
+} from '@mui/material';
 import { Spin as Hamburger } from 'hamburger-react';
+import Link from 'next/link';
 import { useCallback, useState } from 'react';
+import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 import DiscordIcon from './DiscordIcon';
 import Drawer from './Drawer';
-import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
+import { NavButton } from './NavbarButton';
 
 const fadeIn = keyframes`
   0% {
@@ -40,44 +40,6 @@ const fadeInLogo = keyframes`
     opacity: 1;
   }
 `;
-
-function NavButton({
-  text, href, icon, index,
-}) {
-  return (
-    <Link href={href} passHref>
-      <Button
-        variant="text"
-        sx={{
-          color: 'text.primary',
-          minWidth: icon ? '1rem' : 'inherit',
-          mx: '0.5rem',
-          fontSize: '1.5rem',
-          lineHeight: '2rem',
-          letterSpacing: '0.1rem',
-          animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s`,
-        }}
-        target={(icon || href[0] !== '/') ? '_blank' : ''}
-      >
-        {text}
-        {icon || ''}
-      </Button>
-    </Link>
-  );
-}
-
-NavButton.propTypes = {
-  text: PropTypes.string,
-  href: PropTypes.string,
-  icon: PropTypes.node,
-  index: PropTypes.number.isRequired,
-};
-
-NavButton.defaultProps = {
-  text: '',
-  href: '',
-  icon: null,
-};
 
 const leftNav = [
   {
