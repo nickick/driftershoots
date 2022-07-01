@@ -30,7 +30,7 @@ function InputField({ label, sx, ...props }) {
       InputProps={{
         sx: [
           {
-            fontSize: '3rem',
+            fontSize: '2rem',
             width: '100%',
             height: '100%',
           },
@@ -39,7 +39,8 @@ function InputField({ label, sx, ...props }) {
       InputLabelProps={{
         shrink: true,
         style: {
-          fontSize: '3rem',
+          fontSize: '2rem',
+          color: 'white',
         },
       }}
       sx={{
@@ -98,6 +99,7 @@ export default function Contact() {
         <Box
           sx={{
             display: 'flex',
+            mt: 8,
             flexDirection: {
               xs: 'column',
               md: 'row',
@@ -108,7 +110,7 @@ export default function Contact() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              flex: '1 1',
+              flex: '4 4',
             }}
           >
             <InputField label="Name" required />
@@ -116,12 +118,11 @@ export default function Contact() {
             <InputField label="Phone Number" required />
           </Box>
           <InputField
-            label="Message"
+            label="Message (Optional)"
             multiline
-            required
             rows={5}
             sx={{
-              flex: '1 1',
+              flex: '8 8',
               ml: {
                 xs: 0,
                 md: 4,
@@ -146,8 +147,13 @@ export default function Contact() {
         sx={{
           pt: {
             xs: 10,
-            md: 14,
+            md: 8,
           },
+          mt: {
+            xs: 10,
+            md: 8,
+          },
+          borderTop: '1px solid #23222B',
         }}
       >
         <Typography

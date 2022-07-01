@@ -120,10 +120,12 @@ export default function Gallery() {
     if (piece) {
       const index = wmvgSorted.indexOf(piece);
       const pieceElement = document.getElementById(`wmvg-${index}`);
-      window.scrollTo({
-        top: pieceElement.pageYOffset,
-        behavior: 'smooth',
-      });
+      if (pieceElement) {
+        window.scrollTo({
+          top: pieceElement.pageYOffset,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [router.query.gallery, wmvgSorted, piece]);
 

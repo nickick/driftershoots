@@ -108,23 +108,25 @@ export default function GalleryModal({ piece, open, handleClose }) {
               }}
               onLoad={onImageLoad}
             />
-            <Box
-              sx={{
-                p: 3,
-                bgcolor: '#23222B',
-              }}
-            >
-              <Typography
-                variant="h4"
+            {getName(piece.description) !== 'Other' && (
+              <Box
+                sx={{
+                  p: 3,
+                  bgcolor: '#23222B',
+                }}
               >
-                {piece.name}
-              </Typography>
-              <Typography
-                variant="h3"
-              >
-                {getName(piece.description)}
-              </Typography>
-            </Box>
+                <Typography
+                  variant="h4"
+                >
+                  {piece.name}
+                </Typography>
+                <Typography
+                  variant="h3"
+                >
+                  {getName(piece.description)}
+                </Typography>
+              </Box>
+            )}
           </Box>
         )}
       </Box>

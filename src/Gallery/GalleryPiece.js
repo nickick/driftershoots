@@ -93,40 +93,42 @@ export default function GalleryPiece({ data = {}, index }) {
           }}
         />
       </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          p: 3,
-          cursor: 'pointer',
-          opacity: 1,
-          background: '#23222B',
-        }}
-      >
-        <Typography
-          variant="h4"
+      {getName(data.description) !== 'Other' && (
+        <Box
           sx={{
-            fontSize: '1.25rem',
-            lineHeight: '2rem',
-            textTransform: 'uppercase',
-            fontWeight: '700',
-            letterSpacing: '0.1em',
-            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            p: 3,
+            cursor: 'pointer',
+            opacity: 1,
+            background: '#23222B',
           }}
         >
-          {data.name}
-        </Typography>
-        <Typography
-          variant="h3"
-          sx={{
-            fontSize: '2rem',
-            lineHeight: '3rem',
-            textAlign: 'left',
-          }}
-        >
-          {getName(data.description)}
-        </Typography>
-      </Box>
+          <Typography
+            variant="h4"
+            sx={{
+              fontSize: '1.25rem',
+              lineHeight: '2rem',
+              textTransform: 'uppercase',
+              fontWeight: '700',
+              letterSpacing: '0.1em',
+              textAlign: 'left',
+            }}
+          >
+            {data.name}
+          </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: '2rem',
+              lineHeight: '3rem',
+              textAlign: 'left',
+            }}
+          >
+            {getName(data.description)}
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 }

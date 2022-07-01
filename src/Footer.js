@@ -61,183 +61,191 @@ export default function Footer() {
   const { pathname } = router;
 
   return (
-    <Container
+    <Box
       sx={{
-        maxWidth: '1440px',
-        pt: 13,
-        pb: 4,
-        px: 4,
         animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${1 + animationDelay}s`,
+        position: 'relative',
         zIndex: 3,
+        borderTop: '1px solid #23222B',
+        mt: 14,
       }}
     >
-      <Box
+      <Container
         sx={{
-          display: 'flex',
-          flexDirection: {
-            xs: 'column',
-            md: 'row',
-          },
-          width: '100%',
+          maxWidth: '1440px',
+          pt: 13,
+          pb: 4,
+          px: 4,
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            justifyContent: {
-              xs: 'flex-start',
-              md: 'center',
+            flexDirection: {
+              xs: 'column',
+              md: 'row',
             },
-            alignItems: {
-              xs: 'center',
-              md: 'flex-start',
-            },
-            flex: 1,
+            width: '100%',
           }}
         >
-          <Link
-            href="/"
+          <Box
             sx={{
-              mb: {
-                xs: 1,
-                md: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: {
+                xs: 'flex-start',
+                md: 'center',
               },
+              alignItems: {
+                xs: 'center',
+                md: 'flex-start',
+              },
+              flex: 1,
             }}
           >
-            <img
-              src="/icons/drift-logo.svg"
-              style={{
-                height: '24px',
-                aspectRatio: '116 / 38',
-                cursor: 'pointer',
+            <Link
+              href="/"
+              sx={{
+                mb: {
+                  xs: 1,
+                  md: 0,
+                },
               }}
-              alt="Drifter Shoots logo"
-            />
-          </Link>
-          <Typography
-            variant="body1"
-            sx={{
-              color: '#717083',
-              fontSize: '1.75rem',
-              mt: 8,
-              display: {
-                xs: 'none',
-                md: 'block',
-              },
-            }}
-          >
-            &copy;2022 All rights reserved
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 2,
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: {
-                xs: 'column',
-                md: 'row',
-              },
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {
-              sitemapLinks.map(({ text, link }) => (
-                <Typography
-                  variant="body"
-                  sx={{
-                    m: 0.5,
-                    fontWeight: 700,
-                    fontSize: '1.75rem',
-                    lineHeight: '3rem',
-                    mx: 3,
-                    borderBottom: pathname === link ? '1px solid white' : 'none',
-                  }}
-                  key={text}
-                >
-                  <NextLink
-                    href={link}
-                  >
-                    {text}
-                  </NextLink>
-                </Typography>
-              ))
-            }
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1,
-            alignItems: {
-              xs: 'center',
-              md: 'flex-end',
-            },
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: {
-                xs: 'column',
-                md: 'row',
-              },
-              alignItems: 'center',
-            }}
-          >
-            {
-              rightNav.map(({ text, href, icon }, index) => (
-                <NavButton
-                  key={text + href}
-                  text={text}
-                  href={href}
-                  icon={icon}
-                  index={index}
-                />
-              ))
-            }
-          </Box>
-          <Typography
-            variant="body1"
-            sx={{
-              color: '#717083',
-              fontSize: '1.75rem',
-              mt: {
-                xs: 1,
-                md: 8,
-              },
-            }}
-          >
-            <NextLink
-              href="/privacy-policy"
             >
-              Privacy Policy
-            </NextLink>
-          </Typography>
-          <Typography
-            variant="body1"
+              <img
+                src="/icons/drift-logo.svg"
+                style={{
+                  height: '24px',
+                  aspectRatio: '116 / 38',
+                  cursor: 'pointer',
+                }}
+                alt="Drifter Shoots logo"
+              />
+            </Link>
+            <Typography
+              variant="body1"
+              sx={{
+                color: '#717083',
+                fontSize: '1.75rem',
+                mt: 8,
+                display: {
+                  xs: 'none',
+                  md: 'block',
+                },
+              }}
+            >
+              &copy;2022 All rights reserved
+            </Typography>
+          </Box>
+          <Box
             sx={{
-              color: '#717083',
-              fontSize: '1.75rem',
-              mt: 1,
-              display: {
-                xs: 'block',
-                md: 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 2,
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {
+                sitemapLinks.map(({ text, link }) => (
+                  <Typography
+                    variant="body"
+                    sx={{
+                      m: 0.5,
+                      fontWeight: 700,
+                      fontSize: '1.75rem',
+                      lineHeight: '3rem',
+                      mx: 3,
+                      borderBottom: pathname === link ? '1px solid white' : 'none',
+                    }}
+                    key={text}
+                  >
+                    <NextLink
+                      href={link}
+                    >
+                      {text}
+                    </NextLink>
+                  </Typography>
+                ))
+              }
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              alignItems: {
+                xs: 'center',
+                md: 'flex-end',
               },
             }}
           >
-            &copy;2022 All rights reserved
-          </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+                alignItems: 'center',
+              }}
+            >
+              {
+                rightNav.map(({ text, href, icon }, index) => (
+                  <NavButton
+                    key={text + href}
+                    text={text}
+                    href={href}
+                    icon={icon}
+                    index={index}
+                  />
+                ))
+              }
+            </Box>
+            <Typography
+              variant="body1"
+              sx={{
+                color: '#717083',
+                fontSize: '1.75rem',
+                mt: {
+                  xs: 1,
+                  md: 8,
+                },
+              }}
+            >
+              <NextLink
+                href="/privacy-policy"
+              >
+                Privacy Policy
+              </NextLink>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: '#717083',
+                fontSize: '1.75rem',
+                mt: 1,
+                display: {
+                  xs: 'block',
+                  md: 'none',
+                },
+              }}
+            >
+              &copy;2022 All rights reserved
+            </Typography>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 }
