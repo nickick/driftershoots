@@ -162,7 +162,7 @@ export default function Contact() {
           Email
         </Typography>
         <Link
-          href="mailto:driftershoots@gmail.com"
+          href="mailto:management@driftershoots.com"
         >
           <Typography
             variant="h5"
@@ -172,7 +172,7 @@ export default function Contact() {
               lineHeight: '4rem',
             }}
           >
-            driftershoots@gmail.com
+            management@driftershoots.com
           </Typography>
         </Link>
       </Box>

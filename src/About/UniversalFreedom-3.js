@@ -30,7 +30,6 @@ export default function UniversalFreedom3() {
         <Typography
           variant="overline"
           sx={{
-
           }}
         >
           Universal Freedom

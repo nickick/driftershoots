@@ -184,7 +184,6 @@ export default function ArrestedAtGunpoint() {
         >
           <Typography
             variant="h4"
-
           >
             Donate to Drifter&apos;s Campaign
           </Typography>

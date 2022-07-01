@@ -96,7 +96,6 @@ export default function UniversalFreedom2() {
         <Typography
           variant="overline"
           sx={{
-
           }}
         >
           Universal Freedom
@@ -161,6 +160,9 @@ export default function UniversalFreedom2() {
         >
           <Typography
             variant="h4"
+            sx={{
+              textTransform: 'none',
+            }}
           >
             Contact
           </Typography>

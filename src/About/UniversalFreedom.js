@@ -34,6 +34,8 @@ export default function UniversalFreedom() {
       >
         <Typography
           variant="overline"
+          sx={{
+          }}
         >
           Universal Freedom
         </Typography>
@@ -80,6 +82,9 @@ export default function UniversalFreedom() {
         >
           <Typography
             variant="h4"
+            sx={{
+              textTransform: 'none',
+            }}
           >
             View Gallery
           </Typography>

@@ -12,8 +12,12 @@ const themeShared = {
     h1: {
       fontFamily: ['Rawgly', 'serif'].join(','),
     },
+    h4: {
+      textTransform: 'none',
+    },
     overline: {
       fontSize: '2rem',
+      letterSpacing: '0.02em',
     },
   },
   components: {

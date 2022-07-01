@@ -2813,7 +2813,7 @@ export default function PrivacyPolicy () {
                                             <span data-custom-class="body_text">
                                               <bdt className="block-component" />
                                               <bdt className="question">
-                                                driftershoots@gmail.com
+                                                management@driftershoots.com
                                               </bdt>
                                               <bdt className="else-block" />
                                             </span>
@@ -3935,7 +3935,7 @@ export default function PrivacyPolicy () {
                                                 <bdt className="block-component" />
                                                 email us at{" "}
                                                 <bdt className="question">
-                                                  driftershoots@gmail.com
+                                                  management@driftershoots.com
                                                 </bdt>
                                                 <bdt className="statement-end-if-in-editor" />
                                               </span>
