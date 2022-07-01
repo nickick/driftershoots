@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import Head from 'next/head';
 import PrivacyPolicy from '../src/PrivacyPolicy';
 
 export default function PrivacyPolicyPage() {
@@ -13,6 +14,22 @@ export default function PrivacyPolicyPage() {
         },
       }}
     >
+      <Head>
+        <meta property="og:image" content="https://driftershoots.com/open-graph.png" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Privacy Policy for Driftershoots's site" />
+        <meta property="og:type" content="website" />
+        <meta name="description" content="Privacy Policy for Driftershoots's site" />
+        <meta property="og:title" content="Driftershoots.com" />
+        <meta property="og:description" content="Privacy Policy for Driftershoots's site" />
+        <meta property="og:url" content="https://driftershoots.com/" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@driftershoots" />
+        <meta name="twitter:creator" content="@pepperonick" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <PrivacyPolicy />
     </Box>
   );

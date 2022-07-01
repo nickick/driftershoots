@@ -78,6 +78,7 @@ export default function Gallery() {
   const theme = useTheme();
   const matchesLg = useMediaQuery(theme.breakpoints.up('lg'));
   const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+  const matchesSm = useMediaQuery(theme.breakpoints.up('sm'));
 
   let columns;
 
@@ -85,8 +86,10 @@ export default function Gallery() {
     columns = 4;
   } else if (matchesMd) {
     columns = 3;
-  } else {
+  } else if (matchesSm) {
     columns = 2;
+  } else {
+    columns = 1;
   }
 
   const positioner = usePositioner(

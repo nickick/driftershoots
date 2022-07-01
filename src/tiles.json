@@ -9,14 +9,19 @@
       "main-image-overlay": "",
       "main-image-overlay-alt": "",
       "main-image-zoom-start": {
-        "scale": 0.9,
-        "translateX": -50, 
-        "translateY": -50
+        "scale": 0.45,
+        "translateX": -120, 
+        "translateY": -120
       },
       "main-image-zoom": {
-        "scale": 1,
-        "translateX": -30, 
-        "translateY": -65
+        "scale": 0.45,
+        "translateX": -102, 
+        "translateY": -118
+      },
+      "main-image-mobile-zoom": {
+        "scale": 0.45,
+        "translateX": -110, 
+        "translateY": -138
       },
       "main-image-alt": "Drifter Shoots aka Isaac Wright on cover of New York Times",
       "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
@@ -30,18 +35,23 @@
       "h1": "First Day Out",
       "logo": "",
       "logo-alt": "",
-      "main-image": "/news-images/fdo.png",
+      "main-image": "/news-images/fdo.jpg",
       "main-image-overlay": "",
       "main-image-overlay-alt": "",
       "main-image-zoom-start": {
-        "scale": 1.6,
-        "translateX": -30, 
-        "translateY": -40
+        "scale": 0.7,
+        "translateX": -70, 
+        "translateY": -70
       },
       "main-image-zoom": {
-        "scale": 1.4,
-        "translateX": -40, 
-        "translateY": -35
+        "scale": 0.8,
+        "translateX": -74, 
+        "translateY": -70
+      },
+      "main-image-mobile-zoom": {
+        "scale": 0.8,
+        "translateX": -74, 
+        "translateY": -80
       },
       "main-image-alt": "Drifter Shoots aka Isaac Wright sitting on cable of bridge overlooking New York City",
       "right-title": "Open Edition by DrifterShoots",
@@ -55,19 +65,19 @@
       "h1": "NFT.\nNYC\n2022",
       "logo": "",
       "logo-alt": "",
-      "main-image": "/news-images/nft-nyc.png",
+      "main-image": "/news-images/nyc-nft.jpg",
       "main-image-overlay": "/news-images/nftnyc-logo.png",
       "main-image-overlay-alt": "NYC NFT Logo",
       "main-image-zoom-start": 
       {
-        "scale": 2,
+        "scale": 1,
         "translateX": -40, 
         "translateY": -35
       },
       "main-image-zoom": {
-        "scale": 1.4,
-        "translateX": -40, 
-        "translateY": -35
+        "scale": 0.7,
+        "translateX": -70, 
+        "translateY": -75
       },
       "main-image-alt": "New York City skyline",
       "right-title": "Driftershoots Meet & Greet with NFT Holders",
@@ -81,7 +91,7 @@
       "h1": "Where\nMy Vans\nGo",
       "logo": "",
       "logo-alt": "",
-      "main-image": "/news-images/wmvg-main.png",
+      "main-image": "/news-images/wmvg-main.jpg",
       "main-image-overlay": "",
       "main-image-overlay-alt": "",
       "main-image-zoom-start": {
@@ -90,9 +100,14 @@
         "translateY": -30
       },
       "main-image-zoom": {
-        "scale": 1.4,
-        "translateX": -35, 
-        "translateY": -40
+        "scale": 1.0,
+        "translateX": -50, 
+        "translateY": -55
+      },
+      "main-image-mobile-zoom": {
+        "scale": 0.65,
+        "translateX": -80, 
+        "translateY": -90
       },
       "main-image-alt": "Shoes overlooking bridge from top of bridge arch",
       "right-title": "NFT Collection",

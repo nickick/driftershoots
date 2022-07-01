@@ -1,5 +1,5 @@
 import {
-  Box, Container, keyframes, Link, Typography,
+  Box, Container, keyframes, Link, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
 import { Masonry } from 'masonic';
 import PropTypes, { string } from 'prop-types';
@@ -209,6 +209,23 @@ export default function Publications() {
     fetchPublications(false);
   }, []);
 
+  const theme = useTheme();
+  const matchesLg = useMediaQuery(theme.breakpoints.up('lg'));
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+  const matchesSm = useMediaQuery(theme.breakpoints.up('sm'));
+
+  let columns;
+
+  if (matchesLg) {
+    columns = 4;
+  } else if (matchesMd) {
+    columns = 3;
+  } else if (matchesSm) {
+    columns = 2;
+  } else {
+    columns = 1;
+  }
+
   return (
     <Container
       sx={{
@@ -268,6 +285,7 @@ export default function Publications() {
         <Masonry
           columnGutter={40}
           columnWidth={280}
+          columnCount={columns}
           items={publications}
           render={PubTile}
           overscanBy={6}

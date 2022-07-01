@@ -60,8 +60,8 @@ export default function MobileTiles({ tiles }) {
             alt={tile['main-image-alt']}
             overlay={tile['main-image-overlay']}
             overlayAlt={tile['main-image-overlay-alt']}
-            zoom={tile['main-image-zoom']}
-            zoomStart={tile['main-image-zoom-start']}
+            zoom={tile['main-image-mobile-zoom'] || tile['main-image-zoom']}
+            zoomStart={tile['main-image-mobile-zoom-start'] || tile['main-image-zoom-start']}
             index={index}
           />
           {/* Right box */}
@@ -101,6 +101,7 @@ export default function MobileTiles({ tiles }) {
                   src={tile.logo}
                   style={{
                     width: '100%',
+                    borderRadius: 0,
                   }}
                   alt={tile['logo-alt']}
                 />
