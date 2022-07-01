@@ -56,7 +56,7 @@ export default function GalleryModal({ piece, open, handleClose }) {
       >
         <Close
           sx={{
-            position: 'fixed',
+            position: 'absolute',
             right: 10,
             top: 10,
             zIndex: 1300,
