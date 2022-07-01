@@ -45,7 +45,9 @@ export default function CTAButton({ tiles, selectedTileIndex }) {
   return (
     <OutlinedButton
       href={tiles[selectedTileIndex]['right-button-href']}
-      target="_blank"
+      clientside={
+        tiles[selectedTileIndex]['right-button-href'].indexOf('/') === 0
+      }
       text={tiles[selectedTileIndex]['right-button-text']}
     >
       {tiles.map((tile, index) => (

@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import {
-  Box, CircularProgress, Container, keyframes, Typography,
+  Box, CircularProgress, Container, keyframes, Typography, useMediaQuery, useTheme,
 } from '@mui/material';
 import { useWindowSize } from '@react-hook/window-size';
 import {
@@ -75,8 +75,27 @@ export default function Gallery() {
     windowHeight,
   ]);
 
+  const theme = useTheme();
+  const matchesLg = useMediaQuery(theme.breakpoints.up('lg'));
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+
+  let columns;
+
+  if (matchesLg) {
+    columns = 4;
+  } else if (matchesMd) {
+    columns = 3;
+  } else {
+    columns = 2;
+  }
+
   const positioner = usePositioner(
-    { width, columnWidth: 280, columnGutter: 40 },
+    {
+      width,
+      columnWidth: 220,
+      columnGutter: 40,
+      columnCount: columns,
+    },
     [pieces],
   );
 

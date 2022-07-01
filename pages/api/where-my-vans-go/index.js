@@ -59,10 +59,10 @@ async function getWMVGPieces() {
   additionalPhotos.forEach((photoName) => {
     assets.unshift({
       name: photoName,
-      description: 'Untitled Collection',
+      description: 'Other',
       traits: [{
         trait_type: 'Collection',
-        value: 'Untitled Collection',
+        value: 'Other',
       }],
       image_url: `/gallery/${photoName}.jpeg`,
       image_preview_url: `/gallery/${photoName}.jpeg`,

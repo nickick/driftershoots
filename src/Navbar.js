@@ -25,12 +25,14 @@ const fadeInLogo = keyframes`
   0% {
     -webkit-transform: scale(1.2) translateY(${initialHeight}vh);;
     transform: scale(1.2) translateY(${initialHeight}vh);
+    letter-spacing: 0.5em;
     opacity: 0;
   }
 
   70% {
     -webkit-transform: scale(1.2) translateY(${initialHeight}vh);
     transform: scale(1.2) translateY(${initialHeight}vh);
+    letter-spacing: 0em;
     opacity: 1;
   }
 
