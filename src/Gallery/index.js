@@ -141,6 +141,7 @@ export default function Gallery() {
         flexDirection: 'column',
         zIndex: 3,
         minHeight: '80vh',
+        overflowX: 'hidden',
         px: {
           xs: 0,
           md: 10,
@@ -214,7 +215,11 @@ export default function Gallery() {
           </Box>
           <Box
             sx={{
-              width: '100%',
+              overflow: 'hidden',
+              width: {
+                xs: '90%',
+                md: '100%',
+              },
               px: {
                 xs: 0,
                 md: 4,

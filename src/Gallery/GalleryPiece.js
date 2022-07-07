@@ -59,6 +59,7 @@ export default function GalleryPiece({ data = {}, index }) {
         {
           opacity: inView ? 1 : 0,
           position: 'relative',
+          width: '100%',
         },
         {
           '&:hover > div > img': {

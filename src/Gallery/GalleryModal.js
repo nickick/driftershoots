@@ -89,23 +89,34 @@ export default function GalleryModal({ piece, open, handleClose }) {
         </Box>
         {piece && (
           <Box
-            sx={{
-              display: 'flex',
-              opacity: loaded ? 1 : 0,
-              flexDirection: 'column',
-              position: 'relative',
-            }}
+            sx={[
+              {
+                display: 'flex',
+                opacity: loaded ? 1 : 0,
+                flexDirection: 'column',
+                position: 'relative',
+                width: {
+                  xs: '90vw',
+                  md: 'auto',
+                },
+              },
+              {
+                '& > img': {
+                  transition: 'transform 0.5s ease-out',
+                  maxHeight: '100%',
+                  maxWidth: '100%',
+                  width: {
+                    xs: '90vw',
+                    md: isLandscape ? '68vw' : 'auto',
+                  },
+                  height: isLandscape ? 'auto' : 'calc(85vh - 10rem)',
+                },
+              },
+            ]}
           >
             <img
               src={piece.image_original_url || piece.image_url}
               alt={piece.name}
-              style={{
-                transition: 'transform 0.5s ease-out',
-                maxHeight: '100%',
-                maxWidth: '100%',
-                width: isLandscape ? '68vw' : 'auto',
-                height: isLandscape ? 'auto' : 'calc(85vh - 10rem)',
-              }}
               onLoad={onImageLoad}
             />
             {getName(piece.description) !== 'Other' && (
@@ -113,6 +124,7 @@ export default function GalleryModal({ piece, open, handleClose }) {
                 sx={{
                   p: 3,
                   bgcolor: '#23222B',
+                  width: '100%',
                 }}
               >
                 <Typography
