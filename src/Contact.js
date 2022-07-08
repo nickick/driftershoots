@@ -94,6 +94,8 @@ export default function Contact() {
     setMessage(e.target.value);
   }, [setMessage]);
 
+  const [statusMessage, setStatusMessage] = useState({});
+
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
@@ -111,7 +113,20 @@ export default function Contact() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          setStatusMessage({
+            type: 'success',
+            text: 'Message sent!',
+          });
+        } else {
+          setStatusMessage({
+            type: 'error',
+            text: 'Something went wrong. Please try again later.',
+          });
+        }
+      });
   }, [email, message, phoneNumber, name]);
 
   return (
@@ -147,6 +162,18 @@ export default function Contact() {
           >
             Get in Touch
           </Typography>
+          { statusMessage.text && (
+            <Box>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: '2rem',
+                }}
+              >
+                {statusMessage.text}
+              </Typography>
+            </Box>
+          )}
           <Box
             sx={{
               display: 'flex',

@@ -11,25 +11,32 @@ export default function (req, res) {
     secure: true,
   });
 
+  const {
+    name, email, phoneNumber, message,
+  } = req.body;
+
   const mailData = {
     from: process.env.MAILER_LOGIN,
     to: 'management@driftershoots.com',
-    subject: `Message From ${req.body.name}`,
-    text: `${req.body.message} | Sent from: ${req.body.email}`,
-    html: `<div>${req.body.message}</div><p>Sent from:
-    ${req.body.email} ${req.body.phoneNumber}</p>`,
+    subject: `Message From ${name}`,
+    text: `${message} | Sent from: ${email}`,
+    html: `<div>${message}</div><p>Sent from:
+    ${email} ${phoneNumber}</p>`,
   };
 
-  transporter.sendMail(mailData, (err, info) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(info);
-    }
-  });
+  if (req.body.name && req.body.email && req.body.phoneNumber) {
+    transporter.sendMail(mailData, (err, info) => {
+      if (err) {
+        console.log(err);
+        res.status(500);
+      } else {
+        console.log(info);
+        res.status(200);
+      }
+    });
+  } else {
+    req.status(500);
+  }
 
-  console.log(req.body);
-
-  res.status(200);
   res.send();
 }
