@@ -3,8 +3,10 @@
 import {
   Box, Container, FormControl, keyframes, Link, TextField, Typography,
 } from '@mui/material';
-import { object, string } from 'prop-types';
-import { useContext } from 'react';
+import {
+  func, number, object, oneOfType, string,
+} from 'prop-types';
+import { useCallback, useContext, useState } from 'react';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
 import OutlinedButton from './OutlinedButton';
@@ -22,11 +24,15 @@ const fadeFromBelow = keyframes`
   }
 `;
 
-function InputField({ label, sx, ...props }) {
+function InputField({
+  label, sx, value, onChange, ...props
+}) {
   return (
     <TextField
       variant="standard"
       label={label}
+      value={value}
+      onChange={onChange}
       InputProps={{
         sx: [
           {
@@ -56,6 +62,8 @@ InputField.propTypes = {
   label: string.isRequired,
   sx: object,
   props: object,
+  value: oneOfType(string, number).isRequired,
+  onChange: func.isRequired,
 };
 
 InputField.defaultProps = {
@@ -65,6 +73,46 @@ InputField.defaultProps = {
 
 export default function Contact() {
   const { animationDelay } = useContext(LoadedContext);
+
+  const [name, setName] = useState('');
+  const setNewName = useCallback((e) => {
+    setName(e.target.value);
+  }, [setName]);
+
+  const [email, setEmail] = useState('');
+  const setNewEmail = useCallback((e) => {
+    setEmail(e.target.value);
+  }, [setEmail]);
+
+  const [phoneNumber, setNumber] = useState('');
+  const setNewNumber = useCallback((e) => {
+    setNumber(e.target.value);
+  }, [setNumber]);
+
+  const [message, setMessage] = useState('');
+  const setNewMessage = useCallback((e) => {
+    setMessage(e.target.value);
+  }, [setMessage]);
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+
+    const data = {
+      name,
+      email,
+      phoneNumber,
+      message,
+    };
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  }, [email, message, phoneNumber, name]);
 
   return (
     <Container
@@ -79,70 +127,77 @@ export default function Contact() {
         },
       }}
     >
-      <FormControl
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
-        }}
+      <form
+        onSubmit={handleSubmit}
       >
-        <Typography
-          variant="h1"
-          sx={{
-            mb: 3,
-            flex: '3',
-          }}
-        >
-          Get in Touch
-        </Typography>
-        <Box
+        <FormControl
           sx={{
             display: 'flex',
-            mt: 8,
-            flexDirection: {
-              xs: 'column',
-              md: 'row',
-            },
+            flexDirection: 'column',
+            justifyContent: 'center',
+            animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
           }}
         >
+          <Typography
+            variant="h1"
+            sx={{
+              mb: 3,
+              flex: '3',
+            }}
+          >
+            Get in Touch
+          </Typography>
           <Box
             sx={{
               display: 'flex',
-              flexDirection: 'column',
-              flex: '4 4',
-            }}
-          >
-            <InputField label="Name" required />
-            <InputField label="Email Address" required />
-            <InputField label="Phone Number" required />
-          </Box>
-          <InputField
-            label="Message (Optional)"
-            multiline
-            rows={5}
-            sx={{
-              flex: '8 8',
-              ml: {
-                xs: 0,
-                md: 4,
+              mt: 8,
+              flexDirection: {
+                xs: 'column',
+                md: 'row',
               },
             }}
-          />
-        </Box>
-        <OutlinedButton
-          text="Send Message     "
-        >
-          <Typography
-            variant="h4"
-            sx={{
-              textTransform: 'none',
-            }}
           >
-            Send Message
-          </Typography>
-        </OutlinedButton>
-      </FormControl>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flex: '4 4',
+              }}
+            >
+              <InputField label="Name" value={name} onChange={setNewName} required />
+              <InputField label="Email Address" value={email} onChange={setNewEmail} required />
+              <InputField label="Phone Number" value={phoneNumber} onChange={setNewNumber} required />
+            </Box>
+            <InputField
+              label="Message (Optional)"
+              multiline
+              rows={5}
+              value={message}
+              onChange={setNewMessage}
+              sx={{
+                flex: '8 8',
+                ml: {
+                  xs: 0,
+                  md: 4,
+                },
+              }}
+            />
+          </Box>
+          <OutlinedButton
+            text="Send Message     "
+            onClick={handleSubmit}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                textTransform: 'none',
+              }}
+            >
+              Send Message
+            </Typography>
+          </OutlinedButton>
+        </FormControl>
+      </form>
       <Box
         sx={{
           pt: {
