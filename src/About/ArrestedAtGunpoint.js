@@ -182,6 +182,7 @@ export default function ArrestedAtGunpoint() {
           href="/publications"
           fullWidth
           clientside
+          scrollToTop
         >
           <Typography
             variant="h4"
