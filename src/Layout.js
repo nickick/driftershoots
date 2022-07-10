@@ -31,7 +31,7 @@ export default function Layout({ children }) {
     //   bgImage = '/publications-background.jpeg';
     // }
 
-    if (url && url.includes('/privacy-policy')) {
+    if (url && typeof url.includes === 'function' && url.includes('/privacy-policy')) {
       setOverlayOpacity(0);
     } else {
       setOverlayOpacity(1);
