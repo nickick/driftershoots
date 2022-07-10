@@ -7,115 +7,87 @@
     "highlight": true
   },
   {
-    "source": "Cincinatti Enquirer",
-    "title": "Photographer & Veteran Isaac Wright Arrested Again in Kentucky",
-    "link": "https://www.cincinnati.com/story/news/2021/04/19/photographer-and-veteran-isaac-wright-arrested-again-kentucky/7288482002/",
-    "image": "/publications/brooklyn-bridge.png",
+    "source": "One37pm",
+    "title": "Isaac Wright aka Drifter Shoots Shares his Path to NFT Photography",
+    "link": "https://www.one37pm.com/nft/isaac-wright-drifter-shoots-where-my-vans-go-interview",
+    "image": "/publications/one37pm.webp",
+    "highlight": true
+  },
+  {
+    "source": "The Loop Newws",
+    "title": "Interview with Driftershoots",
+    "link": "https://www.loop-news.com/p/interview-with-driftershoots?s=r",
+    "image": "/publications/loop-news.webp",
     "highlight": false
   },
   {
-    "source": "City Beat",
-    "title": "Isaac Wright is the Newest Victim in Cincinnati’s Long History of Mistreatment of Photographers and Outsider Artists",
-    "link": "https://www.citybeat.com/news/commentary-isaac-wright-is-the-newest-victim-in-cincinnatis-long-history-of-mistreatment-of-photographers-and-outsider-artists-12265286",
-    "image": "/publications/drifter.png",
-    "highlight": false
-  },
-  {
-    "source": "WXYZ",
-    "title": "Instagram daredevil captures photos atop Detroit's Ambassador Bridge raising security concerns",
-    "link": "https://www.wxyz.com/news/instagram-daredevil-captures-photo-atop-detroits-ambassador-bridge",
-    "image": "/publications/wxyz.png",
-    "highlight": false
-  },
-  {
-    "source": "Petapixel",
-    "title": "Daredevil Photographer Arrested for Burglary, Trespassing After Month-Long Chase",
-    "link": "https://petapixel.com/2021/01/08/daredevil-photographer-arrested-for-burglary-trespassing-after-month-long-chase/",
-    "image": "/publications/petapixel.webp",
-    "highlight": false
-  },
-  {
-    "source": "CLICKONDETROIT",
-    "title": "Photographer who climbed Ambassador, Mackinac bridges arrested in Arizona",
-    "link": "https://www.clickondetroit.com/news/local/2021/01/15/photographer-who-climbed-ambassador-mackinac-bridges-arrested-in-arizona/",
-    "image": "/publications/bridge.avif",
+    "source": "Coinbase",
+    "title": "Inteview - NFT photographer Drift on why crypto is the future for Black America",
+    "link": "https://www.youtube.com/watch?v=BEjIk-z-YDE",
+    "image": "/publications/coinbase.png",
     "highlight": false
   },
   {
     "source": "DIY Photgraphy",
-    "title": "Photographer Arrested and Charged With Burglary After Taking Rooftop Photos",
-    "link": "https://www.diyphotography.net/photographer-arrested-and-charged-with-burglary-after-taking-rooftop-photos/",
-    "image": "/publications/diy.jpeg",
+    "title": "Convicted urbex photographer now selling NFTs of his work",
+    "link": "https://www.diyphotography.net/convicted-urbex-photographer-now-selling-nfts-of-his-work/",
+    "image": "/publications/diyphotography.webp",
     "highlight": false
   },
   {
-    "source": "CBS62 Detroit",
-    "title": "Daring Photographer Faces Punishment For Climbing The Big Mac",
-    "link": "https://detroit.cbslocal.com/2020/12/03/daring-photographer-faces-punishment-for-climbing-the-big-mac/",
-    "image": "https://detroit.cbslocal.com/wp-content/uploads/sites/15909782/2020/12/GettyImages-Mackinac-Bridge-670909974.jpg?w=1024",
+    "source": "Coin Telegraph",
+    "title": "NFT​.NYC — How the Web3 space is validating the work of digital artists",
+    "link": "https://cointelegraph.com/news/nft-nyc-how-the-web3-space-is-validating-the-work-of-digital-artists",
+    "image": "/publications/DigitalDiasporaPt2.jpeg",
     "highlight": false
   },
   {
-    "source": "Capture Magazine",
-    "title": "Daredevil photographer arrested on burglary & trespassing charges following month-long chase",
-    "link": "https://www.capturemag.com.au/news/daredevil-photographer-arrested-on-burglary-and-trespassing-charges-following-month-long-chase",
-    "image": "https://yaffa-cdn.s3.amazonaws.com/yaffadsp/images/dspArticle/leadImage/main8.jpg",
+    "source": "The Control",
+    "title": "The Rise of Drifter Shoots",
+    "link": "https://thecontrol.co/the-rise-of-drifter-shoots-6b470ed18bd7",
+    "image": "https://miro.medium.com/max/1400/1*E6twbRPrXFeMgmSzFUFp9Q.png",
     "highlight": false
   },
   {
-    "source": "Law & Crime",
-    "title": "‘He Was Caught, Finally’: Army Veteran Suspected of Breaking into Skyscrapers and Landmarks Across the U.S. to Take Daring Photos",
-    "link": "https://lawandcrime.com/crime/he-was-caught-finally-army-veteran-suspected-of-breaking-into-skyscrapers-across-the-u-s-to-take-daring-photos/",
-    "image": "https://lawandcrime.com/wp-content/uploads/2021/01/isaac-wright2.jpg",
+    "source": "Youtube",
+    "title": "Drifter Shoots and Justin Aversano (Where My Vans Go and Twin Flames)",
+    "link": "https://www.youtube.com/watch?v=vCfyXllUT4w",
+    "image": "/publications/youtube.png",
     "highlight": false
   },
   {
-    "source": "Windsor Star",
-    "title": "Photographer who climbed Ambassador Bridge facing charges in Ohio for similar stunts",
-    "image": "/publications/ambassador-bridge.png",
-    "link": "https://windsorstar.com/news/local-news/photographer-who-climbed-ambassador-bridge-facing-charges-in-ohio-for-similar-stunts",
+    "source": "The New York Times",
+    "title": "Overlooked Stories",
+    "image": "https://static01.nyt.com/images/2021/06/06/us/27ambriefing-promo/27ambriefing-climber-jumbo-v2.jpg?quality=75&auto=webp",
+    "link": "https://www.nytimes.com/2021/12/27/briefing/overlooked-stories-2021-journalism.html",
     "highlight": false
   },
   {
-    "source": "Deadline (ft. Tweet)",
-    "title": "Twitter Tweaks Photo-Crop Feature, Promising “Bigger And Better Images”",
-    "link": "https://deadline.com/2021/05/twitter-photo-crop-change-promises-bigger-better-images-1234750902/",
-    "image": "https://deadline.com/wp-content/uploads/2021/05/Twitter-mobile.jpg?w=1024",
+    "source": "The Voice",
+    "title": "Scaling heights to find peace",
+    "image": "/publications/the-voice.jpeg",
+    "link": "https://www.voice-online.co.uk/entertainment/2022/03/04/isaac-wright-found-peace-through-perspective-in-pictures/",
     "highlight": false
   },
   {
-    "source": "Fox19 Cincinnati",
-    "title": "Man broke into Great American Tower to take pictures: court docs",
-    "link": "https://www.fox19.com/2021/01/15/man-broke-into-great-american-tower-take-pictures-court-docs/",
-    "image": "https://gray-wxix-prod.cdn.arcpublishing.com/resizer/SyogA0T8mLhw7PvOvZpublnZGTY=/980x0/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/CTAA5NB67BHIPOKU6YEHD2AP7Q.png",
+    "source": "Newsd",
+    "title": "Meet Isaac Wright, aka Drifter Shoots, an army veteran who has now entered the NFT world”",
+    "link": "https://newsd.in/meet-isaac-wright-aka-drifter-shoots-an-army-veteran-who-has-now-entered-the-nft-world/",
+    "image": "https://newsd.in/wp-content/uploads/2022/03/Isaac-Wright.jpg",
     "highlight": false
   },
   {
-    "source": "ABC7 Detroi",
-    "title": "Michigan State Police investigating illegal climbing incident at Mackinac Bridge",
-    "link": "https://www.wxyz.com/news/michigan-state-police-investigating-illegal-climbing-incident-at-mackinac-bridge",
-    "image": "https://ewscripps.brightspotcdn.com/dims4/default/894b293/2147483647/strip/true/crop/3000x1575+0+152/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F8c%2F69%2F2bd52d274aaaabaacb68d4281268%2Fap-19219768530863.jpg",
+    "source": "NFT Radar",
+    "title": "Isaac Wright aka Driftershoots incredible NFT collection as a photographer",
+    "link": "https://www.nftradar.org/isaac-wright-aka-drifter-shoots-incredible-nft-collection-as-a-photographer/",
+    "image": "https://www.nftradar.org/wp-content/uploads/2022/03/gvtfuyvj.jpg",
     "highlight": false
   },
   {
-    "source": "Cars108",
-    "title": "A Photographer Climbed the Ambassador Bridge and Nobody Saw Him",
-    "link": "https://wcrz.com/a-photographer-climbed-the-ambassador-bridge-and-nobody-saw-him/",
-    "image": "https://townsquare.media/site/87/files/2020/09/Screen-Shot-2020-09-16-at-8.36.21-AM.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89",
-    "highlight": false
-  },
-  {
-    "source": "Detroit News",
-    "title": "Ohio man, 25, accused of illegally climbing Mackinac Bridge in November",
-    "link": "https://www.detroitnews.com/story/news/local/michigan/2021/02/19/ohio-man-25-accused-illegally-climbing-mackinac-bridge-november/4510578001/",
-    "image": "https://www.gannett-cdn.com/presto/2021/02/19/PDTN/21872e80-50dd-4482-a608-3e7c707285c5-Wright1.jpg?crop=1000,563,x1,y193&width=1000&height=563&format=pjpg&auto=webp",
-    "highlight": false
-  },
-  {
-    "source": "WKFR 103.3",
-    "title": "The Northern Lights Give Michigan a Show Over Mackinac Bridge",
-    "link": "https://wkfr.com/the-northern-lights-give-michigan-a-show-over-mackinac-bridge/",
-    "image": "https://townsquare.media/site/689/files/2020/11/RS5320_178483034.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89",
+    "source": "Nola.com",
+    "title": "Mysterious daredevil climbs light tower above Four Seasons Hotel in New Orleans",
+    "link": "https://www.nola.com/entertainment_life/arts/article_971a8df0-03a2-11ec-870b-bbea32602f9b.html",
+    "image": "/publications/nola.jpg",
     "highlight": false
   }
 ]

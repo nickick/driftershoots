@@ -5,7 +5,7 @@ import { useCallback } from 'react';
 import { childrenProps } from './utils/prop-types';
 
 export default function OutlinedButton({
-  href, text, children, clientside, fullWidth, onClick,
+  href, text, children, clientside, fullWidth, onClick, scrollToTop,
 }) {
   const router = useRouter();
 
@@ -19,8 +19,8 @@ export default function OutlinedButton({
 
     router.push({
       pathname: href,
-    }, undefined, { scroll: false });
-  }, [clientside, href, router, onClick]);
+    }, undefined, { scroll: scrollToTop });
+  }, [clientside, href, router, onClick, scrollToTop]);
 
   return (
     <Button
@@ -90,6 +90,7 @@ OutlinedButton.propTypes = {
   fullWidth: PropTypes.bool,
   children: childrenProps.isRequired,
   onClick: PropTypes.func,
+  scrollToTop: PropTypes.bool,
 };
 
 OutlinedButton.defaultProps = {
@@ -97,5 +98,6 @@ OutlinedButton.defaultProps = {
   text: '',
   clientside: false,
   fullWidth: false,
+  scrollToTop: false,
   onClick: () => {},
 };

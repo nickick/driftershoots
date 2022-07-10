@@ -178,14 +178,15 @@ export default function ArrestedAtGunpoint() {
           he needs your help.
         </Typography>
         <OutlinedButton
-          text="Donate to Drifter's Campaign"
-          href="https://www.gofundme.com/f/isaac-wrights-incarceration?utm_campaign=p_cf+share-flow-1&utm_medium=copy_link&utm_source=customer"
+          text="News on Driftershoots"
+          href="/publications"
           fullWidth
+          clientside
         >
           <Typography
             variant="h4"
           >
-            Donate to Drifter&apos;s Campaign
+            News on Driftershoots
           </Typography>
         </OutlinedButton>
       </Box>
