@@ -5,6 +5,7 @@ import NextLink from 'next/link';
 import { useContext } from 'react';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { useRouter } from 'next/router';
+import { Instagram } from '@mui/icons-material';
 import { entranceAnimationDuration } from './constants';
 import { LoadedContext } from './LoadedContextProvider';
 import DiscordIcon from './DiscordIcon';
@@ -43,6 +44,11 @@ const sitemapLinks = [
 ];
 
 const rightNav = [
+  {
+    text: '',
+    href: 'https://www.instagram.com/driftershoots',
+    icon: <Instagram sx={{ fontSize: 20 }} />,
+  },
   {
     text: '',
     href: 'https://twitter.com/driftershoots',

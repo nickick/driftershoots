@@ -1,3 +1,4 @@
+import { Instagram } from '@mui/icons-material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {
   Box, Container, keyframes,
@@ -71,6 +72,11 @@ const rightNav = [
     text: '',
     href: 'https://twitter.com/driftershoots',
     icon: <TwitterIcon sx={{ fontSize: 20 }} />,
+  },
+  {
+    text: '',
+    href: 'https://www.instagram.com/driftershoots',
+    icon: <Instagram sx={{ fontSize: 20 }} />,
   },
   {
     text: 'Contact',

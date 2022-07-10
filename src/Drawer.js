@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types';
 import Link from 'next/link';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Spin as Hamburger } from 'hamburger-react';
+import { Instagram } from '@mui/icons-material';
 import DiscordIcon from './DiscordIcon';
 import { entranceAnimationDuration } from './constants';
 
@@ -42,6 +43,11 @@ const navLinks = [
     text: 'About',
     href: '/about',
     icon: '',
+  },
+  {
+    text: '',
+    href: 'https://www.instagram.com/driftershoots',
+    icon: <Instagram sx={{ fontSize: 20 }} />,
   },
   {
     text: '',
