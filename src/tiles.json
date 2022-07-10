@@ -60,30 +60,28 @@
       "right-button-href": "https://firstdayout.driftershoots.com"
     },
     {
-      "title": "NFT.NYC 2022",
+      "title": "Digital Diaspora Pt. 2",
       "category": "Event",
-      "h1": "NFT.\nNYC\n2022",
+      "h1": "Digital Diaspora Pt. 2",
       "logo": "",
       "logo-alt": "",
-      "main-image": "/news-images/nyc-nft.jpg",
-      "main-image-overlay": "/news-images/nftnyc-logo.png",
+      "main-image": "/news-images/digital-diaspora.jpeg",
       "main-image-overlay-alt": "NYC NFT Logo",
-      "main-image-zoom-start": 
-      {
-        "scale": 1,
-        "translateX": -40, 
-        "translateY": -35
+      "main-image-zoom-start": {
+        "scale": 1.6,
+        "translateX": -30, 
+        "translateY": -30
       },
       "main-image-zoom": {
-        "scale": 0.7,
-        "translateX": -70, 
-        "translateY": -75
+        "scale": 1.6,
+        "translateX": -20, 
+        "translateY": -35
       },
-      "main-image-alt": "New York City skyline",
-      "right-title": "Driftershoots Meet & Greet with NFT Holders",
-      "right-description": "<b>Date</b> Tue, Jun 21 - Thu, Jun 23\n<br/><b>Location</b>: Times Square",
-      "right-button-text": "RSVP",
-      "right-button-href": "https://twitter.com/driftershoots"
+      "main-image-alt": "Man in jacket that says 'Fear of a Black Planet'",
+      "right-title": "Digital Diaspora Pt. 2",
+      "right-description": "<b>Diana Sinclaire</b> and <b>Driftershoots</b> hosted a Juneteenth art exhibition, public installation, and fundraising auction centered around the works of Black artists for NFT.NYC 2022.",
+      "right-button-text": "Learn More",
+      "right-button-href": "https://www.digitaldiaspora.xyz/"
     },
     {
       "title": "Where My Vans Go",

@@ -80,7 +80,7 @@ export default function MobileImage({
           {
             '& > img': {
               borderRadius: {
-                xs: '50%',
+                xs: '0%',
                 sm: 0,
               },
               WebkitMaskImage: '-webkit-radial-gradient(white, black)',
