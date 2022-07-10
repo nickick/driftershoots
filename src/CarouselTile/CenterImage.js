@@ -97,8 +97,8 @@ function FadeableImage({
 FadeableImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  overlay: PropTypes.string.isRequired,
-  overlayAlt: PropTypes.string.isRequired,
+  overlay: PropTypes.string,
+  overlayAlt: PropTypes.string,
   state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited']).isRequired,
   selected: PropTypes.bool.isRequired,
   zoom: PropTypes.shape({
@@ -114,6 +114,11 @@ FadeableImage.propTypes = {
   offset: PropTypes.array.isRequired,
   transitioning: PropTypes.bool.isRequired,
   animationDelay: PropTypes.number.isRequired,
+};
+
+FadeableImage.defaultProps = {
+  overlay: '',
+  overlayAlt: '',
 };
 
 function calculateOffset(parameter, offsetConstant) {

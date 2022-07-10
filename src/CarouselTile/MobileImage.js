@@ -124,8 +124,8 @@ export default function MobileImage({
 MobileImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  overlay: PropTypes.string.isRequired,
-  overlayAlt: PropTypes.string.isRequired,
+  overlay: PropTypes.string,
+  overlayAlt: PropTypes.string,
   zoom: PropTypes.shape({
     scale: PropTypes.number.isRequired,
     translateX: PropTypes.number.isRequired,
@@ -136,4 +136,9 @@ MobileImage.propTypes = {
     translateX: PropTypes.number.isRequired,
     translateY: PropTypes.number.isRequired,
   }).isRequired,
+};
+
+MobileImage.defaultProps = {
+  overlay: '',
+  overlayAlt: '',
 };
