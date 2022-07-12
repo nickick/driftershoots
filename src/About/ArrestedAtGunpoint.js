@@ -144,39 +144,6 @@ export default function ArrestedAtGunpoint() {
           prosecution stated on the record in court that
           “Nothing was stolen and nobody was hurt.”
         </Typography>
-        <Typography
-          variant="overline"
-        >
-          APRIL 9, 2021
-        </Typography>
-        <Typography
-          variant="body"
-          sx={{
-            fontSize: '3rem',
-            mb: 2.5,
-          }}
-        >
-          Released on bond after more than 100 days in jail.
-        </Typography>
-        <Typography
-          variant="body"
-          sx={{
-            fontSize: '2.5rem',
-            mb: 6,
-          }}
-        >
-          When he was finally taken back to Ohio, he posted bond and then
-          an emergency hearing was called, raising his bond to $400,000
-          before he could be released.  After two months of fighting bond
-          was finally lowered and Isaac was released.  Isaac is still
-          fighting the egregious wrongful imprisonment and over-charging by
-          the Cincinnati Police Department and the case is an ongoing battle.
-          Police also seized his new phone and car only a week after he was
-          released when he was traveling back from Louisiana on the Ohio
-          Court&apos;s orders.  His case is now reaching national news as
-          he seeks justice.  With mounting legal fees and court costs
-          he needs your help.
-        </Typography>
         <OutlinedButton
           text="News on Driftershoots"
           href="/publications"
