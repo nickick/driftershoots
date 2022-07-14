@@ -13,7 +13,7 @@ const fadeIn = keyframes`
 `;
 
 export function NavButton({
-  text, href, icon, index,
+  text, href, icon, index, animation,
 }) {
   return (
     <Link href={href} passHref>
@@ -26,7 +26,7 @@ export function NavButton({
           fontSize: '1.5rem',
           lineHeight: '2rem',
           letterSpacing: '0.1rem',
-          animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s`,
+          animation: animation ? `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s` : 'none',
         }}
         target={(icon || href[0] !== '/') ? '_blank' : ''}
       >
@@ -42,10 +42,12 @@ NavButton.propTypes = {
   href: PropTypes.string,
   icon: PropTypes.node,
   index: PropTypes.number.isRequired,
+  animation: PropTypes.bool,
 };
 
 NavButton.defaultProps = {
   text: '',
   href: '',
   icon: null,
+  animation: true,
 };

@@ -1,7 +1,7 @@
-import { Instagram } from '@mui/icons-material';
+import { ArrowDropDown, Instagram } from '@mui/icons-material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {
-  Box, Container, keyframes,
+  Box, Button, Container, keyframes, Menu, MenuItem,
 } from '@mui/material';
 import { Spin as Hamburger } from 'hamburger-react';
 import Link from 'next/link';
@@ -62,6 +62,19 @@ const leftNav = [
   },
 ];
 
+const appMenu = [
+  {
+    text: 'WMVG Migration',
+    href: 'https://wheremyvansgo.com',
+    icon: '',
+  },
+  {
+    text: 'First Day Out',
+    href: 'https://firstdayout.driftershoots.com',
+    icon: '',
+  },
+];
+
 const rightNav = [
   {
     text: '',
@@ -92,6 +105,14 @@ const rightNav = [
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const closeDrawer = useCallback(() => {
     setOpen(false);
@@ -161,6 +182,47 @@ export default function Navbar() {
               />
             ))
           }
+          <Button
+            variant="text"
+            sx={{
+              color: 'text.primary',
+              mx: '0.5rem',
+              fontSize: '1.5rem',
+              lineHeight: '2rem',
+              letterSpacing: '0.1rem',
+              animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + (leftNav.length + 1) * 0.2}s`,
+            }}
+            onClick={handleClick}
+          >
+            Apps
+            <ArrowDropDown
+              sx={{
+                fontSize: '3rem',
+              }}
+            />
+          </Button>
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            {
+              appMenu.map(({ text, href, icon }, index) => (
+                <MenuItem
+                  onClick={handleClose}
+                  key={text + href}
+                >
+                  <NavButton
+                    text={text}
+                    href={href}
+                    icon={icon}
+                    index={index}
+                    animation={false}
+                  />
+                </MenuItem>
+              ))
+            }
+          </Menu>
         </Box>
         <Box
           sx={{

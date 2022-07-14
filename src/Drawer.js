@@ -45,6 +45,16 @@ const navLinks = [
     icon: '',
   },
   {
+    text: 'WMVG Migrator',
+    href: 'https://wheremyvansgo.com',
+    icon: '',
+  },
+  {
+    text: 'FirstDayOut',
+    href: 'https://firstdayout.driftershoots.com',
+    icon: '',
+  },
+  {
     text: '',
     href: 'https://www.instagram.com/driftershoots',
     icon: <Instagram sx={{ fontSize: 20 }} />,

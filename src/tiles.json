@@ -112,40 +112,5 @@
       "right-description": "Where My Vans Go is a collection comprised of 124 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
       "right-button-text": "View Collection",
       "right-button-href": "/gallery"
-    },
-    {
-      "title": "WMVG Migrator",
-      "category": "Collector Tool",
-      "h1": "WMVG Migrator",
-      "logo": "",
-      "logo-alt": "",
-      "main-image": "/news-images/migrator.jpeg",
-      "main-image-overlay": "",
-      "main-image-overlay-alt": "",
-      "main-image-zoom-start": {
-        "scale": 1,
-        "translateX": -35, 
-        "translateY": -30
-      },
-      "main-image-zoom": {
-        "scale": 0.4,
-        "translateX": -125, 
-        "translateY": -130
-      },
-      "main-image-mobile-zoom": {
-        "scale": 0.4,
-        "translateX": -134, 
-        "translateY": -145
-      },
-      "main-image-mobile-zoom-start": {
-        "scale": 0.6,
-        "translateX": -84, 
-        "translateY": -120
-      },
-      "main-image-alt": "Shoes overlooking bridge from top of bridge arch",
-      "right-title": "Collector Tool",
-      "right-description": "The WMVG Migrator is a tool for WMVG collectors to migrate from OpenSea's generic ERC-1155 storefront contract, where Drift started the Where My Vans Go collection, to the new ERC-721 Creator Core home of the Where My Vans Go collection.",
-      "right-button-text": "Go to Migrator",
-      "right-button-href": "https://wheremyvansgo.com"
     }
 ]
