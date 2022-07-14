@@ -13,13 +13,16 @@ export default function OutlinedButton({
     if (onClick) {
       onClick(e);
     }
-    if (clientside) {
-      e.preventDefault();
-    }
 
-    router.push({
-      pathname: href,
-    }, undefined, { scroll: scrollToTop });
+    e.preventDefault();
+
+    if (clientside) {
+      router.push({
+        pathname: href,
+      }, undefined, { scroll: scrollToTop });
+    } else {
+      window.open(href);
+    }
   }, [clientside, href, router, onClick, scrollToTop]);
 
   return (
