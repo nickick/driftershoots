@@ -28,6 +28,8 @@ export default function PrivacyPolicyPage() {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@driftershoots" />
         <meta name="twitter:creator" content="@pepperonick" />
+        <meta name="twitter:description" content="Privacy Policy for Driftershoots, retired Army special operations veteran and NFT photgrapher" />
+        <meta name="twitter:image" content="https://driftershoots.com/open-graph.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PrivacyPolicy />

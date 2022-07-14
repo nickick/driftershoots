@@ -152,7 +152,7 @@ animation_original_url: null
     chat_url: null,
     created_date: '2021-08-07T06:05:22.726722',
     default_to_fiat: false,
-    description: 'Where My Vans Go is a collection comprised of 123 …akes.
+    description: 'Where My Vans Go is a collection comprised of 124 …akes.
     These are the shoes that made me. Welcome.', …
   }
   creator: {

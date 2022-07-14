@@ -25,6 +25,8 @@ export default function About() {
           md: 14,
         },
         width: '100%',
+        maxWidth: '1600px',
+        margin: 'auto',
       }}
     >
       <Box

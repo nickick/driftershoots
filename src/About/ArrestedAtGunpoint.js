@@ -110,7 +110,7 @@ export default function ArrestedAtGunpoint() {
             mb: 2.5,
           }}
         >
-          Isaac was arrested unarmed at gunpoint.
+          Isaac was arrested unarmed at gunpoint
         </Typography>
         <Typography
           variant="body"
@@ -119,7 +119,7 @@ export default function ArrestedAtGunpoint() {
             mb: 2.5,
           }}
         >
-          outside flagstaff Arizona on nationwide warrant all for the
+          outside Flagstaff, Arizona on nationwide warrant all for the
           alleged crimes of entering areas in Cincinnati unlawfully and
           taking pictures. Using a picture of Isaac holding a handgun while
           in the service and with his military training police perpetuated
@@ -130,7 +130,7 @@ export default function ArrestedAtGunpoint() {
           variant="body"
           sx={{
             fontSize: '2.5rem',
-            mb: 12,
+            mb: 3.5,
           }}
         >
           Isaac has no criminal record and served honorably in the Army.
