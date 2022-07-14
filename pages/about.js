@@ -15,7 +15,7 @@ export default function AboutPage() {
         <meta property="og:title" content="Driftershoots.com" />
         <meta property="og:description" content="About Driftershoots" />
         <meta property="og:url" content="https://driftershoots.com/" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@driftershoots" />
         <meta name="twitter:creator" content="@pepperonick" />
         <meta name="twitter:description" content="About Driftershoots, retired Army special operations veteran and NFT photgrapher" />

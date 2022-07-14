@@ -15,9 +15,11 @@ export default function GalleryPage() {
         <meta property="og:title" content="Driftershoots.com" />
         <meta property="og:description" content="Gallery for Driftershoots" />
         <meta property="og:url" content="https://driftershoots.com/" />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@driftershoots" />
         <meta name="twitter:creator" content="@pepperonick" />
+        <meta name="twitter:description" content="Gallery for Driftershoots, retired Army special operations veteran and NFT photgrapher" />
+        <meta name="twitter:image" content="https://driftershoots.com/open-graph.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Gallery />
