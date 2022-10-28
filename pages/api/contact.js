@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 
+// eslint-disable-next-line func-names
 export default function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 465,
@@ -27,9 +28,11 @@ export default function (req, res) {
   if (req.body.name && req.body.email && req.body.phoneNumber) {
     transporter.sendMail(mailData, (err, info) => {
       if (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
         res.status(500);
       } else {
+        // eslint-disable-next-line no-console
         console.log(info);
         res.status(200);
       }
