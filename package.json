@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
     "@mui/icons-material": "^5.8.0",
     "@mui/lab": "^5.0.0-alpha.83",
     "@mui/material": "^5.8.0",
