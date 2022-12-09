@@ -20,11 +20,6 @@ const fadeIn = keyframes`
 
 const navLinks = [
   {
-    text: 'Prints',
-    href: 'https://www.millergallery.com/featured-artists#/isaac-wright',
-    icon: '',
-  },
-  {
     text: 'Gallery',
     href: '/gallery',
     icon: '',
