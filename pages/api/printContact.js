@@ -13,7 +13,7 @@ export default function (req, res) {
   });
 
   const {
-    name, email, phoneNumber, message,
+    name, email, phoneNumber, message, print, size,
   } = req.body;
 
   const mailData = {
@@ -21,8 +21,16 @@ export default function (req, res) {
     to: 'management@driftershoots.com',
     subject: `Message From ${name}`,
     text: `${message} | Sent from: ${email}`,
-    html: `<div>${message}</div><p>Sent from:
-    ${email} ${phoneNumber}</p>`,
+    html: `<div>${message}</div>
+      <p>Sent from:
+      ${email} ${phoneNumber}
+      </p>
+      <p>
+      Print requested: ${print}
+      </p>
+      <p>
+      Size requested: ${size}
+      </p>`,
   };
 
   if (req.body.name && req.body.email && req.body.phoneNumber) {

@@ -69,9 +69,11 @@ export default function Prints() {
       email,
       phoneNumber,
       message,
+      print,
+      size,
     };
 
-    fetch('/api/contact', {
+    fetch('/api/printContact', {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -92,7 +94,7 @@ export default function Prints() {
           });
         }
       });
-  }, [email, message, phoneNumber, name]);
+  }, [email, message, phoneNumber, name, print, size]);
 
   return (
     <Container
@@ -240,7 +242,7 @@ export default function Prints() {
             <InputField
               label="Message (Optional)"
               multiline
-              rows={4}
+              rows={14}
               value={message}
               onChange={setNewMessage}
               sx={{
