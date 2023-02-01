@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-
 import {
   Box, Container, FormControl, keyframes, Link, MenuItem, TextField, Typography,
 } from '@mui/material';
+import Image from 'next/image';
 import { useCallback, useContext, useState } from 'react';
 import { entranceAnimationDuration } from '../constants';
 import InputField from '../InputField';
 import { LoadedContext } from '../LoadedContextProvider';
 import OutlinedButton from '../OutlinedButton';
+import printList from './prints.json';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -45,10 +46,18 @@ export default function Prints() {
     setMessage(e.target.value);
   }, [setMessage]);
 
-  const [print, setPrint] = useState('');
+  const [print, setPrint] = useState(printList[0].title);
+  const [printImage, setPrintImage] = useState(printList[0].src);
   const setNewPrint = useCallback((e) => {
     setPrint(e.target.value);
+    const printKey = (printList.filter((printObj) => printObj.title === e.target.value) || [])[0];
+    setPrintImage(printKey.src);
   }, [setPrint]);
+
+  const [size, setSize] = useState('30x30');
+  const setNewSize = useCallback((e) => {
+    setSize(e.target.value);
+  }, [setSize]);
 
   const [statusMessage, setStatusMessage] = useState({});
 
@@ -152,28 +161,90 @@ export default function Prints() {
               <InputField label="Email Address" value={email} onChange={setNewEmail} required />
               <InputField label="Phone Number" value={phoneNumber} onChange={setNewNumber} required />
               <TextField
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="print-select-label"
+                id="print-select"
                 value={print}
                 label="Select a piece"
                 onChange={setNewPrint}
                 placeholder="Select a piece"
                 select
+                required
               >
-                <MenuItem value="">Pick a piece</MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {printList.map((printObj) => (
+                  <MenuItem key={printObj.title} value={printObj.title}>{printObj.title}</MenuItem>
+                ))}
               </TextField>
+              <TextField
+                labelId="print-size-label"
+                id="print-size"
+                value={size}
+                label="Select a size"
+                onChange={setNewSize}
+                placeholder="Select a size"
+                select
+                required
+                sx={{
+                  mt: 4,
+                }}
+              >
+                <MenuItem value="30x30">30 x 30</MenuItem>
+                <MenuItem value="40x40">40 x 40</MenuItem>
+                <MenuItem value="50x50">50 x 50</MenuItem>
+              </TextField>
+            </Box>
+            <Box
+              sx={{
+                flex: '4 4',
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <Typography sx={{
+                fontSize: '2rem',
+                mx: {
+                  xs: 0,
+                  md: 2,
+                },
+              }}
+              >
+                {print}
+              </Typography>
+              <Box
+                sx={{
+                  position: 'relative',
+                  flex: '1 1',
+                  mx: {
+                    xs: 0,
+                    md: 2,
+                  },
+                  my: {
+                    xs: 3,
+                    md: 0,
+                  },
+                  display: 'block',
+                }}
+              >
+                <Box sx={{
+                  height: '20rem',
+                  my: '3rem',
+                  display: {
+                    xs: 'block',
+                    md: 'none',
+                  },
+                }}
+                />
+                <Image src={`/prints/${encodeURIComponent(printImage)}`} alt={print} layout="fill" objectFit="contain" />
+              </Box>
             </Box>
             <InputField
               label="Message (Optional)"
               multiline
-              rows={5}
+              rows={4}
               value={message}
               onChange={setNewMessage}
               sx={{
-                flex: '8 8',
+                flex: '4 4',
                 ml: {
                   xs: 0,
                   md: 4,
