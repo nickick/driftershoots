@@ -46,6 +46,11 @@ const fadeInLogo = keyframes`
 
 const leftNav = [
   {
+    text: 'Prints',
+    href: '/prints',
+    icon: '',
+  },
+  {
     text: 'Gallery',
     href: '/gallery',
     icon: '',

@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import {
-  Box, Container, FormControl, keyframes, Link, Typography,
+  Box, Container, FormControl, keyframes, Link, MenuItem, TextField, Typography,
 } from '@mui/material';
 import { useCallback, useContext, useState } from 'react';
-import { entranceAnimationDuration } from './constants';
-import InputField from './InputField';
-import { LoadedContext } from './LoadedContextProvider';
-import OutlinedButton from './OutlinedButton';
+import { entranceAnimationDuration } from '../constants';
+import InputField from '../InputField';
+import { LoadedContext } from '../LoadedContextProvider';
+import OutlinedButton from '../OutlinedButton';
 
 const fadeFromBelow = keyframes`
   0% {
@@ -22,7 +22,7 @@ const fadeFromBelow = keyframes`
   }
 `;
 
-export default function Contact() {
+export default function Prints() {
   const { animationDelay } = useContext(LoadedContext);
 
   const [name, setName] = useState('');
@@ -44,6 +44,11 @@ export default function Contact() {
   const setNewMessage = useCallback((e) => {
     setMessage(e.target.value);
   }, [setMessage]);
+
+  const [print, setPrint] = useState('');
+  const setNewPrint = useCallback((e) => {
+    setPrint(e.target.value);
+  }, [setPrint]);
 
   const [statusMessage, setStatusMessage] = useState({});
 
@@ -111,7 +116,7 @@ export default function Contact() {
               flex: '3',
             }}
           >
-            Get in Touch
+            Request Prints
           </Typography>
           { statusMessage.text && (
             <Box>
@@ -140,11 +145,26 @@ export default function Contact() {
                 display: 'flex',
                 flexDirection: 'column',
                 flex: '4 4',
+                mb: '4rem',
               }}
             >
               <InputField label="Name" value={name} onChange={setNewName} required />
               <InputField label="Email Address" value={email} onChange={setNewEmail} required />
               <InputField label="Phone Number" value={phoneNumber} onChange={setNewNumber} required />
+              <TextField
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={print}
+                label="Select a piece"
+                onChange={setNewPrint}
+                placeholder="Select a piece"
+                select
+              >
+                <MenuItem value="">Pick a piece</MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </TextField>
             </Box>
             <InputField
               label="Message (Optional)"

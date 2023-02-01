@@ -34,6 +34,7 @@ const themeShared = {
           '&.Mui-focused': {
             color: 'rgba(255, 255, 255, 0.87)',
           },
+          fontSize: '2rem',
           '&:after': {
             borderBottom: '1px solid white',
           },
@@ -43,13 +44,23 @@ const themeShared = {
         },
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontSize: '2rem',
+        },
+      },
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: {
           fontWeight: 'bold',
           '&.Mui-focused': {
             color: 'rgba(255, 255, 255, 0.87)',
+            transform: 'translate(0, -10px) scale(1.1)',
           },
+          fontSize: '2rem',
+          transform: 'translate(0, -10px) scale(1)',
         },
       },
     },
