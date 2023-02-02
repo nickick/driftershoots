@@ -54,7 +54,7 @@ export default function Prints() {
     setPrintImage(printKey.src);
   }, [setPrint]);
 
-  const [size, setSize] = useState('30x30');
+  const [size, setSize] = useState('20x30');
   const setNewSize = useCallback((e) => {
     setSize(e.target.value);
   }, [setSize]);
@@ -189,9 +189,9 @@ export default function Prints() {
                   mt: 4,
                 }}
               >
-                <MenuItem value="30x30">30 x 30</MenuItem>
-                <MenuItem value="40x40">40 x 40</MenuItem>
-                <MenuItem value="50x50">50 x 50</MenuItem>
+                <MenuItem value="20x30">20 x 30</MenuItem>
+                <MenuItem value="30x40">30 x 40</MenuItem>
+                <MenuItem value="40x60">40 x 60</MenuItem>
               </TextField>
             </Box>
             <Box
