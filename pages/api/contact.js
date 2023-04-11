@@ -1,10 +1,10 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
-// eslint-disable-next-line func-names
+// eslint-disable-next-line func-names, import/no-anonymous-default-export
 export default function (req, res) {
   const transporter = nodemailer.createTransport({
     port: 465,
-    host: 'smtp.gmail.com',
+    host: "smtp.gmail.com",
     auth: {
       user: process.env.MAILER_LOGIN,
       pass: process.env.MAILER_PASSWORD,
@@ -12,13 +12,12 @@ export default function (req, res) {
     secure: true,
   });
 
-  const {
-    name, email, phoneNumber, message,
-  } = req.body;
+  const { name, email, phoneNumber, message } = req.body;
 
   const mailData = {
     from: process.env.MAILER_LOGIN,
-    to: 'management@driftershoots.com',
+    to: "assistant@driftershoots.com",
+    cc: "management@driftershoots.com",
     subject: `Message From ${name}`,
     text: `${message} | Sent from: ${email}`,
     html: `<div>${message}</div><p>Sent from:

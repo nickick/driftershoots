@@ -1,19 +1,15 @@
-import { Box, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
-import { useCallback, useRef } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { getName } from '../utils/parsers';
-import { childrenProps, openseaPieceProps } from '../utils/prop-types';
+import { Box, Typography } from "@mui/material";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import { useCallback, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import { getName } from "../utils/parsers";
+import { childrenProps, openseaPieceProps } from "../utils/prop-types";
 
 function TextSection({ title, children }) {
   return (
     <>
-      <Typography
-        variant="h4"
-      >
-        {title}
-      </Typography>
+      <Typography variant="h4">{title}</Typography>
       <Typography
         variant="body"
         sx={{
@@ -37,33 +33,42 @@ export default function GalleryPiece({ data = {}, index }) {
 
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: '-200px 0px',
+    rootMargin: "-200px 0px",
   });
 
-  const selectPiece = useCallback((e) => {
-    e.preventDefault();
-    const { pathname } = router;
-    data.setModalOpen(true);
+  const selectPiece = useCallback(
+    (e) => {
+      e.preventDefault();
+      const { pathname } = router;
+      data.setModalOpen(true);
 
-    router.push({
-      pathname,
-      query: {
-        gallery: data.id,
-      },
-    }, undefined, { scroll: false });
-  }, [data, router]);
+      router.push(
+        {
+          pathname,
+          query: {
+            gallery: data.id,
+          },
+        },
+        undefined,
+        { scroll: false }
+      );
+    },
+    [data, router]
+  );
+
+  console.log(data);
 
   return (
     <Box
       sx={[
         {
           opacity: inView ? 1 : 0,
-          position: 'relative',
-          width: '100%',
+          position: "relative",
+          width: "100%",
         },
         {
-          '&:hover > div > img': {
-            transform: 'scale(1.2)',
+          "&:hover > div > img": {
+            transform: "scale(1.2)",
           },
         },
       ]}
@@ -74,46 +79,46 @@ export default function GalleryPiece({ data = {}, index }) {
       <Box
         sx={[
           {
-            display: 'flex',
-            flex: '1 1',
-            justifyContent: 'flex-start',
-            position: 'relative',
-            overflow: 'hidden',
+            display: "flex",
+            flex: "1 1",
+            justifyContent: "flex-start",
+            position: "relative",
+            overflow: "hidden",
           },
         ]}
         ref={ref}
       >
         <img
-          src={data.image_url}
+          src={data.image_preview_url}
           alt={data.name}
           style={{
-            transition: 'transform 0.5s ease-out',
-            width: '100%',
-            height: 'auto',
-            cursor: 'pointer',
+            transition: "transform 0.5s ease-out",
+            width: "100%",
+            height: "auto",
+            cursor: "pointer",
           }}
         />
       </Box>
-      {getName(data.description) !== 'Other' && (
+      {getName(data.description) !== "Other" && (
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             p: 3,
-            cursor: 'pointer',
+            cursor: "pointer",
             opacity: 1,
-            background: '#23222B',
+            background: "#23222B",
           }}
         >
           <Typography
             variant="h4"
             sx={{
-              fontSize: '1.25rem',
-              lineHeight: '2rem',
-              textTransform: 'uppercase',
-              fontWeight: '700',
-              letterSpacing: '0.1em',
-              textAlign: 'left',
+              fontSize: "1.25rem",
+              lineHeight: "2rem",
+              textTransform: "uppercase",
+              fontWeight: "700",
+              letterSpacing: "0.1em",
+              textAlign: "left",
             }}
           >
             {data.name}
@@ -121,9 +126,9 @@ export default function GalleryPiece({ data = {}, index }) {
           <Typography
             variant="h3"
             sx={{
-              fontSize: '2rem',
-              lineHeight: '3rem',
-              textAlign: 'left',
+              fontSize: "2rem",
+              lineHeight: "3rem",
+              textAlign: "left",
             }}
           >
             {getName(data.description)}
