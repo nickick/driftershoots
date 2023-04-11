@@ -2,29 +2,23 @@
 /* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { TabContext } from "@mui/lab";
 import {
   Box,
   CircularProgress,
   Container,
   keyframes,
+  Tab,
+  Tabs,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
-import { useWindowSize } from "@react-hook/window-size";
-import {
-  MasonryScroller,
-  useContainerPosition,
-  usePositioner,
-  useResizeObserver,
-} from "masonic";
 import { useRouter } from "next/router";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { entranceAnimationDuration } from "../constants";
 import { GalleryContext } from "../GalleryContextProvider";
 import { LoadedContext } from "../LoadedContextProvider";
 import GalleryModal from "./GalleryModal";
-import GalleryPiece from "./GalleryPiece";
+import Masonry from "./Masonry";
 import Traits from "./Traits";
 
 const fadeFromBelow = keyframes`
@@ -40,6 +34,26 @@ const fadeFromBelow = keyframes`
   }
 `;
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
 export default function Gallery() {
   const { wmvgPieces } = useContext(GalleryContext);
   const { animationDelay } = useContext(LoadedContext);
@@ -48,6 +62,12 @@ export default function Gallery() {
   const router = useRouter();
 
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const wmvgSorted = wmvgPieces
     .sort((a, b) => {
@@ -79,42 +99,6 @@ export default function Gallery() {
 
     setPieces(filteredPieces);
   }, [wmvgPieces, galleryFilters]);
-
-  const containerRef = useRef(null);
-  const [windowWidth, windowHeight] = useWindowSize();
-  const { offset, width } = useContainerPosition(containerRef, [
-    windowWidth,
-    windowHeight,
-  ]);
-
-  const theme = useTheme();
-  const matchesLg = useMediaQuery(theme.breakpoints.up("lg"));
-  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
-
-  let columns;
-
-  if (matchesLg) {
-    columns = 4;
-  } else if (matchesMd) {
-    columns = 3;
-  } else if (matchesSm) {
-    columns = 2;
-  } else {
-    columns = 1;
-  }
-
-  const positioner = usePositioner(
-    {
-      width,
-      columnWidth: 220,
-      columnGutter: 40,
-      columnCount: columns,
-    },
-    [pieces]
-  );
-
-  const resizeObserver = useResizeObserver(positioner);
 
   const handleClose = useCallback(() => {
     setModalOpen(false);
@@ -153,6 +137,21 @@ export default function Gallery() {
     wmvgSorted.map((wmvg) => wmvg.traits.map((trait) => trait.value)).flat()
   );
 
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
+
+  const wmvgGalleryPieces = pieces.filter(
+    (piece) => piece.description !== "Other"
+  );
+
+  const otherGalleryPieces = pieces.filter(
+    (piece) => piece.description === "Other"
+  );
+
   return (
     <Container
       sx={{
@@ -167,109 +166,129 @@ export default function Gallery() {
         },
       }}
     >
-      {piece && (
-        <GalleryModal
-          open={modalOpen}
-          handleClose={handleClose}
-          piece={piece}
-        />
-      )}
+      <TabContext value={value}>
+        {piece && (
+          <GalleryModal
+            open={modalOpen}
+            handleClose={handleClose}
+            piece={piece}
+          />
+        )}
 
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: 6,
-          animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
-        }}
-      >
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            flex: 6,
+            justifyContent: "center",
+            mt: 6,
+            animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
           }}
         >
           <Box
             sx={{
               display: "flex",
-              flexDirection: {
-                xs: "column",
-                md: "row",
-              },
-              justifyContent: "space-between",
-              alignSelf: "flex-start",
-              width: "100%",
-              px: {
-                xs: 0,
-                md: 4,
-              },
+              flexDirection: "column",
+              alignItems: "center",
+              flex: 6,
             }}
           >
-            <Typography
-              variant="h1"
-              sx={{
-                mb: 3,
-                flex: "3",
-                px: {
-                  xs: 4,
-                  md: 0,
-                },
-              }}
-            >
-              Gallery
-            </Typography>
             <Box
               sx={{
                 display: "flex",
-                justifySelf: "flex-end",
-                alignItems: "center",
-                flex: "9",
+                flexDirection: {
+                  xs: "column",
+                  md: "row",
+                },
+                justifyContent: "space-between",
+                alignSelf: "flex-start",
+                width: "100%",
+                px: {
+                  xs: 0,
+                  md: 4,
+                },
               }}
             >
-              <Traits traits={traits} setGalleryFilters={setGalleryFilters} />
+              <Typography
+                variant="h1"
+                sx={{
+                  mb: 3,
+                  flex: "3",
+                  px: {
+                    xs: 4,
+                    md: 0,
+                  },
+                }}
+              >
+                Gallery
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifySelf: "flex-end",
+                  alignItems: "center",
+                  flex: "9",
+                }}
+              >
+                {/* <Traits traits={traits} setGalleryFilters={setGalleryFilters} /> */}
+              </Box>
+            </Box>
+            <Box>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+                textColor="secondary"
+              >
+                <Tab
+                  label={<Typography variant="h4">Individual Works</Typography>}
+                  {...a11yProps(0)}
+                />
+                <Tab
+                  label={<Typography variant="h4">Where My Vans Go</Typography>}
+                  {...a11yProps(1)}
+                />
+              </Tabs>
+            </Box>
+            <Box
+              sx={{
+                overflow: "hidden",
+                width: {
+                  xs: "90%",
+                  md: "100%",
+                },
+                px: {
+                  xs: 0,
+                  md: 4,
+                },
+                textAlign: "center",
+              }}
+            >
+              {!pieces.length && (
+                <CircularProgress
+                  size={90}
+                  sx={{
+                    color: "white",
+                    width: "100%",
+                    m: 20,
+                  }}
+                />
+              )}
+              <TabPanel value={value} index={0}>
+                <Masonry
+                  key={galleryFilters.concat()}
+                  pieces={otherGalleryPieces}
+                />
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <Masonry
+                  key={galleryFilters.concat() + 1}
+                  pieces={wmvgGalleryPieces}
+                />
+              </TabPanel>
             </Box>
           </Box>
-          <Box
-            sx={{
-              overflow: "hidden",
-              width: {
-                xs: "90%",
-                md: "100%",
-              },
-              px: {
-                xs: 0,
-                md: 4,
-              },
-              textAlign: "center",
-            }}
-          >
-            {!pieces.length && (
-              <CircularProgress
-                size={90}
-                sx={{
-                  color: "white",
-                  width: "100%",
-                  m: 20,
-                }}
-              />
-            )}
-            <MasonryScroller
-              positioner={positioner}
-              resizeObserver={resizeObserver}
-              containerRef={containerRef}
-              items={pieces}
-              height={windowHeight}
-              offset={offset}
-              overscanBy={6}
-              render={GalleryPiece}
-              key={galleryFilters.concat()}
-            />
-          </Box>
         </Box>
-      </Box>
+      </TabContext>
     </Container>
   );
 }
