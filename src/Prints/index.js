@@ -1,14 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import {
-  Box, Container, FormControl, keyframes, Link, MenuItem, TextField, Typography,
-} from '@mui/material';
-import Image from 'next/image';
-import { useCallback, useContext, useState } from 'react';
-import { entranceAnimationDuration } from '../constants';
-import InputField from '../InputField';
-import { LoadedContext } from '../LoadedContextProvider';
-import OutlinedButton from '../OutlinedButton';
-import printList from './prints.json';
+  Box,
+  Container,
+  FormControl,
+  keyframes,
+  Link,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
+import Image from "next/image";
+import { useCallback, useContext, useState } from "react";
+import { entranceAnimationDuration } from "../constants";
+import InputField from "../InputField";
+import { LoadedContext } from "../LoadedContextProvider";
+import OutlinedButton from "../OutlinedButton";
+import printList from "./prints.json";
 
 const fadeFromBelow = keyframes`
   0% {
@@ -26,82 +33,106 @@ const fadeFromBelow = keyframes`
 export default function Prints() {
   const { animationDelay } = useContext(LoadedContext);
 
-  const [name, setName] = useState('');
-  const setNewName = useCallback((e) => {
-    setName(e.target.value);
-  }, [setName]);
+  const [name, setName] = useState("");
+  const setNewName = useCallback(
+    (e) => {
+      setName(e.target.value);
+    },
+    [setName]
+  );
 
-  const [email, setEmail] = useState('');
-  const setNewEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, [setEmail]);
+  const [email, setEmail] = useState("");
+  const [emailSubmitted, submitEmailSubmitted] = useState(false);
+  const setNewEmail = useCallback(
+    (e) => {
+      setEmail(e.target.value);
+    },
+    [setEmail]
+  );
 
-  const [phoneNumber, setNumber] = useState('');
-  const setNewNumber = useCallback((e) => {
-    setNumber(e.target.value);
-  }, [setNumber]);
+  const [phoneNumber, setNumber] = useState("");
+  const setNewNumber = useCallback(
+    (e) => {
+      setNumber(e.target.value);
+    },
+    [setNumber]
+  );
 
-  const [message, setMessage] = useState('');
-  const setNewMessage = useCallback((e) => {
-    setMessage(e.target.value);
-  }, [setMessage]);
+  const [message, setMessage] = useState("");
+  const setNewMessage = useCallback(
+    (e) => {
+      setMessage(e.target.value);
+    },
+    [setMessage]
+  );
 
   const [print, setPrint] = useState(printList[0].title);
   const [printImage, setPrintImage] = useState(printList[0].src);
-  const setNewPrint = useCallback((e) => {
-    setPrint(e.target.value);
-    const printKey = (printList.filter((printObj) => printObj.title === e.target.value) || [])[0];
-    setPrintImage(printKey.src);
-  }, [setPrint]);
+  const setNewPrint = useCallback(
+    (e) => {
+      setPrint(e.target.value);
+      const printKey = (printList.filter(
+        (printObj) => printObj.title === e.target.value
+      ) || [])[0];
+      setPrintImage(printKey.src);
+    },
+    [setPrint]
+  );
 
-  const [size, setSize] = useState('20x30');
-  const setNewSize = useCallback((e) => {
-    setSize(e.target.value);
-  }, [setSize]);
+  const [size, setSize] = useState("20x30");
+  const setNewSize = useCallback(
+    (e) => {
+      setSize(e.target.value);
+    },
+    [setSize]
+  );
 
   const [statusMessage, setStatusMessage] = useState({});
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    (e) => {
+      e?.preventDefault();
+      e?.stopPropagation();
 
-    const data = {
-      name,
-      email,
-      phoneNumber,
-      message,
-      print,
-      size,
-    };
+      const data = {
+        name,
+        email,
+        phoneNumber,
+        message,
+        print,
+        size,
+      };
 
-    fetch('/api/printContact', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
+      fetch("/api/printContact", {
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((res) => {
         if (res.ok) {
           setStatusMessage({
-            type: 'success',
-            text: 'Message sent!',
+            type: "success",
+            text: "Message sent!",
           });
         } else {
           setStatusMessage({
-            type: 'error',
-            text: 'Something went wrong. Please try again later.',
+            type: "error",
+            text: "Something went wrong. Please try again later.",
           });
         }
       });
-  }, [email, message, phoneNumber, name, print, size]);
+    },
+    [email, message, phoneNumber, name, print, size]
+  );
 
   return (
     <Container
       sx={{
         zIndex: 10,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         mt: 6,
         px: {
           xs: 4,
@@ -109,14 +140,12 @@ export default function Prints() {
         },
       }}
     >
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <FormControl
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
             animation: `${fadeFromBelow} ${entranceAnimationDuration}s both ${animationDelay}s`,
           }}
         >
@@ -124,17 +153,18 @@ export default function Prints() {
             variant="h1"
             sx={{
               mb: 3,
-              flex: '3',
+              flex: "3",
             }}
           >
             Request Prints
           </Typography>
-          { statusMessage.text && (
+
+          {statusMessage.text && (
             <Box>
               <Typography
                 variant="body2"
                 sx={{
-                  fontSize: '2rem',
+                  fontSize: "2rem",
                 }}
               >
                 {statusMessage.text}
@@ -143,25 +173,40 @@ export default function Prints() {
           )}
           <Box
             sx={{
-              display: 'flex',
+              display: "flex",
               mt: 8,
               flexDirection: {
-                xs: 'column',
-                md: 'row',
+                xs: "column",
+                md: "row",
               },
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                flex: '4 4',
-                mb: '4rem',
+                display: "flex",
+                flexDirection: "column",
+                flex: "4 4",
+                mb: "4rem",
               }}
             >
-              <InputField label="Name" value={name} onChange={setNewName} required />
-              <InputField label="Email Address" value={email} onChange={setNewEmail} required />
-              <InputField label="Phone Number" value={phoneNumber} onChange={setNewNumber} required />
+              <InputField
+                label="Name"
+                value={name}
+                onChange={setNewName}
+                required
+              />
+              <InputField
+                label="Email Address"
+                value={email}
+                onChange={setNewEmail}
+                required
+              />
+              <InputField
+                label="Phone Number"
+                value={phoneNumber}
+                onChange={setNewNumber}
+                required
+              />
               <TextField
                 labelId="print-select-label"
                 id="print-select"
@@ -173,7 +218,9 @@ export default function Prints() {
                 required
               >
                 {printList.map((printObj) => (
-                  <MenuItem key={printObj.title} value={printObj.title}>{printObj.title}</MenuItem>
+                  <MenuItem key={printObj.title} value={printObj.title}>
+                    {printObj.title}
+                  </MenuItem>
                 ))}
               </TextField>
               <TextField
@@ -196,26 +243,27 @@ export default function Prints() {
             </Box>
             <Box
               sx={{
-                flex: '4 4',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
+                flex: "4 4",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
-              <Typography sx={{
-                fontSize: '2rem',
-                mx: {
-                  xs: 0,
-                  md: 2,
-                },
-              }}
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  mx: {
+                    xs: 0,
+                    md: 2,
+                  },
+                }}
               >
                 {print}
               </Typography>
               <Box
                 sx={{
-                  position: 'relative',
-                  flex: '1 1',
+                  position: "relative",
+                  flex: "1 1",
                   mx: {
                     xs: 0,
                     md: 2,
@@ -224,19 +272,25 @@ export default function Prints() {
                     xs: 3,
                     md: 0,
                   },
-                  display: 'block',
+                  display: "block",
                 }}
               >
-                <Box sx={{
-                  height: '20rem',
-                  my: '3rem',
-                  display: {
-                    xs: 'block',
-                    md: 'none',
-                  },
-                }}
+                <Box
+                  sx={{
+                    height: "20rem",
+                    my: "3rem",
+                    display: {
+                      xs: "block",
+                      md: "none",
+                    },
+                  }}
                 />
-                <Image src={`/prints/${encodeURIComponent(printImage)}`} alt={print} layout="fill" objectFit="contain" />
+                <Image
+                  src={`/prints/${encodeURIComponent(printImage)}`}
+                  alt={print}
+                  layout="fill"
+                  objectFit="contain"
+                />
               </Box>
             </Box>
             <InputField
@@ -246,7 +300,7 @@ export default function Prints() {
               value={message}
               onChange={setNewMessage}
               sx={{
-                flex: '4 4',
+                flex: "4 4",
                 ml: {
                   xs: 0,
                   md: 4,
@@ -256,12 +310,15 @@ export default function Prints() {
           </Box>
           <OutlinedButton
             text="Send Message     "
-            onClick={handleSubmit}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
           >
             <Typography
               variant="h4"
               sx={{
-                textTransform: 'none',
+                textTransform: "none",
               }}
             >
               Send Message
@@ -279,23 +336,17 @@ export default function Prints() {
             xs: 10,
             md: 8,
           },
-          borderTop: '1px solid #23222B',
+          borderTop: "1px solid #23222B",
         }}
       >
-        <Typography
-          variant="overline"
-        >
-          Email
-        </Typography>
-        <Link
-          href="mailto:management@driftershoots.com"
-        >
+        <Typography variant="overline">Email</Typography>
+        <Link href="mailto:management@driftershoots.com">
           <Typography
             variant="h5"
             color="white"
             sx={{
-              fontSize: '2.25rem',
-              lineHeight: '4rem',
+              fontSize: "2.25rem",
+              lineHeight: "4rem",
             }}
           >
             management@driftershoots.com
