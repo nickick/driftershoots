@@ -1,116 +1,116 @@
 [
-    {
-      "title": "The New York Times",
-      "category": "News",
-      "h1": "Recent News",
-      "logo": "/news-images/thenewyorktimes.svg",
-      "logo-alt": "The New York Times logo",
-      "main-image": "/news-images/Drifter1.jpeg",
-      "main-image-overlay": "",
-      "main-image-overlay-alt": "",
-      "main-image-zoom-start": {
-        "scale": 0.45,
-        "translateX": -120, 
-        "translateY": -120
-      },
-      "main-image-zoom": {
-        "scale": 0.45,
-        "translateX": -102, 
-        "translateY": -118
-      },
-      "main-image-mobile-zoom": {
-        "scale": 0.45,
-        "translateX": -110, 
-        "translateY": -130
-      },
-      "main-image-alt": "Drifter Shoots aka Isaac Wright on cover of New York Times",
-      "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
-      "right-description": "A former paratrooper became an &ldquo;urban explorer&ldquo;, scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
-      "right-button-text": "Read Article",
-      "right-button-href": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
+  {
+    "title": "The New York Times",
+    "category": "News",
+    "h1": "Recent News",
+    "logo": "/news-images/thenewyorktimes.svg",
+    "logo-alt": "The New York Times logo",
+    "main-image": "/news-images/Drifter2.jpeg",
+    "main-image-overlay": "",
+    "main-image-overlay-alt": "",
+    "main-image-zoom-start": {
+      "scale": 0.45,
+      "translateX": -120,
+      "translateY": -120
     },
-    {
-      "title": "First Day Out",
-      "category": "NFT Project",
-      "h1": "First Day Out",
-      "logo": "",
-      "logo-alt": "",
-      "main-image": "/news-images/fdo.jpg",
-      "main-image-overlay": "",
-      "main-image-overlay-alt": "",
-      "main-image-zoom-start": {
-        "scale": 0.7,
-        "translateX": -70, 
-        "translateY": -70
-      },
-      "main-image-zoom": {
-        "scale": 0.8,
-        "translateX": -74, 
-        "translateY": -70
-      },
-      "main-image-mobile-zoom": {
-        "scale": 0.8,
-        "translateX": -74, 
-        "translateY": -80
-      },
-      "main-image-alt": "Drifter Shoots aka Isaac Wright sitting on cable of bridge overlooking New York City",
-      "right-title": "Open Edition by DrifterShoots",
-      "right-description": "“April 9th, 2021 was my first day out. I had $9,000 left in my savings and five lawyers I had no idea how I would pay.”",
-      "right-button-text": "View NFT",
-      "right-button-href": "https://firstdayout.driftershoots.com"
+    "main-image-zoom": {
+      "scale": 0.5,
+      "translateX": -85,
+      "translateY": -98
     },
-    {
-      "title": "Digital Diaspora Pt. 2",
-      "category": "Event",
-      "h1": "Digital Diaspora Pt. 2",
-      "logo": "",
-      "logo-alt": "",
-      "main-image": "/news-images/digital-diaspora.jpeg",
-      "main-image-overlay-alt": "NYC NFT Logo",
-      "main-image-zoom-start": {
-        "scale": 1.6,
-        "translateX": -30, 
-        "translateY": -30
-      },
-      "main-image-zoom": {
-        "scale": 1.6,
-        "translateX": -20, 
-        "translateY": -35
-      },
-      "main-image-alt": "Man in jacket that says 'Fear of a Black Planet'",
-      "right-title": "Digital Diaspora Pt. 2",
-      "right-description": "<b>Diana Sinclair</b> and <b>Driftershoots</b> hosted a Juneteenth art exhibition, public installation, and fundraising auction centered around the works of Black artists for NFT.NYC 2022.",
-      "right-button-text": "Learn More",
-      "right-button-href": "https://www.digitaldiaspora.xyz/"
+    "main-image-mobile-zoom": {
+      "scale": 0.5,
+      "translateX": -90,
+      "translateY": -110
     },
-    {
-      "title": "Where My Vans Go",
-      "category": "NFT Project",
-      "h1": "Where\nMy Vans\nGo",
-      "logo": "",
-      "logo-alt": "",
-      "main-image": "/news-images/wmvg-main.jpg",
-      "main-image-overlay": "",
-      "main-image-overlay-alt": "",
-      "main-image-zoom-start": {
-        "scale": 1.4,
-        "translateX": -35, 
-        "translateY": -30
-      },
-      "main-image-zoom": {
-        "scale": 1.0,
-        "translateX": -50, 
-        "translateY": -55
-      },
-      "main-image-mobile-zoom": {
-        "scale": 0.65,
-        "translateX": -80, 
-        "translateY": -90
-      },
-      "main-image-alt": "Shoes overlooking bridge from top of bridge arch",
-      "right-title": "NFT Collection",
-      "right-description": "Where My Vans Go is a collection comprised of 124 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
-      "right-button-text": "View Collection",
-      "right-button-href": "/gallery"
-    }
+    "main-image-alt": "Drifter Shoots aka Isaac Wright on cover of New York Times",
+    "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
+    "right-description": "A former paratrooper became an &ldquo;urban explorer&ldquo;, scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
+    "right-button-text": "Read Article",
+    "right-button-href": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
+  },
+  {
+    "title": "First Day Out",
+    "category": "NFT Project",
+    "h1": "First Day Out",
+    "logo": "",
+    "logo-alt": "",
+    "main-image": "/news-images/fdo.jpg",
+    "main-image-overlay": "",
+    "main-image-overlay-alt": "",
+    "main-image-zoom-start": {
+      "scale": 0.7,
+      "translateX": -70,
+      "translateY": -70
+    },
+    "main-image-zoom": {
+      "scale": 0.8,
+      "translateX": -74,
+      "translateY": -70
+    },
+    "main-image-mobile-zoom": {
+      "scale": 0.8,
+      "translateX": -74,
+      "translateY": -80
+    },
+    "main-image-alt": "Drifter Shoots aka Isaac Wright sitting on cable of bridge overlooking New York City",
+    "right-title": "Open Edition by DrifterShoots",
+    "right-description": "“April 9th, 2021 was my first day out. I had $9,000 left in my savings and five lawyers I had no idea how I would pay.”",
+    "right-button-text": "View NFT",
+    "right-button-href": "https://firstdayout.driftershoots.com"
+  },
+  {
+    "title": "Digital Diaspora Pt. 2",
+    "category": "Event",
+    "h1": "Digital Diaspora Pt. 2",
+    "logo": "",
+    "logo-alt": "",
+    "main-image": "/news-images/digital-diaspora.jpeg",
+    "main-image-overlay-alt": "NYC NFT Logo",
+    "main-image-zoom-start": {
+      "scale": 1.6,
+      "translateX": -30,
+      "translateY": -30
+    },
+    "main-image-zoom": {
+      "scale": 1.6,
+      "translateX": -20,
+      "translateY": -35
+    },
+    "main-image-alt": "Man in jacket that says 'Fear of a Black Planet'",
+    "right-title": "Digital Diaspora Pt. 2",
+    "right-description": "<b>Diana Sinclair</b> and <b>Driftershoots</b> hosted a Juneteenth art exhibition, public installation, and fundraising auction centered around the works of Black artists for NFT.NYC 2022.",
+    "right-button-text": "Learn More",
+    "right-button-href": "https://www.digitaldiaspora.xyz/"
+  },
+  {
+    "title": "Where My Vans Go",
+    "category": "NFT Project",
+    "h1": "Where\nMy Vans\nGo",
+    "logo": "",
+    "logo-alt": "",
+    "main-image": "/news-images/wmvg-main.jpg",
+    "main-image-overlay": "",
+    "main-image-overlay-alt": "",
+    "main-image-zoom-start": {
+      "scale": 1.4,
+      "translateX": -35,
+      "translateY": -30
+    },
+    "main-image-zoom": {
+      "scale": 1.0,
+      "translateX": -50,
+      "translateY": -55
+    },
+    "main-image-mobile-zoom": {
+      "scale": 0.65,
+      "translateX": -80,
+      "translateY": -90
+    },
+    "main-image-alt": "Shoes overlooking bridge from top of bridge arch",
+    "right-title": "NFT Collection",
+    "right-description": "Where My Vans Go is a collection comprised of 124 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
+    "right-button-text": "View Collection",
+    "right-button-href": "/gallery"
+  }
 ]

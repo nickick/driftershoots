@@ -56,8 +56,6 @@ export default function GalleryPiece({ data = {}, index }) {
     [data, router]
   );
 
-  console.log(data);
-
   return (
     <Box
       sx={[
