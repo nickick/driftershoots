@@ -240,7 +240,9 @@ export default function Gallery() {
                 textColor="secondary"
               >
                 <Tab
-                  label={<Typography variant="h4">Individual Works</Typography>}
+                  label={
+                    <Typography variant="h4">Uncollected Works</Typography>
+                  }
                   {...a11yProps(0)}
                 />
                 <Tab

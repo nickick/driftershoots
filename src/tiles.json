@@ -60,30 +60,6 @@
     "right-button-href": "https://firstdayout.driftershoots.com"
   },
   {
-    "title": "Digital Diaspora Pt. 2",
-    "category": "Event",
-    "h1": "Digital Diaspora Pt. 2",
-    "logo": "",
-    "logo-alt": "",
-    "main-image": "/news-images/digital-diaspora.jpeg",
-    "main-image-overlay-alt": "NYC NFT Logo",
-    "main-image-zoom-start": {
-      "scale": 1.6,
-      "translateX": -30,
-      "translateY": -30
-    },
-    "main-image-zoom": {
-      "scale": 1.6,
-      "translateX": -20,
-      "translateY": -35
-    },
-    "main-image-alt": "Man in jacket that says 'Fear of a Black Planet'",
-    "right-title": "Digital Diaspora Pt. 2",
-    "right-description": "<b>Diana Sinclair</b> and <b>Driftershoots</b> hosted a Juneteenth art exhibition, public installation, and fundraising auction centered around the works of Black artists for NFT.NYC 2022.",
-    "right-button-text": "Learn More",
-    "right-button-href": "https://www.digitaldiaspora.xyz/"
-  },
-  {
     "title": "Where My Vans Go",
     "category": "NFT Project",
     "h1": "Where\nMy Vans\nGo",
