@@ -1,15 +1,20 @@
-import { ArrowDropDown, Instagram } from '@mui/icons-material';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import { ArrowDropDown, Instagram } from "@mui/icons-material";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import {
-  Box, Button, Container, keyframes, Menu, MenuItem,
-} from '@mui/material';
-import { Spin as Hamburger } from 'hamburger-react';
-import Link from 'next/link';
-import { useCallback, useState } from 'react';
-import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
-import DiscordIcon from './DiscordIcon';
-import Drawer from './Drawer';
-import { NavButton } from './NavButton';
+  Box,
+  Button,
+  Container,
+  keyframes,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import { Spin as Hamburger } from "hamburger-react";
+import Link from "next/link";
+import { useCallback, useState } from "react";
+import { entranceAnimationDelay, entranceAnimationDuration } from "./constants";
+import DiscordIcon from "./DiscordIcon";
+import Drawer from "./Drawer";
+import { NavButton } from "./NavButton";
 
 const fadeIn = keyframes`
   0% {
@@ -46,60 +51,65 @@ const fadeInLogo = keyframes`
 
 const leftNav = [
   {
-    text: 'Prints',
-    href: '/prints',
-    icon: '',
+    text: "Prints",
+    href: "/prints",
+    icon: "",
   },
   {
-    text: 'Gallery',
-    href: '/gallery',
-    icon: '',
+    text: "Gallery",
+    href: "/gallery",
+    icon: "",
   },
   {
-    text: 'Publications',
-    href: '/publications',
-    icon: '',
+    text: "Publications",
+    href: "/publications",
+    icon: "",
   },
 ];
 
 const appMenu = [
   {
-    text: 'WMVG Migration',
-    href: 'https://wheremyvansgo.com',
-    icon: '',
+    text: "WMVG Migration",
+    href: "https://wheremyvansgo.com",
+    icon: "",
   },
   {
-    text: 'First Day Out',
-    href: 'https://firstdayout.driftershoots.com',
-    icon: '',
+    text: "First Day Out",
+    href: "https://firstdayout.driftershoots.com",
+    icon: "",
+  },
+  {
+    text: "Drift Vault",
+    href: "https://vault.driftershoots.com",
+    icon: "",
   },
 ];
 
 const rightNav = [
   {
-    text: '',
-    href: 'https://discord.com/invite/kr65XUgPYw',
+    text: "",
+    href: "https://discord.com/invite/kr65XUgPYw",
     icon: <DiscordIcon />,
   },
   {
-    text: '',
-    href: 'https://twitter.com/driftershoots',
+    text: "",
+    href: "https://twitter.com/driftershoots",
     icon: <TwitterIcon sx={{ fontSize: 20 }} />,
   },
   {
-    text: '',
-    href: 'https://www.instagram.com/driftershoots',
+    text: "",
+    href: "https://www.instagram.com/driftershoots",
     icon: <Instagram sx={{ fontSize: 20 }} />,
   },
   {
-    text: 'Contact',
-    href: '/contact',
-    icon: '',
+    text: "Contact",
+    href: "/contact",
+    icon: "",
   },
   {
-    text: 'About',
-    href: '/about',
-    icon: '',
+    text: "About",
+    href: "/about",
+    icon: "",
   },
 ];
 
@@ -122,114 +132,110 @@ export default function Navbar() {
     <Box
       sx={{
         pt: {
-          xs: '4rem',
-          md: '6.5rem',
+          xs: "4rem",
+          md: "6.5rem",
         },
         pb: {
           xs: 2,
         },
-        px: '4rem',
-        background: 'linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+        px: "4rem",
+        background:
+          "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
         zIndex: {
           xs: 100,
           md: 2,
         },
         position: {
-          xs: 'sticky',
-          md: 'relative',
+          xs: "sticky",
+          md: "relative",
         },
-        top: '0px',
+        top: "0px",
       }}
     >
       <Container
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          maxWidth: '1440px',
+          display: "flex",
+          flexDirection: "row",
+          maxWidth: "1440px",
         }}
       >
         <Box
           sx={{
             flex: 1,
             display: {
-              xs: 'flex',
-              md: 'none',
+              xs: "flex",
+              md: "none",
               animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay}s`,
             },
           }}
         >
-
-          <Hamburger toggled={isOpen} toggle={setOpen} direction="left" size={20} />
+          <Hamburger
+            toggled={isOpen}
+            toggle={setOpen}
+            direction="left"
+            size={20}
+          />
           <Drawer isOpen={isOpen} setOpen={setOpen} closeDrawer={closeDrawer} />
         </Box>
         <Box
           sx={{
             flex: 1,
             display: {
-              xs: 'none',
-              md: 'flex',
+              xs: "none",
+              md: "flex",
             },
           }}
         >
-          {
-            leftNav.map(({ text, href, icon }, index) => (
-              <NavButton
-                key={text + href}
-                text={text}
-                href={href}
-                icon={icon}
-                index={index}
-              />
-            ))
-          }
+          {leftNav.map(({ text, href, icon }, index) => (
+            <NavButton
+              key={text + href}
+              text={text}
+              href={href}
+              icon={icon}
+              index={index}
+            />
+          ))}
           <Button
             variant="text"
             sx={{
-              color: 'text.primary',
-              mx: '0.5rem',
-              fontSize: '1.5rem',
-              lineHeight: '2rem',
-              letterSpacing: '0.1rem',
-              animation: `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + (leftNav.length + 1) * 0.2}s`,
+              color: "text.primary",
+              mx: "0.5rem",
+              fontSize: "1.5rem",
+              lineHeight: "2rem",
+              letterSpacing: "0.1rem",
+              animation: `${fadeIn} ${entranceAnimationDuration}s both ${
+                entranceAnimationDelay + (leftNav.length + 1) * 0.2
+              }s`,
             }}
             onClick={handleClick}
           >
             Apps
             <ArrowDropDown
               sx={{
-                fontSize: '3rem',
+                fontSize: "3rem",
               }}
             />
           </Button>
-          <Menu
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            {
-              appMenu.map(({ text, href, icon }, index) => (
-                <MenuItem
-                  onClick={handleClose}
-                  key={text + href}
-                >
-                  <NavButton
-                    text={text}
-                    href={href}
-                    icon={icon}
-                    index={index}
-                    animation={false}
-                  />
-                </MenuItem>
-              ))
-            }
+          <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+            {appMenu.map(({ text, href, icon }, index) => (
+              <MenuItem onClick={handleClose} key={text + href}>
+                <NavButton
+                  text={text}
+                  href={href}
+                  icon={icon}
+                  index={index}
+                  animation={false}
+                />
+              </MenuItem>
+            ))}
           </Menu>
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            flex: '1',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flex: "1",
+            justifyContent: "center",
+            alignItems: "center",
             animation: `${fadeInLogo} ${entranceAnimationDuration}s both`,
             zIndex: 15,
           }}
@@ -238,9 +244,9 @@ export default function Navbar() {
             <img
               src="/icons/drift-logo.svg"
               style={{
-                height: '24px',
-                aspectRatio: '116 / 38',
-                cursor: 'pointer',
+                height: "24px",
+                aspectRatio: "116 / 38",
+                cursor: "pointer",
               }}
               alt="Drifter Shoots logo"
             />
@@ -249,13 +255,13 @@ export default function Navbar() {
         <Box
           sx={{
             display: {
-              xs: 'flex',
-              md: 'none',
+              xs: "flex",
+              md: "none",
             },
-            flexDirection: 'row-reverse',
+            flexDirection: "row-reverse",
             flex: 1,
-            flexWrap: 'nowrap',
-            justifyContent: 'flex-start',
+            flexWrap: "nowrap",
+            justifyContent: "flex-start",
           }}
         >
           <NavButton
@@ -268,26 +274,24 @@ export default function Navbar() {
         <Box
           sx={{
             display: {
-              xs: 'none',
-              md: 'flex',
+              xs: "none",
+              md: "flex",
             },
-            flexDirection: 'row-reverse',
+            flexDirection: "row-reverse",
             flex: 1,
-            flexWrap: 'nowrap',
-            justifyContent: 'flex-start',
+            flexWrap: "nowrap",
+            justifyContent: "flex-start",
           }}
         >
-          {
-            rightNav.map(({ text, href, icon }, index) => (
-              <NavButton
-                key={text + href}
-                text={text}
-                href={href}
-                icon={icon}
-                index={index}
-              />
-            ))
-          }
+          {rightNav.map(({ text, href, icon }, index) => (
+            <NavButton
+              key={text + href}
+              text={text}
+              href={href}
+              icon={icon}
+              index={index}
+            />
+          ))}
         </Box>
       </Container>
     </Box>

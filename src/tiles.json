@@ -1,5 +1,33 @@
 [
   {
+    "title": "Drift Vault",
+    "category": "NFT Project",
+    "h1": "Drift Vault",
+    "main-image": "/news-images/vault-main-site.jpeg",
+    "main-image-overlay": "",
+    "main-image-overlay-alt": "",
+    "main-image-zoom-start": {
+      "scale": 0.2,
+      "translateX": -280,
+      "translateY": -283
+    },
+    "main-image-zoom": {
+      "scale": 0.2,
+      "translateX": -260,
+      "translateY": -253
+    },
+    "main-image-mobile-zoom": {
+      "scale": 0.5,
+      "translateX": -120,
+      "translateY": -150
+    },
+    "main-image-alt": "Drift Vault open for FDO collectors",
+    "right-title": "Drift Vault",
+    "right-description": "As time works on us all as it inevitably does, the shape and significance of art changes as well. Art is meant to be treasured, and observed with discretion, care and patience. Art demands to be vaulted.",
+    "right-button-text": "Go to Vault",
+    "right-button-href": "https://vault.driftershoots.com"
+  },
+  {
     "title": "The New York Times",
     "category": "News",
     "h1": "Recent News",
