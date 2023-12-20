@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
-import {
-  createContext, useEffect, useMemo, useState,
-} from 'react';
+import PropTypes from "prop-types";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 export const GalleryContext = createContext();
 
@@ -9,18 +7,25 @@ export default function GalleryProvider({ children }) {
   const [wmvgPieces, setWMVGPieces] = useState([]);
 
   async function getWMVGPieces() {
-    const results = await fetch('/api/where-my-vans-go');
+    const results = await fetch("/api/where-my-vans-go");
     const pieces = await results.json();
-    setWMVGPieces(pieces);
+    if (pieces.message) {
+      console.error(pieces.message);
+    } else {
+      setWMVGPieces(pieces);
+    }
   }
 
   useEffect(() => {
     getWMVGPieces();
   }, []);
 
-  const providerValue = useMemo(() => ({
-    wmvgPieces,
-  }), [wmvgPieces]);
+  const providerValue = useMemo(
+    () => ({
+      wmvgPieces,
+    }),
+    [wmvgPieces]
+  );
 
   return (
     <GalleryContext.Provider value={providerValue}>

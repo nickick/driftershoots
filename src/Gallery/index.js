@@ -117,7 +117,9 @@ export default function Gallery() {
   const pieceQueryIdentifier = Number.isNaN(pieceQueryToInt)
     ? router.query.gallery
     : pieceQueryToInt;
-  const piece = wmvgPieces.find((p) => p.id === pieceQueryIdentifier);
+  const piece = wmvgPieces.find(
+    (p) => p.tokenId.toString() === pieceQueryIdentifier?.toString()
+  );
 
   useEffect(() => {
     setModalOpen(!!router.query.gallery);
@@ -134,7 +136,9 @@ export default function Gallery() {
   }, [router.query.gallery, wmvgSorted, piece]);
 
   const traits = new Set(
-    wmvgSorted.map((wmvg) => wmvg.traits.map((trait) => trait.value)).flat()
+    wmvgSorted
+      .map((wmvg) => wmvg.raw.metadata.attributes.map((trait) => trait.value))
+      .flat()
   );
 
   function a11yProps(index) {
@@ -166,7 +170,7 @@ export default function Gallery() {
         },
       }}
     >
-      <TabContext value={value}>
+      <TabContext value={value.toString()}>
         {piece && (
           <GalleryModal
             open={modalOpen}

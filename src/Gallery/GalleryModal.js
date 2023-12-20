@@ -1,11 +1,9 @@
-import { Close } from '@mui/icons-material';
-import {
-  Box, CircularProgress, Dialog, Typography,
-} from '@mui/material';
-import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
-import { getName } from '../utils/parsers';
-import { openseaPieceProps } from '../utils/prop-types';
+import { Close } from "@mui/icons-material";
+import { Box, CircularProgress, Dialog, Typography } from "@mui/material";
+import PropTypes from "prop-types";
+import React, { useCallback, useEffect, useState } from "react";
+import { getName } from "../utils/parsers";
+import { openseaPieceProps } from "../utils/prop-types";
 
 export default function GalleryModal({ piece, open, handleClose }) {
   const [loaded, setLoaded] = useState(false);
@@ -34,29 +32,29 @@ export default function GalleryModal({ piece, open, handleClose }) {
       maxWidth="xl"
       PaperProps={{
         sx: {
-          bgcolor: 'transparent',
-          backgroundImage: 'none',
-          boxShadow: 'none',
-          overflowX: 'hidden',
+          bgcolor: "transparent",
+          backgroundImage: "none",
+          boxShadow: "none",
+          overflowX: "hidden",
           p: 0,
           m: 0,
         },
       }}
       BackdropProps={{
-        bgcolor: 'rgba(0,0,0,0.7)',
+        bgcolor: "rgba(0,0,0,0.7)",
       }}
     >
       <Box
         sx={{
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          position: "relative",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Close
           sx={{
-            position: 'absolute',
+            position: "absolute",
             right: 10,
             top: 10,
             zIndex: 1300,
@@ -64,8 +62,8 @@ export default function GalleryModal({ piece, open, handleClose }) {
               xs: 30,
               md: 60,
             },
-            background: 'rgba(0,0,0,0.2)',
-            cursor: 'pointer',
+            background: "rgba(0,0,0,0.2)",
+            cursor: "pointer",
           }}
           onClick={() => {
             handleClose();
@@ -74,16 +72,16 @@ export default function GalleryModal({ piece, open, handleClose }) {
         <Box
           sx={{
             opacity: !loaded ? 1 : 0,
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
           }}
         >
           <CircularProgress
             size={90}
             sx={{
-              color: 'white',
+              color: "white",
             }}
           />
         </Box>
@@ -91,50 +89,44 @@ export default function GalleryModal({ piece, open, handleClose }) {
           <Box
             sx={[
               {
-                display: 'flex',
+                display: "flex",
                 opacity: loaded ? 1 : 0,
-                flexDirection: 'column',
-                position: 'relative',
+                flexDirection: "column",
+                position: "relative",
                 width: {
-                  xs: '90vw',
-                  md: 'auto',
+                  xs: "90vw",
+                  md: "auto",
                 },
               },
               {
-                '& > img': {
-                  transition: 'transform 0.5s ease-out',
-                  maxHeight: '100%',
-                  maxWidth: '100%',
+                "& > img": {
+                  transition: "transform 0.5s ease-out",
+                  maxHeight: "100%",
+                  maxWidth: "100%",
                   width: {
-                    xs: '90vw',
-                    md: isLandscape ? '68vw' : 'auto',
+                    xs: "90vw",
+                    md: isLandscape ? "68vw" : "auto",
                   },
-                  height: isLandscape ? 'auto' : 'calc(85vh - 10rem)',
+                  height: isLandscape ? "auto" : "calc(85vh - 10rem)",
                 },
               },
             ]}
           >
             <img
-              src={piece.image_original_url || piece.image_url}
+              src={piece.image.cachedUrl || piece.image.originalUrl}
               alt={piece.name}
               onLoad={onImageLoad}
             />
-            {getName(piece.description) !== 'Other' && (
+            {getName(piece.description) !== "Other" && (
               <Box
                 sx={{
                   p: 3,
-                  bgcolor: '#23222B',
-                  width: '100%',
+                  bgcolor: "#23222B",
+                  width: "100%",
                 }}
               >
-                <Typography
-                  variant="h4"
-                >
-                  {piece.name}
-                </Typography>
-                <Typography
-                  variant="h3"
-                >
+                <Typography variant="h4">{piece.name}</Typography>
+                <Typography variant="h3">
                   {getName(piece.description)}
                 </Typography>
               </Box>
