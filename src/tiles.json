@@ -7,19 +7,19 @@
     "main-image-overlay": "",
     "main-image-overlay-alt": "",
     "main-image-zoom-start": {
-      "scale": 0.2,
-      "translateX": -280,
-      "translateY": -283
+      "scale": 0.5,
+      "translateX": -110,
+      "translateY": -100
     },
     "main-image-zoom": {
-      "scale": 0.2,
-      "translateX": -260,
-      "translateY": -253
+      "scale": 0.5,
+      "translateX": -110,
+      "translateY": -100
     },
     "main-image-mobile-zoom": {
-      "scale": 0.5,
-      "translateX": -120,
-      "translateY": -150
+      "scale": 0.4,
+      "translateX": -140,
+      "translateY": -135
     },
     "main-image-alt": "Drift Vault open for FDO collectors",
     "right-title": "Drift Vault",
