@@ -78,11 +78,6 @@ const appMenu = [
     href: "https://firstdayout.driftershoots.com",
     icon: "",
   },
-  {
-    text: "Drift Vault",
-    href: "https://vault.driftershoots.com",
-    icon: "",
-  },
 ];
 
 const rightNav = [

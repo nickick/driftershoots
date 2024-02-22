@@ -53,11 +53,6 @@ const navLinks = [
     icon: "",
   },
   {
-    text: "Drift Vault",
-    href: "https://vault.driftershoots.com",
-    icon: "",
-  },
-  {
     text: "",
     href: "https://www.instagram.com/driftershoots",
     icon: <Instagram sx={{ fontSize: 20 }} />,
