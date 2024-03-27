@@ -51,8 +51,8 @@ const fadeInLogo = keyframes`
 
 const leftNav = [
   {
-    text: "Prints",
-    href: "/prints",
+    text: "Represented by",
+    href: "http://www.robertmann.com",
     icon: "",
   },
   {
