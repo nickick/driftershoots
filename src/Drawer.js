@@ -1,10 +1,9 @@
 import { Box, Button, Drawer, keyframes } from "@mui/material";
 import { PropTypes } from "prop-types";
 import Link from "next/link";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { Twitter, YouTube } from "@mui/icons-material";
 import { Spin as Hamburger } from "hamburger-react";
 import { Instagram } from "@mui/icons-material";
-import DiscordIcon from "./DiscordIcon";
 import { entranceAnimationDuration } from "./constants";
 
 const fadeIn = keyframes`
@@ -59,13 +58,13 @@ const navLinks = [
   },
   {
     text: "",
-    href: "https://discord.com/invite/kr65XUgPYw",
-    icon: <DiscordIcon />,
+    href: "https://www.youtube.com/channel/UCGLHIncVIZ6uKnA-rExt53g",
+    icon: <YouTube sx={{ fontSize: 20 }} />,
   },
   {
     text: "",
     href: "https://twitter.com/driftershoots",
-    icon: <TwitterIcon sx={{ fontSize: 20 }} />,
+    icon: <Twitter sx={{ fontSize: 20 }} />,
   },
 ];
 

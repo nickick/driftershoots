@@ -1,5 +1,4 @@
-import { ArrowDropDown, Instagram } from "@mui/icons-material";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import { ArrowDropDown, Instagram, Twitter, YouTube } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -12,7 +11,6 @@ import { Spin as Hamburger } from "hamburger-react";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { entranceAnimationDelay, entranceAnimationDuration } from "./constants";
-import DiscordIcon from "./DiscordIcon";
 import Drawer from "./Drawer";
 import { NavButton } from "./NavButton";
 
@@ -83,13 +81,13 @@ const appMenu = [
 const rightNav = [
   {
     text: "",
-    href: "https://discord.com/invite/kr65XUgPYw",
-    icon: <DiscordIcon />,
+    href: "https://www.youtube.com/channel/UCGLHIncVIZ6uKnA-rExt53g",
+    icon: <YouTube sx={{ fontSize: 20 }} />,
   },
   {
     text: "",
     href: "https://twitter.com/driftershoots",
-    icon: <TwitterIcon sx={{ fontSize: 20 }} />,
+    icon: <Twitter sx={{ fontSize: 20 }} />,
   },
   {
     text: "",
