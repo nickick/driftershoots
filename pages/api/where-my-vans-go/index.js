@@ -8,14 +8,6 @@ const config = {
 const WMVG_CONTRACT_ADDRESS = "0x509a050f573be0d5e01a73c3726e17161729558b";
 
 async function getWMVGPieces() {
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "X-API-KEY": process.env.OPENSEA_API_KEY,
-    },
-  };
-
   const alchemy = new Alchemy(config);
 
   const pieces = await alchemy.nft.getNftsForContract(WMVG_CONTRACT_ADDRESS);

@@ -1023,6 +1023,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.6.tgz#b66b66c9bb5d49b199f03399e341c9d6036e9e88"
   integrity sha512-q0RkvNgMweWWIvSMDiXhflGUKMdIxBo2M2tYM/0kEGDueQByFzK4KZAgu5YHGFNxziTlppNpTIBcqHQAxlfHdA==
 
+"@types/node@^20.11.30":
+  version "20.11.30"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.30.tgz#9c33467fc23167a347e73834f788f4b9f399d66f"
+  integrity sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==
+  dependencies:
+    undici-types "~5.26.4"
+
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
@@ -1066,6 +1073,14 @@
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.2.73":
+  version "18.2.73"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.73.tgz#0579548ad122660d99e00499d22e33b81e73ed94"
+  integrity sha512-XcGdod0Jjv84HOC7N5ziY3x+qL0AfmubvKOZ9hJjJ2yd5EE+KYjWhdOjt387e9HPheHkdggF9atTifMRtyAaRA==
+  dependencies:
+    "@types/prop-types" "*"
     csstype "^3.0.2"
 
 "@types/responselike@^1.0.0":
@@ -4250,6 +4265,11 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
+typescript@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.3.tgz#5c6fedd4c87bee01cd7a528a30145521f8e0feff"
+  integrity sha512-KrPd3PKaCLr78MalgiwJnA25Nm8HAmdwN3mYUYZgG/wizIo9EainNVQI9/yDavtVFRN2h3k8uf3GLHuhDMgEHg==
+
 unbox-primitive@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/unbox-primitive/-/unbox-primitive-1.0.2.tgz#29032021057d5e6cdbd08c5129c226dff8ed6f9e"
@@ -4259,6 +4279,11 @@ unbox-primitive@^1.0.2:
     has-bigints "^1.0.2"
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
+
+undici-types@~5.26.4:
+  version "5.26.5"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
+  integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
 uri-js@^4.2.2:
   version "4.4.1"

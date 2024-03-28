@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Gallery, GalleryContextProvider } from '../../src';
+import { GalleryV2 } from '../../src/GalleryV2';
 
 export default function GalleryPage() {
   return (
