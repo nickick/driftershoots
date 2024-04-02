@@ -23,7 +23,7 @@ export default function GalleryPage() {
         <meta name="twitter:image" content="https://driftershoots.com/open-graph.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Gallery />
+      <GalleryV2 />
     </GalleryContextProvider>
   );
 }
