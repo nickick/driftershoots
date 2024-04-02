@@ -22,7 +22,8 @@ const GalleryV2 = (params:GalleryV2Props) => {
           md: 0,
         },
         pt: {
-          xs: 5,
+          xs: 3,
+          md: 5,
         }
       }}
     >
@@ -31,10 +32,36 @@ const GalleryV2 = (params:GalleryV2Props) => {
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        gap: "20px",
+        gap: {
+          xs: "10px",
+          md: "20px",
+        },
       }}>
+        {assets.map((asset) => {
+          return(<Box key={`${asset.name}-mobile`} sx={{
+            display: {
+              xs: "block",
+              md: "none",
+            }
+          }}>
+            <img
+              src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
+              alt={asset.name}
+              style={{
+                width: "auto",
+                height: "50px",
+                objectFit: "cover",
+              }}
+            />
+          </Box>)
+        })}
       {assets.map((asset) => {
-        return(<div key={asset.name}>
+        return(<Box key={asset.name} sx={{
+          display: {
+            xs: "none",
+            md: "block",
+          }
+        }}>
           <img
             src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
             alt={asset.name}
@@ -44,7 +71,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
               objectFit: "cover",
             }}
           />
-        </div>)
+        </Box>)
       })}
       </Box>
 
