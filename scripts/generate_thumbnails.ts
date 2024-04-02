@@ -1,7 +1,13 @@
 import { Alchemy, Network, Nft, NftTokenType } from "alchemy-sdk";
-import imagemagick from "imagemagick";
 import fs from "fs";
-import path from "path";
+import imagemagick from "imagemagick";
+import {
+  MISC_COLLECTION_SLUGS,
+  OPENSEA_STOREFRONT_CONTRACT_ADDRESS,
+  WMVG_CONTRACT_ADDRESS,
+  WMVG_STOREFRONT_IDS,
+} from "./constants";
+import { reduceName } from "./helpers";
 
 /**
  * Script to download images from WMVG collection and various works to convert into thumbnail images.
@@ -14,52 +20,10 @@ const config = {
   network: Network.ETH_MAINNET,
 };
 
-const WMVG_CONTRACT_ADDRESS = "0x509a050f573be0d5e01a73c3726e17161729558b";
-const OPENSEA_STOREFRONT_CONTRACT_ADDRESS =
-  "0x495f947276749ce646f68ac8c248420045cb7b5e";
-const WMVG_STOREFRONT_IDS = [
-  "71349417930267003648058267821921373972951788320258492784107927487347127484417",
-];
-
-const MISC_COLLECTION_SLUGS = [
-  "drift10",
-  "drift21",
-  "drift27",
-  "drift32",
-  "drift38",
-  "drift42",
-  "drift6",
-  "drift11",
-  "drift22",
-  "drift28",
-  "drift33",
-  "drift39",
-  "drift43",
-  "drift7",
-  "drift16",
-  "drift23",
-  "drift29",
-  "drift34",
-  "drift4",
-  "drift47",
-  "drift9",
-  "drift17",
-  "drift25",
-  "drift30",
-  "drift35",
-  "drift40",
-  "drift48",
-  "drift18",
-  "drift26",
-  "drift31",
-  "drift36",
-  "drift41",
-  "drift5",
-];
-
-const reduceName = (name?: string) =>
-  (name || "").replace(/ /g, "_").replace(/\#/, "").toLowerCase();
-
+/**
+ * Combines WMVG from 2 different sources with uncollected works stored locally
+ * @returns {Promise<Nft[]>} - List of NFTs from WMVG collection and other works
+ */
 const gatherImages = async () => {
   // 80 out of 125 assets are in the new WMVG collection
   const alchemy = new Alchemy(config);
@@ -130,19 +94,23 @@ const gatherImages = async () => {
   return assets;
 };
 
+/**
+ * Generates thumbnails for all images in the assets list
+ * @param assets - List of NFTs from WMVG collection and other works
+ */
 const createThumbnailsInDir = async (assets: Nft[]) => {
   // Create (fresh) thumbnails directory
   fs.rmSync("public/gallery/thumbnails", { recursive: true, force: true });
   fs.mkdirSync("public/gallery/thumbnails");
 
-  assets.forEach(async (asset) => {
+  const generateImageFns = assets.map((asset) => {
     const imageUrl = asset.image.originalUrl;
     // use imagemagick to create thumbnail images
     const thumbnailPath = `public/gallery/thumbnails/${reduceName(
       asset.name
     )}.png`;
 
-    await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       imagemagick.resize(
         {
           srcPath: imageUrl,
@@ -160,10 +128,16 @@ const createThumbnailsInDir = async (assets: Nft[]) => {
       );
     });
   });
+
+  await Promise.all(generateImageFns);
 };
 
 const main = async () => {
   const assets = await gatherImages();
+  fs.writeFileSync(
+    "public/gallery/assets.json",
+    JSON.stringify(assets, null, 2)
+  );
   await createThumbnailsInDir(assets);
 };
 
