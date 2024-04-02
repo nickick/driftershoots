@@ -60,7 +60,7 @@ const MISC_COLLECTION_SLUGS = [
 const reduceName = (name?: string) =>
   (name || "").replace(/ /g, "_").replace(/\#/, "").toLowerCase();
 
-const main = async () => {
+const gatherImages = async () => {
   // 80 out of 125 assets are in the new WMVG collection
   const alchemy = new Alchemy(config);
   const wmvgPieces = await alchemy.nft.getNftsForContract(
@@ -127,6 +127,10 @@ const main = async () => {
     });
   });
 
+  return assets;
+};
+
+const createThumbnailsInDir = async (assets: Nft[]) => {
   // Create (fresh) thumbnails directory
   fs.rmSync("public/gallery/thumbnails", { recursive: true, force: true });
   fs.mkdirSync("public/gallery/thumbnails");
@@ -156,6 +160,11 @@ const main = async () => {
       );
     });
   });
+};
+
+const main = async () => {
+  const assets = await gatherImages();
+  await createThumbnailsInDir(assets);
 };
 
 main()
