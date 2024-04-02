@@ -18,8 +18,8 @@ const GalleryV2 = (params:GalleryV2Props) => {
         minHeight: "80vh",
         overflowX: "hidden",
         px: {
-          xs: 0,
-          md: 0,
+          xs: 2,
+          md: 5,
         },
         pt: {
           xs: 3,
