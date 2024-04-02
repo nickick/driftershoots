@@ -8,6 +8,7 @@ import {
   WMVG_STOREFRONT_IDS,
 } from "./constants";
 import { reduceName } from "./helpers";
+import { PromisePool } from "@supercharge/promise-pool";
 
 /**
  * Script to download images from WMVG collection and various works to convert into thumbnail images.
@@ -34,22 +35,15 @@ const gatherImages = async () => {
   const { nfts: assets } = wmvgPieces;
 
   // Still need to get 45 old ones from original Opensea shared storefront collection
-  const piecesAsyncFns: Promise<Nft>[] = WMVG_STOREFRONT_IDS.map((id) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const openseaPieces = await alchemy.nft.getNftMetadata(
-          OPENSEA_STOREFRONT_CONTRACT_ADDRESS,
-          id
-        );
-        resolve(openseaPieces);
-      } catch (err) {
-        reject(err);
-      }
+  const additionalPieces = await PromisePool.for(WMVG_STOREFRONT_IDS)
+    .withConcurrency(5)
+    .process(async (nftId) => {
+      return await alchemy.nft.getNftMetadata(
+        OPENSEA_STOREFRONT_CONTRACT_ADDRESS,
+        nftId
+      );
     });
-  });
-
-  const additionalPieces = await Promise.all(piecesAsyncFns);
-  assets.push(...additionalPieces);
+  assets.push(...additionalPieces.results);
 
   assets.forEach((asset) => {
     asset.raw.metadata.attributes?.push({
