@@ -12,11 +12,14 @@ type GalleryV2Props = {
 
 const GalleryV2 = (params:GalleryV2Props) => {
   const [selectedAsset, setSelectedAsset] = useState<Nft | null>(null);
-  const selectAsset = (asset: Nft) => {
+  const [selectedAssetIndex, setSelectedAssetIndex] = useState<number | null>(null);
+  const selectAsset = (asset: Nft, index: number) => {
     setSelectedAsset(asset);
+    setSelectedAssetIndex(index);
   }
   const deselectAsset = () => {
     setSelectedAsset(null);
+    setSelectedAssetIndex(null);
   }
 
   return (
@@ -65,7 +68,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
             />
           </Box>)
         })}
-      {assets.map((asset) => {
+      {assets.map((asset, index) => {
         return(
           <Box key={asset.name} sx={{
             display: {
@@ -78,7 +81,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
             },
             transition: "all 0.3s ease-in-out",
           }}
-          onClick={() => selectAsset(asset)}
+          onClick={() => selectAsset(asset, index)}
           >
             <img
               src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
@@ -93,7 +96,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
         )
       })}
       </Box>
-      <ModalView asset={selectedAsset} deselectAsset={deselectAsset} />
+      <ModalView asset={selectedAsset} selectedAssetIndex={selectedAssetIndex} deselectAsset={deselectAsset} />
     </Container>
   )
 }
