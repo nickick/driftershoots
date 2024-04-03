@@ -13,6 +13,7 @@ import { PromisePool } from "@supercharge/promise-pool";
 /**
  * Script to download images from WMVG collection and various works to convert into thumbnail images.
  * Thumbnail images will save into public/gallery dir and original images will ref those thumbnails while pulling from original url in runtime.
+ * A json file will be created in public/gallery dir to store all the metadata of the images for easy iteration in the Gallery component.
  * This script assumes localhost:3000 is running so that it can pull locally stored images for thumbnail generation.
  */
 
@@ -126,12 +127,16 @@ const createThumbnailsInDir = async (assets: Nft[]) => {
   await Promise.all(generateImageFns);
 };
 
-const main = async () => {
-  const assets = await gatherImages();
+const writeAssetsJson = (assets: Nft[]) => {
   fs.writeFileSync(
     "public/gallery/assets.json",
     JSON.stringify(assets, null, 2)
   );
+};
+
+const main = async () => {
+  const assets = await gatherImages();
+  writeAssetsJson(assets);
   await createThumbnailsInDir(assets);
 };
 
