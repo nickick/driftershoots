@@ -58,9 +58,8 @@ const gatherImages = async () => {
       name: photoName,
       description: "Other",
       image: {
-        originalUrl: `http://localhost:3000/gallery/${photoName}.jpeg`,
+        originalUrl: `https://driftershoots.com/gallery/${photoName}.jpeg`,
         thumbnailUrl: `/gallery/${photoName}.jpeg`,
-        cachedUrl: `/gallery/${photoName}.jpeg`,
       },
       tokenType: NftTokenType.ERC721,
       timeLastUpdated: new Date().toISOString(),
@@ -137,7 +136,7 @@ const writeAssetsJson = (assets: Nft[]) => {
 const main = async () => {
   const assets = await gatherImages();
   writeAssetsJson(assets);
-  await createThumbnailsInDir(assets);
+  // await createThumbnailsInDir(assets);
 };
 
 main()

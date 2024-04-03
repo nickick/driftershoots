@@ -2,6 +2,8 @@ import { Container, Box } from "@mui/material";
 import assetsJson from "../../public/gallery/assets.json";
 import { reduceName } from "../../scripts/helpers";
 import { Nft } from "alchemy-sdk";
+import ModalView from "./ModalView";
+import { useState } from "react";
 
 const assets = assetsJson as Nft[];
 
@@ -9,6 +11,17 @@ type GalleryV2Props = {
 }
 
 const GalleryV2 = (params:GalleryV2Props) => {
+  const [selectedAsset, setSelectedAsset] = useState<Nft | null>(null);
+  const [selectedAssetIndex, setSelectedAssetIndex] = useState<number | null>(null);
+  const selectAsset = (asset: Nft, index: number) => {
+    setSelectedAsset(asset);
+    setSelectedAssetIndex(index);
+  }
+  const deselectAsset = () => {
+    setSelectedAsset(null);
+    setSelectedAssetIndex(null);
+  }
+
   return (
     <Container
       sx={{
@@ -41,7 +54,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
           return(<Box key={`${asset.name}-mobile`} sx={{
             display: {
               xs: "block",
-              md: "none",
+              md: "none"
             }
           }}>
             <img
@@ -55,26 +68,35 @@ const GalleryV2 = (params:GalleryV2Props) => {
             />
           </Box>)
         })}
-      {assets.map((asset) => {
-        return(<Box key={asset.name} sx={{
-          display: {
-            xs: "none",
-            md: "block",
-          }
-        }}>
-          <img
-            src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
-            alt={asset.name}
-            style={{
-              width: "auto",
-              height: "100px",
-              objectFit: "cover",
-            }}
-          />
-        </Box>)
+      {assets.map((asset, index) => {
+        return(
+          <Box key={asset.name} sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+            ":hover": {
+              cursor: "pointer",
+              opacity: 0.7,
+            },
+            transition: "all 0.3s ease-in-out",
+          }}
+          onClick={() => selectAsset(asset, index)}
+          >
+            <img
+              src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
+              alt={asset.name}
+              style={{
+                width: "auto",
+                height: "100px",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+        )
       })}
       </Box>
-
+      <ModalView asset={selectedAsset} selectedAssetIndex={selectedAssetIndex} deselectAsset={deselectAsset} />
     </Container>
   )
 }
