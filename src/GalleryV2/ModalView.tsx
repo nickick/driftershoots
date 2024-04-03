@@ -6,8 +6,9 @@ type ModalViewProps = {
   asset: Nft | null;
   deselectAsset: () => void;
   selectedAssetIndex: number | null;
+  setSelectedAssetIndex: (index: number) => void;
 }
-const ModalView = ({asset, deselectAsset, selectedAssetIndex}: ModalViewProps) => {
+const ModalView = ({asset, deselectAsset, selectedAssetIndex, setSelectedAssetIndex}: ModalViewProps) => {
   return (
     <Box sx={{
       position: 'fixed',
@@ -40,6 +41,7 @@ const ModalView = ({asset, deselectAsset, selectedAssetIndex}: ModalViewProps) =
               left: 0,
               right: '70%',
             }}
+            onClick={() => { setSelectedAssetIndex((selectedAssetIndex || 0) - 1)}}
           />
           <Box
             sx={{
@@ -53,6 +55,7 @@ const ModalView = ({asset, deselectAsset, selectedAssetIndex}: ModalViewProps) =
               right: 0,
               left: '70%',
             }}
+            onClick={() => { setSelectedAssetIndex((selectedAssetIndex || 0) + 1)}}
           />
           <img src={asset.image.originalUrl} alt={asset.name} style={{
             height: '70vh',

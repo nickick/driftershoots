@@ -22,6 +22,12 @@ const GalleryV2 = (params:GalleryV2Props) => {
     setSelectedAssetIndex(null);
   }
 
+  const setNextIndex = (nextIndex: number) => {
+    const newIndex = nextIndex < 0 ? assets.length - 1 : nextIndex >= assets.length ? 0 : nextIndex;
+    setSelectedAsset(assets[newIndex]);
+    setSelectedAssetIndex(newIndex);
+  }
+
   return (
     <Container
       sx={{
@@ -100,7 +106,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
         )
       })}
       </Box>
-      <ModalView asset={selectedAsset} selectedAssetIndex={selectedAssetIndex} deselectAsset={deselectAsset} />
+      <ModalView asset={selectedAsset} selectedAssetIndex={selectedAssetIndex} setSelectedAssetIndex={setNextIndex} deselectAsset={deselectAsset} />
     </Container>
   )
 }
