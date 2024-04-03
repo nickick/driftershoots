@@ -62,14 +62,17 @@ const ModalView = ({asset, deselectAsset, selectedAssetIndex}: ModalViewProps) =
           variant="body2"
           sx={{
             position: 'absolute',
-            top: 0,
+            top: {
+              xs: 60,
+              md: 0,
+            },
             right: 12,
             padding: 4,
             cursor: 'pointer',
             color: 'white',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
             borderBottomLeftRadius: 2,
             fontSize: 16,
+            zIndex: 10,
           }}
           onClick={deselectAsset}
         >

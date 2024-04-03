@@ -50,13 +50,17 @@ const GalleryV2 = (params:GalleryV2Props) => {
           md: "20px",
         },
       }}>
-        {assets.map((asset) => {
-          return(<Box key={`${asset.name}-mobile`} sx={{
-            display: {
-              xs: "block",
-              md: "none"
-            }
-          }}>
+        {assets.map((asset, index) => {
+          return(
+          <Box key={`${asset.name}-mobile`}
+            sx={{
+              display: {
+                xs: "block",
+                md: "none"
+              }
+            }}
+            onClick={() => selectAsset(asset, index)}
+          >
             <img
               src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
               alt={asset.name}
