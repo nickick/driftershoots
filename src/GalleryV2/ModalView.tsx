@@ -115,6 +115,9 @@ const ModalView = ({
               position: 'relative',
               height: '80vh',
               width: '80vw',
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'column',
               animation: fadingDir ? `0.2s ease-out 0s ${fadingDir === 'left' ? fadeOutLeftFromCenter : fadeOutRightFromCenter}, 0.2s ease-in 0.2s ${fadingDir === 'left' ? fadeInRightToCenter: fadeInLeftToCenter}` : 'none',
             }}
           >
@@ -122,29 +125,33 @@ const ModalView = ({
               sx={{
                 position: 'relative',
                 height: '90%',
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'column',
               }}
             >
-              <Image
+              <img
                 src={asset.image.cachedUrl || asset.image.originalUrl || ''}
                 alt={asset.name || ''}
                 key={`${asset.name}-${asset.image.originalUrl}`}
                 style={{
-                  objectFit: 'contain'
+                  objectFit: 'contain',
+                  width: '100%',
+                  maxHeight: '70vh',
                 }}
-                fill
               />
-            </Box>
-            <Box sx={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              marginTop: 2,
-            }}>
-              <Typography variant="h4">
-                {asset.name}
-              </Typography>
+              <Box sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                marginTop: 2,
+              }}>
+                <Typography variant="h4">
+                  {asset.name}
+                </Typography>
+              </Box>
             </Box>
           </Box>
         <Typography
@@ -156,7 +163,7 @@ const ModalView = ({
               md: 0,
             },
             bottom: {
-              xs: 0,
+              xs: 40,
               md: 'auto',
             },
             right: {
