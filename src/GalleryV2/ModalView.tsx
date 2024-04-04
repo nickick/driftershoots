@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { Nft } from "alchemy-sdk";
-import { useState } from "react";
-import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 import Image from "next/future/image";
+import { useEffect, useState } from "react";
+import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -18,6 +18,41 @@ const ModalView = ({
   setSelectedAssetIndex,
 }: ModalViewProps) => {
   const [fadingDir, setFadingDir] = useState<'left' | 'right' | null>(null);
+
+  const goNext = () => {
+    setFadingDir('left');
+    setTimeout(() => {
+      setSelectedAssetIndex((selectedAssetIndex || 0) + 1);
+      setTimeout(() => setFadingDir(null), 200);
+    }, 200);
+  };
+
+  const goPrev = () => {
+    setFadingDir('right');
+    setTimeout(() => {
+      setSelectedAssetIndex((selectedAssetIndex || 0) - 1);
+      setTimeout(() => setFadingDir(null), 200);
+    }, 200);
+  }
+
+  useEffect(() => {
+    const handleKeyUp = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "Escape":
+          deselectAsset();
+          break;
+        case "ArrowRight":
+          goNext();
+          break;
+        case "ArrowLeft":
+          goPrev();
+          break;
+      }
+    }
+
+    window.addEventListener("keyup", handleKeyUp);
+    return () => window.removeEventListener("keyup", handleKeyUp);
+  }, [selectedAssetIndex])
 
   return (
     <Box sx={{
@@ -51,13 +86,7 @@ const ModalView = ({
               left: 0,
               right: '70%',
             }}
-            onClick={() => {
-              setFadingDir('right');
-              setTimeout(() => {
-                setSelectedAssetIndex((selectedAssetIndex || 0) - 1);
-                setTimeout(() => setFadingDir(null), 200);
-              }, 200);
-            }}
+            onClick={goPrev}
           />
           <Box
             sx={{
@@ -71,13 +100,7 @@ const ModalView = ({
               right: 0,
               left: '70%',
             }}
-            onClick={() => {
-              setFadingDir('left');
-              setTimeout(() => {
-                setSelectedAssetIndex((selectedAssetIndex || 0) + 1);
-                setTimeout(() => setFadingDir(null), 200);
-              }, 200);
-            }}
+            onClick={goNext}
           />
           <Box
             sx={{
