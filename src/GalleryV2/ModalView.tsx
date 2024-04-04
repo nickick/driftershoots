@@ -3,6 +3,7 @@ import { Nft } from "alchemy-sdk";
 import Image from "next/future/image";
 import { useEffect, useState } from "react";
 import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
+import { useSwipeable } from "react-swipeable";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -54,6 +55,11 @@ const ModalView = ({
     return () => window.removeEventListener("keyup", handleKeyUp);
   }, [selectedAssetIndex])
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => goNext(),
+    onSwipedRight: () => goPrev(),
+  })
+
   return (
     <Box sx={{
       position: 'fixed',
@@ -73,7 +79,9 @@ const ModalView = ({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        }}>
+        }}
+        {...handlers}
+      >
           <Box
             sx={{
               ":hover": {
@@ -120,7 +128,9 @@ const ModalView = ({
                 src={asset.image.cachedUrl || asset.image.originalUrl || ''}
                 alt={asset.name || ''}
                 key={`${asset.name}-${asset.image.originalUrl}`}
-                style={{objectFit: 'contain'}}
+                style={{
+                  objectFit: 'contain'
+                }}
                 fill
               />
             </Box>
@@ -142,10 +152,21 @@ const ModalView = ({
           sx={{
             position: 'absolute',
             top: {
-              xs: 60,
+              xs: 'auto',
               md: 0,
             },
-            right: 12,
+            bottom: {
+              xs: 0,
+              md: 'auto',
+            },
+            right: {
+              xs: '50%',
+              md: 12,
+            },
+            transform: {
+              xs: 'translateX(50%)',
+              md: 'none',
+            },
             padding: 4,
             cursor: 'pointer',
             color: 'white',
