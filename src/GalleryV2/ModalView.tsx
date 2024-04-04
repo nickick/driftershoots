@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { Nft } from "alchemy-sdk"
-import Image from "next/image";
+import { Nft } from "alchemy-sdk";
+import { useState } from "react";
+import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -8,7 +9,15 @@ type ModalViewProps = {
   selectedAssetIndex: number | null;
   setSelectedAssetIndex: (index: number) => void;
 }
-const ModalView = ({asset, deselectAsset, selectedAssetIndex, setSelectedAssetIndex}: ModalViewProps) => {
+
+const ModalView = ({
+  asset,
+  deselectAsset,
+  selectedAssetIndex,
+  setSelectedAssetIndex,
+}: ModalViewProps) => {
+  const [fadingDir, setFadingDir] = useState<'left' | 'right' | null>(null);
+
   return (
     <Box sx={{
       position: 'fixed',
@@ -41,7 +50,13 @@ const ModalView = ({asset, deselectAsset, selectedAssetIndex, setSelectedAssetIn
               left: 0,
               right: '70%',
             }}
-            onClick={() => { setSelectedAssetIndex((selectedAssetIndex || 0) - 1)}}
+            onClick={() => {
+              setFadingDir('right');
+              setTimeout(() => {
+                setSelectedAssetIndex((selectedAssetIndex || 0) - 1);
+                setTimeout(() => setFadingDir(null), 200);
+              }, 200);
+            }}
           />
           <Box
             sx={{
@@ -55,12 +70,24 @@ const ModalView = ({asset, deselectAsset, selectedAssetIndex, setSelectedAssetIn
               right: 0,
               left: '70%',
             }}
-            onClick={() => { setSelectedAssetIndex((selectedAssetIndex || 0) + 1)}}
+            onClick={() => {
+              setFadingDir('left');
+              setTimeout(() => {
+                setSelectedAssetIndex((selectedAssetIndex || 0) + 1);
+                setTimeout(() => setFadingDir(null), 200);
+              }, 200);
+            }}
           />
-          <img src={asset.image.originalUrl} alt={asset.name} style={{
-            height: '70vh',
-            width: 'auto',
-          }}/>
+          <Box
+            sx={{
+              animation: fadingDir ? `0.2s ease-out 0s ${fadingDir === 'left' ? fadeOutLeftFromCenter : fadeOutRightFromCenter}, 0.2s ease-in 0.2s ${fadingDir === 'left' ? fadeInRightToCenter: fadeInLeftToCenter}` : 'none',
+            }}
+          >
+            <img src={asset.image.originalUrl} alt={asset.name} style={{
+              height: '70vh',
+              width: 'auto',
+            }}/>
+          </Box>
         <Typography
           variant="body2"
           sx={{

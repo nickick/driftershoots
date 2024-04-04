@@ -58,7 +58,7 @@ const GalleryV2 = (params:GalleryV2Props) => {
       }}>
         {assets.map((asset, index) => {
           return(
-          <Box key={`${asset.name}-mobile`}
+          <Box key={`${reduceName(asset.name)}-${asset.image.originalUrl}-mobile`}
             sx={{
               display: {
                 xs: "block",
@@ -80,18 +80,20 @@ const GalleryV2 = (params:GalleryV2Props) => {
         })}
       {assets.map((asset, index) => {
         return(
-          <Box key={asset.name} sx={{
-            display: {
-              xs: "none",
-              md: "block",
-            },
-            ":hover": {
-              cursor: "pointer",
-              opacity: 0.7,
-            },
-            transition: "all 0.3s ease-in-out",
-          }}
-          onClick={() => selectAsset(asset, index)}
+          <Box
+            key={`${reduceName(asset.name)}-${asset.image.originalUrl}`}
+            sx={{
+              display: {
+                xs: "none",
+                md: "block",
+              },
+              ":hover": {
+                cursor: "pointer",
+                opacity: 0.7,
+              },
+              transition: "all 0.3s ease-in-out",
+            }}
+            onClick={() => selectAsset(asset, index)}
           >
             <img
               src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
@@ -106,7 +108,12 @@ const GalleryV2 = (params:GalleryV2Props) => {
         )
       })}
       </Box>
-      <ModalView asset={selectedAsset} selectedAssetIndex={selectedAssetIndex} setSelectedAssetIndex={setNextIndex} deselectAsset={deselectAsset} />
+      <ModalView
+        asset={selectedAsset}
+        selectedAssetIndex={selectedAssetIndex}
+        setSelectedAssetIndex={setNextIndex}
+        deselectAsset={deselectAsset}
+      />
     </Container>
   )
 }
