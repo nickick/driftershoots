@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { Nft } from "alchemy-sdk";
 import { useState } from "react";
 import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
+import Image from "next/future/image";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -80,13 +81,38 @@ const ModalView = ({
           />
           <Box
             sx={{
+              position: 'relative',
+              height: '80vh',
+              width: '80vw',
               animation: fadingDir ? `0.2s ease-out 0s ${fadingDir === 'left' ? fadeOutLeftFromCenter : fadeOutRightFromCenter}, 0.2s ease-in 0.2s ${fadingDir === 'left' ? fadeInRightToCenter: fadeInLeftToCenter}` : 'none',
             }}
           >
-            <img src={asset.image.originalUrl} alt={asset.name} style={{
-              height: '70vh',
-              width: 'auto',
-            }}/>
+            <Box
+              sx={{
+                position: 'relative',
+                height: '90%',
+              }}
+            >
+              <Image
+                src={asset.image.cachedUrl || asset.image.originalUrl || ''}
+                alt={asset.name || ''}
+                key={`${asset.name}-${asset.image.originalUrl}`}
+                style={{objectFit: 'contain'}}
+                fill
+              />
+            </Box>
+            <Box sx={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              marginTop: 2,
+            }}>
+              <Typography variant="h4">
+                {asset.name}
+              </Typography>
+            </Box>
           </Box>
         <Typography
           variant="body2"

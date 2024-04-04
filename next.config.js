@@ -3,7 +3,6 @@
 const withFonts = require('next-fonts');
 
 module.exports = withFonts({
-  enableSvg: true,
   webpack(config) {
     return config;
   },
@@ -11,6 +10,9 @@ module.exports = withFonts({
     domains: [
       'lh3.googleusercontent.com',
       'storage.googleapis.com',
+      'driftershoots.com',
+      'arweave.net',
+      'nft-cdn.alchemy.com',
     ]
   },
   async headers() {
