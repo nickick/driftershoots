@@ -225,7 +225,7 @@ const ModalView = ({
             color: 'white',
             borderBottomLeftRadius: 2,
             fontSize: 16,
-            zIndex: 10,
+            zIndex: 31,
             display: {
               xs: 'none',
               md: 'block',
