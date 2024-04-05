@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { Nft } from "alchemy-sdk";
 import { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
+import { reduceName } from "../../scripts/helpers";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -83,6 +84,22 @@ const ModalView = ({
     }
   }, [asset]);
 
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgLoadedDelayed, setImageLoadedDelayed] = useState(false);
+  useEffect(() => {
+    setImgLoaded(false);
+  }, [asset]);
+
+  useEffect(() => {
+    if (!imgLoaded) {
+      setTimeout(() => {
+        setImageLoadedDelayed(true);
+      }, 1000);
+    } else {
+      setImageLoadedDelayed(false);
+    }
+  }, [imgLoaded]);
+
   return (
     <Box sx={{
       position: 'fixed',
@@ -161,16 +178,50 @@ const ModalView = ({
                 flexDirection: 'column',
               }}
             >
-              <img
-                src={asset.image.cachedUrl || asset.image.originalUrl || ''}
-                alt={asset.name || ''}
-                key={`${asset.name}-${asset.image.originalUrl}`}
-                style={{
-                  objectFit: 'contain',
+              <Box
+                sx={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  height: 'fit-content',
                   width: '100%',
-                  maxHeight: '70vh',
                 }}
-              />
+              >
+                <img
+                  src={imgLoaded ? asset.image.cachedUrl || asset.image.originalUrl || '' : `/gallery/thumbnails/${reduceName(asset.name)}.png`}
+                  alt={asset.name || ''}
+                  key={`${asset.name}-${asset.image.originalUrl}`}
+                  style={{
+                    objectFit: 'contain',
+                    width: '100%',
+                    maxHeight: '70vh',
+                  }}
+                  onLoad={() => {
+                    setImgLoaded(true);
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    opacity: 1,
+                    zIndex: 20,
+                  }}
+                >
+                  <CircularProgress color="info" sx={{
+                    opacity: !imgLoadedDelayed ? 1 : 0,
+                  }}
+                  />
+                </Box>
+              </Box>
               <Box sx={{
                 width: '100%',
                 display: 'flex',

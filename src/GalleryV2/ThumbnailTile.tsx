@@ -25,7 +25,7 @@ const ThumbnailTile = ({ animationDelay, asset, index, selectAsset, randomSeed, 
 
   return (
     <Box
-      key={`${reduceName(asset.name)}-${asset.image.originalUrl}`}
+      key={`${reduceName(asset.name)}-${asset.image.originalUrl}-${mobile ? "mobile" : "desktop"}`}
       sx={{
         display: {
           xs: mobile ? "block" : "none",
