@@ -1,18 +1,23 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
-import { Nft } from "alchemy-sdk";
-import { useEffect, useRef, useState } from "react";
-import { useSwipeable } from "react-swipeable";
-import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
-import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
-import { reduceName } from "../../scripts/helpers";
-import ModalImage from "./ModalImage";
+import { Box, CircularProgress, Typography } from '@mui/material';
+import { Nft } from 'alchemy-sdk';
+import { useEffect, useRef, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
+import {
+  fadeInLeftToCenter,
+  fadeInRightToCenter,
+  fadeOutLeftFromCenter,
+  fadeOutRightFromCenter,
+} from './animations';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { reduceName } from '../../scripts/helpers';
+import ModalImage from './ModalImage';
 
 type ModalViewProps = {
   asset: Nft | null;
   deselectAsset: () => void;
   selectedAssetIndex: number | null;
   setSelectedAssetIndex: (index: number) => void;
-}
+};
 
 const ModalView = ({
   asset,
@@ -36,31 +41,31 @@ const ModalView = ({
       setSelectedAssetIndex((selectedAssetIndex || 0) - 1);
       setTimeout(() => setFadingDir(null), 200);
     }, 200);
-  }
+  };
 
   useEffect(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
       switch (event.key) {
-        case "Escape":
+        case 'Escape':
           deselectAsset();
           break;
-        case "ArrowRight":
+        case 'ArrowRight':
           goNext();
           break;
-        case "ArrowLeft":
+        case 'ArrowLeft':
           goPrev();
           break;
       }
-    }
+    };
 
-    window.addEventListener("keyup", handleKeyUp);
-    return () => window.removeEventListener("keyup", handleKeyUp);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => window.removeEventListener('keyup', handleKeyUp);
   }, [selectedAssetIndex]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => goNext(),
     onSwipedRight: () => goPrev(),
-  })
+  });
 
   const [showOverlay, setShowOverlay] = useState(false);
   const [fadeInOverlay, setFadeInOverlay] = useState(false);
@@ -93,48 +98,54 @@ const ModalView = ({
     // add 5 second delay to removing loading spinner no matter what
     setTimeout(() => {
       setImageLoadedDelayed(true);
-    }, 5000)
+    }, 5000);
   }, [asset]);
 
   useEffect(() => {
     if (!imgLoaded) {
       setImageLoadedDelayed(false);
     } else {
-      setTimeout(() => {setImageLoadedDelayed(true)}, 1000);
+      setTimeout(() => {
+        setImageLoadedDelayed(true);
+      }, 1000);
     }
   }, [imgLoaded]);
 
   return (
-    <Box sx={{
-      position: 'fixed',
-      inset: 0,
-      height: '100vh',
-      width: '100vw',
-      zIndex: showOverlay ? 100 : -1,
-      display: showOverlay ?  'block' : 'none',
-      backgroundColor: fadeInOverlay ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-      backdropFilter: fadeInOverlay ? 'blur(10px) saturate(70%)' : 'none',
-      transition: 'all ease-out 1s',
-    }}
-    ref={scrollRef}
+    <Box
+      sx={{
+        position: 'fixed',
+        inset: 0,
+        height: '100vh',
+        width: '100vw',
+        zIndex: showOverlay ? 100 : -1,
+        display: showOverlay ? 'block' : 'none',
+        backgroundColor: fadeInOverlay
+          ? 'rgba(0, 0, 0, 0.5)'
+          : 'rgba(0, 0, 0, 0)',
+        backdropFilter: fadeInOverlay ? 'blur(10px) saturate(70%)' : 'none',
+        transition: 'all ease-out 1s',
+      }}
+      ref={scrollRef}
     >
       {asset ? (
-      <Box sx={{
-        display: 'flex',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        opacity: fadeInOverlay ? 1 : 0,
-        transform: fadeInOverlay ? 'translateY(0)' : 'translateY(-10%)',
-        transition: 'all 0.2s ease-out',
-        }}
-        {...handlers}
-      >
+        <Box
+          sx={{
+            display: 'flex',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+            opacity: fadeInOverlay ? 1 : 0,
+            transform: fadeInOverlay ? 'translateY(0)' : 'translateY(-10%)',
+            transition: 'all 0.2s ease-out',
+          }}
+          {...handlers}
+        >
           <Box
             sx={{
-              ":hover": {
-                cursor: 'url("/gallery/prev.png"), pointer'
+              ':hover': {
+                cursor: 'url("/gallery/prev.png"), pointer',
               },
               position: 'absolute',
               zIndex: 21,
@@ -147,8 +158,8 @@ const ModalView = ({
           />
           <Box
             sx={{
-              ":hover": {
-                cursor: 'url("/gallery/next.png"), pointer'
+              ':hover': {
+                cursor: 'url("/gallery/next.png"), pointer',
               },
               position: 'absolute',
               zIndex: 21,
@@ -170,7 +181,17 @@ const ModalView = ({
               display: 'flex',
               justifyContent: 'center',
               flexDirection: 'column',
-              animation: fadingDir ? `0.2s ease-out 0s ${fadingDir === 'left' ? fadeOutLeftFromCenter : fadeOutRightFromCenter}, 0.2s ease-in 0.2s ${fadingDir === 'left' ? fadeInRightToCenter: fadeInLeftToCenter}` : 'none',
+              animation: fadingDir
+                ? `0.2s ease-out 0s ${
+                    fadingDir === 'left'
+                      ? fadeOutLeftFromCenter
+                      : fadeOutRightFromCenter
+                  }, 0.2s ease-in 0.2s ${
+                    fadingDir === 'left'
+                      ? fadeInRightToCenter
+                      : fadeInLeftToCenter
+                  }`
+                : 'none',
             }}
           >
             <Box
@@ -182,19 +203,31 @@ const ModalView = ({
                 flexDirection: 'column',
               }}
             >
-              <ModalImage asset={asset} imgLoaded={imgLoaded} imgLoadedDelayed={imgLoadedDelayed} setImgLoaded={setImgLoaded} mobile />
-              <ModalImage asset={asset} imgLoaded={imgLoaded} imgLoadedDelayed={imgLoadedDelayed} setImgLoaded={setImgLoaded} mobile={false} />
-              <Box sx={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                marginTop: 2,
-              }}>
-                <Typography variant="h4">
-                  {asset.name}
-                </Typography>
+              <ModalImage
+                asset={asset}
+                imgLoaded={imgLoaded}
+                imgLoadedDelayed={imgLoadedDelayed}
+                setImgLoaded={setImgLoaded}
+                mobile
+              />
+              <ModalImage
+                asset={asset}
+                imgLoaded={imgLoaded}
+                imgLoadedDelayed={imgLoadedDelayed}
+                setImgLoaded={setImgLoaded}
+                mobile={false}
+              />
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  marginTop: 2,
+                }}
+              >
+                <Typography variant="h4">{asset.name}</Typography>
                 <Typography
                   variant="body2"
                   onClick={deselectAsset}
@@ -206,7 +239,7 @@ const ModalView = ({
                     display: {
                       xs: 'block',
                       md: 'none',
-                    }
+                    },
                   }}
                 >
                   Close
@@ -214,31 +247,31 @@ const ModalView = ({
               </Box>
             </Box>
           </Box>
-        <Typography
-          variant="body2"
-          sx={{
-            position: 'absolute',
-            top: 0,
-            right: 12,
-            padding: 4,
-            cursor: 'pointer',
-            color: 'white',
-            borderBottomLeftRadius: 2,
-            fontSize: 16,
-            zIndex: 31,
-            display: {
-              xs: 'none',
-              md: 'block',
-            },
-          }}
-          onClick={deselectAsset}
-        >
-          Close
-        </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              position: 'absolute',
+              top: 0,
+              right: 12,
+              padding: 4,
+              cursor: 'pointer',
+              color: 'white',
+              borderBottomLeftRadius: 2,
+              fontSize: 16,
+              zIndex: 31,
+              display: {
+                xs: 'none',
+                md: 'block',
+              },
+            }}
+            onClick={deselectAsset}
+          >
+            Close
+          </Typography>
         </Box>
       ) : null}
     </Box>
-  )
-}
+  );
+};
 
-export default ModalView
+export default ModalView;
