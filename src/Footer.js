@@ -71,7 +71,7 @@ export default function Footer() {
           1 + animationDelay
         }s`,
         position: "relative",
-        zIndex: 3,
+        zIndex: 2,
         borderTop: "1px solid #23222B",
         mt: 14,
       }}
