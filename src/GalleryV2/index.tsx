@@ -7,19 +7,19 @@ import { LoadedContext } from '../LoadedContextProvider';
 import ModalView from './ModalView';
 import ThumbnailTile from './ThumbnailTile';
 import Filter from './Filter';
+import { fadeIn } from './animations';
+import { entranceAnimationDuration } from '../constants';
 
 const randomSeed = random.create('tothemoon');
 
 const assets = assetsJson as Nft[];
 
-type GalleryV2Props = {};
-
-const GalleryV2 = (params: GalleryV2Props) => {
+const GalleryV2 = () => {
   const [selectedAsset, setSelectedAsset] = useState<Nft | null>(null);
   const [selectedAssetIndex, setSelectedAssetIndex] = useState<number | null>(
     null
   );
-  const { animationDelay } = useContext(LoadedContext);
+  const { animationDelay, isLoaded } = useContext(LoadedContext);
 
   const selectAsset = (asset: Nft, index: number) => {
     setSelectedAsset(asset);
@@ -45,7 +45,6 @@ const GalleryV2 = (params: GalleryV2Props) => {
   const [filters, setFilters] = useState<string[]>([]);
 
   useEffect(() => {
-    console.log(filters)
     if (filters.length === 0) {
       setFilteredAssets(assets);
     } else {
@@ -75,7 +74,13 @@ const GalleryV2 = (params: GalleryV2Props) => {
         },
       }}
     >
-      <Filter activeFilters={filters} setFilters={setFilters} />
+      <Box
+        sx={{
+          opacity: isLoaded ? 1 : 0,
+        }}
+      >
+        <Filter activeFilters={filters} setFilters={setFilters} />
+      </Box>
       <Box
         sx={{
           display: 'flex',
