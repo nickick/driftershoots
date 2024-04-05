@@ -98,11 +98,9 @@ const ModalView = ({
 
   useEffect(() => {
     if (!imgLoaded) {
-      setTimeout(() => {
-        setImageLoadedDelayed(true);
-      }, 1000);
-    } else {
       setImageLoadedDelayed(false);
+    } else {
+      setTimeout(() => {setImageLoadedDelayed(true)}, 1000);
     }
   }, [imgLoaded]);
 
@@ -139,7 +137,7 @@ const ModalView = ({
                 cursor: 'url("/gallery/prev.png"), pointer'
               },
               position: 'absolute',
-              zIndex: 2,
+              zIndex: 21,
               top: 0,
               bottom: 0,
               left: 0,
@@ -153,7 +151,7 @@ const ModalView = ({
                 cursor: 'url("/gallery/next.png"), pointer'
               },
               position: 'absolute',
-              zIndex: 2,
+              zIndex: 21,
               top: 0,
               bottom: 0,
               right: 0,
