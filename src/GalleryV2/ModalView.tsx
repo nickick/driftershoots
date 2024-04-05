@@ -1,8 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { Nft } from "alchemy-sdk";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
-import { fadeIn, fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
+import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
+import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -52,7 +53,7 @@ const ModalView = ({
 
     window.addEventListener("keyup", handleKeyUp);
     return () => window.removeEventListener("keyup", handleKeyUp);
-  }, [selectedAssetIndex])
+  }, [selectedAssetIndex]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => goNext(),
@@ -73,6 +74,15 @@ const ModalView = ({
     }
   }, [asset]);
 
+  const scrollRef = useRef<Element>();
+  useEffect(() => {
+    if (asset) {
+      disableBodyScroll(scrollRef.current!);
+    } else {
+      clearAllBodyScrollLocks();
+    }
+  }, [asset]);
+
   return (
     <Box sx={{
       position: 'fixed',
@@ -85,6 +95,7 @@ const ModalView = ({
       backdropFilter: fadeInOverlay ? 'blur(10px) saturate(70%)' : 'none',
       transition: 'all ease-out 1s',
     }}
+    ref={scrollRef}
     >
       {asset ? (
       <Box sx={{
@@ -131,7 +142,10 @@ const ModalView = ({
             sx={{
               position: 'relative',
               height: '80vh',
-              width: '80vw',
+              width: {
+                xs: '90vw',
+                md: '80vw',
+              },
               display: 'flex',
               justifyContent: 'center',
               flexDirection: 'column',
