@@ -168,6 +168,22 @@ const ModalView = ({
                 <Typography variant="h4">
                   {asset.name}
                 </Typography>
+                <Typography
+                  variant="body2"
+                  onClick={deselectAsset}
+                  fontSize={16}
+                  sx={{
+                    mt: 4,
+                    p: 1,
+                    border: '1px solid white',
+                    display: {
+                      xs: 'block',
+                      md: 'none',
+                    }
+                  }}
+                >
+                  Close
+                </Typography>
               </Box>
             </Box>
           </Box>
@@ -175,28 +191,18 @@ const ModalView = ({
           variant="body2"
           sx={{
             position: 'absolute',
-            top: {
-              xs: 'auto',
-              md: 0,
-            },
-            bottom: {
-              xs: 40,
-              md: 'auto',
-            },
-            right: {
-              xs: '50%',
-              md: 12,
-            },
-            transform: {
-              xs: 'translateX(50%)',
-              md: 'none',
-            },
+            top: 0,
+            right: 12,
             padding: 4,
             cursor: 'pointer',
             color: 'white',
             borderBottomLeftRadius: 2,
             fontSize: 16,
             zIndex: 10,
+            display: {
+              xs: 'none',
+              md: 'block',
+            },
           }}
           onClick={deselectAsset}
         >
