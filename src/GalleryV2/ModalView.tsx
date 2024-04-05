@@ -66,6 +66,7 @@ const ModalView = ({
       height: '100vh',
       width: '100vw',
       zIndex: asset ? 100 : -1,
+      display: asset ? 'block' : 'none',
       backgroundColor: asset ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
       backdropFilter: asset ? 'blur(10px) saturate(70%)' : 'none',
       transition: 'all 1s',

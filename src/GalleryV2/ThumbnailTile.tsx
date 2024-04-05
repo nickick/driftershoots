@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
-import { Nft } from "alchemy-sdk"
-import { reduceName } from "../../scripts/helpers";
-import type { RandomSeed } from 'random-seed'
-import { entranceAnimationDuration } from "../constants";
+import { Nft } from "alchemy-sdk";
+import type { RandomSeed } from 'random-seed';
 import { useEffect, useState } from "react";
+import { reduceName } from "../../scripts/helpers";
+import { entranceAnimationDuration } from "../constants";
 
 type ThumbnailTileProps = {
+  animationDelay: number;
   asset: Nft;
   index: number;
   mobile: boolean;
@@ -13,12 +14,13 @@ type ThumbnailTileProps = {
   selectAsset: (asset: Nft, index: number) => void;
 }
 
-const ThumbnailTile = ({ asset, index, selectAsset, randomSeed, mobile }: ThumbnailTileProps) => {
+const ThumbnailTile = ({ animationDelay, asset, index, selectAsset, randomSeed, mobile }: ThumbnailTileProps) => {
   const additionalDelay = randomSeed.floatBetween(0, 0.5);
+  const entryDelay = animationDelay > 0 ? entranceAnimationDuration : animationDelay;
 
   const [hasFadedIn, setHasFadedIn] = useState(false);
   useEffect(() => {
-    setTimeout(() => setHasFadedIn(true), (entranceAnimationDuration + additionalDelay) * 1000);
+    setTimeout(() => setHasFadedIn(true), (entryDelay + additionalDelay) * 1000);
   }, []);
 
   return (

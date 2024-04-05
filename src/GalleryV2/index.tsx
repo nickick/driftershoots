@@ -1,12 +1,10 @@
-import { Container, Box } from "@mui/material";
-import assetsJson from "../../public/gallery/assets.json";
-import { reduceName } from "../../scripts/helpers";
+import { Box, Container } from "@mui/material";
 import { Nft } from "alchemy-sdk";
+import random from 'random-seed';
+import { useContext, useState } from "react";
+import assetsJson from "../../public/gallery/assets.json";
+import { LoadedContext } from "../LoadedContextProvider";
 import ModalView from "./ModalView";
-import { useEffect, useState } from "react";
-import random from 'random-seed'
-import { fadeIn } from "./animations";
-import { entranceAnimationDuration, entranceAnimationDelay } from '../../src/constants'
 import ThumbnailTile from "./ThumbnailTile";
 
 const randomSeed = random.create('tothemoon');
@@ -19,6 +17,8 @@ type GalleryV2Props = {
 const GalleryV2 = (params:GalleryV2Props) => {
   const [selectedAsset, setSelectedAsset] = useState<Nft | null>(null);
   const [selectedAssetIndex, setSelectedAssetIndex] = useState<number | null>(null);
+  const { animationDelay } = useContext(LoadedContext);
+
   const selectAsset = (asset: Nft, index: number) => {
     setSelectedAsset(asset);
     setSelectedAssetIndex(index);
@@ -33,11 +33,6 @@ const GalleryV2 = (params:GalleryV2Props) => {
     setSelectedAsset(assets[newIndex]);
     setSelectedAssetIndex(newIndex);
   }
-
-  const [hasFadedIn, setHasFadedIn] = useState(false);
-  useEffect(() => {
-    setTimeout(() => setHasFadedIn(true), entranceAnimationDuration * 1000);
-  }, []);
 
   return (
     <Container
@@ -55,8 +50,6 @@ const GalleryV2 = (params:GalleryV2Props) => {
           xs: 3,
           md: 5,
         },
-        opacity: hasFadedIn ? 1 : 0,
-        animation: `${entranceAnimationDuration}s ease-in-out ${entranceAnimationDelay}s ${fadeIn}`
       }}
     >
       <Box sx={{
@@ -71,11 +64,11 @@ const GalleryV2 = (params:GalleryV2Props) => {
       }}>
         {assets.map((asset, index) => {
           return(
-          <ThumbnailTile asset={asset} index={index} selectAsset={selectAsset} randomSeed={randomSeed} mobile />)
+          <ThumbnailTile asset={asset} index={index} selectAsset={selectAsset} randomSeed={randomSeed} animationDelay={animationDelay} mobile />)
         })}
       {assets.map((asset, index) => {
         return(
-          <ThumbnailTile asset={asset} index={index} selectAsset={selectAsset} randomSeed={randomSeed} mobile={false} />
+          <ThumbnailTile asset={asset} index={index} selectAsset={selectAsset} randomSeed={randomSeed} animationDelay={animationDelay} mobile={false} />
         )
       })}
       </Box>
