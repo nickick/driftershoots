@@ -3,7 +3,12 @@ import assetsJson from "../../public/gallery/assets.json";
 import { reduceName } from "../../scripts/helpers";
 import { Nft } from "alchemy-sdk";
 import ModalView from "./ModalView";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import random from 'random-seed'
+import { fadeIn } from "./animations";
+import { entranceAnimationDuration, entranceAnimationDelay } from '../../src/constants'
+
+const randomSeed = random.create('tothemoon');
 
 const assets = assetsJson as Nft[];
 
@@ -28,6 +33,11 @@ const GalleryV2 = (params:GalleryV2Props) => {
     setSelectedAssetIndex(newIndex);
   }
 
+  const [hasFadedIn, setHasFadedIn] = useState(false);
+  useEffect(() => {
+    setTimeout(() => setHasFadedIn(true), entranceAnimationDuration * 1000);
+  }, []);
+
   return (
     <Container
       sx={{
@@ -43,7 +53,9 @@ const GalleryV2 = (params:GalleryV2Props) => {
         pt: {
           xs: 3,
           md: 5,
-        }
+        },
+        opacity: hasFadedIn ? 1 : 0,
+        animation: `${entranceAnimationDuration}s ease-in-out ${entranceAnimationDelay}s ${fadeIn}`
       }}
     >
       <Box sx={{

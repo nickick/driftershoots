@@ -1,9 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { Nft } from "alchemy-sdk";
-import Image from "next/future/image";
 import { useEffect, useState } from "react";
-import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 import { useSwipeable } from "react-swipeable";
+import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 
 type ModalViewProps = {
   asset: Nft | null;
