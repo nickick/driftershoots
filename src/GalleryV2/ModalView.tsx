@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { Nft } from "alchemy-sdk";
 import { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";
-import { fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
+import { fadeIn, fadeInLeftToCenter, fadeInRightToCenter, fadeOutLeftFromCenter, fadeOutRightFromCenter } from "./animations";
 
 type ModalViewProps = {
   asset: Nft | null;
@@ -59,17 +59,31 @@ const ModalView = ({
     onSwipedRight: () => goPrev(),
   })
 
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [fadeInOverlay, setFadeInOverlay] = useState(false);
+  useEffect(() => {
+    if (asset) {
+      setShowOverlay(true);
+      setTimeout(() => setFadeInOverlay(true), 100);
+    } else {
+      setFadeInOverlay(false);
+      setTimeout(() => {
+        setShowOverlay(false);
+      }, 1000);
+    }
+  }, [asset]);
+
   return (
     <Box sx={{
       position: 'fixed',
       inset: 0,
       height: '100vh',
       width: '100vw',
-      zIndex: asset ? 100 : -1,
-      display: asset ? 'block' : 'none',
-      backgroundColor: asset ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-      backdropFilter: asset ? 'blur(10px) saturate(70%)' : 'none',
-      transition: 'all 1s',
+      zIndex: showOverlay ? 100 : -1,
+      display: showOverlay ?  'block' : 'none',
+      backgroundColor: fadeInOverlay ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
+      backdropFilter: fadeInOverlay ? 'blur(10px) saturate(70%)' : 'none',
+      transition: 'all ease-out 1s',
     }}
     >
       {asset ? (
@@ -79,6 +93,9 @@ const ModalView = ({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
+        opacity: fadeInOverlay ? 1 : 0,
+        transform: fadeInOverlay ? 'translateY(0)' : 'translateY(-10%)',
+        transition: 'all 0.2s ease-out',
         }}
         {...handlers}
       >
