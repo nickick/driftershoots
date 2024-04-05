@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { Nft } from "alchemy-sdk"
 import { reduceName } from "../../scripts/helpers";
 import type { RandomSeed } from 'random-seed'
-import { fadeIn, fadeInDrop } from "./animations";
 import { entranceAnimationDuration } from "../constants";
 import { useEffect, useState } from "react";
 
