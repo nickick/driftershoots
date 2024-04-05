@@ -88,6 +88,11 @@ const ModalView = ({
   const [imgLoadedDelayed, setImageLoadedDelayed] = useState(false);
   useEffect(() => {
     setImgLoaded(false);
+
+    // add 5 second delay to removing loading spinner no matter what
+    setTimeout(() => {
+      setImageLoadedDelayed(true);
+    }, 5000)
   }, [asset]);
 
   useEffect(() => {
