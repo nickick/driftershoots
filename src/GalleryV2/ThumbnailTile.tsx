@@ -46,7 +46,7 @@ const ThumbnailTile = ({ animationDelay, asset, index, selectAsset, randomSeed, 
         alt={asset.name}
         style={{
           width: "auto",
-          height: "100px",
+          height: mobile ? "50px" : "100px",
           objectFit: "cover",
         }}
       />
