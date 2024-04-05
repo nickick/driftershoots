@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import random from 'random-seed'
 import { fadeIn } from "./animations";
 import { entranceAnimationDuration, entranceAnimationDelay } from '../../src/constants'
+import ThumbnailTile from "./ThumbnailTile";
 
 const randomSeed = random.create('tothemoon');
 
@@ -70,53 +71,11 @@ const GalleryV2 = (params:GalleryV2Props) => {
       }}>
         {assets.map((asset, index) => {
           return(
-          <Box key={`${reduceName(asset.name)}-${asset.image.originalUrl}-mobile`}
-            sx={{
-              display: {
-                xs: "block",
-                md: "none"
-              }
-            }}
-            onClick={() => selectAsset(asset, index)}
-          >
-            <img
-              src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
-              alt={asset.name}
-              style={{
-                width: "auto",
-                height: "50px",
-                objectFit: "cover",
-              }}
-            />
-          </Box>)
+          <ThumbnailTile asset={asset} index={index} selectAsset={selectAsset} randomSeed={randomSeed} mobile />)
         })}
       {assets.map((asset, index) => {
         return(
-          <Box
-            key={`${reduceName(asset.name)}-${asset.image.originalUrl}`}
-            sx={{
-              display: {
-                xs: "none",
-                md: "block",
-              },
-              ":hover": {
-                cursor: "pointer",
-                opacity: 0.7,
-              },
-              transition: "all 0.3s ease-in-out",
-            }}
-            onClick={() => selectAsset(asset, index)}
-          >
-            <img
-              src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
-              alt={asset.name}
-              style={{
-                width: "auto",
-                height: "100px",
-                objectFit: "cover",
-              }}
-            />
-          </Box>
+          <ThumbnailTile asset={asset} index={index} selectAsset={selectAsset} randomSeed={randomSeed} mobile={false} />
         )
       })}
       </Box>
