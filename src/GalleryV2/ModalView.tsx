@@ -173,7 +173,7 @@ const ModalView = ({
                   onClick={deselectAsset}
                   fontSize={16}
                   sx={{
-                    mt: 4,
+                    mt: 2,
                     p: 1,
                     border: '1px solid white',
                     display: {
