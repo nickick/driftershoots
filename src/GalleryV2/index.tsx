@@ -4,11 +4,9 @@ import random from 'random-seed';
 import { useContext, useEffect, useState } from 'react';
 import assetsJson from '../../public/gallery/assets.json';
 import { LoadedContext } from '../LoadedContextProvider';
+import Filter from './Filter';
 import ModalView from './ModalView';
 import ThumbnailTile from './ThumbnailTile';
-import Filter from './Filter';
-import { fadeIn } from './animations';
-import { entranceAnimationDuration } from '../constants';
 
 const randomSeed = random.create('tothemoon');
 
@@ -50,7 +48,9 @@ const GalleryV2 = () => {
     } else {
       setFilteredAssets(
         assets.filter((asset) => {
-          return asset.raw.metadata.attributes?.some((attr: {value: string}) => filters.includes(attr.value));
+          return asset.raw.metadata.attributes?.some(
+            (attr: { value: string }) => filters.includes(attr.value)
+          );
         })
       );
     }

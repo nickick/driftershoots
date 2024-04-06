@@ -1,16 +1,15 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Nft } from 'alchemy-sdk';
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock';
 import { useEffect, useRef, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
+import ModalImage from './ModalImage';
 import {
   fadeInLeftToCenter,
   fadeInRightToCenter,
   fadeOutLeftFromCenter,
   fadeOutRightFromCenter,
 } from './animations';
-import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { reduceName } from '../../scripts/helpers';
-import ModalImage from './ModalImage';
 
 type ModalViewProps = {
   asset: Nft | null;
