@@ -1,5 +1,39 @@
 import { Box, Typography } from '@mui/material';
-import { fadeIn } from './animations';
+
+type FilterPillProps = {
+  active: boolean;
+  onClick: () => void;
+  children: string;
+};
+
+const FilterPill = ({ active, onClick, children }: FilterPillProps) => (
+  <Typography
+    variant="body2"
+    sx={{
+      fontSize: 16,
+      color: active ? '#fff' : '#ccc',
+      cursor: 'pointer',
+      whiteSpace: 'nowrap',
+      borderRadius: '50px',
+      border: '1px solid #333',
+      backdropFilter: 'blur(10px)',
+      px: 2,
+      py: 1,
+      opacity: active ? 1 : 0.5,
+      '&:hover': {
+        opacity: 1,
+      }
+    }}
+    onClick={onClick}
+  >
+    {children}
+  </Typography>
+);
+
+enum FILTER_TYPES {
+  OTHER = 'Other',
+  WHERE_MY_VANS_GO = 'Where My Vans Go',
+}
 
 type FilterProps = {
   activeFilters: string[];
@@ -42,7 +76,7 @@ const Filter = ({ activeFilters, setFilters }: FilterProps) => {
         zIndex: 2,
         left: {
           xs: '50%',
-          md: '0'
+          md: '0',
         },
         width: {
           xs: '100%',
@@ -54,40 +88,18 @@ const Filter = ({ activeFilters, setFilters }: FilterProps) => {
         },
       }}
     >
-      <Typography
-        variant="body2"
-        sx={{
-          fontSize: 16,
-          color: activeFilters.includes('Other') ? '#fff' : '#ccc',
-          cursor: 'pointer',
-          whiteSpace: 'nowrap',
-          borderRadius: '50px',
-          border: '1px solid #333',
-          backdropFilter: 'blur(10px)',
-          px: 2,
-          py: 1,
-        }}
-        onClick={() => toggleFilter('Other')}
+      <FilterPill
+        active={activeFilters.includes(FILTER_TYPES.OTHER)}
+        onClick={() => toggleFilter(FILTER_TYPES.OTHER)}
       >
         Uncollected works
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          fontSize: 16,
-          color: activeFilters.includes('Where My Vans Go') ? '#fff' : '#ccc',
-          cursor: 'pointer',
-          whiteSpace: 'nowrap',
-          borderRadius: '50px',
-          border: '1px solid #333',
-          backdropFilter: 'blur(10px)',
-          px: 2,
-          py: 1,
-        }}
-        onClick={() => toggleFilter('Where My Vans Go')}
+      </FilterPill>
+      <FilterPill
+        active={activeFilters.includes(FILTER_TYPES.WHERE_MY_VANS_GO)}
+        onClick={() => toggleFilter(FILTER_TYPES.WHERE_MY_VANS_GO)}
       >
         Where My Vans Go
-      </Typography>
+      </FilterPill>
     </Box>
   );
 };
