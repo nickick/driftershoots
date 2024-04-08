@@ -7,6 +7,7 @@ import { LoadedContext } from '../LoadedContextProvider';
 import Filter from './Filter';
 import ModalView from './ModalView';
 import ThumbnailTile from './ThumbnailTile';
+import GridSizer, { GRID_SIZES } from './GridSizer';
 
 const randomSeed = random.create('tothemoon');
 
@@ -41,6 +42,11 @@ const GalleryV2 = () => {
 
   const [filteredAssets, setFilteredAssets] = useState<Nft[]>(assets);
   const [filters, setFilters] = useState<string[]>([]);
+
+  const [gridSize, setGridSize] = useState<keyof typeof GRID_SIZES>("LARGE");
+  const gridGap = gridSize === 'LARGE' ? 10 : gridSize === 'MEDIUM' ? 5 : 5;
+  const tileHeight = gridSize === 'LARGE' ? 100 : gridSize === 'MEDIUM' ? 75 : 50;
+  const mobileTileHeight = gridSize === 'LARGE' ? 75 : gridSize === 'MEDIUM' ? 50 : 37.5;
 
   useEffect(() => {
     if (filters.length === 0) {
@@ -77,9 +83,12 @@ const GalleryV2 = () => {
       <Box
         sx={{
           opacity: isLoaded ? 1 : 0,
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         <Filter activeFilters={filters} setFilters={setFilters} />
+        <GridSizer gridSize={gridSize} setGridSize={setGridSize} />
       </Box>
       <Box
         sx={{
@@ -87,9 +96,10 @@ const GalleryV2 = () => {
           flexDirection: 'row',
           flexWrap: 'wrap',
           justifyContent: 'space-between',
+          transition: 'gap 0.3s ease-in-out',
           gap: {
-            xs: '10px',
-            md: '20px',
+            xs: `${gridGap / 2}px`,
+            md: `${gridGap}px`,
           },
         }}
       >
@@ -102,6 +112,7 @@ const GalleryV2 = () => {
               randomSeed={randomSeed}
               animationDelay={animationDelay}
               filters={filters}
+              height={mobileTileHeight}
               mobile
             />
           );
@@ -115,6 +126,7 @@ const GalleryV2 = () => {
               randomSeed={randomSeed}
               animationDelay={animationDelay}
               filters={filters}
+              height={tileHeight}
               mobile={false}
             />
           );

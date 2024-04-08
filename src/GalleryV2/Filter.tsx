@@ -1,27 +1,46 @@
 import { Box, Typography } from '@mui/material';
 
-type FilterPillProps = {
+type TogglePillProps = {
   active: boolean;
   onClick: () => void;
   children: string;
 };
 
-const FilterPill = ({ active, onClick, children }: FilterPillProps) => (
+const activeBgColor = 'rgba(255, 255, 255, 1)';
+const inactiveBgColor = 'rgba(255, 255, 255, 0.3)';
+
+export const TogglePill = ({ active, onClick, children }: TogglePillProps) => (
   <Typography
     variant="body2"
     sx={{
       fontSize: 16,
-      color: active ? '#fff' : '#ccc',
+      color: {
+        xs: active ? `${activeBgColor}` : `${inactiveBgColor}`,
+        md: active ? '#fff' : '#ccc',
+      },
       cursor: 'pointer',
       whiteSpace: 'nowrap',
       borderRadius: '50px',
-      border: '1px solid #333',
-      backdropFilter: 'blur(10px)',
-      px: 2,
+      backgroundColor: {
+        md: active ? '#333' : 'transparent',
+      },
+      px: {
+        xs: 1,
+        md: 2,
+      },
       py: 1,
       opacity: active ? 1 : 0.5,
       '&:hover': {
-        opacity: 1,
+        opacity: {
+          xs: active ? 1 : 0.5,
+          md: 1,
+        },
+      },
+      '&:focus': {
+        opacity: active ? 1 : 0.5,
+      },
+      '&:active': {
+        opacity: active ? 1 : 0.5,
       }
     }}
     onClick={onClick}
@@ -52,14 +71,17 @@ const Filter = ({ activeFilters, setFilters }: FilterProps) => {
   return (
     <Box
       sx={{
-        py: 2,
+        py: 0,
+        mb: {
+          xs: 0,
+          md: 2,
+        },
         display: 'flex',
         justifyContent: {
           xs: 'center',
           md: 'flex-start',
         },
         alignItems: 'center',
-        gap: 2,
         color: '#ccc',
         position: {
           xs: 'fixed',
@@ -88,18 +110,41 @@ const Filter = ({ activeFilters, setFilters }: FilterProps) => {
         },
       }}
     >
-      <FilterPill
+      <Box sx={{
+        display: 'flex',
+        gap: 2,
+        justifyContent: {
+          xs: 'center',
+          md: 'flex-start',
+        },
+        mx: {
+          xs: 4,
+          md: 0,
+        },
+        px: {
+          xs: 2,
+          md: 0,
+        },
+        backgroundColor: {
+          xs: 'rgba(255, 255, 255, 0.1)',
+          md: 'rgba(255, 255, 255, 0)',
+        },
+        backdropFilter: 'blur(10px)',
+        borderRadius: 20,
+      }}>
+      <TogglePill
         active={activeFilters.includes(FILTER_TYPES.OTHER)}
         onClick={() => toggleFilter(FILTER_TYPES.OTHER)}
       >
         Uncollected works
-      </FilterPill>
-      <FilterPill
+      </TogglePill>
+      <TogglePill
         active={activeFilters.includes(FILTER_TYPES.WHERE_MY_VANS_GO)}
         onClick={() => toggleFilter(FILTER_TYPES.WHERE_MY_VANS_GO)}
       >
         Where My Vans Go
-      </FilterPill>
+      </TogglePill>
+      </Box>
     </Box>
   );
 };

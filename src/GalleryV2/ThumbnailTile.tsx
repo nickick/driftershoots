@@ -9,6 +9,7 @@ type ThumbnailTileProps = {
   animationDelay: number;
   asset: Nft;
   filters: string[];
+  height: number;
   index: number;
   mobile: boolean;
   randomSeed: RandomSeed;
@@ -19,6 +20,7 @@ const ThumbnailTile = ({
   animationDelay,
   asset,
   filters,
+  height,
   index,
   selectAsset,
   randomSeed,
@@ -68,8 +70,9 @@ const ThumbnailTile = ({
         alt={asset.name}
         style={{
           width: 'auto',
-          height: mobile ? '50px' : '100px',
+          height: `${height}px`,
           objectFit: 'cover',
+          transition: 'all 1s ease-in-out',
         }}
       />
     </Box>
