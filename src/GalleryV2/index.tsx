@@ -97,10 +97,7 @@ const GalleryV2 = () => {
           flexWrap: 'wrap',
           justifyContent: 'space-between',
           transition: 'gap 0.3s ease-in-out',
-          gap: {
-            xs: `${gridGap}px`,
-            md: `${gridGap}px`,
-          },
+          gap: `${gridGap * 2}px ${gridGap}px`,
         }}
       >
         {filteredAssets.map((asset, index) => {
