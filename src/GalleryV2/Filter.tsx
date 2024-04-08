@@ -1,9 +1,10 @@
 import { Box, Typography } from '@mui/material';
+import { ReactNode } from 'react';
 
 type TogglePillProps = {
   active: boolean;
   onClick: () => void;
-  children: string;
+  children: ReactNode;
 };
 
 const activeBgColor = 'rgba(255, 255, 255, 1)';

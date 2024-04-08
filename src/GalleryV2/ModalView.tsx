@@ -110,6 +110,8 @@ const ModalView = ({
     }
   }, [imgLoaded]);
 
+  const [zoomed, setZoomed] = useState(false);
+
   return (
     <Box
       sx={{

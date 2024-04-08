@@ -44,9 +44,9 @@ const GalleryV2 = () => {
   const [filters, setFilters] = useState<string[]>([]);
 
   const [gridSize, setGridSize] = useState<keyof typeof GRID_SIZES>("LARGE");
-  const gridGap = gridSize === 'LARGE' ? 10 : gridSize === 'MEDIUM' ? 5 : 5;
+  const gridGap = gridSize === 'LARGE' ? 20 : 15;
   const tileHeight = gridSize === 'LARGE' ? 100 : gridSize === 'MEDIUM' ? 75 : 50;
-  const mobileTileHeight = gridSize === 'LARGE' ? 60 : gridSize === 'MEDIUM' ? 50 : 42;
+  const mobileTileHeight = gridSize === 'LARGE' ? 85 : gridSize === 'MEDIUM' ? 65 : 55;
 
   useEffect(() => {
     if (filters.length === 0) {
@@ -98,7 +98,7 @@ const GalleryV2 = () => {
           justifyContent: 'space-between',
           transition: 'gap 0.3s ease-in-out',
           gap: {
-            xs: `${gridGap / 2}px`,
+            xs: `${gridGap}px`,
             md: `${gridGap}px`,
           },
         }}
