@@ -117,10 +117,6 @@ const Filter = ({ activeFilters, setFilters }: FilterProps) => {
           xs: 'center',
           md: 'flex-start',
         },
-        mx: {
-          xs: 4,
-          md: 0,
-        },
         px: {
           xs: 2,
           md: 0,

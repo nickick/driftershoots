@@ -46,7 +46,7 @@ const GalleryV2 = () => {
   const [gridSize, setGridSize] = useState<keyof typeof GRID_SIZES>("LARGE");
   const gridGap = gridSize === 'LARGE' ? 10 : gridSize === 'MEDIUM' ? 5 : 5;
   const tileHeight = gridSize === 'LARGE' ? 100 : gridSize === 'MEDIUM' ? 75 : 50;
-  const mobileTileHeight = gridSize === 'LARGE' ? 75 : gridSize === 'MEDIUM' ? 50 : 37.5;
+  const mobileTileHeight = gridSize === 'LARGE' ? 60 : gridSize === 'MEDIUM' ? 50 : 42;
 
   useEffect(() => {
     if (filters.length === 0) {

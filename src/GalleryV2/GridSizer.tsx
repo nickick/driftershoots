@@ -53,7 +53,11 @@ const GridSizer = ({ gridSize, setGridSize }: GridSizerProps) => {
       },
       backdropFilter: 'blur(10px)',
       py: {
-        xs: 2,
+        xs: 1.5,
+        md: 0,
+      },
+      px: {
+        xs: 0.5,
         md: 0,
       },
       borderRadius: {
