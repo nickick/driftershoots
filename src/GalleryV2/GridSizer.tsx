@@ -39,10 +39,7 @@ const GridSizer = ({ gridSize, setGridSize }: GridSizerProps) => {
         xs: 'column',
         md: 'row',
       },
-      gap: {
-        xs: 0,
-        md: 2,
-      },
+      gap: 0,
       mb: {
         xs: 0,
         md: 2,
