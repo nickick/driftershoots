@@ -46,12 +46,14 @@ const ModalView = ({
     const handleKeyUp = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'Escape':
-          deselectAsset();
+          close();
           break;
         case 'ArrowRight':
+          setZoomed(false);
           goNext();
           break;
         case 'ArrowLeft':
+          setZoomed(false);
           goPrev();
           break;
       }
@@ -111,6 +113,12 @@ const ModalView = ({
   }, [imgLoaded]);
 
   const [zoomed, setZoomed] = useState(false);
+  const close = () => {
+    setZoomed(false);
+    deselectAsset();
+  };
+  const [mouseCoordinates, setMouseCoordinates] = useState({ x: 0, y: 0 });
+  const imageContainerRef = useRef(null);
 
   return (
     <Box
@@ -155,7 +163,10 @@ const ModalView = ({
               left: 0,
               right: '70%',
             }}
-            onClick={goPrev}
+            onClick={() => {
+              setZoomed(false);
+              goPrev();
+            }}
           />
           <Box
             sx={{
@@ -169,15 +180,21 @@ const ModalView = ({
               right: 0,
               left: '70%',
             }}
-            onClick={goNext}
+            onClick={() => {
+              setZoomed(false);
+              goNext();
+            }}
           />
           <Box
             sx={{
               position: 'relative',
-              height: '80vh',
+              height: {
+                xs: '80vh',
+                md: zoomed ? '100vh' : '90vh',
+              },
               width: {
                 xs: '90vw',
-                md: '80vw',
+                md: zoomed ? '100vw' : '80vw',
               },
               display: 'flex',
               justifyContent: 'center',
@@ -193,29 +210,47 @@ const ModalView = ({
                       : fadeInLeftToCenter
                   }`
                 : 'none',
+              transition: 'height 0.2s ease-out, width 0.2s ease-out',
             }}
           >
             <Box
               sx={{
                 position: 'relative',
-                height: '90%',
+                height: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
+                cursor: zoomed ? 'zoom-out' : 'zoom-in',
+                maxWidth: '100vw',
+                overflow: zoomed ? 'scroll' : 'hidden',
+                zIndex: zoomed ? 30 : 20,
               }}
+              onClick={(e) => {
+                setMouseCoordinates({ x: e.pageX, y: e.pageY });
+                setZoomed(!zoomed);
+              }}
+              ref={imageContainerRef}
             >
               <ModalImage
                 asset={asset}
+                coordinates={mouseCoordinates}
+                imageContainerRef={imageContainerRef}
                 imgLoaded={imgLoaded}
                 imgLoadedDelayed={imgLoadedDelayed}
                 setImgLoaded={setImgLoaded}
+                setZoomed={setZoomed}
+                zoomed={zoomed}
                 mobile
               />
               <ModalImage
                 asset={asset}
+                coordinates={mouseCoordinates}
+                imageContainerRef={imageContainerRef}
                 imgLoaded={imgLoaded}
                 imgLoadedDelayed={imgLoadedDelayed}
                 setImgLoaded={setImgLoaded}
+                setZoomed={setZoomed}
+                zoomed={zoomed}
                 mobile={false}
               />
               <Box
@@ -228,10 +263,17 @@ const ModalView = ({
                   marginTop: 2,
                 }}
               >
-                <Typography variant="h4">{asset.name}</Typography>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    display: zoomed ? 'none' : 'block',
+                  }}
+                >
+                  {asset.name}
+                </Typography>
                 <Typography
                   variant="body2"
-                  onClick={deselectAsset}
+                  onClick={close}
                   fontSize={16}
                   sx={{
                     mt: 2,
@@ -265,7 +307,7 @@ const ModalView = ({
                 md: 'block',
               },
             }}
-            onClick={deselectAsset}
+            onClick={close}
           >
             Close
           </Typography>
