@@ -53,9 +53,6 @@ const ModalImage = ({
         height: 'fit-content',
         width: zoomed ? '200%' : '100%',
       }}
-      onClick={(e) => {
-        const image = imageRef.current! as HTMLImageElement;
-      }}
     >
       <img
         src={imgLoaded ? asset.image.cachedUrl || asset.image.originalUrl || '' : `/gallery/thumbnails/${reduceName(asset.name)}.png`}
