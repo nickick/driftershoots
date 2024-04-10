@@ -1,15 +1,15 @@
-import { Box, Typography } from '@mui/material';
-import OutlinedButton from '../OutlinedButton';
-import ZoomLazyImage from './ZoomLazyImage';
+import { Box, Typography } from "@mui/material";
+import OutlinedButton from "../OutlinedButton";
+import ZoomLazyImage from "./ZoomLazyImage";
 
 export default function UniversalFreedom() {
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: "flex",
         flexDirection: {
-          xs: 'column',
-          md: 'row',
+          xs: "column",
+          md: "row",
         },
         my: {
           xs: 7,
@@ -20,8 +20,8 @@ export default function UniversalFreedom() {
       <Box
         sx={{
           flex: 5,
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           pr: {
             xs: 0,
             md: 3,
@@ -33,46 +33,45 @@ export default function UniversalFreedom() {
         }}
       >
         <Typography
-          variant="overline"
-          sx={{
-          }}
-        >
-          Universal Freedom
-        </Typography>
-        <Typography
           variant="h2"
           sx={{
             mb: 6,
           }}
         >
-          What I want people to know is I&apos;m overwhelmed with gratitude by everyone&apos;s
-          support. I&apos;m incredibly thankful. There&apos;s a lot of work ahead, but with
-          everyone&apos;s love and support, I&apos;m ready to fight it all head on.
+          Despite the adversity he faced, Drift's work has since flourished. He
+          has become one of the most sought-after photographers in the industry,
+          emerging in the fine arts world and as a pioneer in photography. He
+          has been featured in Rolling Stone, TIME, The New York Times, and many
+          other notable publications.
         </Typography>
         <Typography
           variant="body"
           sx={{
-            fontSize: '2.5rem',
+            fontSize: "2.5rem",
             mb: 4,
           }}
         >
-          In a myriad of phone calls with friends, I have been asked if I can imagine what it
-          will feel like to take a picture again or taste freedom once more. Instantly, memories
-          flash on a highlight reel behind my eyes as I recollect moments of immeasurable bliss
-          along the journey of walking in my purpose.
+          Drift reflects on his process over the last few years, “I've come to
+          realize each is a snapshot not just of the world but of who I was at
+          that point in time. They are living, breathing documentations of
+          change, including the changes that have been brought forth in myself.”
+          His work explores themes of self-authorization in the face of mass
+          surveillance, race and the reclamation of bodily agency and
+          surrealism, creating imagery on the absolute fringes of reality in an
+          everlasting deeper dive into the divine.
         </Typography>
         <Typography
           variant="body"
           sx={{
-            fontSize: '2.5rem',
+            fontSize: "2.5rem",
             mb: 6,
           }}
         >
-          We all share moments like these as they are universal in their nature rather than
-          soteric.
-          We so freely attribute a sort of divine greatness to these memories as we recall how our
-          souls were lifted from one plane into another, and we existed, for but a moment, in what
-          appears to be a more comprehensive, fuller and deeper reality.
+          Drift's photography embodies the true essence of fine art, merging
+          captivating visuals with a deep sense of emotion and purpose. His
+          unique perspective and unbridled passion have earned him accolades and
+          recognition from the most discerning art collectors and curators
+          worldwide.
         </Typography>
         <OutlinedButton
           href="/gallery"
@@ -83,7 +82,7 @@ export default function UniversalFreedom() {
           <Typography
             variant="h4"
             sx={{
-              textTransform: 'none',
+              textTransform: "none",
             }}
           >
             View Gallery
@@ -93,13 +92,13 @@ export default function UniversalFreedom() {
       <Box
         sx={{
           flex: 7,
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
+            display: "flex",
           }}
         >
           <ZoomLazyImage
@@ -131,8 +130,8 @@ export default function UniversalFreedom() {
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           <ZoomLazyImage
@@ -144,13 +143,12 @@ export default function UniversalFreedom() {
                 xs: 0,
                 md: 3,
               },
-              width: '70%',
+              width: "70%",
             }}
             fadeInOnload
           />
         </Box>
       </Box>
-
     </Box>
   );
 }
