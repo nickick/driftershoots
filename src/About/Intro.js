@@ -86,9 +86,10 @@ export default function Intro() {
         <Typography variant="h2">
           Isaac "Drift" Wright is a multidisciplinary artist and a United States
           Army veteran. After serving his country, he found solace and purpose
-          in urban exploring and photography, capturing cities from unique and
-          unseen perspectives. Through his lens, he found a way to cope with
-          displacement, PTSD, and depression.
+          in urban exploring and photography, illegally and clandestinely
+          capturing cities from unique and unseen perspectives. Through his
+          lens, he found a way to cope with displacement, PTSD, and Bipolar
+          Disorder, finding peace in the presence of the moment.
         </Typography>
       </FadeInAboutSection>
     </Box>

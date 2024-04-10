@@ -1,15 +1,11 @@
-import { Instagram } from '@mui/icons-material';
-import {
-  Box, Typography,
-} from '@mui/material';
-import OutlinedButton from '../OutlinedButton';
-import ArrestedAtGunpoint from './ArrestedAtGunpoint';
-import InNews from './InNews';
-import Intro from './Intro';
-import UniversalFreedom from './UniversalFreedom';
-import UniversalFreedom2 from './UniversalFreedom-2';
-import UniversalFreedom3 from './UniversalFreedom-3';
-import Video from './Video';
+import { Instagram } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
+import OutlinedButton from "../OutlinedButton";
+import ArrestedAtGunpoint from "./ArrestedAtGunpoint";
+import InNews from "./InNews";
+import Intro from "./Intro";
+import UniversalFreedom from "./UniversalFreedom";
+import Video from "./Video";
 
 export default function About() {
   return (
@@ -24,16 +20,16 @@ export default function About() {
           xs: 4,
           md: 14,
         },
-        width: '100%',
-        maxWidth: '1600px',
-        margin: 'auto',
+        width: "100%",
+        maxWidth: "1600px",
+        margin: "auto",
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
         }}
       >
         <Intro />
@@ -41,14 +37,12 @@ export default function About() {
         <InNews />
         <Video />
         <UniversalFreedom />
-        <UniversalFreedom2 />
-        <UniversalFreedom3 />
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Typography
@@ -62,17 +56,18 @@ export default function About() {
           <Typography
             variant="body"
             sx={{
-              fontSize: '2.5rem',
+              fontSize: "2.5rem",
               mb: 6,
               maxWidth: {
-                xs: '100%',
-                md: '50%',
+                xs: "100%",
+                md: "50%",
               },
-              textAlign: 'center',
+              textAlign: "center",
             }}
           >
-            Check out the stories that made the artist go from military veteran to urban
-            explorer, scaling some of the worlds tallest man-made buildings.
+            Check out the stories that made the artist go from military veteran
+            to urban explorer, scaling some of the worlds tallest man-made
+            buildings.
           </Typography>
           <OutlinedButton
             text="Follow on IG"
@@ -81,17 +76,17 @@ export default function About() {
             <Typography
               variant="h4"
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               Follow
               <Box
                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   pl: 2,
                 }}
               >

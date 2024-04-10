@@ -104,10 +104,10 @@ export default function ArrestedAtGunpoint() {
             mb: 2.5,
           }}
         >
-          In 2020, Isaac's artistic passion and dedication to documenting the
+          In 2020, Drift's artistic passion and dedication to documenting the
           world around him led to his arrest, a heart-wrenching experience that
           resulted in four months of incarceration without bond. The government
-          used both his race as a Black man and his military background against
+          weaponized numerous factors including his military background against
           him, making his story a national headline, which landed on the front
           page of The New York Times on June 6th, 2021.
         </Typography>
