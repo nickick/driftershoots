@@ -13,7 +13,7 @@ module.exports = withFonts({
       'driftershoots.com',
       'arweave.net',
       'nft-cdn.alchemy.com',
-    ]
+    ],
   },
   async headers() {
     return [
@@ -22,10 +22,10 @@ module.exports = withFonts({
         headers: [
           {
             key: 'Cache-Control',
-            value: 'max-age=0, s-maxage=86400'
-          }
-        ]
-      }
-    ]
-  }
+            value: 'max-age=0, s-maxage=86400',
+          },
+        ],
+      },
+    ];
+  },
 });

@@ -27,17 +27,21 @@ const ModalView = ({
   const [fadingDir, setFadingDir] = useState<'left' | 'right' | null>(null);
 
   const goNext = () => {
+    if (zoomed) return;
     setFadingDir('left');
     setTimeout(() => {
       setSelectedAssetIndex((selectedAssetIndex || 0) + 1);
+      setZoomed(false);
       setTimeout(() => setFadingDir(null), 200);
     }, 200);
   };
 
   const goPrev = () => {
+    if (zoomed) return;
     setFadingDir('right');
     setTimeout(() => {
       setSelectedAssetIndex((selectedAssetIndex || 0) - 1);
+      setZoomed(false);
       setTimeout(() => setFadingDir(null), 200);
     }, 200);
   };
@@ -164,7 +168,6 @@ const ModalView = ({
               right: '70%',
             }}
             onClick={() => {
-              setZoomed(false);
               goPrev();
             }}
           />
@@ -181,7 +184,6 @@ const ModalView = ({
               left: '70%',
             }}
             onClick={() => {
-              setZoomed(false);
               goNext();
             }}
           />
@@ -229,12 +231,10 @@ const ModalView = ({
                 setMouseCoordinates({ x: e.pageX, y: e.pageY });
                 setZoomed(!zoomed);
               }}
-              ref={imageContainerRef}
             >
               <ModalImage
                 asset={asset}
                 coordinates={mouseCoordinates}
-                imageContainerRef={imageContainerRef}
                 imgLoaded={imgLoaded}
                 imgLoadedDelayed={imgLoadedDelayed}
                 setImgLoaded={setImgLoaded}
@@ -245,7 +245,6 @@ const ModalView = ({
               <ModalImage
                 asset={asset}
                 coordinates={mouseCoordinates}
-                imageContainerRef={imageContainerRef}
                 imgLoaded={imgLoaded}
                 imgLoadedDelayed={imgLoadedDelayed}
                 setImgLoaded={setImgLoaded}
@@ -273,6 +272,19 @@ const ModalView = ({
                 </Typography>
                 <Typography
                   variant="body2"
+                  sx={{
+                    display: {
+                      xs: 'block',
+                      md: 'none',
+                    },
+                    mt: 1,
+                    fontSize: 12,
+                  }}
+                >
+                  Tap to zoom
+                </Typography>
+                <Typography
+                  variant="body2"
                   onClick={close}
                   fontSize={16}
                   sx={{
@@ -294,12 +306,14 @@ const ModalView = ({
             variant="body2"
             sx={{
               position: 'absolute',
-              top: 0,
-              right: 12,
-              padding: 4,
+              top: 35,
+              right: 35,
+              padding: 2,
               cursor: 'pointer',
               color: 'white',
               borderBottomLeftRadius: 2,
+              border: '1px solid white',
+              background: 'rgba(0, 0, 0, 0.2)',
               fontSize: 16,
               zIndex: 31,
               display: {
