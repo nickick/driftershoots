@@ -4,6 +4,7 @@ import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock';
 import { useEffect, useRef, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import ModalImage from './ModalImage';
+import { isMobile } from 'react-device-detect';
 import {
   fadeInLeftToCenter,
   fadeInRightToCenter,
@@ -122,7 +123,6 @@ const ModalView = ({
     deselectAsset();
   };
   const [mouseCoordinates, setMouseCoordinates] = useState({ x: 0, y: 0 });
-  const imageContainerRef = useRef(null);
 
   return (
     <Box
@@ -228,8 +228,10 @@ const ModalView = ({
                 zIndex: zoomed ? 30 : 20,
               }}
               onClick={(e) => {
-                setMouseCoordinates({ x: e.pageX, y: e.pageY });
-                setZoomed(!zoomed);
+                if (!isMobile) {
+                  setMouseCoordinates({ x: e.pageX, y: e.pageY });
+                  setZoomed(!zoomed);
+                }
               }}
             >
               <ModalImage
@@ -270,7 +272,7 @@ const ModalView = ({
                 >
                   {asset.name}
                 </Typography>
-                <Typography
+                {/* <Typography
                   variant="body2"
                   sx={{
                     display: {
@@ -282,7 +284,7 @@ const ModalView = ({
                   }}
                 >
                   Tap to zoom
-                </Typography>
+                </Typography> */}
                 <Typography
                   variant="body2"
                   onClick={close}

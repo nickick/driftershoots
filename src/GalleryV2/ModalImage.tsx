@@ -24,6 +24,7 @@ const ModalImage = ({
 }: ModalImageProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const zoomIn = zoomed && !mobile;
 
   useEffect(() => {
     if (zoomed) {
@@ -31,11 +32,6 @@ const ModalImage = ({
       const { x, y } = coordinates;
       setTimeout(() => {
         const image = imageRef.current! as HTMLImageElement;
-        console.log(
-          'coordinates',
-          coordinates,
-          ((x / body.clientWidth) * image.width) / 2
-        );
         (imageContainerRef.current! as HTMLDivElement).scrollTo({
           left: (x / body.clientWidth) * image.width,
           top: (y / body.clientHeight) * image.height,
@@ -49,7 +45,9 @@ const ModalImage = ({
     <Box
       sx={{
         position: 'relative',
-        height: '100%',
+        height: {
+          md: '100%',
+        },
         width: '100%',
         display: {
           xs: mobile ? 'flex' : 'none',
@@ -57,17 +55,17 @@ const ModalImage = ({
         },
         justifyContent: 'center',
         alignItems: 'center',
-        overflow: zoomed ? 'scroll' : 'hidden',
+        overflow: zoomIn ? 'scroll' : 'hidden',
       }}
       id="modal-relative-wrapper"
     >
       <Box
         sx={{
-          position: zoomed ? 'fixed' : 'relative',
-          top: zoomed ? (mobile ? 10 : 30) : 'unset',
-          left: zoomed ? (mobile ? 10 : 30) : 'unset',
-          bottom: zoomed ? (mobile ? 10 : 30) : 'unset',
-          right: zoomed ? (mobile ? 10 : 30) : 'unset',
+          position: zoomIn ? 'fixed' : 'relative',
+          top: zoomIn ? (mobile ? 10 : 30) : 'unset',
+          left: zoomIn ? (mobile ? 10 : 30) : 'unset',
+          bottom: zoomIn ? (mobile ? 10 : 30) : 'unset',
+          right: zoomIn ? (mobile ? 10 : 30) : 'unset',
           display: {
             xs: mobile ? 'flex' : 'none',
             md: !mobile ? 'flex' : 'none',
@@ -75,9 +73,11 @@ const ModalImage = ({
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          height: zoomed && imgLoaded ? 'unset' : '100%',
-          width: zoomed && imgLoaded ? 'unset' : '100%',
-          overflow: zoomed ? 'scroll' : 'hidden',
+          height: {
+            md: zoomIn && imgLoaded ? 'unset' : '100%',
+          },
+          width: zoomIn && imgLoaded ? 'unset' : '100%',
+          overflow: zoomIn ? 'scroll' : 'hidden',
         }}
         ref={imageContainerRef}
       >
@@ -90,10 +90,10 @@ const ModalImage = ({
           alt={asset.name || ''}
           key={`${asset.name}-${asset.image.originalUrl}`}
           style={{
-            objectFit: zoomed ? 'cover' : 'contain',
-            maxHeight: zoomed ? '200vh' : mobile ? '80vh' : '80vh',
-            height: zoomed ? 'unset' : '100%',
-            width: zoomed ? 'unset' : '100%',
+            objectFit: zoomIn ? 'cover' : 'contain',
+            maxHeight: zoomIn ? '200vh' : mobile ? '80vh' : '80vh',
+            height: zoomIn ? 'unset' : '100%',
+            width: zoomIn ? 'unset' : '100%',
           }}
           onLoad={() => {
             setImgLoaded(true);
