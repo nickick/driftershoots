@@ -42,7 +42,7 @@ export const TogglePill = ({ active, onClick, children }: TogglePillProps) => (
       },
       '&:active': {
         opacity: active ? 1 : 0.5,
-      }
+      },
     }}
     onClick={onClick}
   >
@@ -52,6 +52,7 @@ export const TogglePill = ({ active, onClick, children }: TogglePillProps) => (
 
 enum FILTER_TYPES {
   OTHER = 'Other',
+  RETURN_TO_SOURCE = 'Return To Source',
   WHERE_MY_VANS_GO = 'Where My Vans Go',
 }
 
@@ -111,36 +112,44 @@ const Filter = ({ activeFilters, setFilters }: FilterProps) => {
         },
       }}
     >
-      <Box sx={{
-        display: 'flex',
-        gap: 2,
-        justifyContent: {
-          xs: 'center',
-          md: 'flex-start',
-        },
-        px: {
-          xs: 2,
-          md: 0,
-        },
-        backgroundColor: {
-          xs: 'rgba(255, 255, 255, 0.1)',
-          md: 'rgba(255, 255, 255, 0)',
-        },
-        backdropFilter: 'blur(10px)',
-        borderRadius: 20,
-      }}>
-      <TogglePill
-        active={activeFilters.includes(FILTER_TYPES.OTHER)}
-        onClick={() => toggleFilter(FILTER_TYPES.OTHER)}
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          justifyContent: {
+            xs: 'center',
+            md: 'flex-start',
+          },
+          px: {
+            xs: 2,
+            md: 0,
+          },
+          backgroundColor: {
+            xs: 'rgba(255, 255, 255, 0.1)',
+            md: 'rgba(255, 255, 255, 0)',
+          },
+          backdropFilter: 'blur(10px)',
+          borderRadius: 20,
+        }}
       >
-        Uncollected works
-      </TogglePill>
-      <TogglePill
-        active={activeFilters.includes(FILTER_TYPES.WHERE_MY_VANS_GO)}
-        onClick={() => toggleFilter(FILTER_TYPES.WHERE_MY_VANS_GO)}
-      >
-        Where My Vans Go
-      </TogglePill>
+        <TogglePill
+          active={activeFilters.includes(FILTER_TYPES.OTHER)}
+          onClick={() => toggleFilter(FILTER_TYPES.OTHER)}
+        >
+          Uncollected works
+        </TogglePill>
+        <TogglePill
+          active={activeFilters.includes(FILTER_TYPES.RETURN_TO_SOURCE)}
+          onClick={() => toggleFilter(FILTER_TYPES.RETURN_TO_SOURCE)}
+        >
+          Return To Source
+        </TogglePill>
+        <TogglePill
+          active={activeFilters.includes(FILTER_TYPES.WHERE_MY_VANS_GO)}
+          onClick={() => toggleFilter(FILTER_TYPES.WHERE_MY_VANS_GO)}
+        >
+          Where My Vans Go
+        </TogglePill>
       </Box>
     </Box>
   );

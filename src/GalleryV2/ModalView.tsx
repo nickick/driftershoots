@@ -222,16 +222,16 @@ const ModalView = ({
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
-                cursor: zoomed ? 'zoom-out' : 'zoom-in',
+                // cursor: zoomed ? 'zoom-out' : 'zoom-in',
                 maxWidth: '100vw',
-                overflow: zoomed ? 'scroll' : 'hidden',
+                // overflow: zoomed ? 'scroll' : 'hidden',
                 zIndex: zoomed ? 30 : 20,
               }}
               onClick={(e) => {
-                if (!isMobile) {
-                  setMouseCoordinates({ x: e.pageX, y: e.pageY });
-                  setZoomed(!zoomed);
-                }
+                // if (!isMobile) {
+                //   setMouseCoordinates({ x: e.pageX, y: e.pageY });
+                //   setZoomed(!zoomed);
+                // }
               }}
             >
               <ModalImage

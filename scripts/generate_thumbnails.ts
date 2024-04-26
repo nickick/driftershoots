@@ -1,14 +1,15 @@
-import { Alchemy, Network, Nft, NftTokenType } from "alchemy-sdk";
-import fs from "fs";
-import imagemagick from "imagemagick";
+import { Alchemy, Network, Nft, NftTokenType } from 'alchemy-sdk';
+import fs from 'fs';
+import imagemagick from 'imagemagick';
 import {
-  MISC_COLLECTION_SLUGS,
   OPENSEA_STOREFRONT_CONTRACT_ADDRESS,
+  RETURN_TO_SOURCE_FILENAMES,
+  UNCOLLECTED_WORKS_FILENAMES,
   WMVG_CONTRACT_ADDRESS,
   WMVG_STOREFRONT_IDS,
-} from "./constants";
-import { reduceName } from "./helpers";
-import { PromisePool } from "@supercharge/promise-pool";
+} from './constants';
+import { reduceName } from './helpers';
+import { PromisePool } from '@supercharge/promise-pool';
 
 /**
  * Script to download images from WMVG collection and various works to convert into thumbnail images.
@@ -48,23 +49,23 @@ const gatherImages = async () => {
 
   assets.forEach((asset) => {
     asset.raw.metadata.attributes?.push({
-      trait_type: "Collection",
-      value: "Where My Vans Go",
+      trait_type: 'Collection',
+      value: 'Where My Vans Go',
     });
   });
 
-  MISC_COLLECTION_SLUGS.forEach((photoName) => {
+  RETURN_TO_SOURCE_FILENAMES.forEach((photoName) => {
     assets.unshift({
       name: photoName,
-      description: "Other",
+      description: 'Other',
       image: {
-        originalUrl: `https://driftershoots.com/gallery/${photoName}.jpeg`,
-        thumbnailUrl: `/gallery/${photoName}.jpeg`,
+        originalUrl: `https://d1o2uqa5pvfsza.cloudfront.net/${photoName}`,
+        thumbnailUrl: `/gallery/${photoName}`,
       },
       tokenType: NftTokenType.ERC721,
       timeLastUpdated: new Date().toISOString(),
       contract: {
-        address: "",
+        address: '',
         spamClassifications: [],
         tokenType: NftTokenType.ERC721,
         openSeaMetadata: {
@@ -75,8 +76,40 @@ const gatherImages = async () => {
         metadata: {
           attributes: [
             {
-              trait_type: "Collection",
-              value: "Other",
+              trait_type: 'Collection',
+              value: 'Return To Source',
+            },
+          ],
+        },
+      },
+      tokenId: photoName,
+    });
+  });
+
+  UNCOLLECTED_WORKS_FILENAMES.forEach((photoName) => {
+    assets.unshift({
+      name: photoName,
+      description: 'Other',
+      image: {
+        originalUrl: `https://d1o2uqa5pvfsza.cloudfront.net/${photoName}`,
+        thumbnailUrl: `/gallery/${photoName}`,
+      },
+      tokenType: NftTokenType.ERC721,
+      timeLastUpdated: new Date().toISOString(),
+      contract: {
+        address: '',
+        spamClassifications: [],
+        tokenType: NftTokenType.ERC721,
+        openSeaMetadata: {
+          lastIngestedAt: new Date().toISOString(),
+        },
+      },
+      raw: {
+        metadata: {
+          attributes: [
+            {
+              trait_type: 'Collection',
+              value: 'Other',
             },
           ],
         },
@@ -94,8 +127,8 @@ const gatherImages = async () => {
  */
 const createThumbnailsInDir = async (assets: Nft[]) => {
   // Create (fresh) thumbnails directory
-  fs.rmSync("public/gallery/thumbnails", { recursive: true, force: true });
-  fs.mkdirSync("public/gallery/thumbnails");
+  fs.rmSync('public/gallery/thumbnails', { recursive: true, force: true });
+  fs.mkdirSync('public/gallery/thumbnails');
 
   const generateImageFns = assets.map((asset) => {
     const imageUrl = asset.image.originalUrl;
@@ -128,7 +161,7 @@ const createThumbnailsInDir = async (assets: Nft[]) => {
 
 const writeAssetsJson = (assets: Nft[]) => {
   fs.writeFileSync(
-    "public/gallery/assets.json",
+    'public/gallery/assets.json',
     JSON.stringify(assets, null, 2)
   );
 };
@@ -136,13 +169,13 @@ const writeAssetsJson = (assets: Nft[]) => {
 const main = async () => {
   const assets = await gatherImages();
   writeAssetsJson(assets);
-  // await createThumbnailsInDir(assets);
+  await createThumbnailsInDir(assets);
 };
 
 main()
   .then(() => {
-    console.log("Script completed successfully.");
+    console.log('Script completed successfully.');
   })
   .catch((error) => {
-    console.error("Script failed with error: ", error);
+    console.error('Script failed with error: ', error);
   });
