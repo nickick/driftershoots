@@ -29,24 +29,31 @@ const GalleryV2 = () => {
     setSelectedAssetIndex(null);
   };
 
-  const setNextIndex = (nextIndex: number) => {
-    const newIndex =
-      nextIndex < 0
-        ? assets.length - 1
-        : nextIndex >= assets.length
-        ? 0
-        : nextIndex;
-    setSelectedAsset(assets[newIndex]);
-    setSelectedAssetIndex(newIndex);
-  };
-
   const [filteredAssets, setFilteredAssets] = useState<Nft[]>(assets);
   const [filters, setFilters] = useState<string[]>([]);
 
-  const [gridSize, setGridSize] = useState<keyof typeof GRID_SIZES>("LARGE");
+  const setNextIndex = (nextIndex: number) => {
+    const selectedImageUrl = selectedAsset?.image.originalUrl;
+    const nextIndexDirection = nextIndex - selectedAssetIndex!;
+    const indexOfSelected = filteredAssets.findIndex(
+      (asset) => asset.image.originalUrl === selectedImageUrl
+    );
+    const newIndex =
+      nextIndex < 0
+        ? filteredAssets.length - 1
+        : nextIndex >= filteredAssets.length
+        ? 0
+        : indexOfSelected + nextIndexDirection;
+    setSelectedAsset(filteredAssets[newIndex]);
+    setSelectedAssetIndex(newIndex);
+  };
+
+  const [gridSize, setGridSize] = useState<keyof typeof GRID_SIZES>('LARGE');
   const gridGap = gridSize === 'LARGE' ? 20 : 15;
-  const tileHeight = gridSize === 'LARGE' ? 100 : gridSize === 'MEDIUM' ? 75 : 50;
-  const mobileTileHeight = gridSize === 'LARGE' ? 85 : gridSize === 'MEDIUM' ? 65 : 55;
+  const tileHeight =
+    gridSize === 'LARGE' ? 100 : gridSize === 'MEDIUM' ? 75 : 50;
+  const mobileTileHeight =
+    gridSize === 'LARGE' ? 85 : gridSize === 'MEDIUM' ? 65 : 55;
 
   useEffect(() => {
     if (filters.length === 0) {
