@@ -82,7 +82,7 @@ const ModalImage = ({
         ref={imageContainerRef}
       >
         {asset.image?.contentType?.includes('video') ? (
-          <video controls autoPlay>
+          <video controls autoPlay loop>
             <source
               src={asset.image.cachedUrl || asset.image.originalUrl || ''}
               type={asset.image.contentType || ''}
