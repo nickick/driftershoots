@@ -14,7 +14,10 @@ export const TogglePill = ({ active, onClick, children }: TogglePillProps) => (
   <Typography
     variant="body2"
     sx={{
-      fontSize: 16,
+      fontSize: {
+        xs: 10,
+        md: 16,
+      },
       color: {
         xs: active ? `${activeBgColor}` : `${inactiveBgColor}`,
         md: active ? '#fff' : '#ccc',
