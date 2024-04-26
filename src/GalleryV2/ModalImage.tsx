@@ -81,25 +81,35 @@ const ModalImage = ({
         }}
         ref={imageContainerRef}
       >
-        <img
-          src={
-            imgLoaded
-              ? asset.image.cachedUrl || asset.image.originalUrl || ''
-              : `/gallery/thumbnails/${reduceName(asset.name)}.png`
-          }
-          alt={asset.name || ''}
-          key={`${asset.name}-${asset.image.originalUrl}`}
-          style={{
-            objectFit: zoomIn ? 'cover' : 'contain',
-            maxHeight: zoomIn ? '200vh' : mobile ? '80vh' : '80vh',
-            height: zoomIn ? 'unset' : '100%',
-            width: zoomIn ? 'unset' : '100%',
-          }}
-          onLoad={() => {
-            setImgLoaded(true);
-          }}
-          ref={imageRef}
-        />
+        {asset.image?.contentType?.includes('video') ? (
+          <video controls autoPlay>
+            <source
+              src={asset.image.cachedUrl || asset.image.originalUrl || ''}
+              type={asset.image.contentType || ''}
+            />
+          </video>
+        ) : (
+          <img
+            src={
+              imgLoaded
+                ? asset.image.cachedUrl || asset.image.originalUrl || ''
+                : `/gallery/thumbnails/${reduceName(asset.name)}.png`
+            }
+            alt={asset.name || ''}
+            key={`${asset.name}-${asset.image.originalUrl}`}
+            style={{
+              objectFit: zoomIn ? 'cover' : 'contain',
+              maxHeight: zoomIn ? '200vh' : mobile ? '80vh' : '80vh',
+              height: zoomIn ? 'unset' : '100%',
+              width: zoomIn ? 'unset' : '100%',
+            }}
+            onLoad={() => {
+              setImgLoaded(true);
+            }}
+            ref={imageRef}
+          />
+        )}
+
         <Box
           sx={{
             position: 'absolute',
