@@ -264,14 +264,16 @@ const ModalView = ({
                   marginTop: 2,
                 }}
               >
-                <Typography
-                  variant="h4"
-                  sx={{
-                    display: zoomed ? 'none' : 'block',
-                  }}
-                >
-                  {asset.name}
-                </Typography>
+                {asset.name?.includes('Where') && (
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      display: zoomed ? 'none' : 'block',
+                    }}
+                  >
+                    {asset.name}
+                  </Typography>
+                )}
                 {/* <Typography
                   variant="body2"
                   sx={{
