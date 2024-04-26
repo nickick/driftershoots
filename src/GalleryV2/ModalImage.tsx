@@ -99,7 +99,7 @@ const ModalImage = ({
             key={`${asset.name}-${asset.image.originalUrl}`}
             style={{
               objectFit: zoomIn ? 'cover' : 'contain',
-              maxHeight: zoomIn ? '200vh' : mobile ? '80vh' : '80vh',
+              maxHeight: zoomIn ? '200vh' : mobile ? '60vh' : '80vh',
               height: zoomIn ? 'unset' : '100%',
               width: zoomIn ? 'unset' : '100%',
             }}
