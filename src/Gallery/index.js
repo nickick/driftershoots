@@ -19,7 +19,6 @@ import { GalleryContext } from "../GalleryContextProvider";
 import { LoadedContext } from "../LoadedContextProvider";
 import GalleryModal from "./GalleryModal";
 import Masonry from "./Masonry";
-import Traits from "./Traits";
 
 const fadeFromBelow = keyframes`
   0% {
@@ -134,12 +133,6 @@ export default function Gallery() {
       }
     }
   }, [router.query.gallery, wmvgSorted, piece]);
-
-  const traits = new Set(
-    wmvgSorted
-      .map((wmvg) => wmvg.raw.metadata.attributes.map((trait) => trait.value))
-      .flat()
-  );
 
   function a11yProps(index) {
     return {

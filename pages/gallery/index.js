@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Gallery, GalleryContextProvider } from '../../src';
+import { GalleryV2 } from '../../src/GalleryV2';
 
 export default function GalleryPage() {
   return (
@@ -22,7 +23,7 @@ export default function GalleryPage() {
         <meta name="twitter:image" content="https://driftershoots.com/open-graph.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Gallery />
+      <GalleryV2 />
     </GalleryContextProvider>
   );
 }
