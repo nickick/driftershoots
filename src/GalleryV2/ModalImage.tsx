@@ -1,5 +1,5 @@
 import { Box, CircularProgress } from '@mui/material';
-import { Nft } from 'alchemy-sdk';
+import { Nft } from './types';
 import { reduceName } from '../../scripts/helpers';
 import { useEffect, useRef } from 'react';
 

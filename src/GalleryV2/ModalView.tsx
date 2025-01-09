@@ -1,10 +1,9 @@
 import { Box, Typography } from '@mui/material';
-import { Nft } from 'alchemy-sdk';
+import { Nft } from './types';
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock';
 import { useEffect, useRef, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import ModalImage from './ModalImage';
-import { isMobile } from 'react-device-detect';
 import {
   fadeInLeftToCenter,
   fadeInRightToCenter,

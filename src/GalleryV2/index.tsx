@@ -1,13 +1,12 @@
 import { Box, Container } from '@mui/material';
-import { Nft } from 'alchemy-sdk';
 import random from 'random-seed';
 import { useContext, useEffect, useState } from 'react';
 import assetsJson from '../../public/gallery/assets.json';
 import { LoadedContext } from '../LoadedContextProvider';
-import Filter from './Filter';
+import { GRID_SIZES } from './GridSizer';
+import { Nft } from './types';
 import ModalView from './ModalView';
 import ThumbnailTile from './ThumbnailTile';
-import GridSizer, { GRID_SIZES } from './GridSizer';
 
 const randomSeed = random.create('tothemoon');
 
