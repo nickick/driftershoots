@@ -43,7 +43,7 @@ const ThumbnailTile = ({
       () => setHasFadedIn(true),
       (entryDelay + additionalDelay) * 1000
     );
-  }, [filters])
+  }, [filters]);
 
   return (
     <Box
@@ -66,7 +66,7 @@ const ThumbnailTile = ({
       onClick={() => selectAsset(asset, index)}
     >
       <img
-        src={`gallery/thumbnails/${reduceName(asset.name)}.png`}
+        src={`${reduceName(asset.image.thumbnailUrl)}`}
         alt={asset.name}
         style={{
           width: 'auto',

@@ -94,8 +94,8 @@ const GalleryV2 = () => {
           justifyContent: 'space-between',
         }}
       >
-        <Filter activeFilters={filters} setFilters={setFilters} />
-        <GridSizer gridSize={gridSize} setGridSize={setGridSize} />
+        {/* <Filter activeFilters={filters} setFilters={setFilters} />
+        <GridSizer gridSize={gridSize} setGridSize={setGridSize} /> */}
       </Box>
       <Box
         sx={{

@@ -93,7 +93,7 @@ const ModalImage = ({
             src={
               imgLoaded
                 ? asset.image.cachedUrl || asset.image.originalUrl || ''
-                : `/gallery/thumbnails/${reduceName(asset.name)}.png`
+                : `${reduceName(asset.image.thumbnailUrl)}`
             }
             alt={asset.name || ''}
             key={`${asset.name}-${asset.image.originalUrl}`}
