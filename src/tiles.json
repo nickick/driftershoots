@@ -30,36 +30,6 @@
     "right-button-href": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
   },
   {
-    "title": "First Day Out",
-    "category": "NFT Project",
-    "h1": "First Day Out",
-    "logo": "",
-    "logo-alt": "",
-    "main-image": "/news-images/fdo.jpg",
-    "main-image-overlay": "",
-    "main-image-overlay-alt": "",
-    "main-image-zoom-start": {
-      "scale": 0.7,
-      "translateX": -70,
-      "translateY": -70
-    },
-    "main-image-zoom": {
-      "scale": 0.8,
-      "translateX": -74,
-      "translateY": -70
-    },
-    "main-image-mobile-zoom": {
-      "scale": 0.8,
-      "translateX": -74,
-      "translateY": -80
-    },
-    "main-image-alt": "Drifter Shoots aka Isaac Wright sitting on cable of bridge overlooking New York City",
-    "right-title": "Open Edition by DrifterShoots",
-    "right-description": "“April 9th, 2021 was my first day out. I had $9,000 left in my savings and five lawyers I had no idea how I would pay.”",
-    "right-button-text": "View NFT",
-    "right-button-href": "https://firstdayout.driftershoots.com"
-  },
-  {
     "title": "Where My Vans Go",
     "category": "NFT Project",
     "h1": "Where\nMy Vans\nGo",

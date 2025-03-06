@@ -1,10 +1,10 @@
-import { Box, Button, Drawer, keyframes } from "@mui/material";
-import { PropTypes } from "prop-types";
-import Link from "next/link";
-import { Twitter, YouTube } from "@mui/icons-material";
-import { Spin as Hamburger } from "hamburger-react";
-import { Instagram } from "@mui/icons-material";
-import { entranceAnimationDuration } from "./constants";
+import { Box, Button, Drawer, keyframes } from '@mui/material';
+import { PropTypes } from 'prop-types';
+import Link from 'next/link';
+import { Twitter, YouTube } from '@mui/icons-material';
+import { Spin as Hamburger } from 'hamburger-react';
+import { Instagram } from '@mui/icons-material';
+import { entranceAnimationDuration } from './constants';
 
 const fadeIn = keyframes`
   0% {
@@ -17,53 +17,43 @@ const fadeIn = keyframes`
 
 const navLinks = [
   {
-    text: "Represented by",
-    href: "http://www.robertmann.com",
-    icon: "",
+    text: 'Represented by',
+    href: 'http://www.robertmann.com',
+    icon: '',
   },
   {
-    text: "Gallery",
-    href: "/gallery",
-    icon: "",
+    text: 'Gallery',
+    href: '/gallery',
+    icon: '',
   },
   {
-    text: "Publications",
-    href: "/publications",
-    icon: "",
+    text: 'Publications',
+    href: '/publications',
+    icon: '',
   },
   {
-    text: "Contact",
-    href: "/contact",
-    icon: "",
+    text: 'Contact',
+    href: '/contact',
+    icon: '',
   },
   {
-    text: "About",
-    href: "/about",
-    icon: "",
+    text: 'About',
+    href: '/about',
+    icon: '',
   },
   {
-    text: "WMVG Migrator",
-    href: "https://wheremyvansgo.com",
-    icon: "",
-  },
-  {
-    text: "FirstDayOut",
-    href: "https://firstdayout.driftershoots.com",
-    icon: "",
-  },
-  {
-    text: "",
-    href: "https://www.instagram.com/driftershoots",
+    text: '',
+    href: 'https://www.instagram.com/driftershoots',
     icon: <Instagram sx={{ fontSize: 20 }} />,
   },
   {
-    text: "",
-    href: "https://www.youtube.com/channel/UCGLHIncVIZ6uKnA-rExt53g",
+    text: '',
+    href: 'https://www.youtube.com/channel/UCGLHIncVIZ6uKnA-rExt53g',
     icon: <YouTube sx={{ fontSize: 20 }} />,
   },
   {
-    text: "",
-    href: "https://twitter.com/driftershoots",
+    text: '',
+    href: 'https://twitter.com/driftershoots',
     icon: <Twitter sx={{ fontSize: 20 }} />,
   },
 ];
@@ -74,21 +64,21 @@ function NavButton({ text, href, icon, index, onClose }) {
       <Button
         variant="text"
         sx={{
-          color: "text.primary",
-          minWidth: icon ? "1rem" : "inherit",
-          my: "0.5rem",
-          fontSize: "1.5rem",
-          lineHeight: "2rem",
-          letterSpacing: "0.1rem",
+          color: 'text.primary',
+          minWidth: icon ? '1rem' : 'inherit',
+          my: '0.5rem',
+          fontSize: '1.5rem',
+          lineHeight: '2rem',
+          letterSpacing: '0.1rem',
           animation: `${fadeIn} ${entranceAnimationDuration}s both ${
             index * 0.1
           }s`,
         }}
         onClick={onClose}
-        target={icon || href[0] !== "/" ? "_blank" : ""}
+        target={icon || href[0] !== '/' ? '_blank' : ''}
       >
         {text}
-        {icon || ""}
+        {icon || ''}
       </Button>
     </Link>
   );
@@ -103,8 +93,8 @@ NavButton.propTypes = {
 };
 
 NavButton.defaultProps = {
-  text: "",
-  href: "",
+  text: '',
+  href: '',
   icon: null,
 };
 
@@ -117,18 +107,18 @@ export default function MobileDrawer({ isOpen, setOpen, closeDrawer }) {
       PaperProps={{
         sx: {
           p: 4,
-          width: "90vw",
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
+          width: '90vw',
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
         },
       }}
     >
       <Box
         sx={{
-          position: "absolute",
-          right: "4rem",
-          top: "4rem",
+          position: 'absolute',
+          right: '4rem',
+          top: '4rem',
         }}
       >
         <Hamburger
@@ -140,9 +130,9 @@ export default function MobileDrawer({ isOpen, setOpen, closeDrawer }) {
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
         {navLinks.map(({ text, href, icon }, index) => (
