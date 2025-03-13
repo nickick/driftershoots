@@ -37,7 +37,8 @@ function Title({ text, state }) {
 
 Title.propTypes = {
   text: PropTypes.string.isRequired,
-  state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited']).isRequired,
+  state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited'])
+    .isRequired,
 };
 
 export default function TileTitle({ tiles, selectedTileIndex }) {
@@ -49,11 +50,7 @@ export default function TileTitle({ tiles, selectedTileIndex }) {
       }}
     >
       {tiles.map((tile, index) => (
-        <Transition
-          in={index === selectedTileIndex}
-          timeout={0}
-          key={tile.h1}
-        >
+        <Transition in={index === selectedTileIndex} timeout={0} key={tile.h1}>
           {(state) => <Title key={tile.h1} text={tile.h1} state={state} />}
         </Transition>
       ))}

@@ -11,9 +11,7 @@ const transitionStyles = {
   exited: { opacity: 0, visibility: 'hidden' },
 };
 
-function CTAButtonText({
-  text, state, childkey,
-}) {
+function CTAButtonText({ text, state, childkey }) {
   return (
     <Typography
       key={childkey}
@@ -37,7 +35,8 @@ function CTAButtonText({
 
 CTAButtonText.propTypes = {
   text: PropTypes.string.isRequired,
-  state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited']).isRequired,
+  state: PropTypes.oneOf(['entering', 'entered', 'exiting', 'exited'])
+    .isRequired,
   childkey: PropTypes.number.isRequired,
 };
 
@@ -56,7 +55,13 @@ export default function CTAButton({ tiles, selectedTileIndex }) {
           timeout={0}
           key={tile.title}
         >
-          {(state) => <CTAButtonText childkey={index} text={tile['right-button-text']} state={state} />}
+          {(state) => (
+            <CTAButtonText
+              childkey={index}
+              text={tile['right-button-text']}
+              state={state}
+            />
+          )}
         </Transition>
       ))}
     </OutlinedButton>

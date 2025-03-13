@@ -1,6 +1,4 @@
-import {
-  Box, Container, keyframes, Typography,
-} from '@mui/material';
+import { Box, Container, keyframes, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { entranceAnimationDuration } from './constants';
@@ -39,7 +37,12 @@ const fadeIn = keyframes`
 `;
 
 function SelectorTile({
-  category, title, isSelected, index, setSelected, setTransitioning,
+  category,
+  title,
+  isSelected,
+  index,
+  setSelected,
+  setTransitioning,
 }) {
   const { animationDelay } = useContext(LoadedContext);
 
@@ -51,6 +54,7 @@ function SelectorTile({
           cursor: 'pointer',
           color: isSelected ? 'text.primary' : 'text.secondary',
           animation: `${popDown} 0.3s both 0.3s`,
+          maxWidth: '33%',
           zIndex: 3,
           display: {
             // need to do a separate layout for mobile given animation requirements
@@ -77,7 +81,9 @@ function SelectorTile({
     >
       <Box
         sx={{
-          animation: `${fadeIn} ${entranceAnimationDuration}s both ${0.2 + animationDelay + index * 0.15}s`,
+          animation: `${fadeIn} ${entranceAnimationDuration}s both ${
+            0.2 + animationDelay + index * 0.15
+          }s`,
         }}
       >
         <Typography
@@ -126,7 +132,11 @@ SelectorTile.propTypes = {
   setTransitioning: PropTypes.func.isRequired,
 };
 
-export default function Selector({ selectedTileIndex, setSelectedTileIndex, setTransitioning }) {
+export default function Selector({
+  selectedTileIndex,
+  setSelectedTileIndex,
+  setTransitioning,
+}) {
   return (
     <Container
       sx={{
@@ -137,19 +147,17 @@ export default function Selector({ selectedTileIndex, setSelectedTileIndex, setT
         mb: 6,
       }}
     >
-      {
-        tiles.map((tile, index) => (
-          <SelectorTile
-            category={tile.category}
-            index={index}
-            isSelected={index === selectedTileIndex}
-            key={tile.h1}
-            setSelected={setSelectedTileIndex}
-            title={tile.title}
-            setTransitioning={setTransitioning}
-          />
-        ))
-      }
+      {tiles.map((tile, index) => (
+        <SelectorTile
+          category={tile.category}
+          index={index}
+          isSelected={index === selectedTileIndex}
+          key={tile.h1}
+          setSelected={setSelectedTileIndex}
+          title={tile.title}
+          setTransitioning={setTransitioning}
+        />
+      ))}
     </Container>
   );
 }

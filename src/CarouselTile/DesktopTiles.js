@@ -120,10 +120,12 @@ export default function DesktopTile({ selectedTileIndex, tiles }) {
               display: 'flex',
               flexDirection: 'column',
               width: '100%',
-              animation: `${fadeFromRight} ${entranceAnimationDuration}s both ${animationDelay + 0.4}s`,
+              animation: `${fadeFromRight} ${entranceAnimationDuration}s both ${
+                animationDelay + 0.4
+              }s`,
             }}
           >
-            { tiles[selectedTileIndex].logo && (
+            {tiles[selectedTileIndex].logo && (
               <Box
                 sx={{
                   display: 'flex',

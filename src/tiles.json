@@ -28,35 +28,5 @@
     "right-description": "A former paratrooper became an &ldquo;urban explorer&ldquo;, scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
     "right-button-text": "Read Article",
     "right-button-href": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
-  },
-  {
-    "title": "Where My Vans Go",
-    "category": "NFT Project",
-    "h1": "Where\nMy Vans\nGo",
-    "logo": "",
-    "logo-alt": "",
-    "main-image": "/news-images/wmvg-main.jpg",
-    "main-image-overlay": "",
-    "main-image-overlay-alt": "",
-    "main-image-zoom-start": {
-      "scale": 1.4,
-      "translateX": -35,
-      "translateY": -30
-    },
-    "main-image-zoom": {
-      "scale": 1.0,
-      "translateX": -50,
-      "translateY": -55
-    },
-    "main-image-mobile-zoom": {
-      "scale": 0.65,
-      "translateX": -80,
-      "translateY": -90
-    },
-    "main-image-alt": "Shoes overlooking bridge from top of bridge arch",
-    "right-title": "NFT Collection",
-    "right-description": "Where My Vans Go is a collection comprised of 124 iconic images created over the span of three years exploring all over the United States. From coast to coast, between borders and beyond, this series represents the journey that has forged the person and artist that I am today.",
-    "right-button-text": "View Collection",
-    "right-button-href": "/gallery"
   }
 ]
