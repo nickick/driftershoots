@@ -107,7 +107,11 @@ function SelectorTile({
             transition: 'color 0.2s ease',
           }}
         >
-          {title}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
         </Typography>
         <Box
           sx={{

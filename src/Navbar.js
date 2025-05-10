@@ -94,13 +94,6 @@ const rightNav = [
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const closeDrawer = useCallback(() => {
     setOpen(false);

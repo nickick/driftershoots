@@ -77,7 +77,7 @@ export default function OutlinedButton({
         },
         {
           '&:hover > span, &:hover > h4, &:hover > p': {
-            color: 'black',
+            color: 'black !important',
             zIndex: 10,
           },
         },

@@ -12,9 +12,7 @@ const fadeIn = keyframes`
   }
 `;
 
-export function NavButton({
-  text, href, icon, index, animation,
-}) {
+export function NavButton({ text, href, icon, index, animation }) {
   return (
     <Link href={href} passHref>
       <Button
@@ -26,9 +24,14 @@ export function NavButton({
           fontSize: '1.5rem',
           lineHeight: '2rem',
           letterSpacing: '0.1rem',
-          animation: animation ? `${fadeIn} ${entranceAnimationDuration}s both ${entranceAnimationDelay + index * 0.2}s` : 'none',
+          animation: animation
+            ? `${fadeIn} ${entranceAnimationDuration}s both ${
+                entranceAnimationDelay + index * 0.2
+              }s`
+            : 'none',
+          whiteSpace: 'nowrap',
         }}
-        target={(icon || href[0] !== '/') ? '_blank' : ''}
+        target={icon || href[0] !== '/' ? '_blank' : ''}
       >
         {text}
         {icon || ''}

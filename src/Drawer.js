@@ -1,9 +1,8 @@
+import { Instagram, Twitter, YouTube } from '@mui/icons-material';
 import { Box, Button, Drawer, keyframes } from '@mui/material';
-import { PropTypes } from 'prop-types';
-import Link from 'next/link';
-import { Twitter, YouTube } from '@mui/icons-material';
 import { Spin as Hamburger } from 'hamburger-react';
-import { Instagram } from '@mui/icons-material';
+import Link from 'next/link';
+import { PropTypes } from 'prop-types';
 import { entranceAnimationDuration } from './constants';
 
 const fadeIn = keyframes`
@@ -29,6 +28,11 @@ const navLinks = [
   {
     text: 'Publications',
     href: '/publications',
+    icon: '',
+  },
+  {
+    text: 'Photobook',
+    href: '/book',
     icon: '',
   },
   {
