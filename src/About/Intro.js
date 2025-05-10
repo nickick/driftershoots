@@ -1,38 +1,38 @@
-import { Box, Typography } from "@mui/material";
-import FadeInAboutSection from "./FadeInAboutSection";
-import ZoomLazyImage from "./ZoomLazyImage";
+import { Box, Typography } from '@mui/material';
+import FadeInAboutSection from './FadeInAboutSection';
+import ZoomLazyImage from './ZoomLazyImage';
 
 export default function Intro() {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: 'flex',
         flexDirection: {
-          xs: "column",
-          md: "row",
+          xs: 'column',
+          md: 'row',
         },
-        width: "100%",
+        width: '100%',
       }}
     >
       <FadeInAboutSection
         fadeInOnload
         sx={{
-          display: "flex",
-          flexDirection: "row",
+          display: 'flex',
+          flexDirection: 'row',
           flex: 7,
           width: {
-            xs: "100%",
-            md: "50%",
+            xs: '100%',
+            md: '50%',
           },
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             flex: 1,
-            width: "50%",
-            justifyContent: "center",
+            width: '50%',
+            justifyContent: 'center',
             pr: 3,
           }}
         >
@@ -40,7 +40,7 @@ export default function Intro() {
             src="/about/1.jpeg"
             alt="Empire State Builiding in clouds"
             style={{
-              marginBottom: "3rem",
+              marginBottom: '3rem',
             }}
           />
           <ZoomLazyImage
@@ -50,11 +50,11 @@ export default function Intro() {
         </Box>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             flex: 1,
-            width: "50%",
-            justifyContent: "center",
+            width: '50%',
+            justifyContent: 'center',
             pr: {
               xs: 0,
               md: 3,
@@ -69,9 +69,9 @@ export default function Intro() {
         animationStyle="fadeFromRight"
         sx={{
           flex: 5,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
           pl: {
             xs: 0,
             md: 3,
