@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import OutlinedButton from '../OutlinedButton';
-import { tilesProps } from '../utils/prop-types';
+import { TilesProps } from '../utils/types';
 
 const transitionStyles = {
   entering: { opacity: 0, visibility: 'visible' },
@@ -11,11 +11,19 @@ const transitionStyles = {
   exited: { opacity: 0, visibility: 'hidden' },
 };
 
-function CTAButtonText({ text, state, childkey }) {
+function CTAButtonText({
+  text,
+  state,
+  childkey,
+}: {
+  text: string;
+  state: string;
+  childkey: number;
+}) {
   return (
     <Typography
       key={childkey}
-      variant="body"
+      variant="body1"
       sx={[
         {
           position: 'absolute',
@@ -23,7 +31,7 @@ function CTAButtonText({ text, state, childkey }) {
           textTransform: 'capitalize',
           fontSize: '1.75rem',
           lineHeight: '3rem',
-          ...transitionStyles[state],
+          ...transitionStyles[state as keyof typeof transitionStyles],
         },
       ]}
       aria-hidden={state === 'exiting' || state === 'exited'}
@@ -40,13 +48,20 @@ CTAButtonText.propTypes = {
   childkey: PropTypes.number.isRequired,
 };
 
-export default function CTAButton({ tiles, selectedTileIndex }) {
+export default function CTAButton({
+  tiles,
+  selectedTileIndex,
+}: {
+  tiles: TilesProps;
+  selectedTileIndex: number;
+}) {
   return (
     <OutlinedButton
       href={tiles[selectedTileIndex]['right-button-href']}
       clientside={
         tiles[selectedTileIndex]['right-button-href'].indexOf('/') === 0
       }
+      fullWidth={false}
       text={tiles[selectedTileIndex]['right-button-text']}
     >
       {tiles.map((tile, index) => (
@@ -67,8 +82,3 @@ export default function CTAButton({ tiles, selectedTileIndex }) {
     </OutlinedButton>
   );
 }
-
-CTAButton.propTypes = {
-  tiles: tilesProps.isRequired,
-  selectedTileIndex: PropTypes.number.isRequired,
-};

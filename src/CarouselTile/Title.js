@@ -17,8 +17,8 @@ function Title({ text, state }) {
       sx={{
         fontSize: {
           sm: '6rem',
-          md: '12rem',
-          lg: '16rem',
+          md: '10rem',
+          lg: '14rem',
         },
         position: 'absolute',
         top: '50%',

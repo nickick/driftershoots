@@ -1,17 +1,5 @@
-import {
-  ArrowDropDown,
-  Instagram,
-  Twitter,
-  YouTube,
-} from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Container,
-  keyframes,
-  Menu,
-  MenuItem,
-} from '@mui/material';
+import { Instagram, Twitter, YouTube } from '@mui/icons-material';
+import { Box, Container, keyframes } from '@mui/material';
 import { Spin as Hamburger } from 'hamburger-react';
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
@@ -66,6 +54,11 @@ const leftNav = [
   {
     text: 'Publications',
     href: '/publications',
+    icon: '',
+  },
+  {
+    text: 'Photobook',
+    href: '/book',
     icon: '',
   },
 ];
