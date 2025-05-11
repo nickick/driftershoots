@@ -1,7 +1,6 @@
-import { Typography } from '@mui/material';
 import OutlinedButton from '../OutlinedButton';
 
-const OrderButton = () => {
+const OrderButton = ({ children }: { children: React.ReactNode }) => {
   const url =
     'https://driftershoots.myshopify.com/checkouts/co/8a5266bb3d276b0349039b698273cde5';
 
@@ -13,7 +12,7 @@ const OrderButton = () => {
       clientside={false}
       fullWidth={false}
     >
-      <Typography variant="h4">Order</Typography>
+      {children}
     </OutlinedButton>
   );
 };

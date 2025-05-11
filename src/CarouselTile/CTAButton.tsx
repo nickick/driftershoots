@@ -31,6 +31,13 @@ function CTAButtonText({
           textTransform: 'capitalize',
           fontSize: '1.75rem',
           lineHeight: '3rem',
+          '&:hover': {
+            color: 'black',
+          },
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           ...transitionStyles[state as keyof typeof transitionStyles],
         },
       ]}

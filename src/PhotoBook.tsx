@@ -15,7 +15,9 @@ const PhotoBook = () => {
           position: 'relative',
         }}
       >
-        <OrderButton />
+        <OrderButton>
+          <span>Order</span>
+        </OrderButton>
       </Box>
     </div>
   );
