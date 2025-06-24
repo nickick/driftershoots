@@ -11,6 +11,7 @@ interface OutlinedButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   scrollToTop?: boolean;
   target?: string;
+  sx?: React.CSSProperties;
 }
 
 export default function OutlinedButton({
@@ -22,6 +23,7 @@ export default function OutlinedButton({
   onClick,
   scrollToTop,
   target,
+  sx,
 }: OutlinedButtonProps) {
   const router = useRouter();
 
@@ -102,6 +104,7 @@ export default function OutlinedButton({
             transform: 'translate(0, 0)',
           },
         },
+        { ...sx },
       ]}
       onClick={handleClick}
     >

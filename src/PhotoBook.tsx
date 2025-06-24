@@ -1,10 +1,17 @@
-import { Box, Typography } from '@mui/material';
+'use client';
+
+import { Box, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useState } from 'react';
 import { fadeIn } from './GalleryV2/animations';
 import { OrderButton } from './OrderButton';
 import { entranceAnimationDelay, entranceAnimationDuration } from './constants';
 
 const PhotoBook = () => {
+  const [quantity, setQuantity] = useState(1);
+  const increment = () => setQuantity(quantity + 1);
+  const decrement = () => setQuantity(Math.max(1, quantity - 1));
+
   return (
     <Box
       sx={{
@@ -122,21 +129,73 @@ const PhotoBook = () => {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: {
-              xs: 'flex-end',
-              md: 'flex-start',
-            },
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: { xs: '100%', md: '50%' },
+            gap: 3,
             mt: {
               xs: 4,
               md: 4,
             },
-            justifyContent: 'center',
             zIndex: 1000,
             position: 'relative',
           }}
         >
-          <OrderButton>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: {
+                xs: 'space-between',
+                md: 'flex-start',
+              },
+              gap: 2,
+              border: '1px solid #666',
+              px: 1,
+              py: 1,
+              width: {
+                xs: '100%',
+                md: 'auto',
+              },
+            }}
+          >
+            <IconButton
+              onClick={decrement}
+              sx={{
+                borderColor: 'primary.main',
+                fontSize: '3rem',
+                px: 2,
+                borderRadius: 0,
+              }}
+            >
+              -
+            </IconButton>
+            <Typography
+              variant="h5"
+              sx={{
+                fontSize: '3rem',
+                fontWeight: 600,
+                width: '2rem',
+                textAlign: 'center',
+              }}
+            >
+              {quantity}
+            </Typography>
+            <IconButton
+              onClick={increment}
+              sx={{
+                borderColor: 'primary.main',
+                fontSize: '3rem',
+                px: 2,
+                borderRadius: 0,
+              }}
+            >
+              +
+            </IconButton>
+          </Box>
+          <OrderButton quantity={quantity} fullWidth>
             <Typography variant="h4">Preorder</Typography>
           </OrderButton>
         </Box>

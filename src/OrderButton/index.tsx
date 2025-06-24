@@ -1,8 +1,17 @@
 import OutlinedButton from '../OutlinedButton';
 
-const OrderButton = ({ children }: { children: React.ReactNode }) => {
-  const url =
-    'https://driftershoots.myshopify.com/checkouts/co/8a5266bb3d276b0349039b698273cde5';
+const OrderButton = ({
+  children,
+  quantity,
+  fullWidth = false,
+  style,
+}: {
+  children: React.ReactNode;
+  quantity: number;
+  fullWidth?: boolean;
+  style?: React.CSSProperties;
+}) => {
+  const url = `https://driftershoots.myshopify.com/cart/46136485970178:${quantity}?channel=buy_button`;
 
   return (
     <OutlinedButton
@@ -10,7 +19,8 @@ const OrderButton = ({ children }: { children: React.ReactNode }) => {
       target="_blank"
       text="Order"
       clientside={false}
-      fullWidth={false}
+      fullWidth={fullWidth}
+      sx={style}
     >
       {children}
     </OutlinedButton>
