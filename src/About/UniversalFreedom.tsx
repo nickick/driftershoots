@@ -1,15 +1,15 @@
-import { Box, Typography } from "@mui/material";
-import OutlinedButton from "../OutlinedButton";
-import ZoomLazyImage from "./ZoomLazyImage";
+import { Box, Typography } from '@mui/material';
+import OutlinedButton from '../OutlinedButton';
+import ZoomLazyImage from './ZoomLazyImage';
 
-export default function UniversalFreedom() {
+export default function UniversalFreedom(): JSX.Element {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: 'flex',
         flexDirection: {
-          xs: "column",
-          md: "row",
+          xs: 'column',
+          md: 'row',
         },
         my: {
           xs: 7,
@@ -20,8 +20,8 @@ export default function UniversalFreedom() {
       <Box
         sx={{
           flex: 5,
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           pr: {
             xs: 0,
             md: 3,
@@ -45,25 +45,25 @@ export default function UniversalFreedom() {
           other notable publications.
         </Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
-            fontSize: "2.5rem",
+            fontSize: '2.5rem',
             mb: 4,
           }}
         >
-          Drift reflects on his process over the last few years, “I've come to
+          Drift reflects on his process over the last few years, "I've come to
           realize each is a snapshot not just of the world but of who I was at
           that point in time. They are living, breathing documentations of
-          change, including the changes that have been brought forth in myself.”
+          change, including the changes that have been brought forth in myself."
           His work explores themes of self-authorization in the face of mass
           surveillance, race and the reclamation of bodily agency and
           surrealism, creating imagery on the absolute fringes of reality in an
           everlasting deeper dive into the divine.
         </Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
-            fontSize: "2.5rem",
+            fontSize: '2.5rem',
             mb: 6,
           }}
         >
@@ -82,7 +82,7 @@ export default function UniversalFreedom() {
           <Typography
             variant="h4"
             sx={{
-              textTransform: "none",
+              textTransform: 'none',
             }}
           >
             View Gallery
@@ -92,13 +92,20 @@ export default function UniversalFreedom() {
       <Box
         sx={{
           flex: 7,
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         <Box
           sx={{
-            display: "flex",
+            display: 'flex',
+            gap: {
+              xs: 3,
+              md: 0,
+            },
+            height: {
+              md: '50%',
+            },
           }}
         >
           <ZoomLazyImage
@@ -109,6 +116,10 @@ export default function UniversalFreedom() {
                 xs: 0,
                 md: 3,
               },
+              height: {
+                xs: '30rem',
+                md: '100%',
+              },
             }}
             fadeInOnload
           />
@@ -117,12 +128,16 @@ export default function UniversalFreedom() {
             alt="Chrysler building top"
             style={{
               mt: {
-                xs: 2,
+                xs: 10,
                 md: 8,
               },
               ml: {
                 xs: 0,
                 md: 3,
+              },
+              height: {
+                xs: '20rem',
+                md: '100%',
               },
             }}
             fadeInOnload
@@ -130,20 +145,27 @@ export default function UniversalFreedom() {
         </Box>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
           <ZoomLazyImage
             src="/about/8.jpeg"
             alt="Chrysler building top"
             style={{
-              mt: 3,
+              mt: {
+                xs: 3,
+                md: 12,
+              },
               ml: {
                 xs: 0,
                 md: 3,
               },
-              width: "70%",
+              width: '70%',
+              height: {
+                xs: '30rem',
+                md: '40rem',
+              },
             }}
             fadeInOnload
           />

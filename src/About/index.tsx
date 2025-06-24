@@ -1,13 +1,13 @@
-import { Instagram } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
-import OutlinedButton from "../OutlinedButton";
-import ArrestedAtGunpoint from "./ArrestedAtGunpoint";
-import InNews from "./InNews";
-import Intro from "./Intro";
-import UniversalFreedom from "./UniversalFreedom";
-import Video from "./Video";
+import { Instagram } from '@mui/icons-material';
+import { Box, Typography } from '@mui/material';
+import OutlinedButton from '../OutlinedButton';
+import ArrestedAtGunpoint from './ArrestedAtGunpoint';
+import InNews from './InNews';
+import Intro from './Intro';
+import UniversalFreedom from './UniversalFreedom';
+import Video from './Video';
 
-export default function About() {
+export default function About(): JSX.Element {
   return (
     <Box
       sx={{
@@ -20,16 +20,16 @@ export default function About() {
           xs: 4,
           md: 14,
         },
-        width: "100%",
-        maxWidth: "1600px",
-        margin: "auto",
+        width: '100%',
+        maxWidth: '1600px',
+        margin: 'auto',
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
         }}
       >
         <Intro />
@@ -39,10 +39,10 @@ export default function About() {
         <UniversalFreedom />
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Typography
@@ -54,15 +54,15 @@ export default function About() {
             Wanna see more?
           </Typography>
           <Typography
-            variant="body"
+            variant="body1"
             sx={{
-              fontSize: "2.5rem",
+              fontSize: '2.5rem',
               mb: 6,
               maxWidth: {
-                xs: "100%",
-                md: "50%",
+                xs: '100%',
+                md: '50%',
               },
-              textAlign: "center",
+              textAlign: 'center',
             }}
           >
             Check out the stories that made the artist go from military veteran
@@ -72,25 +72,27 @@ export default function About() {
           <OutlinedButton
             text="Follow on IG"
             href="https://www.instagram.com/driftershoots"
+            clientside={false}
+            fullWidth={false}
           >
             <Typography
               variant="h4"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               Follow
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   pl: 2,
                 }}
               >
-                <Instagram fontSize="xl" />
+                <Instagram fontSize="large" />
               </Box>
             </Typography>
           </OutlinedButton>

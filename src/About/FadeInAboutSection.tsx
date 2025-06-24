@@ -1,11 +1,15 @@
-import {
-  Box, keyframes,
-} from '@mui/material';
-import { bool, object, oneOf } from 'prop-types';
+import { Box, keyframes } from '@mui/material';
+import { SxProps, Theme } from '@mui/material/styles';
 import { useContext } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { LoadedContext } from '../LoadedContextProvider';
-import { childrenProps } from '../utils/prop-types';
+
+interface FadeInAboutSectionProps {
+  children: React.ReactNode;
+  fadeInOnload?: boolean;
+  animationStyle?: 'fadeFromBelow' | 'fadeFromRight';
+  sx?: SxProps<Theme>;
+}
 
 const fadeFromBelow = keyframes`
   0% {
@@ -38,20 +42,24 @@ export default function FadeInAboutSection({
   fadeInOnload,
   animationStyle,
   sx,
-}) {
+}: FadeInAboutSectionProps): JSX.Element {
   const { animationDelay } = useContext(LoadedContext);
 
   const { ref, inView } = useInView({
     triggerOnce: true,
   });
 
-  const animationStyleObj = animationStyle === 'fadeFromBelow' ? fadeFromBelow : fadeFromRight;
+  const animationStyleObj =
+    animationStyle === 'fadeFromBelow' ? fadeFromBelow : fadeFromRight;
 
   return (
     <Box
       ref={ref}
       sx={{
-        animation: (fadeInOnload || inView) ? `${animationStyleObj} 1s both ${animationDelay}s` : 'none',
+        animation:
+          fadeInOnload || inView
+            ? `${animationStyleObj} 1s both ${animationDelay}s`
+            : 'none',
         transition: 'opacity 1s ease-out',
         opacity: 0,
         ...sx,
@@ -61,16 +69,3 @@ export default function FadeInAboutSection({
     </Box>
   );
 }
-
-FadeInAboutSection.propTypes = {
-  children: childrenProps.isRequired,
-  fadeInOnload: bool,
-  animationStyle: oneOf(['fadeFromBelow', 'fadeFromRight']),
-  sx: object,
-};
-
-FadeInAboutSection.defaultProps = {
-  animationStyle: 'fadeFromBelow',
-  fadeInOnload: false,
-  sx: {},
-};

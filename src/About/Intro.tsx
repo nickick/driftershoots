@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import FadeInAboutSection from './FadeInAboutSection';
 import ZoomLazyImage from './ZoomLazyImage';
 
-export default function Intro() {
+export default function Intro(): JSX.Element {
   return (
     <Box
       sx={{
@@ -34,6 +34,10 @@ export default function Intro() {
             width: '50%',
             justifyContent: 'center',
             pr: 3,
+            height: {
+              xs: '50rem',
+              md: 'unset',
+            },
           }}
         >
           <ZoomLazyImage
@@ -41,11 +45,15 @@ export default function Intro() {
             alt="Empire State Builiding in clouds"
             style={{
               marginBottom: '3rem',
+              height: '70%',
             }}
           />
           <ZoomLazyImage
             src="/about/3.jpeg"
             alt="Drifter Shoots looking over city"
+            style={{
+              height: '40%',
+            }}
           />
         </Box>
         <Box
@@ -61,7 +69,13 @@ export default function Intro() {
             },
           }}
         >
-          <ZoomLazyImage src="/about/2.jpeg" alt="Brooklyn Bridge at night" />
+          <ZoomLazyImage
+            src="/about/2.jpeg"
+            alt="Brooklyn Bridge at night"
+            style={{
+              height: '60%',
+            }}
+          />
         </Box>
       </FadeInAboutSection>
       <FadeInAboutSection

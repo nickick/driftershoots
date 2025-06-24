@@ -1,38 +1,41 @@
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import {
-  Box,
-} from '@mui/material';
-import { bool, func } from 'prop-types';
-import {
-  forwardRef, useCallback, useState,
-} from 'react';
+import { Box } from '@mui/material';
+import { forwardRef, useCallback, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { childrenProps } from '../utils/prop-types';
 import FadeInAboutSection from './FadeInAboutSection';
 
-const VideoWrapper = forwardRef(({ children }, ref) => (
-  <Box
-    sx={[
-      {
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-      },
-    ]}
-    ref={ref}
-  >
-    {children}
-  </Box>
-));
+interface VideoWrapperProps {
+  children: React.ReactNode;
+}
 
-VideoWrapper.propTypes = {
-  children: childrenProps.isRequired,
-};
+const VideoWrapper = forwardRef<HTMLDivElement, VideoWrapperProps>(
+  ({ children }, ref) => (
+    <Box
+      sx={[
+        {
+          width: '100%',
+          height: '100%',
+          position: 'relative',
+        },
+      ]}
+      ref={ref}
+    >
+      {children}
+    </Box>
+  )
+);
 
-function VideoLoader({ isPreview, onClick }) {
+VideoWrapper.displayName = 'VideoWrapper';
+
+interface VideoLoaderProps {
+  isPreview: boolean;
+  onClick: () => void;
+}
+
+function VideoLoader({ isPreview, onClick }: VideoLoaderProps): JSX.Element {
   if (isPreview) {
     return (
-      <VideoWrapper isPreview={isPreview} onClick={onClick}>
+      <VideoWrapper>
         <Box
           sx={[
             {
@@ -54,14 +57,15 @@ function VideoLoader({ isPreview, onClick }) {
               transition: 'transform 0.2s ease-out',
             }}
           />
-          <PlayCircleOutlineIcon sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            zIndex: 30,
-            fontSize: 50,
-          }}
+          <PlayCircleOutlineIcon
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%,-50%)',
+              zIndex: 30,
+              fontSize: 50,
+            }}
           />
         </Box>
       </VideoWrapper>
@@ -80,12 +84,7 @@ function VideoLoader({ isPreview, onClick }) {
   );
 }
 
-VideoLoader.propTypes = {
-  isPreview: bool.isRequired,
-  onClick: func.isRequired,
-};
-
-export default function Video() {
+export default function Video(): JSX.Element {
   const [isPreview, setIsPreview] = useState(true);
   const onClickPreview = useCallback(() => {
     setIsPreview(false);
@@ -104,7 +103,6 @@ export default function Video() {
         alignItems: 'center',
       }}
     >
-
       <Box
         sx={[
           {
@@ -119,7 +117,6 @@ export default function Video() {
       >
         <VideoLoader isPreview={isPreview} onClick={onClickPreview} />
       </Box>
-
     </FadeInAboutSection>
   );
 }

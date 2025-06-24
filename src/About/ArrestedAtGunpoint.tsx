@@ -4,7 +4,7 @@ import OutlinedButton from '../OutlinedButton';
 import FadeInAboutSection from './FadeInAboutSection';
 import ZoomLazyImage from './ZoomLazyImage';
 
-export default function ArrestedAtGunpoint() {
+export default function ArrestedAtGunpoint(): JSX.Element {
   return (
     <FadeInAboutSection
       sx={{
@@ -53,17 +53,17 @@ export default function ArrestedAtGunpoint() {
             }}
           >
             <Typography
-              variant="quote"
+              variant="h1"
               sx={{
                 fontSize: '6rem',
                 lineHeight: '6rem',
               }}
             >
-              “The only thing he stole, was scenery.”
+              "The only thing he stole, was scenery."
             </Typography>
 
             <Typography
-              variant="body"
+              variant="body1"
               sx={{
                 fontSize: '3rem',
                 mb: 6,
@@ -81,6 +81,12 @@ export default function ArrestedAtGunpoint() {
           <ZoomLazyImage
             src="/about/4.jpeg"
             alt="Drifter Shoots looking back while in NYC afternoon"
+            style={{
+              height: {
+                xs: '60rem',
+                md: '100%',
+              },
+            }}
           />
         </Box>
       </Box>
@@ -98,7 +104,7 @@ export default function ArrestedAtGunpoint() {
       >
         <Typography variant="overline">December 17, 2020</Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
             fontSize: '3rem',
             mb: 2.5,
@@ -112,14 +118,14 @@ export default function ArrestedAtGunpoint() {
           landed on the front page of The New York Times on June 6th, 2021.
         </Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
             fontSize: '2.5rem',
             mb: 2.5,
           }}
         ></Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
             fontSize: '2.5rem',
             mb: 3.5,
@@ -132,7 +138,7 @@ export default function ArrestedAtGunpoint() {
           Times, and many other notable publications.
         </Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
             fontSize: '2.5rem',
             mb: 3.5,
@@ -145,7 +151,7 @@ export default function ArrestedAtGunpoint() {
           inviting viewers into a world at the edge of the imaginable.
         </Typography>
         <Typography
-          variant="body"
+          variant="body1"
           sx={{
             fontSize: '2.5rem',
             mb: 3.5,

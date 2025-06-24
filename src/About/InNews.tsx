@@ -1,10 +1,8 @@
-import {
-  Box, Typography,
-} from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 import FadeInAboutSection from './FadeInAboutSection';
 
-export default function InNews() {
+export default function InNews(): JSX.Element {
   return (
     <FadeInAboutSection
       sx={{
@@ -70,7 +68,7 @@ export default function InNews() {
             News
           </Typography>
           <Typography
-            variant="body"
+            variant="body1"
             sx={[
               {
                 fontSize: '2.5rem',
@@ -82,11 +80,9 @@ export default function InNews() {
               },
             ]}
           >
-            Isaac has been featured in
-            {' '}
-            <Link href="/publications">many news articles</Link>
-            {' '}
-            about his daring photography.
+            Isaac has been featured in{' '}
+            <Link href="/publications">many news articles</Link> about his
+            daring photography.
           </Typography>
         </Box>
         <Box
