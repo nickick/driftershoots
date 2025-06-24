@@ -174,6 +174,7 @@ const Gallery = () => {
         <ProgressiveImage
           src={mainImage}
           lowResSrc={getThumbnailPath(mainImage)}
+          key={mainImage}
           alt="Main gallery image"
           layout="fill"
           objectFit="cover"
