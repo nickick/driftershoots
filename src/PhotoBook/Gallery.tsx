@@ -5,8 +5,8 @@ import { Box } from '@mui/material';
 import { useState } from 'react';
 import { ProgressiveImage } from '../ProgressiveImage';
 const images = [
-  '/book/gallery/IWND-IG-_05.webp',
   '/book/gallery/IWND ECOM_17.webp',
+  '/book/gallery/IWND-IG-_05.webp',
   '/book/gallery/IWND-IG-_02.webp',
   '/book/gallery/IWND-IG-_03.webp',
   '/book/gallery/IWND-IG-_04.webp',
