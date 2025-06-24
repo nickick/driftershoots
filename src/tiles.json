@@ -7,8 +7,8 @@
     "main-image-overlay": "",
     "main-image-overlay-alt": "",
     "main-image-zoom-start": {
-      "scale": 1,
-      "translateX": -40,
+      "scale": 0.6,
+      "translateX": -100,
       "translateY": -80
     },
     "main-image-zoom": {
@@ -33,7 +33,7 @@
     "h1": "Recent News",
     "logo": "/news-images/thenewyorktimes.svg",
     "logo-alt": "The New York Times logo",
-    "main-image": "/news-images/Drifter2.jpeg",
+    "main-image": "/publications/drift-new-nyt.jpg",
     "main-image-overlay": "",
     "main-image-overlay-alt": "",
     "main-image-zoom-start": {
@@ -42,19 +42,19 @@
       "translateY": -120
     },
     "main-image-zoom": {
-      "scale": 0.5,
-      "translateX": -85,
-      "translateY": -98
+      "scale": 0.47,
+      "translateX": -95,
+      "translateY": -102
     },
     "main-image-mobile-zoom": {
-      "scale": 0.5,
-      "translateX": -90,
-      "translateY": -110
+      "scale": 0.4,
+      "translateX": -125,
+      "translateY": -130
     },
     "main-image-alt": "Drifter Shoots aka Isaac Wright on cover of New York Times",
-    "right-title": "A Rogue Climber\n Running From the Law Was Fleeing His Own Trauma",
-    "right-description": "A former paratrooper became an &ldquo;urban explorer&ldquo;, scaling the tops of bridges and buildings to help ease his PTSD. He now faces criminal charges in several states.",
+    "right-title": "He Faced Decades Behind Bars for His Art. Now He Has a Show in N.Y.C.",
+    "right-description": "For years, Isaac Wright found that scaling bridges and buildings, and making photos on the summits, helped curb his PTSD. Now he has a real career putting himself on the line.",
     "right-button-text": "Read Article",
-    "right-button-href": "https://www.nytimes.com/2021/06/04/us/isaac-wright-driftershoots-ptsd.html"
+    "right-button-href": "https://www.nytimes.com/2025/05/10/arts/design/isaac-wright-photographer.html"
   }
 ]
